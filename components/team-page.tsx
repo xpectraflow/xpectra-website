@@ -85,17 +85,10 @@ const TeamPage = () => {
   const teamMembers: TeamMember[] = [
     {
       name: "Arush Kumar Singh",
-      role: "Co-Founder",
+      role: "Founder",
       bio: "Ex-ButterCutAI, Ex-Galaxeye, Ex-Nabhdrishti Aerospace",
       image: "/arush.jpg",
       linkedin: "https://www.linkedin.com/in/arush-kumar-singh/"
-    },
-    {
-      name: "Aaryansh M. Bansal",
-      role: "Co-Founder",
-      bio: "Ex-Jaguar Land Rover",
-      image: "/aaryansh.jpg",
-      linkedin: "https://www.linkedin.com/in/aaryansh-m-bansal-457474385/"
     }
   ];
 
@@ -154,7 +147,7 @@ const TeamPage = () => {
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-1 gap-8 max-w-4xl mx-auto">
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={member.name}
