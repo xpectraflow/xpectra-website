@@ -137,7 +137,7 @@ const DocsPage = () => {
           </div>
 
           {/* Final CTA */}
-          <div className="mt-20 p-12 md:p-20 rounded-[3rem] bg-white text-black text-center shadow-2xl shadow-white/10">
+          <div className="mt-20 p-12 md:p-20 rounded-[3rem] bg-white/90 text-black text-center shadow-2xl shadow-white/10">
             <Zap size={48} className="mx-auto mb-8 text-black" />
             <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Your first test starts now.</h2>
             <Button
