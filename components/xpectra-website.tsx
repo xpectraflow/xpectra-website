@@ -11,40 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { SiteShell } from '@/components/site-shell';
 
-const IntegrationLogos = () => {
-  const logos = [
-    { name: "LabVIEW", src: "/labview.webp", isLocal: true },
-    { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
-    { name: "C++", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
-    { name: "NI DAQ", src: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg" },
-    { name: "gRPC", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg" }
-  ];
-
-  return (
-    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-      {logos.map((logo) => (
-        <div key={logo.name} className="relative h-8 md:h-12 w-24 md:w-32 flex items-center justify-center group">
-          <Image
-            src={logo.src}
-            alt={`${logo.name} logo`}
-            fill
-            className="object-contain"
-            sizes="(max-w-768px) 96px, 128px"
-          />
-          {/* Tooltip on hover */}
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-[10px] font-mono text-white/30 uppercase tracking-[0.2em] pointer-events-none">
-            {logo.name}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// Simple utility for class merging
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(' ');
-}
+import { AnimatedCarousel } from '@/components/ui/logo-carousel';
 
 const XpectraWebsite = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -56,13 +23,21 @@ const XpectraWebsite = () => {
 
   return (
     <SiteShell>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 text-center">
+            {/* Hero Section */}
+      <section className="relative min-h-[95vh] flex flex-col items-center justify-center px-6 pt-12 pb-20 text-center overflow-hidden">
+        {/* New Visual Background Elements */}
+        <div className="flex flex-col items-end absolute -right-60 -top-10 blur-xl z-0 pointer-events-none">
+          <div className="h-[15rem] rounded-full w-[60rem] z-1 bg-gradient-to-b blur-[8rem] from-purple-600/10 to-sky-600/10"></div>
+          <div className="h-[15rem] rounded-full w-[90rem] z-1 bg-gradient-to-b blur-[8rem] from-pink-900/10 to-yellow-400/10"></div>
+          <div className="h-[15rem] rounded-full w-[60rem] z-1 bg-gradient-to-b blur-[8rem] from-yellow-600/10 to-sky-500/10"></div>
+        </div>
+        <div className="absolute inset-0 z-0 bg-noise opacity-[0.03] pointer-events-none"></div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-5xl"
+          className="max-w-5xl relative z-10"
         >
           <h1 className="text-balance text-5xl sm:text-7xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8">
             Make sensor data<br />
@@ -77,7 +52,7 @@ const XpectraWebsite = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              className="bg-white text-black hover:bg-gray-100 font-semibold text-lg px-10 py-8 rounded-full"
+              className="h-12 rounded-full bg-white px-8 text-base font-medium text-black hover:bg-white/90"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Request a pilot
@@ -87,7 +62,7 @@ const XpectraWebsite = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="bg-white text-black hover:bg-gray-100 font-semibold text-lg px-10 py-8 rounded-full"
+                className="h-12 rounded-full border border-gray-600 bg-transparent px-8 text-base font-medium text-white hover:bg-white/10"
               >
                 See how it works
               </Button>
@@ -95,17 +70,48 @@ const XpectraWebsite = () => {
           </div>
         </motion.div>
 
-        {/* Logos Strip */}
+        {/* Hero Image Integration */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="mt-24 w-full"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 1 }}
+          className="relative mx-auto mt-20 w-full max-w-6xl px-4 z-10"
         >
-          <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-8">Works with your existing setup</p>
-          <IntegrationLogos />
+          <div className="absolute inset-0 rounded-3xl shadow-2xl bg-white blur-[10rem] opacity-[0.07] pointer-events-none" />
+          <Image
+            src="/hero.png"
+            alt="Xpectra Mission Control"
+            width={1200}
+            height={675}
+            priority
+            className="relative w-full h-auto shadow-2xl rounded-2xl border border-white/10 grayscale-[0.1] hover:grayscale-0 transition-all duration-1000"
+          />
         </motion.div>
+
+        {/* Logos Strip with Animated Carousel */}
+        <div className="w-full relative z-10 border-t border-white/5 bg-white/[0.01]">
+          <AnimatedCarousel 
+            title="Works with your existing setup"
+            logos={[
+              "/labview.webp",
+              "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+              "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
+              "https://cdn.worldvectorlogo.com/logos/national-instruments.svg",
+              "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg",
+            ]}
+            autoPlay={true}
+            autoPlayInterval={3000}
+            padding="py-16 md:py-24"
+            spacing="gap-8"
+            titleClassName="text-xs font-mono uppercase tracking-[0.2em] text-white/30"
+            logoContainerWidth="w-32 md:w-40"
+            logoContainerHeight="h-12 md:h-16"
+            logoImageHeight="h-6 md:h-8"
+          />
+        </div>
       </section>
+
+
 
       {/* Problem Section: The cost of "not yet" */}
       <section className="relative py-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
