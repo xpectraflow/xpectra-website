@@ -1,157 +1,53 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { useFrame, useThree } from '@react-three/fiber';
-import { Float, MeshDistortMaterial } from '@react-three/drei';
-import * as THREE from 'three';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
-import { ArrowRight, CheckCircle2, Mail, DatabaseBackup, ShieldCheck, Combine, Workflow, Cpu, LayoutDashboard, ChevronDown, X, Twitter, Linkedin } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail, Database, ShieldCheck, Zap, BarChart3, Activity, X } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { SiteShell } from '@/components/site-shell';
 
-const Canvas = dynamic(() => import('@react-three/fiber').then(mod => mod.Canvas), { ssr: false });
-
-const cn2 = (...classes: (string | boolean | undefined)[]) => classes.filter(Boolean).join(' ');
-
-const LiquidBackground = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const { viewport } = useThree();
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uMouse: { value: new THREE.Vector2(0, 0) },
-  }), []);
-
-  useFrame((state) => {
-    const { clock, mouse } = state;
-    if (meshRef.current) {
-      (meshRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value = clock.getElapsedTime();
-      (meshRef.current.material as THREE.ShaderMaterial).uniforms.uMouse.value.lerp(mouse, 0.05);
-    }
-  });
+const IntegrationLogos = () => {
+  const logos = [
+    { name: "LabVIEW", src: "/labview.webp", isLocal: true },
+    { name: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
+    { name: "C++", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
+    { name: "NI DAQ", src: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg" },
+    { name: "gRPC", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg" }
+  ];
 
   return (
-    <mesh ref={meshRef} scale={[viewport.width, viewport.height, 1]}>
-      <planeGeometry args={[1, 1]} />
-      <shaderMaterial
-        transparent
-        uniforms={uniforms}
-        vertexShader={`varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`}
-        fragmentShader={`
-          uniform float uTime; uniform vec2 uMouse; varying vec2 vUv;
-          void main() {
-            vec2 uv = vUv; float t = uTime * 0.15;
-            vec2 m = uMouse * 0.1;
-            float color = smoothstep(0.0, 1.0, (sin(uv.x * 8.0 + t + m.x * 12.0) + sin(uv.y * 6.0 - t + m.y * 12.0)) * 0.5 + 0.5);
-            gl_FragColor = vec4(mix(vec3(0.005), vec3(0.05), color), 1.0);
-          }
-        `}
-      />
-    </mesh>
+    <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+      {logos.map((logo) => (
+        <div key={logo.name} className="relative h-8 md:h-12 w-24 md:w-32 flex items-center justify-center group">
+          <Image
+            src={logo.src}
+            alt={`${logo.name} logo`}
+            fill
+            className="object-contain"
+            sizes="(max-w-768px) 96px, 128px"
+          />
+          {/* Tooltip on hover */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-[10px] font-mono text-white/30 uppercase tracking-[0.2em] pointer-events-none">
+            {logo.name}
+          </div>
+        </div>
+      ))}
+    </div>
   );
 };
 
-const Monolith = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.25;
-    }
-  });
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-      <mesh ref={meshRef}>
-        <icosahedronGeometry args={[13, 1]} />
-        <MeshDistortMaterial color="#0a0a0a" speed={4} distort={0.4} roughness={0.05} metalness={1.0} />
-      </mesh>
-    </Float>
-  );
-};
-
-interface FeatureItem {
-  id: string;
-  icon: React.ElementType;
-  title: string;
-  description: string;
-}
-
-interface FAQItem {
-  question: string;
-  answer: string;
+// Simple utility for class merging
+function cn(...classes: (string | boolean | undefined)[]) {
+  return classes.filter(Boolean).join(' ');
 }
 
 const XpectraWebsite = () => {
-  const [mounted, setMounted] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const features: FeatureItem[] = [
-    {
-      id: "Smart Data Lifecycle Management ",
-      icon: DatabaseBackup,
-      title: "Smart Data Lifecycle Management",
-      description: "Query events from terabytes of historical data in seconds using optimized database models",
-    },
-    {
-      id: "validation",
-      icon: ShieldCheck,
-      title: "Real-time data validation",
-      description: "Schema, timestamps, dropouts — caught instantly before they cascade into mission failures.",
-    },
-    {
-      id: "ingestion",
-      icon: Combine,
-      title: "Standardized ingestion",
-      description: "Across sensors and missions. No more rewriting scripts every experiment.",
-    },
-    {
-      id: "pipelines",
-      icon: Workflow,
-      title: "Reusable pipelines",
-      description: "That don't break every experiment. Build once, use forever.",
-    },
-    {
-      id: "Hardware Diagnostics",
-      icon: Cpu,
-      title: "Hardware Diagnostics",
-      description: "Tracks sensor and component performance over multiple test cycles to identify statistical drift.",
-    },
-    {
-      id: "Real-time Observability",
-      icon: LayoutDashboard,
-      title: "Real-time Observability",
-      description: "Dynamic dashboards that lets you choose what you want to see.",
-    }
-    
-  ];
-
-  const faqs: FAQItem[] = [
-    {
-      question: "How long does a pilot take?",
-      answer: "30–45 days with one live sensor workflow. You'll get real-time validation and standardized storage, with a clear decision point at the end."
-    },
-    {
-      question: "Does xpectra replace our existing tools?",
-      answer: "No. xpectra sits between raw sensors and your downstream pipelines. It strengthens what you already run without replacing algorithms, firmware, or workflows."
-    },
-    {
-      question: "What kind of sensors does xpectra support?",
-      answer: "We work with teams across space, drones, and aerospace. Our infrastructure is designed for real mission constraints and can adapt to various sensor types."
-    },
-    {
-      question: "Do you add heavy dashboards or change our workflow?",
-      answer: "No. xpectra does not add heavy dashboards, change sensor firmware, or lock you into a new workflow. It's infrastructure, not overhead."
-    }
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -159,382 +55,346 @@ const XpectraWebsite = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#020202] text-white overflow-x-hidden">
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        {mounted && (
-          <Canvas camera={{ position: [0, 0, 60], fov: 35 }}>
-            <ambientLight intensity={0.4} />
-            <spotLight position={[50, 50, 50]} intensity={3} />
-            <LiquidBackground />
-            <Monolith />
-          </Canvas>
-        )}
-      </div>
-
-      <div className="relative z-10">
-        <nav className="w-full border-b border-white/10 bg-black/20 backdrop-blur-xl">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex h-16 items-center justify-between">
-              <Link href="/" className="flex items-center gap-3">
-                <Image
-                  src="/logo.svg"
-                  alt="xpectra logo"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-                <span className="font-mono text-sm font-bold text-white tracking-wider">xpectra</span>
-              </Link>
-              <div className="flex items-center gap-4">
-                <Link href="/team">
-                  <Button 
-                    size="sm" 
-                    variant="ghost"
-                    className="text-white hover:bg-white/10 font-semibold"
-                  >
-                    Team
-                  </Button>
-                </Link>
-                <Button 
-                  size="sm" 
-                  className="bg-white text-black hover:bg-gray-100 font-semibold"
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Request pilot
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
-          <div className="max-w-5xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+    <SiteShell>
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 py-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-5xl"
+        >
+          <h1 className="text-balance text-5xl sm:text-7xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8">
+            Make sensor data<br />
+            <span className="bg-gradient-to-r from-white via-gray-400 to-gray-600 bg-clip-text text-transparent">
+              reusable across missions.
+            </span>
+          </h1>
+          <p className="text-lg sm:text-2xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
+            Xpectra validates, standardizes, and stores your sensor telemetry in real-time,
+            so your engineers ship results, not scripts.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-white text-black hover:bg-gray-100 font-semibold text-lg px-10 py-8 rounded-full"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              <h1 className="text-balance text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tighter mb-6">
-                Make sensor data<br />
-                <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent md:whitespace-nowrap">
-                  reusable across missions
-                </span>
-              </h1>
-              <p className="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Xpectra validates, standardizes, and stores sensor data in real-time - so your pipelines don't break, your ML models don't starve, and your historical data stays usable
-              </p>
-              <Button 
-                size="lg" 
-                className="bg-white text-black hover:bg-gray-100 font-semibold text-lg px-10 py-7"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              Request a pilot
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Link href="/product">
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-white text-black hover:bg-gray-100 font-semibold text-lg px-10 py-8 rounded-full"
               >
-                Request pilot
-                <ArrowRight className="ml-2 h-5 w-5" />
+                See how it works
               </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="mt-20 p-8 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10"
-            >
-              <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-sm font-mono">
-                <div className="flex items-center gap-3">
-                  <span className="text-white/50">Sensor Telemetry</span>
-                  <ArrowRight className="h-4 w-4 text-white/30" />
-                </div>
-                <div className="px-6 py-3 rounded-full bg-white/10 border border-white/20 flex flex-col items-center gap-1">
-                  <span className="font-bold text-l">xpectra</span>
-                  <span className="text-white/50 text-xs">(validate + diagnose + standardize)</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <ArrowRight className="h-4 w-4 text-white/30" />
-                  <span className="text-white/50">Engineering-Ready Data</span>
-                </div>
-              </div>
-            </motion.div>
+            </Link>
           </div>
-        </section>
+        </motion.div>
 
-        <section id="problem" className="relative py-24 px-6 bg-black/40 backdrop-blur-sm border-y border-white/10">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center">
-                Real sensor operations are<br />messy by default
+        {/* Logos Strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="mt-24 w-full"
+        >
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-8">Works with your existing setup</p>
+          <IntegrationLogos />
+        </motion.div>
+      </section>
+
+      {/* Problem Section: The cost of "not yet" */}
+      <section className="relative py-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <h2 className="text-4xl sm:text-6xl font-bold tracking-tight mb-8">
+                Every delayed decision means another test cycle lost to bad data.
               </h2>
-
-              <div className="grid md:grid-cols-2 gap-8 mb-16">
-                <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-white/90 mb-6">Today</h3>
-                  {[
-                    "Engineers spend 40% of test prep rewriting ingestion scripts",
-                    "One sensor anomaly invalidates weeks of test data",
-                    "Failures surface post-test when hardware is disassembled",
-                    "Each team maintains their own data formats: collaboration breaks",
-                    "6 months later, no one can parse historical logs for validation"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-lg bg-red-500/5 border border-red-500/20">
-                      <X className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-white/70">{item}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="space-y-6">
-                  <h3 className="text-xl font-semibold text-white/90 mb-6">With Xpectra</h3>
-                  {[
-                    "Engineers configure validation logic once, reuse forever",
-                    "Anomalous sensors auto-flagged, clean data continues flowing",
-                    "Real-time alerts catch issues before test completion",
-                    "Unified data standards across teams and test campaigns",
-                    "Historical data remains analysis-ready for regression and ML"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3 p-4 rounded-lg bg-green-500/5 border border-green-500/20">
-                      <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                      <p className="text-white/70">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <p className="text-center text-white/60 mb-8 text-lg">
-                These are not edge cases, they happen every week in real operations.
-              </p>
-
-              <div className="h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent mb-8" />
-              
-              <p className="text-center text-white/80 text-xl mb-12 italic">
-                The issue isn't talent or tooling. It's missing infrastructure.
-              </p>
-
-            </motion.div>
-          </div>
-        </section>
-
-        <section id="features" className="relative py-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold mb-6">What xpectra does</h2>
-            </motion.div>
-
-            <div className="grid gap-8 md:grid-cols-3">
-              {features.map((feature, i) => (
-                <motion.div
-                  key={feature.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.6 }}
-                >
-                  <Card className="h-full p-6 bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                    <CardHeader className="p-0 pb-4">
-                      <div className="mb-4 p-3 w-fit rounded-lg bg-white/10 border border-white/20">
-                        {React.createElement(feature.icon, { className: "h-6 w-6 text-white" })}
-                      </div>
-                      <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-0">
-                      <CardDescription className="text-white/60">{feature.description}</CardDescription>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="pilot" className="relative py-24 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold mb-8">Start with a pilot</h2>
-              
-              <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                {[
-                  { label: "Duration", value: "30-45 days" },
-                  { label: "Scope", value: "One live sensor workflow (your choice)"},
-                  { label: "Deliverable", value: "Real-time validation, standardized storage, historical data access" },
-                  { label: "Outcome", value: "Clear go/no-go decision with measurable results" }
-                ].map((item, i) => (
-                  <div key={i} className="p-6 rounded-lg bg-white/5 border border-white/10">
-                    <div className="text-sm text-white/50 mb-2 font-mono uppercase tracking-wider">{item.label}</div>
-                    <div className="text-lg font-semibold text-white">{item.value}</div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <section id="faq" className="relative py-24 px-6 bg-black/40 backdrop-blur-sm border-y border-white/10">
-          <div className="max-w-3xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
-              
-              <div className="space-y-4">
-                {faqs.map((faq, i) => (
-                  <div key={i} className="rounded-lg bg-white/5 border border-white/10 overflow-hidden">
-                    <button
-                      onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-colors"
-                    >
-                      <span className="font-semibold text-white pr-4">{faq.question}</span>
-                      <ChevronDown className={cn2(
-                        "h-5 w-5 text-white/50 transition-transform flex-shrink-0",
-                        openFAQ === i && "rotate-180"
-                      )} />
-                    </button>
-                    <AnimatePresence>
-                      {openFAQ === i && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <div className="px-6 pb-6 text-white/70">
-                            {faq.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <section id="contact" className="relative py-24 px-6">
-          <div className="max-w-2xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-center">Request a pilot</h2>
-              <p className="text-white/60 text-center mb-12">
-                Let's discuss how xpectra can strengthen your sensor operations.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    placeholder="Your name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="Your email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Tell us about your sensor operations and challenges"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    required
-                    rows={5}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-white text-black hover:bg-gray-100 font-semibold"
-                >
-                  Send request
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </form>
-              
-              <div className="mt-8 text-center">
-                <p className="text-white/50 text-sm mb-2">or email us directly:</p>
-                <a 
-                  href="mailto:xpectraflow@gmail.com" 
-                  className="text-white hover:text-white/80 transition-colors inline-flex items-center gap-2"
-                >
-                  <Mail className="h-4 w-4" />
-                  xpectraflow@gmail.com
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <footer className="relative py-12 px-6 border-t border-white/10 bg-black/40 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/logo.svg"
-                  alt="xpectra logo"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-                <span className="font-mono text-sm font-bold text-white tracking-wider">xpectra</span>
-              </div>
-              <div className="flex items-center gap-6">
-                <a
-                  href="https://x.com/XpectraF3662"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/50 hover:text-white transition-colors"
-                  aria-label="Follow us on Twitter"
-                >
-                  <Twitter className="h-5 w-5" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/xpectraflow"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/50 hover:text-white transition-colors"
-                  aria-label="Follow us on LinkedIn"
-                >
-                  <Linkedin className="h-5 w-5" />
-                </a>
-                <p className="text-white/50 text-sm">
-                  © 2026 Xpectra. Making sensor data reusable across missions.
+              <div className="p-8 rounded-3xl bg-card-bg border border-border-subtle backdrop-blur-xl">
+                <span className="text-6xl font-black text-white mb-4 block">40%</span>
+                <p className="text-xl text-white/70 italic leading-relaxed">
+                  "Engineers spend 40% of test prep rewriting the same ingestion scripts."
+                </p>
+                <div className="mt-6 h-px w-20 bg-white/20" />
+                <p className="mt-6 text-white/50 font-mono text-sm uppercase tracking-wider">
+                  That's not a productivity problem. It's a missing infrastructure layer.
                 </p>
               </div>
             </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="space-y-6">
+                <h3 className="text-xl font-mono text-brand-red/80 mb-8 flex items-center gap-2">
+                  <X className="h-4 w-4" /> Today
+                </h3>
+                {[
+                  "One sensor anomaly invalidates weeks of test data",
+                  "Failures surface post-test when hardware is disassembled",
+                  "Collaboration breaks across team data formats"
+                ].map((item, i) => (
+                  <div key={i} className="p-6 rounded-2xl bg-brand-red/5 border border-brand-red/10 text-white/60 text-sm leading-relaxed">
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-xl font-mono text-brand-emerald/80 mb-8 flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4" /> With Xpectra
+                </h3>
+                {[
+                  "Anomalous sensors auto-flagged, clean data continues flowing",
+                  "Real-time alerts catch issues before test completion",
+                  "Unified data standards across teams and campaigns"
+                ].map((item, i) => (
+                  <div key={i} className="p-6 rounded-2xl bg-brand-emerald/5 border border-brand-emerald/10 text-white/90 text-sm leading-relaxed">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </footer>
-      </div>
-    </div>
+        </div>
+      </section>
+
+      {/* Product Section */}
+      <section className="relative py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
+              The platform your data ops team doesn't have yet.
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Panel 1: Ingest */}
+            <Card className="bg-card-bg border-border-subtle hover:border-white/20 transition-all overflow-hidden group">
+              <div className="h-64 bg-black/40 flex items-center justify-center p-8 border-b border-border-subtle relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="font-mono text-[10px] text-white/40 leading-relaxed overflow-hidden">
+                  <span className="text-brand-blue">import</span> xpectra<br />
+                  client = xpectra.Client(<span className="text-brand-emerald">"api_key"</span>)<br />
+                  <span className="text-white/20"># Streaming telemetry...</span><br />
+                  client.stream(<span className="text-brand-emerald">"sensor_01"</span>, value)
+                </div>
+              </div>
+              <CardHeader>
+                <div className="mb-4 p-3 w-fit rounded-xl bg-brand-blue/10 text-brand-blue">
+                  <Zap size={24} />
+                </div>
+                <CardTitle className="text-white text-2xl font-bold">Ingest</CardTitle>
+                <CardDescription className="text-white/60 text-base">
+                  Plug in your existing clients. No rewrites. Native support for Python, C++, and LabVIEW.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Panel 2: Validate */}
+            <Card className="bg-card-bg border-border-subtle hover:border-white/20 transition-all overflow-hidden group">
+              <div className="h-64 bg-black/40 flex items-center justify-center p-8 border-b border-border-subtle relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-emerald/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="flex justify-between items-center px-3 py-2 rounded bg-brand-emerald/10 border border-brand-emerald/20">
+                    <span className="text-[10px] font-mono text-brand-emerald">VOLTAGE_OK</span>
+                    <CheckCircle2 size={12} className="text-brand-emerald" />
+                  </div>
+                  <div className="flex justify-between items-center px-3 py-2 rounded bg-brand-red/10 border border-brand-red/20">
+                    <span className="text-[10px] font-mono text-brand-red">DROPOUT_DETECTED</span>
+                    <X size={12} className="text-brand-red" />
+                  </div>
+                  <div className="flex justify-between items-center px-3 py-2 rounded bg-brand-emerald/10 border border-brand-emerald/20">
+                    <span className="text-[10px] font-mono text-brand-emerald">SCHEMA_MATCH</span>
+                    <CheckCircle2 size={12} className="text-brand-emerald" />
+                  </div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="mb-4 p-3 w-fit rounded-xl bg-brand-emerald/10 text-brand-emerald">
+                  <ShieldCheck size={24} />
+                </div>
+                <CardTitle className="text-white text-2xl font-bold">Validate</CardTitle>
+                <CardDescription className="text-white/60 text-base">
+                  Catch dropout, schema drift, and outliers in real time. Never waste a test on bad bits again.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            {/* Panel 3: Explore */}
+            <Card className="bg-card-bg border-border-subtle hover:border-white/20 transition-all overflow-hidden group">
+              <div className="h-64 bg-black/40 flex items-center justify-center p-4 border-b border-border-subtle relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Mock Playground */}
+                <div className="w-full h-full rounded border border-border-subtle bg-[#0a0a0a] flex flex-col overflow-hidden">
+                  <div className="h-4 border-b border-border-subtle bg-white/5 flex items-center px-2">
+                    <div className="flex gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-red/50" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-emerald/50" />
+                    </div>
+                  </div>
+                  <div className="flex-1 flex items-end p-2 gap-1">
+                    {[40, 70, 45, 90, 65, 80, 50, 85].map((h, i) => (
+                      <div key={i} className="flex-1 bg-brand-orange/30 rounded-t-sm" style={{ height: `${h}%` }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <CardHeader>
+                <div className="mb-4 p-3 w-fit rounded-xl bg-brand-orange/10 text-brand-orange">
+                  <BarChart3 size={24} />
+                </div>
+                <CardTitle className="text-white text-2xl font-bold">Explore</CardTitle>
+                <CardDescription className="text-white/60 text-base">
+                  Query terabytes. Plot anything. Export anywhere. Your historical data, always analysis-ready.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations Strip Teaser */}
+      <section className="relative py-20 px-6 bg-white/[0.02]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="max-w-2xl">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Speaks your hardware's language natively.</h2>
+            <p className="text-white/50 text-lg">LabVIEW · Python · C++ · NI-DAQ · gRPC · CSV · HTTP</p>
+          </div>
+          <Link href="/integrations">
+            <Button variant="link" className="text-white text-lg group">
+              See all integrations <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Pilot Section */}
+      <section id="pilot" className="relative py-32 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl sm:text-6xl font-bold mb-12">Run a pilot. Seeing is believing.</h2>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            <div className="p-8 rounded-3xl bg-card-bg border border-border-subtle text-left">
+              <p className="text-white/40 font-mono text-xs uppercase tracking-widest mb-6">Real World Impact</p>
+              <p className="text-2xl font-medium leading-relaxed">
+                "Teams running pilots typically catch their first <span className="text-white underline decoration-white/30 underline-offset-8">silent failure</span> within 72 hours of going live."
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "Duration", value: "30-45 Days" },
+                { label: "Scope", value: "Live Workflow" },
+                { label: "Outcome", value: "Go/No-Go" },
+                { label: "Data", value: "Standardized" }
+              ].map((item, i) => (
+                <div key={i} className="p-6 rounded-2xl bg-card-bg border border-border-subtle flex flex-col justify-center text-left">
+                  <span className="text-[10px] font-mono text-white/30 uppercase tracking-tighter mb-1">{item.label}</span>
+                  <span className="text-sm font-bold">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="relative py-32 px-6 bg-black/40 backdrop-blur-sm border-t border-border-subtle/50">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-6xl font-bold mb-6">Request a pilot</h2>
+            <p className="text-white/60 text-lg">
+              Let's discuss how xpectra can strengthen your sensor operations.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid sm:grid-cols-2 gap-6">
+              <Input
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+                className="bg-card-bg border-border-subtle text-white placeholder:text-white/40 h-14 rounded-xl"
+              />
+              <Input
+                type="email"
+                placeholder="Your email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+                className="bg-card-bg border-border-subtle text-white placeholder:text-white/40 h-14 rounded-xl"
+              />
+            </div>
+            <Textarea
+              placeholder="Tell us about your sensor operations and challenges"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              required
+              rows={5}
+              className="bg-card-bg border-border-subtle text-white placeholder:text-white/40 rounded-xl p-4"
+            />
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full bg-white text-black hover:bg-gray-100 font-bold h-16 rounded-xl text-lg shadow-xl shadow-white/5"
+            >
+              Send request
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </form>
+
+          <div className="mt-12 text-center">
+            <p className="text-white/50 text-sm mb-4">or contact us directly:</p>
+            <a
+              href="mailto:xpectraflow@gmail.com"
+              className="px-6 py-3 rounded-full bg-card-bg border border-border-subtle text-white hover:bg-white/10 transition-colors inline-flex items-center gap-3"
+            >
+              <Mail className="h-4 w-4" />
+              xpectraflow@gmail.com
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative py-20 px-6 border-t border-border-subtle/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-20">
+            <div className="max-w-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <Image src="/logo.svg" alt="logo" width={32} height={32} />
+                <span className="font-mono text-xl font-bold tracking-tighter">xpectra</span>
+              </div>
+              <p className="text-white/50 text-lg leading-relaxed">
+                Your next test will generate data. The question is whether it'll still be useful in a year.
+              </p>
+              <div className="mt-8 flex gap-4">
+                <Button size="sm" variant="ghost" className="text-white/50 hover:text-white p-0 h-auto">Twitter</Button>
+                <Button size="sm" variant="ghost" className="text-white/50 hover:text-white p-0 h-auto">LinkedIn</Button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-20">
+              <div className="flex flex-col gap-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-white/30">Platform</span>
+                <Link href="/product" className="text-white/70 hover:text-white transition-colors">Product</Link>
+                <Link href="/integrations" className="text-white/70 hover:text-white transition-colors">Integrations</Link>
+                <Link href="/docs" className="text-white/70 hover:text-white transition-colors">Quickstart</Link>
+              </div>
+              <div className="flex flex-col gap-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-white/30">Company</span>
+                <Link href="/team" className="text-white/70 hover:text-white transition-colors">Team</Link>
+                <Link href="#contact" className="text-white/70 hover:text-white transition-colors">Contact</Link>
+              </div>
+            </div>
+          </div>
+          <p className="text-white/20 text-sm font-mono tracking-tighter font-medium">© 2026 Xpectra. Mission critical telemetry infrastructure.</p>
+        </div>
+      </footer>
+    </SiteShell>
   );
 };
 

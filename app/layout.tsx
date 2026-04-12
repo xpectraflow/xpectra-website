@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+import { Header } from "@/components/header";
 import "./globals.css";
 
 const googleAnalyticsMeasurementId = "G-YE3NVQDYYG";
@@ -43,6 +44,7 @@ export default function RootLayout({
             gtag('config', '${googleAnalyticsMeasurementId}');
           `}
         </Script>
+        <Header />
         {children}
         <Analytics />
       </body>
