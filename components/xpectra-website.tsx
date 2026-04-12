@@ -23,8 +23,8 @@ const XpectraWebsite = () => {
 
   return (
     <SiteShell>
-            {/* Hero Section */}
-      <section className="relative min-h-[95vh] flex flex-col items-center justify-center px-6 pt-12 pb-20 text-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[95vh] flex flex-col items-center justify-center px-10 pt-12 pb-6 text-center overflow-hidden">
         {/* New Visual Background Elements */}
         <div className="flex flex-col items-end absolute -right-60 -top-10 blur-xl z-0 pointer-events-none">
           <div className="h-[15rem] rounded-full w-[60rem] z-1 bg-gradient-to-b blur-[8rem] from-purple-600/10 to-sky-600/10"></div>
@@ -39,20 +39,17 @@ const XpectraWebsite = () => {
           transition={{ duration: 0.8 }}
           className="max-w-5xl relative z-10"
         >
-          <h1 className="text-balance text-5xl sm:text-7xl md:text-8xl font-black leading-[0.9] tracking-tighter mb-8">
-            Make sensor data<br />
-            <span className="bg-gradient-to-r from-white via-gray-400 to-gray-600 bg-clip-text text-transparent">
-              reusable across missions.
-            </span>
+          <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+            Make sensor data reusable across missions
           </h1>
-          <p className="text-lg sm:text-2xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
+          <p className="mt-6  text-md sm:text-xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
             Xpectra validates, standardizes, and stores your sensor telemetry in real-time,
             so your engineers ship results, not scripts.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              className="h-12 rounded-full bg-white px-8 text-base font-medium text-black hover:bg-white/90"
+              className="h-12 rounded-full bg-white px-8 text-base font-medium text-black hover:bg-white/80"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Request a pilot
@@ -62,7 +59,7 @@ const XpectraWebsite = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="h-12 rounded-full border border-gray-600 bg-transparent px-8 text-base font-medium text-white hover:bg-white/10"
+                className="h-12 rounded-full border border-gray-600 bg-transparent px-8 text-base font-medium text-white hover:bg-white/50"
               >
                 See how it works
               </Button>
@@ -89,8 +86,8 @@ const XpectraWebsite = () => {
         </motion.div>
 
         {/* Logos Strip with Animated Carousel */}
-        <div className="w-full relative z-10 border-t border-white/5 bg-white/[0.01]">
-          <AnimatedCarousel 
+        <div className="w-full relative z-10 border-t border-white/5 ">
+          <AnimatedCarousel
             title="Works with your existing setup"
             logos={[
               "/labview.webp",
@@ -99,14 +96,15 @@ const XpectraWebsite = () => {
               "https://cdn.worldvectorlogo.com/logos/national-instruments.svg",
               "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg",
             ]}
-            autoPlay={true}
+            autoPlay={false}
             autoPlayInterval={3000}
-            padding="py-16 md:py-24"
+            itemsPerViewDesktop={5}
+            padding="pt-10 md:pt-14 pb-0"
             spacing="gap-8"
-            titleClassName="text-xs font-mono uppercase tracking-[0.2em] text-white/30"
-            logoContainerWidth="w-32 md:w-40"
-            logoContainerHeight="h-12 md:h-16"
-            logoImageHeight="h-6 md:h-8"
+            titleClassName="text-[10px] font-mono uppercase tracking-[0.2em] text-white/75"
+            logoContainerWidth="w-32 md:w-48"
+            logoContainerHeight="h-16 md:h-20"
+            logoImageHeight="h-8 md:h-12"
           />
         </div>
       </section>
@@ -114,7 +112,7 @@ const XpectraWebsite = () => {
 
 
       {/* Problem Section: The cost of "not yet" */}
-      <section className="relative py-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
+      <section className="relative pt-8 pb-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div>

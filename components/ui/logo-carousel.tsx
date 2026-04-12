@@ -7,7 +7,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { TextRoll } from "./text-roll";
 
 export const AnimatedCarousel = ({
   title = "Trusted by thousands of businesses worldwide",
@@ -25,7 +24,7 @@ export const AnimatedCarousel = ({
   padding = "py-20 lg:py-40",
   logoContainerWidth = "w-48",
   logoContainerHeight = "h-24",
-  logoImageWidth = "w-full",
+  logoImageWidth = "w-auto",
   logoImageHeight = "h-full",
   logoMaxWidth = "",
   logoMaxHeight = "",
@@ -57,29 +56,27 @@ export const AnimatedCarousel = ({
 
   return (
     <div className={`w-full ${padding} bg-transparent ${containerClassName}`}>
-      <div className="container mx-auto">
-        <div className={`flex flex-col items-center text-center ${spacing}`}>
-          <h2 className={`text-xl md:text-3xl tracking-tighter font-regular text-foreground ${titleClassName}`}>
-            <TextRoll>{title}</TextRoll>
-          </h2>
-          
-          <div className="w-full">
-            <Carousel setApi={setApi} opts={{ loop: true }} className={`w-full ${carouselClassName}`}>
-              <CarouselContent>
-                {logoItems.map((logo, index) => (
-                  <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
-                    <div className={`flex rounded-md ${logoContainerWidth} ${logoContainerHeight} items-center justify-center p-4 hover:bg-white/5 transition-colors ${logoClassName}`}>
-                      <img 
-                        src={logo}
-                        alt={`Logo ${index + 1}`}
-                        className={`${logoImageSizeClasses} object-contain filter brightness-0 invert opacity-40 hover:opacity-100 transition-opacity`}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
+      <div className={`flex flex-col items-center text-center ${spacing}`}>
+        <h2 className={`text-xl md:text-2xl tracking-tighter font-medium text-white/50 ${titleClassName}`}>
+          {title}
+        </h2>
+
+        <div className="w-full max-w-5xl mx-auto px-4">
+          <Carousel setApi={setApi} opts={{ loop: true, align: "center" }} className={`w-full ${carouselClassName}`}>
+            <CarouselContent>
+              {logoItems.map((logo, index) => (
+                <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
+                  <div className={`group flex ${logoContainerWidth} ${logoContainerHeight} items-center justify-center transition-all ${logoClassName}`}>
+                    <img
+                      src={logo}
+                      alt={`Logo ${index + 1}`}
+                      className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
     </div>
