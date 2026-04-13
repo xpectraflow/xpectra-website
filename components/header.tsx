@@ -34,7 +34,7 @@ export const Header = () => {
               Integrations
             </Link>
             <Link href="/docs" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
-              Docs
+              Quickstart
             </Link>
             <Link href="/team" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               Team
@@ -73,7 +73,7 @@ export const Header = () => {
           >
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Product</Link>
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Integrations</Link>
-            <Link href="/docs" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Docs</Link>
+            <Link href="/docs" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Quickstart</Link>
             <Link href="/team" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Team</Link>
             <Button
               className="w-full bg-white text-black font-semibold py-6"

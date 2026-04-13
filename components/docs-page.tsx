@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { SiteShell } from '@/components/site-shell';
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,7 @@ import {
   CodeBlockCode,
   CodeBlockGroup,
 } from "@/components/ui/code-block"
-import { ArrowRight, Key, Zap, Eye, Terminal, CheckCircle2, Copy, Check } from 'lucide-react';
+import { ArrowRight, Key, Zap, Eye, Terminal, CheckCircle2, Copy, Check, Cpu, Box } from 'lucide-react';
 
 const Step = ({
   number,
@@ -93,24 +94,106 @@ const DocsPage = () => {
             <Step
               number="02"
               title="Point your client."
-              desc="Use our native libraries for Python, C++, or LabVIEW. Point your telemetry stream at our high-performance gRPC endpoint."
+              desc="Choose your preferred environment. Use our native libraries for Python, C++, or LabVIEW to start streaming high-resolution telemetry in minutes."
             >
-              <div>
-                <CodeBlock className="border-border-subtle bg-black/40">
-                  <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
-                    <div className="flex items-center gap-2">
-                      <Terminal size={12} className="text-brand-blue" />
-                      <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
-                        python_client.py
-                      </span>
+              <div className="space-y-16">
+                {/* Python Section */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                      <Terminal size={16} className="text-brand-blue" />
                     </div>
-                  </CodeBlockGroup>
-                  <CodeBlockCode
-                    code={`import xpectra\n\n# Initialize with your ingest key\nclient = xpectra.Client("xp_live_a1b2c3d4")\n\n# Start streaming telemetry\nclient.stream("voltage_01", 24.5)`}
-                    language="python"
-                    theme="github-dark"
-                  />
-                </CodeBlock>
+                    <h3 className="text-lg font-bold tracking-tight text-white/90 uppercase">1. Python SDK</h3>
+                  </div>
+                  <CodeBlock className="border-border-subtle bg-black/40">
+                    <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+                          python_client.py
+                        </span>
+                      </div>
+                    </CodeBlockGroup>
+                    <CodeBlockCode
+                      code={`import xpectra
+
+# Your ingest key from the Console
+client = xpectra.Client("xp_live_a1b2c3d4")
+
+# Stream any named channel with any value
+client.stream(
+    channel="voltage_01", 
+    value=24.5, 
+    unit="V"
+)
+
+# That's it. Open the Playground to see it live.`}
+                      language="python"
+                      theme="github-dark"
+                    />
+                  </CodeBlock>
+                </div>
+
+                {/* C++ Section */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                      <Cpu size={16} className="text-brand-emerald" />
+                    </div>
+                    <h3 className="text-lg font-bold tracking-tight text-white/90 uppercase">2. C++ / gRPC</h3>
+                  </div>
+                  <CodeBlock className="border-border-subtle bg-black/40">
+                    <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+                          main.cpp
+                        </span>
+                      </div>
+                    </CodeBlockGroup>
+                    <CodeBlockCode
+                      code={`#include <xpectra.hpp>
+
+int main() {
+    // 1. Connect to the Xpectra Core with your key
+    auto client = xpectra::SDK::Connect("xp_live_a1b2c3d4");
+
+    // 2. Stream telemetry directly from your main loop
+    client->stream({
+        .channel = "vibration_01",
+        .value = 104.2,
+        .unit = "G"
+    });
+
+    return 0;
+}`}
+                      language="cpp"
+                      theme="github-dark"
+                    />
+                  </CodeBlock>
+                </div>
+
+                {/* LabVIEW Section */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                      <Box size={16} className="text-brand-orange" />
+                    </div>
+                    <h3 className="text-lg font-bold tracking-tight text-white/90 uppercase">3. LabVIEW Plugin</h3>
+                  </div>
+                  <div className="relative aspect-[16/9] w-full rounded-2xl border border-white/10 overflow-hidden bg-white p-6 shadow-2xl">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src="/labview-full.png"
+                        alt="LabVIEW Integration Flow"
+                        fill
+                        className="object-contain scale-110"
+                        priority
+                      />
+                    </div>
+                  </div>
+                  <p className="text-sm text-white/30 italic px-2">
+                    Standardized VIs for high-speed streaming without middleware.
+                  </p>
+                </div>
               </div>
             </Step>
 
@@ -119,18 +202,22 @@ const DocsPage = () => {
               title="Watch data appear."
               desc="Open the Mission Control Playground. Your data is being validated, standardized, and stored in XpectraDB in real-time."
             >
-              <div className="relative aspect-video rounded-xl bg-black/60 border border-border-subtle/50 overflow-hidden flex items-center justify-center">
-                <div className="flex flex-col items-center gap-4 group cursor-pointer">
-                  <div className="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl shadow-white/20 group-hover:scale-110 transition-transform">
-                    <Eye size={32} />
+              <div className="relative aspect-video rounded-xl bg-black/60 border border-border-subtle/50 overflow-hidden group/payoff">
+                <Image
+                  src="/playground-payoff.png"
+                  alt="Mission Control Playground"
+                  fill
+                  className="object-cover opacity-60 transition-opacity group-hover/payoff:opacity-100 duration-700"
+                />
+                
+                {/* Overlay Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="flex flex-col items-center gap-4 group/btn cursor-pointer">
+                    <div className="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl shadow-white/20 group-hover/btn:scale-110 transition-transform duration-500">
+                      <Eye size={32} />
+                    </div>
+                    <p className="text-sm font-bold tracking-widest uppercase">Open Playground</p>
                   </div>
-                  <p className="text-sm font-bold tracking-widest uppercase">Open Playground</p>
-                </div>
-                {/* Mock Chart background */}
-                <div className="absolute inset-0 opacity-20 pointer-events-none flex items-end p-8 gap-2">
-                  {[40, 70, 50, 90, 60, 80, 45, 85, 55, 75].map((h, i) => (
-                    <div key={i} className="flex-1 bg-white/20 rounded-t-lg" style={{ height: `${h}%` }} />
-                  ))}
                 </div>
               </div>
             </Step>
