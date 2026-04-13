@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Xpectra",
-  description: "Making sensor data reusable across missions",
+  description: "Infrastructure for mission-critical sensor data",
 };
 
 export default function RootLayout({

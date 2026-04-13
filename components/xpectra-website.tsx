@@ -82,11 +82,11 @@ const XpectraWebsite = () => {
           className="max-w-5xl relative z-10"
         >
           <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-            Make sensor data reusable across missions
+            Infrastructure for mission critical sensor data
           </h1>
           <p className="mt-6  text-md sm:text-xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
             Xpectra validates, standardizes, and stores your sensor telemetry in real-time,
-            so your engineers ship results, not scripts.
+            so your engineers analyse data, not clean it.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
