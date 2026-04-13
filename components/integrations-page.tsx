@@ -18,14 +18,18 @@ const IntegrationCard = ({
   name,
   desc,
   language,
-  snippet
+  snippet,
+  previewImage,
+  badge
 }: {
   icon: any,
   isImage?: boolean,
   name: string,
   desc: string,
   language: string,
-  snippet: string
+  snippet: string,
+  previewImage?: string,
+  badge: string
 }) => {
   const [copied, setCopied] = useState(false)
 
@@ -51,34 +55,45 @@ const IntegrationCard = ({
           )}
         </div>
         <div className="px-3 py-1 rounded-full bg-card-bg border border-border-subtle text-[10px] font-mono text-white/30 uppercase tracking-widest">
-          Native
+          {badge}
         </div>
       </div>
       <h3 className="text-2xl font-bold mb-3">{name}</h3>
       <p className="text-white/50 text-base leading-relaxed mb-8 flex-grow">{desc}</p>
 
-      <CodeBlock className="border-border-subtle bg-black/40">
-        <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
-              {language}
-            </span>
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 hover:bg-white/10"
-            onClick={handleCopy}
-          >
-            {copied ? (
-              <Check className="h-3.5 w-3.5 text-brand-emerald" />
-            ) : (
-              <Copy className="h-3.5 w-3.5 text-white/40" />
-            )}
-          </Button>
-        </CodeBlockGroup>
-        <CodeBlockCode code={snippet} language={language} theme="github-dark" />
-      </CodeBlock>
+      {previewImage ? (
+        <div className="relative aspect-[16/10] w-full rounded-xl border border-white/5 overflow-hidden bg-black/20">
+          <Image
+            src={previewImage}
+            alt={`${name} preview`}
+            fill
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <CodeBlock className="border-border-subtle bg-black/40">
+          <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+                {language}
+              </span>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7 hover:bg-white/10"
+              onClick={handleCopy}
+            >
+              {copied ? (
+                <Check className="h-3.5 w-3.5 text-brand-emerald" />
+              ) : (
+                <Copy className="h-3.5 w-3.5 text-white/40" />
+              )}
+            </Button>
+          </CodeBlockGroup>
+          <CodeBlockCode code={snippet} language={language} theme="github-dark" />
+        </CodeBlock>
+      )}
     </div>
   );
 };
@@ -89,9 +104,11 @@ const IntegrationsPage = () => {
       icon: "/labview.webp",
       isImage: true,
       name: "LabVIEW",
-      desc: "Connect your NI instruments directly. Standardized VIs for high-speed streaming without middleware.",
-      language: "text",
-      snippet: "// Xpectra VI Reference\nConnect.vi (\"XPECTRA_API_KEY\")\nStream.vi (ch=\"sensor_main\")"
+      desc: "Connect your NI instruments directly via LabView plugin. Standardized VIs for high-speed streaming without middleware.",
+      language: "visual",
+      snippet: "",
+      previewImage: "/labview_plugin.png",
+      badge: "Native SDK"
     },
     {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
@@ -99,7 +116,8 @@ const IntegrationsPage = () => {
       name: "Python",
       desc: "5 lines to start streaming telemetry. Perfect for data scientists and rapid prototyping.",
       language: "python",
-      snippet: "import xpectra\n\nclient = xpectra.Client(\"XPECTRA_API_KEY\")\nclient.stream(\"sensor_01\", val=22.5)"
+      snippet: "import xpectra\n\nclient = xpectra.Client(\"XPECTRA_API_KEY\")\nclient.stream(\n    channel=\"voltage_rail_3v3\",\n    value=3.31,\n    unit=\"V\"\n)",
+      badge: "Native SDK"
     },
     {
       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
@@ -107,29 +125,34 @@ const IntegrationsPage = () => {
       name: "C++ / gRPC",
       desc: "Low-latency gRPC client for embedded or real-time systems. Native Protobuf definitions.",
       language: "cpp",
-      snippet: "auto sdk = xpectra::SDK::Connect(\"XPECTRA_API_KEY\");\nsdk->push(\"vibration_01\", 104.2);"
+      snippet: "#include <xpectra.hpp>\n\nauto sdk = xpectra::SDK::Connect(\"XPECTRA_API_KEY\");\nsdk->push(\"vibration_01\", 104.2);",
+      badge: "Native SDK"
     },
     {
       icon: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg",
       isImage: true,
       name: "NI-DAQmx",
-      desc: "Direct ingestion from NI hardware. High-sample rate support with sub-second persistence.",
-      language: "bash",
-      snippet: "xpectra-ni run-task \"Mission_01\" \\\n  --key \"XPECTRA_API_KEY\""
+      desc: "Direct ingestion from NI hardware via LabView plugin. High-sample rate support with sub-second persistence.",
+      language: "visual",
+      snippet: "",
+      previewImage: "/labview_plugin.png",
+      badge: "Native SDK"
     },
     {
       icon: FileText,
       name: "CSV / Batch",
       desc: "Batch upload historical data. We handle schema inference and time-alignment automatically.",
       language: "bash",
-      snippet: "xpectra ingest archive_data.csv \\\n  --api-key \"XPECTRA_API_KEY\""
+      snippet: "xpectra ingest archive_data.csv \\\n  --api-key \"XPECTRA_API_KEY\"",
+      badge: "Batch Upload"
     },
     {
       icon: Globe,
       name: "REST / HTTP",
       desc: "Simple webhook or JSON ingestion for web-enabled hardware and edge gateways.",
       language: "json",
-      snippet: "POST https://ingest.xpectra.io/v1/telemetry\nAuth: Bearer XPECTRA_API_KEY\n{ \"val\": 22.1 }"
+      snippet: "POST https://ingest.xpectra.io/v1/telemetry\nAuth: Bearer XPECTRA_API_KEY\n{ \"val\": 22.1 }",
+      badge: "HTTP API"
     }
   ];
 
