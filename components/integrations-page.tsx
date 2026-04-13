@@ -149,7 +149,7 @@ const IntegrationsPage = () => {
               </h1>
               <p className="text-xl sm:text-2xl text-white/70 leading-relaxed mb-10">
                 Now make their data work too. Xpectra supports every major hardware client
-                and DAQ system — with zero vendor lock-in.
+                and DAQ system with zero vendor lock-in.
               </p>
             </motion.div>
           </div>

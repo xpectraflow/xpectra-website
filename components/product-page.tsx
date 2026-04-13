@@ -11,8 +11,8 @@ import {
 } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
-const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const FAQItem = ({ question, answer, defaultOpen = false }: { question: string, answer: string, defaultOpen?: boolean }) => {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
     return (
         <div className="border-b border-border-subtle">
             <button
@@ -48,10 +48,10 @@ const ArchitectureDiagram = () => {
             <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-brand-orange/5 blur-[120px] rounded-full -mr-[20rem] -mt-[20rem] animate-pulse" />
             <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-brand-blue/5 blur-[120px] rounded-full -ml-[20rem] -mb-[20rem] animate-pulse" />
 
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full h-full">
+            <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between w-full h-full">
                 {/* Node 1: Sensor Stack */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-18 h-18 p-4 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 relative overflow-hidden group/node transition-all duration-500 hover:border-white/20 hover:bg-white/[0.05]">
+                    <div className="w-20 h-20 p-4 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 relative overflow-hidden group/node transition-all duration-500 hover:border-white/20 hover:bg-white/[0.05]">
                         <Image
                             src="/labview.webp"
                             alt="LabVIEW"
@@ -66,13 +66,13 @@ const ArchitectureDiagram = () => {
                 </div>
 
                 {/* Connector 1 */}
-                <div className="hidden md:flex items-center flex-1">
-                    <div className="h-px w-full bg-white/10" />
+                <div className="hidden md:flex items-center flex-1 md:mt-10">
+                    <div className="h-px w-full bg-white/80" />
                 </div>
 
                 {/* Node 2: Xpectra Core */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="relative">
+                    <div className="relative w-20 h-20 flex items-center justify-center">
                         <div className="absolute inset-0 bg-white/10 blur-2xl rounded-full opacity-30" />
                         <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-2xl shadow-white/10 p-3 relative z-10 transition-transform duration-500 hover:scale-105">
                             <Image src="/logo.svg" alt="Xpectra Hub" width={60} height={60} className="brightness-100" />
@@ -80,18 +80,18 @@ const ArchitectureDiagram = () => {
                     </div>
                     <div className="text-center">
                         <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white">Xpectra Core</p>
-                        <p className="text-[9px] font-mono text-white/40 uppercase mt-1 tracking-widest whitespace-nowrap">gRPC / Go Engine</p>
+                        <p className="text-[9px] font-mono text-white/40 uppercase mt-1 tracking-widest whitespace-nowrap">Xpectra Engine</p>
                     </div>
                 </div>
 
                 {/* Connector 2 */}
-                <div className="hidden md:flex items-center flex-1">
-                    <div className="h-px w-full bg-white/10" />
+                <div className="hidden md:flex items-center flex-1 md:mt-10">
+                    <div className="h-px w-full bg-white/80" />
                 </div>
 
                 {/* Node 3: Storage */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-18 h-18 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
+                    <div className="w-20 h-20 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
                         <Database className="text-white/40" size={24} />
                     </div>
                     <div className="text-center">
@@ -101,13 +101,13 @@ const ArchitectureDiagram = () => {
                 </div>
 
                 {/* Connector 3 */}
-                <div className="hidden md:flex items-center flex-1">
-                    <div className="h-px w-full bg-white/10" />
+                <div className="hidden md:flex items-center flex-1 md:mt-10">
+                    <div className="h-px w-full bg-white/80" />
                 </div>
 
                 {/* Node 4: Console */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-18 h-18 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
+                    <div className="w-20 h-20 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
                         <Server className="text-white/40" size={24} />
                     </div>
                     <div className="text-center">
@@ -132,7 +132,7 @@ const FeatureGrid = () => {
             id: "validation",
             icon: ShieldCheck,
             title: "Real-time Validation",
-            description: "Schema, timestamps, dropouts — caught instantly before they cascade."
+            description: "Schema, timestamps, dropouts caught instantly before they cascade."
         },
         {
             id: "observability",
@@ -203,14 +203,16 @@ const ProductPage = () => {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <p className="text-2xl sm:text-3xl text-white/70 leading-relaxed mb-10">
+                            <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-tight text-white md:text-3xl lg:text-4xl">
                                 Xpectra is the industrial-grade data layer for engineering teams who can't afford silent sensor failures.
+                            </h1>
+                            <p className="text-xl sm:text-xl text-white/70 leading-relaxed mb-10">
                                 We standardize your telemetry ingestion and validation so your engineers spend 0% of their time on "data cleaning"
                                 and 100% on analysis.
                             </p>
                             <Button
                                 size="lg"
-                                className="bg-white text-black hover:bg-gray-100 font-bold px-10 py-8 rounded-full text-lg"
+                                className="bg-white text-black hover:bg-gray-300 font-bold px-6 py-8 rounded-full text-lg"
                                 onClick={() => {
                                     const el = document.getElementById('contact');
                                     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -241,12 +243,12 @@ const ProductPage = () => {
                         <div className="grid lg:grid-cols-2 gap-20 items-center">
                             <div>
                                 <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">Hands-on Analysis</p>
-                                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8">The Mission Control Playground.</h2>
+                                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8">From raw telemetry to insight, without leaving the browser.</h2>
                                 <div className="space-y-12">
                                     {[
-                                        { title: "Dataset Tree", desc: "Instantly navigate through historical missions, experiments, and sensor groups." },
-                                        { title: "Channel Selector", desc: "Select and overlay any number of sensors to find cross-channel correlations." },
-                                        { title: "Zoom-Linked Charts", desc: "Zoom into one chart and watch as every other chart follows in perfect sync." }
+                                        { title: "Dataset Tree", desc: "Navigate 6 months of test history in seconds. No SQL, no exports." },
+                                        { title: "Channel Selector", desc: "Overlay any combination of sensors. Find cross-channel anomalies visually." },
+                                        { title: "Zoom-Linked Charts", desc: "Zoom into an anomaly spike and every chart follows. See the full system response at once." }
                                     ].map((item, i) => (
                                         <div key={i} className="flex gap-6 group">
                                             <div className="shrink-0 w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center font-mono text-sm text-white/30 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all">
@@ -309,7 +311,8 @@ const ProductPage = () => {
                             />
                             <FAQItem
                                 question="Is it too early for us to adopt Xpectra?"
-                                answer="Infrastructure is cheapest to build before you have a legacy problem. Teams typically adopt us during the prototyping phase to avoid debt later."
+                                answer="If you're running tests and losing data quality, it's not too early it's already late. The teams that move fast on data infrastructure are the ones with reproducible results a year from now. Our pilot is 30 days, one workflow. The risk of trying is zero."
+                                defaultOpen={true}
                             />
                         </div>
                     </div>

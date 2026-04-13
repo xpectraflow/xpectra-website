@@ -30,7 +30,7 @@ const XpectraWebsite = () => {
       id: "validation",
       icon: ShieldCheck,
       title: "Real-time data validation",
-      description: "Schema, timestamps, dropouts — caught instantly before they cascade into mission failures.",
+      description: "Schema, timestamps, dropouts caught instantly before they cascade into mission failures.",
     },
     {
       id: "ingestion",
@@ -132,21 +132,21 @@ const XpectraWebsite = () => {
           <AnimatedCarousel
             title="Works with your existing setup"
             logos={[
-              "/labview.webp",
-              "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
-              "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
-              "https://cdn.worldvectorlogo.com/logos/national-instruments.svg",
-              "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg",
+              { src: "/labview.webp", name: "LabVIEW" },
+              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", name: "Python" },
+              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", name: "C++" },
+              { src: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg", name: "NI-DAQ" },
+              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg", name: "gRPC" },
             ]}
             autoPlay={false}
             autoPlayInterval={3000}
             itemsPerViewDesktop={5}
-            padding="pt-10 md:pt-14 pb-0"
-            spacing="gap-15"
+            padding="pt-10 md:pt-14 pb-10"
+            spacing="gap-12"
             titleClassName="text-[10px] font-mono uppercase tracking-[0.2em] text-white/75"
-            logoContainerWidth="w-32 md:w-48"
-            logoContainerHeight="h-16 md:h-20"
-            logoImageHeight="h-16 md:h-24"
+            logoContainerWidth="w-32 md:w-44"
+            logoContainerHeight="h-20 md:h-28"
+            logoImageHeight="h-14 md:h-20"
           />
           <div className="flex justify-center pb-12">
             <Link href="/integrations">
@@ -166,52 +166,71 @@ const XpectraWebsite = () => {
       {/* Problem Section: The cost of "not yet" */}
       <section className="relative pt-8 pb-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-[1fr_1.8fr] gap-8 lg:gap-10 items-center">
             <div>
               <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-8">
                 Every delayed decision means another test cycle lost to bad data.
               </h2>
-              <div className="p-8 rounded-3xl bg-card-bg border border-border-subtle backdrop-blur-xl">
+              <div className="p-8 rounded-3xl bg-card-bg border border-border-subtle backdrop-blur-xl relative group">
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
                 <span className="text-6xl font-black text-white mb-4 block">40%</span>
                 <p className="text-xl text-white/70 italic leading-relaxed">
                   "Engineers spend 40% of test prep rewriting the same ingestion scripts."
                 </p>
                 <div className="mt-6 h-px w-20 bg-white/20" />
-                <p className="mt-6 text-white/50 font-mono text-sm uppercase tracking-wider">
+                <p className="mt-6 text-white/50 font-mono text-xs uppercase tracking-wider">
                   That's not a productivity problem. It's a missing infrastructure layer.
                 </p>
               </div>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-mono text-brand-red/80 mb-8 flex items-center gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 items-stretch">
+              <div className="sm:pb-4">
+                <h3 className="text-xl font-mono text-brand-red/80 flex items-center gap-2">
                   <X className="h-4 w-4" /> Today
                 </h3>
-                {[
-                  "One sensor anomaly invalidates weeks of test data",
-                  "Failures surface post-test when hardware is disassembled",
-                  "Collaboration breaks across team data formats"
-                ].map((item, i) => (
-                  <div key={i} className="p-6 rounded-2xl bg-brand-red/5 border border-brand-red/10 text-white/60 text-md leading-relaxed">
-                    {item}
-                  </div>
-                ))}
               </div>
-              <div className="space-y-6">
-                <h3 className="text-2xl font-mono text-brand-emerald/80 mb-8 flex items-center gap-2">
+              <div className="sm:pb-4">
+                <h3 className="text-xl font-mono text-brand-emerald/80 flex items-center gap-2">
                   <CheckCircle2 className="h-4 w-4" /> With Xpectra
                 </h3>
-                {[
-                  "Anomalous sensors auto-flagged, clean data continues flowing",
-                  "Real-time alerts catch issues before test completion",
-                  "Unified data standards across teams and campaigns"
-                ].map((item, i) => (
-                  <div key={i} className="p-6 rounded-2xl bg-brand-emerald/5 border border-brand-emerald/10 text-white/90 text-md leading-relaxed">
-                    {item}
-                  </div>
-                ))}
               </div>
+              
+              {[
+                { 
+                  today: "One sensor anomaly invalidates weeks of test data", 
+                  xpectra: "Anomalous sensors auto-flagged instantly" 
+                },
+                { 
+                  today: "Failures surface post-test when hardware is disassembled", 
+                  xpectra: "Real-time alerts catch issues before teardown" 
+                },
+                { 
+                  today: "Collaboration breaks across team data formats", 
+                  xpectra: "Unified data standards across all missions" 
+                },
+                { 
+                  today: "Engineers spend 2+ days per test rewriting initial scripts", 
+                  xpectra: "Standardized ingestion logic ready for reuse" 
+                },
+                { 
+                  today: "Test results are tied to the engineer, not the platform", 
+                  xpectra: "Full mission context vaulted for anyone to query" 
+                }
+              ].map((point, i) => (
+                <React.Fragment key={i}>
+                  <div className="flex flex-col">
+                    <div className="p-5 rounded-2xl bg-brand-red/5 border border-brand-red/10 text-white/60 text-md leading-relaxed hover:bg-brand-red/[0.08] transition-colors cursor-default h-full">
+                      {point.today}
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="p-5 rounded-2xl bg-brand-emerald/5 border border-brand-emerald/10 text-white/90 text-md leading-relaxed hover:bg-brand-emerald/[0.08] transition-colors cursor-default h-full">
+                      {point.xpectra}
+                    </div>
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
@@ -270,10 +289,10 @@ const XpectraWebsite = () => {
 
             <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               {[
-                { label: "Duration", value: "30-45 Days" },
-                { label: "Scope", value: "Live Workflow" },
-                { label: "Outcome", value: "Go/No-Go" },
-                { label: "Data", value: "Standardized" }
+                { label: "Duration", value: "30-45 days, one sprint" },
+                { label: "Scope", value: "One sensor workflow you already run" },
+                { label: "Outcome", value: "Clear go/no-go with your own data" },
+                { label: "Data", value: "Your historical data, analysis-ready" }
               ].map((item, i) => (
                 <div key={i} className="p-6 rounded-lg bg-white/5 border border-white/10 text-left">
                   <div className="text-sm text-white/50 mb-2 font-mono uppercase tracking-wider">{item.label}</div>
@@ -281,6 +300,10 @@ const XpectraWebsite = () => {
                 </div>
               ))}
             </div>
+
+            <p className="text-xl text-white/40 font-mono text-center max-w-2xl mx-auto leading-relaxed">
+              No procurement cycles. No ripping out existing tools. <span className="text-white">We plug into your workflow.</span>
+            </p>
           </motion.div>
         </div>
       </section>

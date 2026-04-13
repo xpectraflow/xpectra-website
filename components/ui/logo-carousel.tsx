@@ -13,7 +13,7 @@ export const AnimatedCarousel = ({
   logoCount = 15,
   autoPlay = true,
   autoPlayInterval = 2000,
-  logos = null as string[] | null,
+  logos = null as (string | { src: string; name: string | null })[] | null,
   containerClassName = "",
   titleClassName = "",
   carouselClassName = "",
@@ -50,7 +50,10 @@ export const AnimatedCarousel = ({
     return () => clearTimeout(timer);
   }, [api, current, autoPlay, autoPlayInterval]);
 
-  const logoItems = logos || Array.from({ length: logoCount }, (_, i) => `https://th.bing.com/th/id/R.4aa108082e7d3cbd55add79f84612aaa?rik=I4dbPhSe%2fbHHSg&riu=http%3a%2f%2fpurepng.com%2fpublic%2fuploads%2flarge%2fpurepng.com-google-logo-2015brandlogobrand-logoiconssymbolslogosgoogle-6815229372333mqrr.png&ehk=ewmaCOvP0Ji4QViEJnxSdlrYUrTSTWhi8nZ9XdyCgAI%3d&risl=&pid=ImgRaw&r=0100x100?text=Logo+${i + 1}`);
+  const logoItems = logos || Array.from({ length: logoCount }, (_, i) => ({
+    src: `https://th.bing.com/th/id/R.4aa108082e7d3cbd55add79f84612aaa?rik=I4dbPhSe%2fbHHSg&riu=http%3a%2f%2fpurepng.com%2fpublic%2fuploads%2flarge%2fpurepng.com-google-logo-2015brandlogobrand-logoiconssymbolslogosgoogle-6815229372333mqrr.png&ehk=ewmaCOvP0Ji4QViEJnxSdlrYUrTSTWhi8nZ9XdyCgAI%3d&risl=&pid=ImgRaw&r=0100x100?text=Logo+${i + 1}`,
+    name: null
+  }));
 
   const logoImageSizeClasses = `${logoImageWidth} ${logoImageHeight} ${logoMaxWidth} ${logoMaxHeight}`.trim();
 
@@ -64,17 +67,31 @@ export const AnimatedCarousel = ({
         <div className="w-full max-w-5xl mx-auto px-4">
           <Carousel setApi={setApi} opts={{ loop: true, align: "center" }} className={`w-full ${carouselClassName}`}>
             <CarouselContent>
-              {logoItems.map((logo, index) => (
-                <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
-                  <div className={`group flex ${logoContainerWidth} ${logoContainerHeight} items-center justify-center transition-all ${logoClassName}`}>
-                    <img
-                      src={logo}
-                      alt={`Logo ${index + 1}`}
-                      className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
+              {logoItems.map((logoItem, index) => {
+                const src = typeof logoItem === "string" ? logoItem : logoItem.src;
+                const name = typeof logoItem === "string" ? null : logoItem.name;
+
+                return (
+                  <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
+                    <div className="flex flex-col items-center gap-3 group">
+                      <div className={`flex ${logoContainerWidth} ${logoContainerHeight} items-center justify-center transition-all ${logoClassName}`}>
+                        <img
+                          src={src}
+                          alt={name || `Logo ${index + 1}`}
+                          className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
+                        />
+                      </div>
+                      {name && (
+                        <div className="flex justify-center w-full">
+                          <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.2em] text-white/60 group-hover:text-white/70 transition-colors whitespace-nowrap">
+                            {name}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
           </Carousel>
         </div>
