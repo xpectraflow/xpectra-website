@@ -36,9 +36,6 @@ export const Header = () => {
             <Link href="/docs" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               Quickstart
             </Link>
-            <Link href="/team" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
-              Team
-            </Link>
             <Button
               size="sm"
               className="bg-white text-black hover:bg-gray-100 font-semibold"
@@ -74,7 +71,6 @@ export const Header = () => {
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Product</Link>
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Integrations</Link>
             <Link href="/docs" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Quickstart</Link>
-            <Link href="/team" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Team</Link>
             <Button
               className="w-full bg-white text-black font-semibold py-6"
               onClick={() => {
