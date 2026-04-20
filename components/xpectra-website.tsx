@@ -376,45 +376,6 @@ const XpectraWebsite = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="relative py-20 px-6 border-t border-border-subtle/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-20">
-            <div className="max-w-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <Image src="/logo.svg" alt="logo" width={32} height={32} />
-                <span className="font-mono text-xl font-bold tracking-tighter">xpectra</span>
-              </div>
-              <p className="text-white/50 text-lg leading-relaxed">
-                Your next test will generate data. The question is whether it'll still be useful in a year.
-              </p>
-              <div className="mt-8 flex gap-4">
-                <Link href="https://x.com/XpectraF3662" target="_blank">
-                  <Button size="sm" variant="ghost" className="text-white/50 hover:text-white p-0 h-auto">Twitter</Button>
-                </Link>
-                <Link href="https://www.linkedin.com/company/xpectraflow" target="_blank">
-                  <Button size="sm" variant="ghost" className="text-white/50 hover:text-white p-0 h-auto">LinkedIn</Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-20">
-              <div className="flex flex-col gap-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-white/30">Platform</span>
-                <Link href="/product" className="text-white/70 hover:text-white transition-colors">Product</Link>
-                <Link href="/integrations" className="text-white/70 hover:text-white transition-colors">Integrations</Link>
-                <Link href="/docs" className="text-white/70 hover:text-white transition-colors">Quickstart</Link>
-              </div>
-              <div className="flex flex-col gap-4">
-                <span className="text-xs font-mono uppercase tracking-widest text-white/30">Company</span>
-                <Link href="/team" className="text-white/70 hover:text-white transition-colors">Team</Link>
-                <Link href="#contact" className="text-white/70 hover:text-white transition-colors">Contact</Link>
-              </div>
-            </div>
-          </div>
-          <p className="text-white/20 text-sm font-mono tracking-tighter font-medium">© 2026 Xpectra. Mission critical telemetry infrastructure.</p>
-        </div>
-      </footer>
     </SiteShell>
   );
 };

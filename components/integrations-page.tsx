@@ -215,28 +215,6 @@ const IntegrationsPage = () => {
         </div>
       </section>
 
-      {/* Footer CTA (from Home) */}
-      <footer className="relative py-20 px-6 border-t border-border-subtle/50">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            <p className="text-white/50 text-xl max-w-sm text-center md:text-left">
-              Bridge the gap between raw hardware and analysis-ready data.
-            </p>
-            <Button
-              variant="outline"
-              size="lg"
-              className="border-border-subtle text-white hover:bg-white/10 font-bold px-12 py-8 rounded-full text-lg"
-              onClick={() => {
-                const el = document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else window.location.href = '/#contact';
-              }}
-            >
-              Start a pilot
-            </Button>
-          </div>
-        </div>
-      </footer>
     </SiteShell>
   );
 };

@@ -33,7 +33,7 @@ export const Header = () => {
             <Link href="/integrations" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               Integrations
             </Link>
-            <Link href="/docs" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <Link href="/quickstart" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               Quickstart
             </Link>
             <Button
@@ -70,7 +70,7 @@ export const Header = () => {
           >
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Product</Link>
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Integrations</Link>
-            <Link href="/docs" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Quickstart</Link>
+            <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Quickstart</Link>
             <Button
               className="w-full bg-white text-black font-semibold py-6"
               onClick={() => {

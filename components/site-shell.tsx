@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Float, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { Footer } from '@/components/footer';
 
 const Canvas = dynamic(() => import('@react-three/fiber').then(mod => mod.Canvas), { ssr: false });
 
@@ -88,6 +89,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
         <main className="pt-16">
           {children}
         </main>
+        <Footer />
       </div>
     </div>
   );
