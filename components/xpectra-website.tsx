@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import {
   ArrowRight, CheckCircle2, Mail, Database, ShieldCheck, Zap, BarChart3,
-  Activity, X, DatabaseBackup, Combine, Workflow, Cpu, LayoutDashboard
+  Activity, X, DatabaseBackup, Combine, Workflow, Cpu, LayoutDashboard, Play
 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -97,34 +97,45 @@ const XpectraWebsite = () => {
               Request a pilot
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 text-base font-medium text-white hover:bg-white/10"
+              onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              <Play className="mr-2 h-4 w-4 fill-white" />
+              How it works
+            </Button>
             <Link href="/product">
               <Button
-                variant="outline"
+                variant="ghost"
                 size="lg"
-                className="h-12 rounded-full border border-gray-600 bg-transparent px-8 text-base font-medium text-white hover:bg-white/50"
+                className="h-12 rounded-full text-base font-medium text-white/50 hover:text-white"
               >
-                See how it works
+                Learn more
               </Button>
             </Link>
           </div>
         </motion.div>
 
-        {/* Hero Image Integration */}
+        {/* Hero Video Integration */}
         <motion.div
+          id="demo-video"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1 }}
           className="relative mx-auto mt-20 w-full max-w-6xl px-4 z-10"
         >
           <div className="absolute inset-0 rounded-3xl shadow-2xl bg-white blur-[10rem] opacity-[0.07] pointer-events-none" />
-          <Image
-            src="/hero.png"
-            alt="Xpectra Mission Control"
-            width={1200}
-            height={675}
-            priority
-            className="relative w-full h-auto shadow-2xl rounded-2xl border border-white/10 grayscale-[0.1] hover:grayscale-0 transition-all duration-1000"
-          />
+          <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-white/10 overflow-hidden bg-black/40 backdrop-blur-3xl">
+             <iframe 
+                src="https://www.youtube.com/embed/CLUqwdlTMtw?rel=0&modestbranding=1" 
+                title="Xpectra Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+             />
+          </div>
         </motion.div>
 
         {/* Logos Strip with Animated Carousel */}
