@@ -45,13 +45,14 @@ export const Footer = () => {
             <Link href="/#mission-control" className="text-sm text-white/60 hover:text-white transition-colors">Mission Control</Link>
           </div>
 
-          {/* Solutions Column (SEO Keywords) */}
+          {/* Industries Column (SEO Keywords) */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-2">Solutions</h4>
-            <span className="text-sm text-white/60 cursor-default">Aerospace Telemetry</span>
-            <span className="text-sm text-white/60 cursor-default">Defense Systems</span>
-            <span className="text-sm text-white/60 cursor-default">Automotive Testing</span>
-            <span className="text-sm text-white/60 cursor-default">In-Flight Data</span>
+            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-2">Industries</h4>
+            <span className="text-sm text-white/60 cursor-default">Aerospace</span>
+            <span className="text-sm text-white/60 cursor-default">Defense</span>
+            <span className="text-sm text-white/60 cursor-default">Robotics</span>
+            <span className="text-sm text-white/60 cursor-default">Automotive</span>
+            <span className="text-sm text-white/60 cursor-default">Energy</span>
           </div>
 
           {/* Resources & Trust Column */}
