@@ -100,13 +100,14 @@ const XpectraWebsite = () => {
             <Button
               variant="outline"
               size="lg"
+              aria-label="Watch how Xpectra works"
               className="h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 text-base font-medium text-white hover:bg-white/10"
               onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
             >
               <Play className="mr-2 h-4 w-4 fill-white" />
               How it works
             </Button>
-            <Link href="/product">
+            <Link href="/product" aria-label="Learn more about Xpectra product">
               <Button
                 variant="ghost"
                 size="lg"
@@ -160,7 +161,7 @@ const XpectraWebsite = () => {
             logoImageHeight="h-14 md:h-20"
           />
           <div className="flex justify-center pb-12">
-            <Link href="/integrations">
+            <Link href="/integrations" aria-label="See all Xpectra integrations">
               <Button
                 variant="ghost"
                 className="mt-10 text-white/40 hover:text-white hover:bg-white/5 text-xs font-mono uppercase tracking-[0.2em] group h-auto py-2 px-4 rounded-full transition-all"

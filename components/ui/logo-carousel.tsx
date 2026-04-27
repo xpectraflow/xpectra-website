@@ -78,6 +78,8 @@ export const AnimatedCarousel = ({
                         <img
                           src={src}
                           alt={name || `Logo ${index + 1}`}
+                          width={400}
+                          height={200}
                           className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
                         />
                       </div>

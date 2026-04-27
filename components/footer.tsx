@@ -20,17 +20,17 @@ export const Footer = () => {
               <Image src="/logo.svg" alt="Xpectra Logo" width={32} height={32} />
               <span className="font-mono text-xl font-bold tracking-tighter uppercase">XPECTRA</span>
             </Link>
-            <p className="text-white/50 text-lg leading-relaxed mb-8">
+            <p className="text-white/70 text-lg leading-relaxed mb-8">
               Mission-critical telemetry infrastructure. We standardize and validate sensor data at the edge so you can focus on the results that matter.
             </p>
             <div className="flex gap-4">
-              <Link href="https://github.com/xpectraflow/" target="_blank" className="text-white/40 hover:text-white transition-colors">
+              <Link href="https://github.com/xpectraflow/" target="_blank" aria-label="GitHub Profile" className="text-white/70 hover:text-white transition-colors">
                 <Github size={20} />
               </Link>
-              <Link href="https://x.com/XpectraF3662" target="_blank" className="text-white/40 hover:text-white transition-colors">
+              <Link href="https://x.com/XpectraF3662" target="_blank" aria-label="Twitter Profile" className="text-white/70 hover:text-white transition-colors">
                 <Twitter size={20} />
               </Link>
-              <Link href="https://www.linkedin.com/company/xpectraflow" target="_blank" className="text-white/40 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/company/xpectraflow" target="_blank" aria-label="LinkedIn Profile" className="text-white/70 hover:text-white transition-colors">
                 <Linkedin size={20} />
               </Link>
             </div>
@@ -38,7 +38,7 @@ export const Footer = () => {
 
           {/* Platform Column */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-2">Platform</h4>
+            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Platform</h3>
             <Link href="/product" className="text-sm text-white/60 hover:text-white transition-colors">Product Overview</Link>
             <Link href="/integrations" className="text-sm text-white/60 hover:text-white transition-colors">Integrations</Link>
             <Link href="/quickstart" className="text-sm text-white/60 hover:text-white transition-colors">Quickstart Guide</Link>
@@ -47,7 +47,7 @@ export const Footer = () => {
 
           {/* Industries Column (SEO Keywords) */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-2">Industries</h4>
+            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Industries</h3>
             <span className="text-sm text-white/60 cursor-default">Aerospace</span>
             <span className="text-sm text-white/60 cursor-default">Defense</span>
             <span className="text-sm text-white/60 cursor-default">Robotics</span>
@@ -57,7 +57,7 @@ export const Footer = () => {
 
           {/* Resources & Trust Column */}
           <div className="flex flex-col gap-4">
-            <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-white/30 mb-2">Company</h4>
+            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Company</h3>
             <Link href="/#contact" className="text-sm text-white/60 hover:text-white transition-colors">Contact Sales</Link>
           </div>
         </div>
