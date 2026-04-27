@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://xpectraflow.com"),
   title: "Xpectra",
   description: "Infrastructure for mission-critical sensor data",
 };
