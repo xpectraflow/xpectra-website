@@ -55,7 +55,7 @@ const IntegrationCard = ({
             React.createElement(icon, { size: 28 })
           )}
         </div>
-        <div className="px-3 py-1 rounded-full bg-card-bg border border-border-subtle text-[10px] font-mono text-white/30 uppercase tracking-widest">
+        <div className="px-3 py-1 rounded-full bg-card-bg border border-border-subtle text-[12px] font-mono text-white/30 uppercase tracking-widest">
           {badge}
         </div>
       </div>

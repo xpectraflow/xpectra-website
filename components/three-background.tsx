@@ -64,7 +64,7 @@ export default function ThreeBackground() {
   return (
     <Canvas 
       camera={{ position: [0, 0, 60], fov: 35 }}
-      dpr={[1, 1.5]}
+      dpr={1}
       gl={{ 
         powerPreference: 'high-performance',
         antialias: false,

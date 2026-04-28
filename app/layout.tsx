@@ -21,8 +21,33 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://xpectraflow.com"),
-  title: "Xpectra",
-  description: "Infrastructure for mission-critical sensor data",
+  title: "Xpectra | Infrastructure for mission-critical sensor data",
+  description: "Xpectra standardizes and validates telemetry ingestion for engineering teams. Eliminate silent sensor failures and automate data cleaning.",
+  openGraph: {
+    title: "Xpectra | Infrastructure for mission-critical sensor data",
+    description: "Infrastructure for mission-critical sensor data",
+    url: "https://xpectraflow.com",
+    siteName: "Xpectra",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Xpectra Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Xpectra | Infrastructure for mission-critical sensor data",
+    description: "Infrastructure for mission-critical sensor data",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -33,8 +58,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="manifest" href="/manifest.json" />
       </head>
