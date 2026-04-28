@@ -76,9 +76,9 @@ const XpectraWebsite = () => {
         <div className="absolute inset-0 z-0 bg-noise opacity-[0.03] pointer-events-none"></div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           className="max-w-5xl relative z-10"
         >
           <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
@@ -149,6 +149,7 @@ const XpectraWebsite = () => {
                  fill
                  className="object-cover opacity-60 transition-opacity group-hover:opacity-80"
                  priority
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                />
                <div className="absolute inset-0 flex items-center justify-center">
                  <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

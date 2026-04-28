@@ -10,7 +10,15 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Delay mounting heavy 3D background to prioritize FCP and interactive elements
+    const delay = setTimeout(() => {
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        window.requestIdleCallback(() => setMounted(true));
+      } else {
+        setMounted(true);
+      }
+    }, 1000);
+    return () => clearTimeout(delay);
   }, []);
 
   return (
