@@ -89,24 +89,25 @@ const XpectraWebsite = () => {
             so your engineers analyse data, not clean it.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              size="lg"
-              className="h-12 rounded-full bg-white px-8 text-base font-medium text-black hover:bg-white/80"
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Request a pilot
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              aria-label="Watch how Xpectra works"
-              className="h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 text-base font-medium text-white hover:bg-white/10"
-              onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <Play className="mr-2 h-4 w-4 fill-white" />
-              How it works
-            </Button>
+            <Link href="/#contact" aria-label="Request a pilot for Xpectra">
+              <Button
+                size="lg"
+                className="h-12 rounded-full bg-white px-8 text-base font-medium text-black hover:bg-white/80"
+              >
+                Request a pilot
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link href="/#demo-video" aria-label="Watch how Xpectra works">
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 text-base font-medium text-white hover:bg-white/10"
+              >
+                <Play className="mr-2 h-4 w-4 fill-white" />
+                How it works
+              </Button>
+            </Link>
             <Link href="/product" aria-label="Learn more about Xpectra product">
               <Button
                 variant="ghost"

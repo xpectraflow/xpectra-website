@@ -32,6 +32,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -46,6 +52,21 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', '${googleAnalyticsMeasurementId}');
           `}
+        </Script>
+        <Script id="json-ld" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Xpectra",
+            "url": "https://xpectraflow.com",
+            "logo": "https://xpectraflow.com/logo.svg",
+            "description": "Infrastructure for mission-critical sensor data",
+            "sameAs": [
+              "https://x.com/XpectraF3662",
+              "https://www.linkedin.com/company/xpectraflow",
+              "https://github.com/xpectraflow/"
+            ]
+          })}
         </Script>
         <Header />
         {children}

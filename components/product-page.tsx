@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 import { SiteShell } from '@/components/site-shell';
 import { Button } from '@/components/ui/button';
 import {
@@ -210,17 +211,14 @@ const ProductPage = () => {
                                 We standardize your telemetry ingestion and validation so your engineers spend 0% of their time on "data cleaning"
                                 and 100% on analysis.
                             </p>
-                            <Button
-                                size="lg"
-                                className="bg-white text-black hover:bg-gray-300 font-bold px-6 py-8 rounded-full text-lg"
-                                onClick={() => {
-                                    const el = document.getElementById('contact');
-                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                    else window.location.href = '/#contact';
-                                }}
-                            >
-                                Get started in 5 minutes
-                            </Button>
+                            <Link href="/#contact" aria-label="Get started with Xpectra in 5 minutes">
+                                <Button
+                                    size="lg"
+                                    className="bg-white text-black hover:bg-gray-300 font-bold px-6 py-8 rounded-full text-lg"
+                                >
+                                    Get started in 5 minutes
+                                </Button>
+                            </Link>
                         </motion.div>
                     </div>
 
@@ -323,18 +321,15 @@ const ProductPage = () => {
             <section className="py-32 px-6 border-t border-white/5 text-center">
                 <div className="max-w-2xl mx-auto">
                     <h2 className="text-4xl sm:text-6xl font-bold mb-10 tracking-tight">Ready to harden your data stack?</h2>
-                    <Button
-                        size="lg"
-                        className="bg-white text-black hover:bg-gray-100 font-bold px-12 py-8 rounded-full text-xl"
-                        onClick={() => {
-                            const el = document.getElementById('contact');
-                            if (el) el.scrollIntoView({ behavior: 'smooth' });
-                            else window.location.href = '/#contact';
-                        }}
-                    >
-                        Request a pilot
-                        <ArrowRight className="ml-3 h-6 w-6" />
-                    </Button>
+                    <Link href="/#contact" aria-label="Request a pilot to harden your data stack">
+                        <Button
+                            size="lg"
+                            className="bg-white text-black hover:bg-gray-100 font-bold px-12 py-8 rounded-full text-xl"
+                        >
+                            Request a pilot
+                            <ArrowRight className="ml-3 h-6 w-6" />
+                        </Button>
+                    </Link>
                 </div>
             </section>
         </SiteShell>

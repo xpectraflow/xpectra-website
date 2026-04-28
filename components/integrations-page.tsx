@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { SiteShell } from '@/components/site-shell';
 import { Button } from '@/components/ui/button';
 import {
@@ -192,18 +193,15 @@ const IntegrationsPage = () => {
                 <p className="text-xl text-black/60 mb-12 max-w-lg mx-auto">
                   If it outputs data, we can ingest it. Talk to our engineering team about custom integrations.
                 </p>
-                <Button
-                  size="lg"
-                  className="bg-black text-white hover:bg-black/90 font-bold px-12 py-8 rounded-full text-xl"
-                  onClick={() => {
-                    const el = document.getElementById('contact');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    else window.location.href = '/#contact';
-                  }}
-                >
-                  Talk to us
-                  <ArrowRight className="ml-3 h-6 w-6" />
-                </Button>
+                <Link href="/#contact" aria-label="Talk to our engineering team about custom hardware integrations">
+                  <Button
+                    size="lg"
+                    className="bg-black text-white hover:bg-black/90 font-bold px-12 py-8 rounded-full text-xl"
+                  >
+                    Talk to us
+                    <ArrowRight className="ml-3 h-6 w-6" />
+                  </Button>
+                </Link>
               </div>
 
               {/* Decorative background logo */}

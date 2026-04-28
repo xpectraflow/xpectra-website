@@ -36,18 +36,15 @@ export const Header = () => {
             <Link href="/quickstart" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               Quickstart
             </Link>
-            <Button
-              size="sm"
-              className="bg-white text-black hover:bg-gray-100 font-semibold"
-              onClick={() => {
-                const el = document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else window.location.href = '/#contact';
-              }}
-            >
-              Request pilot
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href="/#contact" aria-label="Request a pilot for Xpectra">
+              <Button
+                size="sm"
+                className="bg-white text-black hover:bg-gray-100 font-semibold"
+              >
+                Request pilot
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -71,17 +68,13 @@ export const Header = () => {
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Product</Link>
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Integrations</Link>
             <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Quickstart</Link>
-            <Button
-              className="w-full bg-white text-black font-semibold py-6"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                const el = document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else window.location.href = '/#contact';
-              }}
-            >
-              Request pilot
-            </Button>
+            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} aria-label="Request a pilot for Xpectra" className="w-full">
+              <Button
+                className="w-full bg-white text-black font-semibold py-6"
+              >
+                Request pilot
+              </Button>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
