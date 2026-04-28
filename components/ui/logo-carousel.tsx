@@ -7,6 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 
 export const AnimatedCarousel = ({
   title = "Trusted by thousands of businesses worldwide",
@@ -75,12 +76,13 @@ export const AnimatedCarousel = ({
                   <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
                     <div className="flex flex-col items-center gap-3 group">
                       <div className={`flex ${logoContainerWidth} ${logoContainerHeight} items-center justify-center transition-all ${logoClassName}`}>
-                        <img
+                        <Image
                           src={src}
                           alt={name || `Logo ${index + 1}`}
-                          width={400}
-                          height={200}
+                          width={200}
+                          height={100}
                           className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
+                          loading="lazy"
                         />
                       </div>
                       {name && (

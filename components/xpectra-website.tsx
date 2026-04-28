@@ -128,14 +128,34 @@ const XpectraWebsite = () => {
           className="relative mx-auto mt-20 w-full max-w-6xl px-4 z-10"
         >
           <div className="absolute inset-0 rounded-3xl shadow-2xl bg-white blur-[10rem] opacity-[0.07] pointer-events-none" />
-          <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-white/10 overflow-hidden bg-black/40 backdrop-blur-3xl">
-             <iframe 
-                src="https://www.youtube.com/embed/CLUqwdlTMtw?rel=0&modestbranding=1" 
-                title="Xpectra Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-             />
+          <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-white/10 overflow-hidden bg-black/40 backdrop-blur-3xl group cursor-pointer"
+               onClick={() => {
+                 const container = document.getElementById('video-container');
+                 if (container) {
+                   container.innerHTML = `<iframe 
+                     src="https://www.youtube.com/embed/CLUqwdlTMtw?rel=0&modestbranding=1&autoplay=1" 
+                     title="Xpectra Demo"
+                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                     allowFullScreen
+                     class="absolute inset-0 w-full h-full"
+                   ></iframe>`;
+                 }
+               }}
+          >
+             <div id="video-container" className="absolute inset-0 w-full h-full">
+               <Image
+                 src="/hero.png"
+                 alt="Xpectra Demo Video Preview"
+                 fill
+                 className="object-cover opacity-60 transition-opacity group-hover:opacity-80"
+                 priority
+               />
+               <div className="absolute inset-0 flex items-center justify-center">
+                 <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                   <Play size={32} className="fill-white translate-x-1" />
+                 </div>
+               </div>
+             </div>
           </div>
         </motion.div>
 

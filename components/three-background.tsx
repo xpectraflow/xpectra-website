@@ -29,12 +29,13 @@ const LiquidBackground = () => {
         uniforms={uniforms}
         vertexShader={`varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`}
         fragmentShader={`
+          precision lowp float;
           uniform float uTime; uniform vec2 uMouse; varying vec2 vUv;
           void main() {
-            vec2 uv = vUv; float t = uTime * 0.15;
-            vec2 m = uMouse * 0.1;
-            float color = smoothstep(0.0, 1.0, (sin(uv.x * 8.0 + t + m.x * 12.0) + sin(uv.y * 6.0 - t + m.y * 12.0)) * 0.5 + 0.5);
-            gl_FragColor = vec4(mix(vec3(0.005), vec3(0.05), color), 1.0);
+            vec2 uv = vUv; float t = uTime * 0.1;
+            vec2 m = uMouse * 0.05;
+            float color = (sin(uv.x * 6.0 + t + m.x * 8.0) + sin(uv.y * 4.0 - t + m.y * 8.0)) * 0.5 + 0.5;
+            gl_FragColor = vec4(mix(vec3(0.005), vec3(0.04), color), 1.0);
           }
         `}
       />
@@ -61,7 +62,17 @@ const Monolith = () => {
 
 export default function ThreeBackground() {
   return (
-    <Canvas camera={{ position: [0, 0, 60], fov: 35 }}>
+    <Canvas 
+      camera={{ position: [0, 0, 60], fov: 35 }}
+      dpr={[1, 1.5]}
+      gl={{ 
+        powerPreference: 'high-performance',
+        antialias: false,
+        stencil: false,
+        depth: false,
+        alpha: true
+      }}
+    >
       <ambientLight intensity={0.4} />
       <spotLight position={[50, 50, 50]} intensity={3} />
       <LiquidBackground />
