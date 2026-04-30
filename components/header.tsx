@@ -69,12 +69,12 @@ export const Header = () => {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-16 left-0 w-full bg-background/90 backdrop-blur-2xl border-b border-border-subtle p-6 flex flex-col gap-6 items-center"
           >
-            <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Product</Link>
-            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Integrations</Link>
-            <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-lg font-medium">Quickstart</Link>
-            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} aria-label="Request a pilot for Xpectra" className="w-full">
+            <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Product</Link>
+            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Integrations</Link>
+            <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Quickstart</Link>
+            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} aria-label="Request a pilot for Xpectra" className="w-full pt-6">
               <Button
-                className="w-full bg-white text-black font-semibold py-6"
+                className="w-full bg-white text-black font-bold py-8 rounded-2xl text-lg"
               >
                 Request pilot
               </Button>

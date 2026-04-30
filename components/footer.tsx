@@ -62,7 +62,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-border-subtle/30 flex flex-col md:flex-row justify-between items-center gap-6 text-[12px] font-mono uppercase tracking-[0.2em] text-white/20">
+        <div className="pt-12 border-t border-border-subtle/30 flex flex-col md:flex-row justify-between items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20">
           <p>© {currentYear} Xpectra Corporation. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
