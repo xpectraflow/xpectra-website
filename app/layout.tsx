@@ -21,13 +21,17 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://xpectraflow.com"),
-  title: "Xpectra | Infrastructure for mission-critical sensor data",
-  description: "Xpectra standardizes and validates telemetry ingestion for engineering teams. Eliminate silent sensor failures and automate data cleaning.",
+  title: {
+    default: "Xpectra | Infrastructure for Mission-Critical Sensor Data",
+    template: "%s | Xpectra"
+  },
+  description: "Xpectraflow (Xpectra) provides standardized telemetry infrastructure for engineering teams. Standardize and validate mission-critical sensor data with zero vendor lock-in.",
+  keywords: ["Xpectra", "Xpectraflow", "sensor data infrastructure", "telemetry standardization", "industrial data layer", "mission-critical data"],
   openGraph: {
-    title: "Xpectra | Infrastructure for mission-critical sensor data",
-    description: "Infrastructure for mission-critical sensor data",
+    title: "Xpectra | Infrastructure for Mission-Critical Sensor Data",
+    description: "Xpectraflow (Xpectra) provides standardized telemetry infrastructure for mission-critical sensor data.",
     url: "https://xpectraflow.com",
-    siteName: "Xpectra",
+    siteName: "Xpectraflow",
     images: [
       {
         url: "/og-image.png",
@@ -41,8 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Xpectra | Infrastructure for mission-critical sensor data",
-    description: "Infrastructure for mission-critical sensor data",
+    title: "Xpectra | Mission-Critical Sensor Data",
+    description: "Xpectraflow (Xpectra) provides standardized telemetry infrastructure.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -81,7 +85,8 @@ export default function RootLayout({
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            "name": "Xpectra",
+            "name": "Xpectraflow",
+            "alternateName": "Xpectra",
             "url": "https://xpectraflow.com",
             "logo": "https://xpectraflow.com/logo.svg",
             "description": "Infrastructure for mission-critical sensor data",
