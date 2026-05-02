@@ -14,10 +14,13 @@ const LiquidBackground = () => {
   }), []);
 
   useFrame((state) => {
+    // Stop rendering if tab is hidden to save main thread and battery
+    if (typeof document !== 'undefined' && document.hidden) return;
+
     const { clock, mouse } = state;
     if (meshRef.current) {
       (meshRef.current.material as THREE.ShaderMaterial).uniforms.uTime.value = clock.getElapsedTime();
-      (meshRef.current.material as THREE.ShaderMaterial).uniforms.uMouse.value.lerp(mouse, 0.05);
+      (meshRef.current.material as THREE.ShaderMaterial).uniforms.uMouse.value.lerp(mouse, 0.03); // Slower lerp for less work
     }
   });
 

@@ -14,7 +14,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { SiteShell } from '@/components/site-shell';
 
-import { AnimatedCarousel } from '@/components/ui/logo-carousel';
+import dynamic from 'next/dynamic';
+const AnimatedCarousel = dynamic(() => import('@/components/ui/logo-carousel').then(mod => mod.AnimatedCarousel), {
+  ssr: false,
+  loading: () => <div className="h-40" />
+});
 
 const XpectraWebsite = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -75,14 +79,10 @@ const XpectraWebsite = () => {
         </div>
         <div className="absolute inset-0 z-0 bg-noise opacity-[0.03] pointer-events-none"></div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="max-w-5xl relative z-10"
-        >
+        <div className="max-w-5xl relative z-10">
           <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
-            Infrastructure for mission critical sensor data
+            Infrastructure for <br />
+            <span className="text-white/50">mission critical sensor data.</span>
           </h1>
           <p className="mt-6  text-md sm:text-xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
             Xpectra validates, standardizes, and stores your sensor telemetry in real-time,
@@ -108,17 +108,17 @@ const XpectraWebsite = () => {
                 How it works
               </Button>
             </Link>
-            <Link href="/product" aria-label="Learn more about Xpectra product">
+            <Link href="/product" aria-label="Explore Xpectra Products">
               <Button
                 variant="ghost"
                 size="lg"
                 className="h-12 rounded-full text-base font-medium text-white/50 hover:text-white"
               >
-                Learn more
+                Explore Products
               </Button>
             </Link>
           </div>
-        </motion.div>
+        </div>
 
         {/* Hero Video Integration */}
         <motion.div

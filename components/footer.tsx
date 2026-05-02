@@ -24,13 +24,13 @@ export const Footer = () => {
               Mission-critical telemetry infrastructure. We standardize and validate sensor data at the edge so you can focus on the results that matter.
             </p>
             <div className="flex gap-6">
-              <Link href="https://github.com/xpectraflow/" target="_blank" aria-label="GitHub Profile" className="text-white/70 hover:text-white transition-colors p-2">
+              <Link href="https://github.com/xpectraflow/" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="text-white/70 hover:text-white transition-colors p-2">
                 <Github size={24} />
               </Link>
-              <Link href="https://x.com/XpectraF3662" target="_blank" aria-label="Twitter Profile" className="text-white/70 hover:text-white transition-colors p-2">
+              <Link href="https://x.com/XpectraF3662" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" className="text-white/70 hover:text-white transition-colors p-2">
                 <Twitter size={24} />
               </Link>
-              <Link href="https://www.linkedin.com/company/xpectraflow" target="_blank" aria-label="LinkedIn Profile" className="text-white/70 hover:text-white transition-colors p-2">
+              <Link href="https://www.linkedin.com/company/xpectraflow" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="text-white/70 hover:text-white transition-colors p-2">
                 <Linkedin size={24} />
               </Link>
             </div>

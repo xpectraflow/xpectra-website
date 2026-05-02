@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'th.bing.com' },
     ],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 };
 
 export default nextConfig;
