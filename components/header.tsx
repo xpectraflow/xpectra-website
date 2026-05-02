@@ -14,7 +14,7 @@ export const Header = () => {
     <nav className="fixed top-0 w-full border-b border-border-subtle bg-background/10 backdrop-blur-xl z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3" aria-label="Xpectra Home">
             <Image
               src="/logo.svg"
               alt="xpectra logo"

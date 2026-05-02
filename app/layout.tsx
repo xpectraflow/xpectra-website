@@ -21,10 +21,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://xpectraflow.com"),
-  title: {
-    default: "Xpectra | Infrastructure for Mission-Critical Sensor Data",
-    template: "%s | Xpectra"
-  },
+  title: "Xpectra | Infrastructure for Mission-Critical Sensor Data",
   description: "Xpectraflow (Xpectra) provides standardized telemetry infrastructure for engineering teams. Standardize and validate mission-critical sensor data with zero vendor lock-in.",
   keywords: ["Xpectra", "Xpectraflow", "sensor data infrastructure", "telemetry standardization", "industrial data layer", "mission-critical data"],
   openGraph: {
@@ -50,7 +47,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "/",
+    canonical: "https://xpectraflow.com",
   },
 };
 
@@ -65,6 +62,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/logo.svg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

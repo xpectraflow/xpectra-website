@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   Carousel,
   CarouselApi,
@@ -39,6 +40,9 @@ export const AnimatedCarousel = ({
     }
 
     const timer = setTimeout(() => {
+      // Don't auto-play if page is hidden to save main thread
+      if (typeof document !== 'undefined' && document.hidden) return;
+
       if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
         setCurrent(0);
         api.scrollTo(0);
