@@ -42,6 +42,7 @@ export const Footer = () => {
             <Link href="/product" className="text-sm text-white/60 hover:text-white transition-colors">Product Overview</Link>
             <Link href="/integrations" className="text-sm text-white/60 hover:text-white transition-colors">Integrations</Link>
             <Link href="/quickstart" className="text-sm text-white/60 hover:text-white transition-colors">Quickstart Guide</Link>
+            <Link href="/blog" className="text-sm text-white/60 hover:text-white transition-colors">Engineering Blog</Link>
             <Link href="/#mission-control" className="text-sm text-white/60 hover:text-white transition-colors">Mission Control</Link>
           </div>
 

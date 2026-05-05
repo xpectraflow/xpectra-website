@@ -36,6 +36,9 @@ export const Header = () => {
             <Link href="/quickstart" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
               Quickstart
             </Link>
+            <Link href="/blog" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+              Blog
+            </Link>
             <Link href="/#contact" aria-label="Request a pilot for Xpectra">
               <Button
                 size="sm"
@@ -72,6 +75,7 @@ export const Header = () => {
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Product</Link>
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Integrations</Link>
             <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Quickstart</Link>
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Blog</Link>
             <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} aria-label="Request a pilot for Xpectra" className="w-full pt-6">
               <Button
                 className="w-full bg-white text-black font-bold py-8 rounded-2xl text-lg"
