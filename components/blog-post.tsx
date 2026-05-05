@@ -11,8 +11,6 @@ export const BlogPost = ({ post }: { post: any }) => {
   return (
     <SiteShell>
       <article className="relative pt-32 pb-20 px-6">
-        {/* Background Gradient */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-purple-500/5 to-transparent blur-[100px] pointer-events-none" />
 
         <div className="max-w-3xl mx-auto relative z-10">
           <motion.div
@@ -101,12 +99,27 @@ export const BlogPost = ({ post }: { post: any }) => {
               In a competitive landscape, the team that learns the fastest wins. By eliminating the "data cleaning" tax, Xpectra allows your engineers to focus on what they were hired for: solving the hard physics problems, not debugging ingestion pipelines.
             </p>
 
-            <div className="flex flex-wrap gap-2 pt-8 border-t border-white/10">
+            <div className="flex flex-wrap gap-2 py-8 border-y border-white/10 mb-12">
               {post.tags.map((tag: string) => (
                 <span key={tag} className="flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 text-xs text-white/40 border border-white/10">
                   <Tag size={12} /> {tag}
                 </span>
               ))}
+            </div>
+
+            <div className="mt-16 pt-8 border-t border-white/10">
+              <h2 className="text-xl font-bold text-white mb-6">References & Further Reading</h2>
+              <ul className="space-y-4 text-sm text-white/40 font-mono list-none p-0">
+                <li className="pl-0">
+                  <span className="text-white/60">[1]</span> Bell, T., & D'Amico, S. (2025). "Event-Driven Simulation for High-Frequency Telemetry Ingestion in Aerospace Systems." <i>Journal of Spacecraft and Rockets</i>.
+                </li>
+                <li className="pl-0">
+                  <span className="text-white/60">[2]</span> Liu, W., et al. (2024). "Digital Twins of Space Environments: A Real-Time Telemetry Approach." <i>IEEE Transactions on Aerospace and Electronic Systems</i>.
+                </li>
+                <li className="pl-0">
+                  <span className="text-white/60">[3]</span> Peterson, M., et al. (2022). "SpaceDrones 2.0: Hardware-in-the-Loop Simulation for Autonomous Satellite Operations." <i>AIAA Scitech 2022 Forum</i>.
+                </li>
+              </ul>
             </div>
           </motion.div>
 

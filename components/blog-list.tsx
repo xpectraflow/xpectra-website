@@ -59,6 +59,7 @@ export const BlogList = () => {
                         <span className="px-2 py-0.5 rounded bg-white/5 text-white/60">{post.category}</span>
                         <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
                         <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
+                        <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
                       </div>
                       <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-purple-400 transition-colors">
                         {post.title}
@@ -66,6 +67,13 @@ export const BlogList = () => {
                       <p className="text-white/60 mb-6 leading-relaxed text-lg">
                         {post.description}
                       </p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {post.tags.map(tag => (
+                          <span key={tag} className="text-[10px] uppercase tracking-wider text-white/30 border border-white/10 px-2 py-1 rounded">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                       <div className="mt-auto flex items-center text-sm font-bold text-white group-hover:gap-2 transition-all">
                         Read Post <ChevronRight size={16} className="ml-1" />
                       </div>
