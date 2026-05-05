@@ -44,5 +44,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    {
+      url: 'https://xpectraflow.com/blog',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: 'https://xpectraflow.com/blog/spacex-data-infrastructure-lessons',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }

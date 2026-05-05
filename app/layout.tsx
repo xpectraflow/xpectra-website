@@ -46,9 +46,6 @@ export const metadata: Metadata = {
     description: "Xpectraflow (Xpectra) provides standardized telemetry infrastructure.",
     images: ["/og-image.png"],
   },
-  alternates: {
-    canonical: "https://xpectraflow.com",
-  },
 };
 
 export default function RootLayout({
