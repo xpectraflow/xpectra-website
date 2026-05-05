@@ -10,7 +10,7 @@ import { ArrowRight, Calendar, User, Clock, ChevronRight } from 'lucide-react';
 const BLOG_POSTS = [
   {
     title: "From Petabytes to Prototypes: How SpaceX Uses Data Infrastructure to Shrink Time-to-Insight",
-    description: "Lessons from SpaceX's telemetry engine and how Xpectra helps engineering teams achieve similar iteration speeds.",
+    description: "Reverse-engineering how modern aerospace leaders handle mission-critical sensor data to shrink time-to-insight using Agile Aerospace and HIL testing.",
     date: "May 5, 2026",
     author: "Arush Kumar Singh",
     readTime: "6 min read",
