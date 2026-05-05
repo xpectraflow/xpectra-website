@@ -69,11 +69,11 @@ export const BlogPost = ({ post }: { post: any }) => {
               In modern aerospace and robotics, data isn't just a byproduct of a test; it is the test. When SpaceX fires a Raptor engine or tests a Starship prototype, they aren't just looking for "pass" or "fail." They are capturing millions of data points across thousands of sensors, many sampling at kilohertz frequencies.
             </p>
             <p className="text-lg text-white/60 mb-6">
-              The magic isn't in the amount of data—it's in the **Time-to-Insight**. If a test finishes at 2:00 PM and the engineers don't have a standardized, clean dataset to analyze until the next morning, that's a lost day of iteration.
+              The magic isn't in the amount of data, it's in the **Time-to-Insight**. If a test finishes at 2:00 PM and the engineers don't have a standardized, clean dataset to analyze until the next morning, that's a lost day of iteration.
             </p>
 
             <blockquote className="border-l-4 border-purple-500 pl-6 py-2 my-10 italic text-xl text-white/90 bg-white/5 rounded-r-lg">
-              "The best part is no part, the best process is no process. It weighs nothing, costs nothing, and can't go wrong." — Elon Musk
+              "The best part is no part, the best process is no process. It weighs nothing, costs nothing, and can't go wrong." - Elon Musk
             </blockquote>
 
             <h2 className="text-2xl font-bold text-white mt-12 mb-6">The Data Exception</h2>
@@ -91,7 +91,7 @@ export const BlogPost = ({ post }: { post: any }) => {
 
             <h3 className="text-xl font-bold text-white mt-8 mb-4">2. Standardized Schemas</h3>
             <p className="text-lg text-white/60 mb-6">
-              Every team has their own "favorite" format—CSV, Parquet, HDF5, custom binary. Xpectra standardizes these inputs into a unified stream, ensuring that your analysis scripts work the first time, every time.
+              Every team has their own "favorite" format: CSV, Parquet, HDF5, custom binary. Xpectra standardizes these inputs into a unified stream, ensuring that your analysis scripts work the first time, every time.
             </p>
 
             <h2 className="text-2xl font-bold text-white mt-12 mb-6">Iteration is the Only Advantage</h2>
