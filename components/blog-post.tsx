@@ -16,7 +16,7 @@ export const BlogPost = ({ post }: { post: any }) => {
         </p>
 
         <p className="text-lg text-white/60 mb-6">
-          SpaceX has redefined the aerospace industry by championing "Agile Aerospace"—a philosophy that prioritizes rapid prototyping, destructive testing, and continuous iteration over the traditional, decades-long "waterfall" development cycles. However, this level of speed is physically impossible without a world-class telemetry data infrastructure.
+          SpaceX has redefined the aerospace industry by championing "Agile Aerospace": a philosophy that prioritizes rapid prototyping, destructive testing, and continuous iteration over the traditional, decades-long "waterfall" development cycles. However, this level of speed is physically impossible without a world-class telemetry data infrastructure.
         </p>
 
         <p className="text-lg text-white/60 mb-8">
@@ -35,7 +35,7 @@ export const BlogPost = ({ post }: { post: any }) => {
         </p>
 
         <blockquote className="border-l-4 border-purple-500 pl-6 py-2 my-10 italic text-xl text-white/90 bg-white/5 rounded-r-lg">
-          "A telemetry pipeline must guarantee integrity (un-corrupted readings), strict ordering (reconstructable sequence of events), and survivability (no data loss during communication blackouts)." — Engineering Principle
+          "A telemetry pipeline must guarantee integrity (un-corrupted readings), strict ordering (reconstructable sequence of events), and survivability (no data loss during communication blackouts)." (Engineering Principle)
         </blockquote>
 
         <h2 className="text-2xl font-bold text-white mt-12 mb-6">The Architecture of Agile Aerospace</h2>
@@ -105,47 +105,56 @@ export const BlogPost = ({ post }: { post: any }) => {
     "cost-of-unknown-unknowns": (
       <>
         <p className="text-xl leading-relaxed text-white/80 mb-8 font-medium">
-          When a physical anomaly occurs on a test stand, the investigative process is notoriously slow. This latency is rarely a human problem; it is an infrastructure problem.
+          In engineering, there are "known-knowns" (the parameters we plan for) and "unknown-unknowns" (the anomalies that surface only when hardware is pushed to its breaking point).
         </p>
 
         <p className="text-lg text-white/60 mb-6">
-          Hardware teams often suffer from fragmented data silos. The propulsion team might be analyzing high-frequency pressure metrics stored in a proprietary format, while the avionics team is looking at discrete flight computer logs in a completely different database.
+          The most expensive mistake an aerospace startup can make is not the hardware failure itself, but the inability to diagnose why it happened.
+        </p>
+
+        <p className="text-lg text-white/60 mb-6">
+          When millions of dollars of physical assets evaporate in a fireball, or a high-stakes static fire test is aborted at T-minus 2 seconds, the race is on to identify the root cause before the next launch window.
         </p>
 
         <p className="text-lg text-white/60 mb-8">
-          Attempting to manually align these disjointed datasets—accounting for clock drift, dropped packets, and differing sample rates—takes weeks of engineering time before the actual root cause analysis can even begin.
+          The challenge isn't a lack of data; it's the fragmentation of it. High-frequency telemetry from vibration sensors, low-frequency thermistor readings, and the discrete logs from the flight software often live in separate silos. Attempting to manually align these disjointed datasets (accounting for clock drift, dropped packets, and varying sample rates) is where the real cost of "unknown-unknowns" accumulates.
         </p>
-
-        <h2 className="text-2xl font-bold text-white mt-12 mb-6">Point Anomalies vs. Contextual Anomalies</h2>
-        <p className="text-lg text-white/60 mb-6">
-          Traditional aerospace anomaly detection relies on Out-Of-Limits (OOL) alarms. This is designed to catch "point anomalies." If a tank pressure exceeds 50 PSI, an alarm triggers. This is simple, but insufficient.
-        </p>
-        <p className="text-lg text-white/60 mb-6">
-          Unknown-unknowns manifest as <strong>contextual anomalies</strong> (Akl & Elattar, 2025). A contextual anomaly is an event where a data point is perfectly normal in one context but catastrophic in another.
-        </p>
-        
-        <blockquote className="border-l-4 border-purple-500 pl-6 py-2 my-10 italic text-xl text-white/90 bg-white/5 rounded-r-lg">
-          "A 15 PSI reading might be nominal during chill-down, but indicates a catastrophic leak if it occurs during main ignition."
-        </blockquote>
 
         <h2 className="text-2xl font-bold text-white mt-12 mb-6">Shrinking MTTR: Joining the Metric Spike with the Log</h2>
         <p className="text-lg text-white/60 mb-6">
-          How do elite teams resolve unknown-unknowns in hours instead of months? They eliminate the data silos. If an engineer spots an unpredicted 400Hz pressure spike, they shouldn't have to email the software team to ask what the computer was doing.
+          How do elite aerospace teams resolve unknown-unknowns in a matter of hours instead of months? They eliminate the data silos.
         </p>
         <p className="text-lg text-white/60 mb-6">
-          A world-class telemetry pipeline aligns all subsystems on a single, high-precision time-series index. This allows engineers to overlay a physical metric spike with the exact control logic and system logs executing at that microsecond.
+          When a test flight fails, the investigation team needs the ability to scrub through the timeline of the event with perfect synchronization across all subsystems. If an engineer spots an unpredicted 400Hz pressure spike in the rocket engine testing data, they shouldn't have to email the software team to ask what the flight computer was doing at that exact millisecond.
         </p>
+        <p className="text-lg text-white/60 mb-6">
+          A world-class telemetry pipeline standardizes all incoming data (parsing proprietary binary streams into universal engineering units) and aligns it on a single, high-precision time-series index. This allows engineers to instantly overlay a physical metric spike with the exact control logic and system logs executing at that microsecond.
+        </p>
+        <p className="text-lg text-white/60 mb-6">
+          By unifying the "what happened" (the physical sensor metric) with the "why it happened" (the software command log), teams can immediately prove or disprove hypotheses, radically shrinking the time it takes to redesign the failing component.
+        </p>
+
+        <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-purple-600/20 to-blue-600/10 border border-white/10">
+          <h2 className="text-2xl font-bold text-white mb-6">Uncover the Unknowns with Xpectra</h2>
+          <p className="text-white/70 mb-4">Finding the root cause of a complex hardware failure shouldn't require your engineering team to spend three weeks writing custom Python scripts just to align CSV files.</p>
+          <p className="text-white/70 mb-6 font-bold text-lg">Your team's mandate is to build hardware, not databases. That is why we built Xpectra.</p>
+          <p className="text-white/50 text-sm">Xpectra handles the dense, high-frequency ingestion, the edge-level standardization, and the time-series storage so that your telemetry is instantly queryable the second your hardware test concludes.</p>
+        </div>
 
         <div className="mt-16 p-8 rounded-2xl bg-white/5 border border-white/10">
           <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             <div>
-              <h4 className="text-white font-bold mb-2">What is MTTR in aerospace engineering?</h4>
-              <p className="text-white/50 text-sm">Mean Time to Resolution (MTTR) is the time from an anomaly occurring to the engineering team identifying the root cause and engineering a solution.</p>
+              <h4 className="text-white font-bold mb-2">What is Mean Time to Resolution (MTTR) in aerospace engineering?</h4>
+              <p className="text-white/50 text-sm">In aerospace, MTTR refers to the total time elapsed from the moment an anomaly occurs on the test stand or in flight to the moment the engineering team definitively identifies the root cause and engineers a solution.</p>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-2">Why is software observability insufficient for hardware?</h4>
-              <p className="text-white/50 text-sm">Standard tools lack the density handling (millions of points/sec) and microsecond time-indexing required to reconstruct physical events with precision.</p>
+              <h4 className="text-white font-bold mb-2">Why is software observability insufficient for aerospace anomaly detection?</h4>
+              <p className="text-white/50 text-sm">Software observability tools are built to handle low-frequency IT metrics. They physically cannot ingest the density of data required for hardware observability without severe latency and lack the microsecond accuracy required to reconstruct physical events.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-2">What is the difference between a point anomaly and a contextual anomaly in telemetry?</h4>
+              <p className="text-white/50 text-sm">A point anomaly is a single sensor reading violating a static limit. A contextual anomaly is a reading that is within normal limits generally, but is abnormal given the current state of the vehicle (e.g., an engine valve opening while commanded closed).</p>
             </div>
           </div>
         </div>
@@ -188,7 +197,7 @@ export const BlogPost = ({ post }: { post: any }) => {
                 <span className="flex items-center gap-1"><Clock size={12} /> {post.readTime}</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1] tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[1.1] tracking-tight text-white">
                 {post.title}
               </h1>
 
@@ -233,7 +242,7 @@ export const BlogPost = ({ post }: { post: any }) => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="p-12 rounded-3xl bg-gradient-to-br from-purple-600/20 to-blue-600/10 border border-white/10 text-center"
             >
-              <h2 className="text-3xl font-bold mb-4">Want to build like elite teams?</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white">Want to build like elite teams?</h2>
               <p className="text-white/60 mb-8 max-w-md mx-auto">
                 Standardize your telemetry infrastructure in days, not months. Start a pilot with Xpectra today.
               </p>
