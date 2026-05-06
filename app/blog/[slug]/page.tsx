@@ -12,6 +12,16 @@ const BLOG_POSTS = {
     slug: "spacex-data-infrastructure-lessons",
     category: "Case Study",
     tags: ["SpaceX", "Telemetry", "Infrastructure", "Engineering"]
+  },
+  "cost-of-unknown-unknowns": {
+    title: "The Cost of \"Unknown-Unknowns\" in Aerospace Engineering",
+    description: "Reverse-engineering why standard tools fail at hardware anomaly detection and how unifying metric spikes with logs can reduce MTTR from weeks to minutes.",
+    date: "May 6, 2026",
+    author: "Arush Kumar Singh",
+    readTime: "7 min read",
+    slug: "cost-of-unknown-unknowns",
+    category: "Engineering",
+    tags: ["Aerospace", "Telemetry", "Anomaly Detection", "Observability"]
   }
 };
 
