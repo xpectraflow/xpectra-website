@@ -22,6 +22,16 @@ const BLOG_POSTS = {
     slug: "cost-of-unknown-unknowns",
     category: "Engineering",
     tags: ["Aerospace", "Telemetry", "Anomaly Detection", "Observability"]
+  },
+  "bridging-the-sim-to-real-gap": {
+    title: "The Sim-to-Real Gap: Why Hardware Iteration Requires More Than Just Simulation",
+    description: "Exploring why simulations fall short and how high-velocity physical testing - powered by world-class telemetry data infrastructure - is the only way to uncover ground truth.",
+    date: "May 8, 2026",
+    author: "Arush Kumar Singh",
+    readTime: "8 min read",
+    slug: "bridging-the-sim-to-real-gap",
+    category: "Engineering",
+    tags: ["Simulation", "HIL", "Robotics", "Aerospace", "Telemetry"]
   }
 };
 
