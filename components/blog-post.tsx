@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { SiteShell } from '@/components/site-shell';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Calendar, Clock, Share2, Tag } from 'lucide-react';
+import { NewsletterSubscribe } from '@/components/newsletter-subscribe';
 
 export const BlogPost = ({ post }: { post: any }) => {
   const POST_CONTENT: Record<string, React.ReactNode> = {
@@ -301,6 +302,8 @@ export const BlogPost = ({ post }: { post: any }) => {
           </p>
           <p className="text-xl text-white font-bold">With Xpectra, you don't just simulate your hardware - you prove it.</p>
         </div>
+
+        <NewsletterSubscribe />
 
         <div className="mt-16 pt-8">
           <h2 className="text-xl font-bold text-white mb-6">References & Further Reading</h2>
