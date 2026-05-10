@@ -45,7 +45,7 @@ export async function subscribeToNewsletter(prevState: any, formData: FormData) 
     }
 
     return {
-      message: "Successfully subscribed! Welcome to Xpectra.",
+      message: "Your email has been added to our technical distribution list.",
       error: "",
       success: true,
     };

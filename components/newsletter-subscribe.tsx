@@ -4,7 +4,7 @@ import React, { useActionState } from 'react';
 import { motion } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Mail, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Loader2, AlertCircle } from 'lucide-react';
 import { subscribeToNewsletter } from '@/app/actions/subscribe';
 
 const initialState = {
@@ -46,12 +46,8 @@ export const NewsletterSubscribe = () => {
               animate={{ opacity: 1, scale: 1 }}
               className="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl bg-green-500/5 border border-green-500/20 text-center"
             >
-              <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
-                <CheckCircle2 size={24} />
-              </div>
-              <div>
-                <h4 className="text-green-400 font-bold mb-1">Success!</h4>
-                <p className="text-green-400/70 text-sm">{state.message}</p>
+              <div className="text-green-400 font-mono font-bold uppercase tracking-[0.3em] text-lg">
+                Subscribed
               </div>
             </motion.div>
           ) : (

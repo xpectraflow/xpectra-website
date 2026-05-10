@@ -303,7 +303,6 @@ export const BlogPost = ({ post }: { post: any }) => {
           <p className="text-xl text-white font-bold">With Xpectra, you don't just simulate your hardware - you prove it.</p>
         </div>
 
-        <NewsletterSubscribe />
 
         <div className="mt-16 pt-8">
           <h2 className="text-xl font-bold text-white mb-6">References & Further Reading</h2>
@@ -381,6 +380,8 @@ export const BlogPost = ({ post }: { post: any }) => {
               ))}
             </div>
           </motion.div>
+
+          <NewsletterSubscribe />
 
           <footer className="mt-20">
             <motion.div
