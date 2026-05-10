@@ -34,8 +34,8 @@ const Step = ({
       </div>
 
       <div className="max-w-4xl pt-2">
-        <h2 className="text-3xl md:text-5xl font-black mb-6 tracking-tighter">{title}</h2>
-        <p className="text-xl text-white/50 leading-relaxed mb-10 max-w-2xl">{desc}</p>
+        <h2 className="text-2xl md:text-4xl font-black mb-6 tracking-tighter text-white">{title}</h2>
+        <p className="text-lg text-white/50 leading-relaxed mb-10 max-w-2xl">{desc}</p>
 
         {children && (
           <div className="rounded-[2rem] border border-border-subtle bg-black/40 backdrop-blur-3xl p-8 shadow-2xl">
@@ -59,10 +59,10 @@ const DocsPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-6xl sm:text-8xl font-black mb-10 tracking-tighter">
+              <h1 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-white">
                 Real results in <br />5 minutes.
               </h1>
-              <p className="text-xl sm:text-2xl text-white/70 leading-relaxed">
+              <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
                 No complex configuration. No vendor lock-in. Just industrial-grade telemetry
                 infrastructure, pre-configured for your sensors.
               </p>
@@ -225,8 +225,8 @@ int main() {
 
           {/* Final CTA */}
           <div className="mt-20 p-12 md:p-20 rounded-[3rem] bg-white/90 text-black text-center shadow-2xl shadow-white/10">
-            <Zap size={48} className="mx-auto mb-8 text-black" />
-            <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">Your first test starts now.</h2>
+            <Zap size={32} className="mx-auto mb-8 text-black" />
+            <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tighter">Your first test starts now.</h2>
             <Button
               size="lg"
               className="bg-black text-white hover:bg-black/90 font-bold px-12 py-8 rounded-full text-xl"

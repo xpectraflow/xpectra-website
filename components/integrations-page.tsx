@@ -168,10 +168,10 @@ const IntegrationsPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-6xl sm:text-8xl font-black mb-10 tracking-tighter">
+              <h1 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-white">
                 Your sensors <br />already work.
               </h1>
-              <p className="text-xl sm:text-2xl text-white/70 leading-relaxed mb-10">
+              <p className="text-lg sm:text-xl text-white/70 leading-relaxed mb-10">
                 Now make their data work too. Xpectra supports every major hardware client
                 and DAQ system with zero vendor lock-in.
               </p>
@@ -189,8 +189,8 @@ const IntegrationsPage = () => {
           <div className="max-w-4xl mx-auto">
             <div className="p-12 md:p-20 rounded-[3rem] bg-white/90 text-black text-center relative overflow-hidden group">
               <div className="relative z-10">
-                <h2 className="text-4xl sm:text-6xl font-black mb-8 tracking-tight">Don't see your hardware?</h2>
-                <p className="text-xl text-black/60 mb-12 max-w-lg mx-auto">
+                <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tight">Don't see your hardware?</h2>
+                <p className="text-lg text-black/60 mb-12 max-w-lg mx-auto">
                   If it outputs data, we can ingest it. Talk to our engineering team about custom integrations.
                 </p>
                 <Link href="/#contact" aria-label="Talk to our engineering team about custom hardware integrations">
