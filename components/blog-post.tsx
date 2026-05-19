@@ -317,6 +317,58 @@ export const BlogPost = ({ post }: { post: any }) => {
           </ul>
         </div>
       </>
+    ),
+    "build-for-certification-xpectra": (
+      <>
+        <p className="text-xl leading-relaxed text-white/80 mb-8 font-medium">
+          Engineering teams should be focused on pushing the boundaries of flight, physics, and autonomy—not fighting with CSV files to satisfy an auditor.
+        </p>
+
+        <p className="text-lg text-white/60 mb-6">
+          Xpectra is the definitive <strong>telemetry data infrastructure</strong> for modern, agile hardware teams. We provide the architectural backbone required to automate your compliance. By capturing, standardizing, and unifying your physical sensor data and avionics logs at the edge, Xpectra ensures that your telemetry is instantly queryable, mathematically verifiable, and perfectly time-aligned.
+        </p>
+
+        <p className="text-lg text-white/60 mb-6">
+          Whether you are seeking DAL A certification under DO-178C, validating electronic hardware under DO-254, or running millions of miles of autonomous HIL simulation, Xpectra connects your physical test reality to your compliance requirements.
+        </p>
+
+        <p className="text-lg text-white/60 mb-8">
+          Stop drowning in manual test reports. Achieve true <strong>hardware observability</strong>, automate your bidirectional traceability, and accelerate your path to certification with Xpectra.
+        </p>
+
+        <div className="mt-16 p-8 rounded-2xl bg-white/5 border border-white/10">
+          <h2 className="text-2xl font-bold text-white mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-white font-bold mb-2">What is DO-178C?</h4>
+              <p className="text-white/50 text-sm">
+                DO-178C is the primary document used by certification authorities (such as the FAA and EASA) to approve all commercial software-based aerospace systems. It dictates strict processes for requirements gathering, software design, coding, and highly rigorous testing to ensure safety in flight.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-2">What is bidirectional traceability in aerospace testing?</h4>
+              <p className="text-white/50 text-sm">
+                Bidirectional traceability is the ability to link every high-level system requirement down to the specific lines of code that execute it, and further down to the physical test results that prove it works. "Bidirectional" means you can trace from the requirement down to the test, and from a specific test result back up to the requirement it satisfies.
+              </p>
+            </div>
+            <div>
+              <h4 className="text-white font-bold mb-2">How does data infrastructure aid in DO-178C compliance?</h4>
+              <p className="text-white/50 text-sm">
+                Traditional compliance relies on engineers manually extracting test data from hardware and matching it to requirements documents. Modern data infrastructure automates this by tagging telemetry with requirement IDs at the point of ingestion, storing it in high-performance time-series databases, and allowing compliance software to automatically query and verify test results without human intervention.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16 pt-8">
+          <h2 className="text-xl font-bold text-white mb-6">References & Further Reading</h2>
+          <ul className="space-y-4 text-sm text-white/40 font-mono list-none p-0">
+            <li className="pl-0">
+              <span className="text-white/60">[1]</span> Broy, M., et al. (2021). "Engineering of software-intensive systems: State of the art and research challenges." <i>Informatik Spektrum</i>, 44(2), 105-117.
+            </li>
+          </ul>
+        </div>
+      </>
     )
   };
 

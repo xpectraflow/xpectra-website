@@ -32,6 +32,16 @@ const BLOG_POSTS = {
     slug: "bridging-the-sim-to-real-gap",
     category: "Engineering",
     tags: ["Simulation", "HIL", "Robotics", "Aerospace", "Telemetry"]
+  },
+  "build-for-certification-xpectra": {
+    title: "Build for Certification with Xpectra",
+    description: "Engineering teams should be focused on pushing the boundaries of flight, physics, and autonomy—not fighting with CSV files to satisfy an auditor.",
+    date: "May 19, 2026",
+    author: "Arush Kumar Singh",
+    readTime: "5 min read",
+    slug: "build-for-certification-xpectra",
+    category: "Compliance",
+    tags: ["Certification", "DO-178C", "Compliance", "Telemetry", "DO-254"]
   }
 };
 
