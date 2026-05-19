@@ -40,8 +40,8 @@ const BLOG_POSTS = [
     tags: ["Simulation", "HIL", "Robotics", "Aerospace", "Telemetry"]
   },
   {
-    title: "Build for Certification with Xpectra",
-    description: "Engineering teams should be focused on pushing the boundaries of flight, physics, and autonomy—not fighting with CSV files to satisfy an auditor.",
+    title: "DO-178C and Beyond: Automating Compliance with Data Infrastructure",
+    description: "In the aerospace and defense industries, building a functional piece of hardware is only half the battle. The other half is proving to regulatory bodies that your system is safe to fly.",
     date: "May 19, 2026",
     author: "Arush Kumar Singh",
     readTime: "5 min read",
