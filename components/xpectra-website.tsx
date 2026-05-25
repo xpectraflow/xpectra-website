@@ -23,6 +23,29 @@ const AnimatedCarousel = dynamic(() => import('@/components/ui/logo-carousel').t
 const XpectraWebsite = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
+  const comparisonPairs = [
+    {
+      today: "One sensor anomaly invalidates weeks of test data",
+      xpectra: "Anomalous sensors auto-flagged instantly"
+    },
+    {
+      today: "Failures surface post-test when hardware is disassembled",
+      xpectra: "Real-time alerts catch issues before teardown"
+    },
+    {
+      today: "Collaboration breaks across team data formats",
+      xpectra: "Unified data standards across all missions"
+    },
+    {
+      today: "Engineers spend 2+ days per test rewriting initial scripts",
+      xpectra: "Standardized ingestion logic ready for reuse"
+    },
+    {
+      today: "Test results are tied to the engineer, not the platform",
+      xpectra: "Full mission context vaulted for anyone to query"
+    }
+  ];
+
   const features = [
     {
       id: "lifecycle",
@@ -194,77 +217,80 @@ const XpectraWebsite = () => {
         </div>
       </section>
 
-
-
       {/* Problem Section: The cost of "not yet" */}
       <section className="relative pt-8 pb-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[1fr_1.8fr] gap-8 lg:gap-10 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-5xl font-bold tracking-tight mb-8">
-                Every delayed decision means another test cycle lost to bad data.
-              </h2>
-              <div className="p-8 rounded-3xl bg-card-bg border border-border-subtle backdrop-blur-xl relative group">
-                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
-                <span className="text-6xl font-black text-white mb-4 block">40%</span>
-                <p className="text-xl text-white/70 italic leading-relaxed">
+          
+          <div className="
+            w-full flex flex-col lg:flex-row items-stretch justify-between
+            rounded-3xl border border-white/10
+            bg-white/[0.02] backdrop-blur-md
+            py-12 px-8 my-10 md:my-16
+            relative overflow-hidden
+          ">
+            {/* Background Accents */}
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[300px] h-[300px] bg-purple-600/10 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[250px] h-[250px] bg-blue-600/5 blur-[70px] rounded-full pointer-events-none" />
+
+            {/* Left Column: Title, Stats Callout (~38% width) */}
+            <div className="w-full lg:w-[38%] text-left space-y-6 relative z-10">
+              <div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                  Every delayed decision means another test cycle lost to bad data.
+                </h2>
+              </div>
+              
+              {/* 40% Stats Callout Card */}
+              <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-xl relative mt-6">
+                <span className="text-5xl font-black text-white mb-2 block">40%</span>
+                <p className="text-base text-white/70 italic leading-relaxed">
                   "Engineers spend 40% of test prep rewriting the same ingestion scripts."
                 </p>
-                <div className="mt-6 h-px w-20 bg-white/20" />
-                <p className="mt-6 text-white/50 font-mono text-xs uppercase tracking-wider">
+                <div className="mt-4 h-px w-16 bg-white/10" />
+                <p className="mt-4 text-white/45 font-mono text-[10px] uppercase tracking-wider">
                   That's not a productivity problem. It's a missing infrastructure layer.
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 items-stretch">
-              <div className="sm:pb-4">
-                <h3 className="text-xl font-mono text-brand-red/80 flex items-center gap-2">
-                  <X className="h-4 w-4" /> Today
-                </h3>
-              </div>
-              <div className="sm:pb-4">
-                <h3 className="text-xl font-mono text-brand-emerald/80 flex items-center gap-2">
-                  <CheckCircle2 className="h-4 w-4" /> With Xpectra
-                </h3>
-              </div>
+            {/* Right Column: Comparison Grid (~58% width) */}
+            <div className="w-full lg:w-[58%] mt-10 lg:mt-0 relative z-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 items-stretch h-full">
+                <div className="sm:pb-2">
+                  <h3 className="text-xl font-mono text-brand-red/80 flex items-center gap-2">
+                    <X className="h-4 w-4" /> Today
+                  </h3>
+                </div>
+                <div className="sm:pb-2">
+                  <h3 className="text-xl font-mono text-brand-emerald/80 flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4" /> With Xpectra
+                  </h3>
+                </div>
 
-              {[
-                {
-                  today: "One sensor anomaly invalidates weeks of test data",
-                  xpectra: "Anomalous sensors auto-flagged instantly"
-                },
-                {
-                  today: "Failures surface post-test when hardware is disassembled",
-                  xpectra: "Real-time alerts catch issues before teardown"
-                },
-                {
-                  today: "Collaboration breaks across team data formats",
-                  xpectra: "Unified data standards across all missions"
-                },
-                {
-                  today: "Engineers spend 2+ days per test rewriting initial scripts",
-                  xpectra: "Standardized ingestion logic ready for reuse"
-                },
-                {
-                  today: "Test results are tied to the engineer, not the platform",
-                  xpectra: "Full mission context vaulted for anyone to query"
-                }
-              ].map((point, i) => (
-                <React.Fragment key={i}>
-                  <div className="flex flex-col">
-                    <div className="p-5 rounded-2xl bg-brand-red/5 border border-brand-red/10 text-white/60 text-md leading-relaxed hover:bg-brand-red/[0.08] transition-colors cursor-default h-full">
-                      {point.today}
+                {comparisonPairs.map((point, i) => (
+                  <React.Fragment key={i}>
+                    {/* Today Card */}
+                    <div className="flex flex-col">
+                      <Card className="p-5 bg-brand-red/[0.03] hover:bg-brand-red/[0.07] border border-brand-red/10 hover:border-brand-red/25 transition-all duration-300 rounded-2xl flex flex-col justify-center text-left h-full min-h-[90px] cursor-default shadow-md">
+                        <CardContent className="p-0 text-white/65 text-sm sm:text-base leading-relaxed">
+                          {point.today}
+                        </CardContent>
+                      </Card>
                     </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <div className="p-5 rounded-2xl bg-brand-emerald/5 border border-brand-emerald/10 text-white/90 text-md leading-relaxed hover:bg-brand-emerald/[0.08] transition-colors cursor-default h-full">
-                      {point.xpectra}
+
+                    {/* With Xpectra Card */}
+                    <div className="flex flex-col">
+                      <Card className="p-5 bg-brand-emerald/[0.03] hover:bg-brand-emerald/[0.07] border border-brand-emerald/10 hover:border-brand-emerald/25 transition-all duration-300 rounded-2xl flex flex-col justify-center text-left h-full min-h-[90px] cursor-default shadow-md">
+                        <CardContent className="p-0 text-white font-semibold text-sm sm:text-base leading-relaxed">
+                          {point.xpectra}
+                        </CardContent>
+                      </Card>
                     </div>
-                  </div>
-                </React.Fragment>
-              ))}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
+
           </div>
         </div>
       </section>
