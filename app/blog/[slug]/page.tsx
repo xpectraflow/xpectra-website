@@ -3,6 +3,16 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 const BLOG_POSTS = {
+  "xpectra-vs-ni-systemlink": {
+    title: "Xpectra vs. NI SystemLink: Choosing the Right Data Infrastructure for Agile Hardware",
+    description: "An objective breakdown of the architectural differences between NI SystemLink and Xpectra, outlining where each platform shines and helping you choose the right data infrastructure for your specific engineering goals.",
+    date: "May 25, 2026",
+    author: "Arush Kumar Singh",
+    readTime: "6 min read",
+    slug: "xpectra-vs-ni-systemlink",
+    category: "Engineering",
+    tags: ["SystemLink", "NI", "Telemetry", "Infrastructure", "Comparison"]
+  },
   "spacex-data-infrastructure-lessons": {
     title: "From Petabytes to Prototypes: How SpaceX Uses Data Infrastructure to Shrink Time-to-Insight",
     description: "Reverse-engineering how modern aerospace leaders handle mission-critical sensor data to shrink time-to-insight using Agile Aerospace and HIL testing.",
