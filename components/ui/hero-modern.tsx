@@ -289,11 +289,21 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.01 }
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+    
+    // Fallback for mobile browsers where IntersectionObserver might act up
+    const fallback = setTimeout(() => {
+      setVisible(true);
+      observer.disconnect();
+    }, 1000);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
 
