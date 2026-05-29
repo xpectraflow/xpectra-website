@@ -296,23 +296,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     return () => observer.disconnect();
   }, []);
 
-  const toggleTheme = () => {
-    if (typeof document === "undefined") return;
-    const root = document.documentElement;
-    const current = getRootTheme();
-    const next = current === "dark" ? "light" : "dark";
-    root.classList.toggle("dark", next === "dark");
-    root.classList.toggle("light", next === "light");
-    root.setAttribute("data-theme", next);
-    if (typeof window !== "undefined") {
-      try {
-        window.localStorage?.setItem("hero-theme", next);
-      } catch (_err) {
-        /* ignore */
-      }
-    }
-    setTheme(next);
-  };
+
 
   const palette = useMemo(
     () =>
@@ -457,20 +441,16 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
               <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.4em] ${palette.border} ${palette.accent}`}>
                 Sensor Data Infrastructure
               </span>
-              <button
-                type="button"
-                onClick={toggleTheme}
-                className={`rounded-full border px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.35em] transition duration-500 ${palette.border}`}
-              >
-                {theme === "dark" ? "Light" : "Dark"} mode
-              </button>
             </div>
             <div className="space-y-6">
               <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-                Infrastructure for mission critical sensor data.
+                Infrastructure for <br />mission critical sensor data.
               </h1>
               <p className={`max-w-2xl text-base md:text-lg ${palette.subtle}`}>
-                Accelerate test. Accelerate progress.
+                Accelerate test.<br />
+                Accelerate progress.<br />
+                Compress launch timelines.<br />
+                Maximize test facility ROI.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -487,7 +467,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
               >
                 <span className="flex items-center gap-2">
                   <span className={`h-2 w-2 rounded-full animate-pulse ${theme === "dark" ? "bg-black" : "bg-white"}`} />
-                  Visualize Now
+                  Request Pilot
                 </span>
                 <span className="flex items-center group-hover:translate-x-1 transition-transform">
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
