@@ -193,7 +193,7 @@ export function HeroModeWidget() {
         <button
           type="button"
           onClick={() => setMode("strategy")}
-          className={`flex-1 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] transition ${mode === "strategy" ? "bg-white text-black dark:bg-white/90 dark:text-black" : `${palette.border} ${palette.accent}`
+          className={`flex-1 rounded-full border px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.35em] transition ${mode === "strategy" ? "bg-white text-black dark:bg-white/90 dark:text-black" : `${palette.border} ${palette.accent}`
             }`}
         >
           Ingestion
@@ -201,7 +201,7 @@ export function HeroModeWidget() {
         <button
           type="button"
           onClick={() => setMode("execution")}
-          className={`flex-1 rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] transition ${mode === "execution" ? "bg-white text-black dark:bg-white/90 dark:text-black" : `${palette.border} ${palette.accent}`
+          className={`flex-1 rounded-full border px-2 sm:px-4 py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.35em] transition ${mode === "execution" ? "bg-white text-black dark:bg-white/90 dark:text-black" : `${palette.border} ${palette.accent}`
             }`}
         >
           Visualization
