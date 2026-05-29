@@ -447,9 +447,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 Infrastructure for <br />mission critical sensor data.
               </h1>
               <p className={`max-w-2xl text-base md:text-lg ${palette.subtle}`}>
-                Accelerate test.<br />
-                Accelerate progress.<br />
-                Compress launch timelines.<br />
+                Compress launch timelines. Accelerate test.<br />
                 Maximize test facility ROI.
               </p>
             </div>
