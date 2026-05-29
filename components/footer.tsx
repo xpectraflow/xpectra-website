@@ -5,13 +5,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Github, Twitter, Linkedin, ShieldCheck } from 'lucide-react';
+import { FooterChart } from '@/components/footer-chart';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-24 px-6 border-t border-border-subtle/50 bg-background/5 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto">
+    <footer className="relative pt-24 pb-0 border-t border-border-subtle/50 bg-background/5 backdrop-blur-sm overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-20">
 
           {/* Brand Column */}
@@ -60,15 +61,31 @@ export const Footer = () => {
           <div className="flex flex-col gap-4">
             <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Company</h3>
             <Link href="/#contact" className="text-sm text-white/60 hover:text-white transition-colors">Contact Sales</Link>
+            <Link href="/privacy" className="text-sm text-white/60 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-sm text-white/60 hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
+      </div>
 
-        <div className="pt-12 border-t border-border-subtle/30 flex flex-col md:flex-row justify-between items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20">
-          <p>© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
-          <div className="flex gap-8">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-          </div>
+      <div className="pt-12 border-t border-border-subtle/30 flex flex-col items-center gap-12 relative min-h-[300px] w-full">
+        <div className="absolute inset-0 z-10 pt-4">
+          <FooterChart />
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20 relative z-20 pointer-events-none">
+          <p className="pointer-events-auto">© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
+        </div>
+
+        <div className="w-full flex justify-center items-center select-none overflow-hidden relative z-0 pointer-events-none">
+          <span 
+            className="text-[15vw] font-black leading-none tracking-tighter translate-y-1/4" 
+            style={{ 
+              WebkitTextStroke: '2px rgba(255,255,255,0.1)', 
+              color: 'transparent' 
+            }}
+          >
+            XPECTRA
+          </span>
         </div>
       </div>
     </footer>
