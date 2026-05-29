@@ -227,7 +227,6 @@ export function HeroModeWidget() {
 
 function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.ReactNode; headerRightWidget?: React.ReactNode }) {
   const [theme, setTheme] = useThemeSync();
-  const [visible, setVisible] = useState(false);
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -273,38 +272,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     };
   }, []);
 
-  useEffect(() => {
-    if (!sectionRef.current || typeof window === "undefined") {
-      setVisible(true);
-      return;
-    }
 
-    const node = sectionRef.current;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.01 }
-    );
-
-    observer.observe(node);
-    
-    // Fallback for mobile browsers where IntersectionObserver might act up
-    const fallback = setTimeout(() => {
-      setVisible(true);
-      observer.disconnect();
-    }, 1000);
-
-    return () => {
-      observer.disconnect();
-      clearTimeout(fallback);
-    };
-  }, []);
 
 
 
@@ -442,7 +410,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
 
       <section
         ref={sectionRef}
-        className={`relative flex min-h-screen w-full flex-col gap-16 px-6 py-24 transition-opacity duration-700 md:gap-20 md:px-10 lg:px-16 xl:px-24 ${visible ? "motion-safe:animate-[hero3-intro_1s_cubic-bezier(.22,.68,0,1)_forwards]" : "opacity-0"
+        className={`relative flex min-h-screen w-full flex-col gap-16 px-6 py-24 transition-opacity duration-700 md:gap-20 md:px-10 lg:px-16 xl:px-24 motion-safe:animate-[hero3-intro_1s_cubic-bezier(.22,.68,0,1)_forwards]
           }`}
       >
         <header className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-end">
