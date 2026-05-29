@@ -84,7 +84,7 @@ export const Footer = () => {
 
         <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end select-none z-0 pointer-events-none overflow-hidden">
           <span 
-            className="text-[35vw] lg:text-[15vw] font-black leading-none tracking-tighter translate-y-[30%] lg:translate-y-[25%]" 
+            className="text-[22vw] lg:text-[15vw] font-black leading-none tracking-tighter translate-y-[30%] lg:translate-y-[25%]" 
             style={{ 
               WebkitTextStroke: '2px rgba(255,255,255,0.1)', 
               color: 'transparent' 
