@@ -65,20 +65,26 @@ export const Footer = () => {
             <Link href="/terms" className="text-sm text-white/60 hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
+
+        {/* Mobile Copyright */}
+        <div className="flex md:hidden flex-col justify-center items-center text-[10px] sm:text-[12px] font-mono uppercase tracking-[0.2em] text-white/40 mb-8 text-center px-4">
+          <p>© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
+        </div>
       </div>
 
-      <div className="pt-12 border-t border-border-subtle/30 flex flex-col items-center gap-12 relative min-h-[300px] w-full">
+      <div className="pt-12 border-t border-border-subtle/30 flex flex-col relative min-h-[300px] sm:min-h-[400px] w-full overflow-hidden justify-end">
         <div className="absolute inset-0 z-10 pt-4">
           <FooterChart />
         </div>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20 relative z-20 pointer-events-none">
+        {/* Desktop Copyright */}
+        <div className="hidden md:flex flex-col md:flex-row justify-center items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20 z-20 pointer-events-none absolute top-12 left-0 right-0">
           <p className="pointer-events-auto">© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
         </div>
 
-        <div className="w-full flex justify-center items-center select-none overflow-hidden relative z-0 pointer-events-none">
+        <div className="w-full flex justify-center items-end select-none relative z-0 pointer-events-none mt-auto">
           <span 
-            className="text-[15vw] font-black leading-none tracking-tighter translate-y-1/4" 
+            className="text-[15vw] font-black leading-none tracking-tighter translate-y-[20%]" 
             style={{ 
               WebkitTextStroke: '2px rgba(255,255,255,0.1)', 
               color: 'transparent' 
