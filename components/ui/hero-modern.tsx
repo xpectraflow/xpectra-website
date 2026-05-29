@@ -69,7 +69,7 @@ const useThemeSync = () => {
     };
   }, []);
 
-  return [theme, setTheme];
+  return [theme, setTheme] as const;
 };
 
 const DeckGlyph = ({ theme = "dark" }) => {
