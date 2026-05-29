@@ -122,10 +122,12 @@ const XpectraWebsite = () => {
       }>
 
         <div className="grid gap-10 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] xl:items-stretch">
-          <HeroModeWidget />
+          <div className="min-w-0">
+            <HeroModeWidget />
+          </div>
 
           {/* Logos Strip with Animated Carousel */}
-          <div className="w-full relative z-10 rounded-3xl border border-white/12 bg-white/6 p-8 transition hover:bg-white/10 flex flex-col justify-center">
+          <div className="min-w-0 w-full relative z-10 rounded-3xl border border-white/12 bg-white/6 p-6 md:p-8 transition hover:bg-white/10 flex flex-col justify-center">
           <AnimatedCarousel
             title="Works with your existing setup"
             logos={[
@@ -137,13 +139,14 @@ const XpectraWebsite = () => {
             ]}
             autoPlay={false}
             autoPlayInterval={3000}
+            itemsPerViewMobile={2}
             itemsPerViewDesktop={3}
-            padding="pt-10 md:pt-14 pb-10"
+            padding="pt-6 md:pt-10 pb-6 md:pb-10"
             spacing="gap-12"
             titleClassName="text-[10px] font-mono uppercase tracking-[0.2em] text-white/75"
-            logoContainerWidth="w-32 md:w-44"
-            logoContainerHeight="h-20 md:h-28"
-            logoImageHeight="h-14 md:h-20"
+            logoContainerWidth="w-28 md:w-44"
+            logoContainerHeight="h-16 md:h-28"
+            logoImageHeight="h-10 md:h-20"
           />
           <div className="flex justify-center pb-12">
             <Link href="/integrations" aria-label="See all Xpectra integrations">
