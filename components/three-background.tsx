@@ -38,7 +38,7 @@ const LiquidBackground = () => {
             vec2 uv = vUv; float t = uTime * 0.1;
             vec2 m = uMouse * 0.05;
             float color = (sin(uv.x * 6.0 + t + m.x * 8.0) + sin(uv.y * 4.0 - t + m.y * 8.0)) * 0.5 + 0.5;
-            gl_FragColor = vec4(mix(vec3(0.005), vec3(0.04), color), 1.0);
+            gl_FragColor = vec4(mix(vec3(0.92), vec3(0.98), color), 1.0);
           }
         `}
       />
@@ -57,7 +57,7 @@ const Monolith = () => {
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
       <mesh ref={meshRef}>
         <icosahedronGeometry args={[13, 1]} />
-        <MeshDistortMaterial color="#0a0a0a" speed={4} distort={0.4} roughness={0.05} metalness={1.0} />
+        <MeshDistortMaterial color="#f0f0f0" speed={4} distort={0.4} roughness={0.05} metalness={1.0} />
       </mesh>
     </Float>
   );

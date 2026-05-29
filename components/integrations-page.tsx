@@ -41,9 +41,9 @@ const IntegrationCard = ({
   }
 
   return (
-    <div className="group p-8 rounded-[2rem] bg-card-bg border border-border-subtle backdrop-blur-3xl hover:border-white/20 transition-all duration-300 flex flex-col h-full">
+    <div className="group p-8 rounded-[2rem] bg-card-bg border border-border-subtle backdrop-blur-3xl hover:border-slate-300 transition-all duration-300 flex flex-col h-full">
       <div className="flex items-start justify-between mb-8">
-        <div className="p-4 w-16 h-16 rounded-2xl bg-card-bg text-white/70 group-hover:text-white transition-colors relative flex items-center justify-center overflow-hidden">
+        <div className="p-4 w-16 h-16 rounded-2xl bg-card-bg text-slate-600 group-hover:text-slate-900 transition-colors relative flex items-center justify-center overflow-hidden">
           {isImage ? (
             <Image
               src={icon}
@@ -55,15 +55,15 @@ const IntegrationCard = ({
             React.createElement(icon, { size: 28 })
           )}
         </div>
-        <div className="px-3 py-1 rounded-full bg-card-bg border border-border-subtle text-[12px] font-mono text-white/30 uppercase tracking-widest">
+        <div className="px-3 py-1 rounded-full bg-card-bg border border-border-subtle text-[12px] font-mono text-slate-300 uppercase tracking-widest">
           {badge}
         </div>
       </div>
       <h3 className="text-2xl font-bold mb-3">{name}</h3>
-      <p className="text-white/50 text-base leading-relaxed mb-8 flex-grow">{desc}</p>
+      <p className="text-slate-500 text-base leading-relaxed mb-8 flex-grow">{desc}</p>
 
       {previewImage ? (
-        <div className="relative aspect-[16/10] w-full rounded-xl border border-white/5 overflow-hidden bg-black/20">
+        <div className="relative aspect-[16/10] w-full rounded-xl border border-slate-100 overflow-hidden bg-slate-50/20">
           <Image
             src={previewImage}
             alt={`${name} preview`}
@@ -72,23 +72,23 @@ const IntegrationCard = ({
           />
         </div>
       ) : (
-        <CodeBlock className="border-border-subtle bg-black/40">
+        <CodeBlock className="border-border-subtle bg-slate-50/40">
           <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+              <span className="text-[10px] font-mono text-slate-300 uppercase tracking-widest">
                 {language}
               </span>
             </div>
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 hover:bg-white/10"
+              className="h-7 w-7 hover:bg-slate-200"
               onClick={handleCopy}
             >
               {copied ? (
                 <Check className="h-3.5 w-3.5 text-brand-emerald" />
               ) : (
-                <Copy className="h-3.5 w-3.5 text-white/40" />
+                <Copy className="h-3.5 w-3.5 text-slate-400" />
               )}
             </Button>
           </CodeBlockGroup>
@@ -168,10 +168,10 @@ const IntegrationsPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-white">
+              <h1 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-slate-900">
                 Your sensors <br />already work.
               </h1>
-              <p className="text-lg sm:text-xl text-white/70 leading-relaxed mb-10">
+              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed mb-10">
                 Now make their data work too. Xpectra supports every major hardware client
                 and DAQ system with zero vendor lock-in.
               </p>
@@ -187,16 +187,16 @@ const IntegrationsPage = () => {
 
           {/* CTA Section */}
           <div className="max-w-4xl mx-auto">
-            <div className="p-12 md:p-20 rounded-[3rem] bg-white/90 text-black text-center relative overflow-hidden group">
+            <div className="p-12 md:p-20 rounded-[3rem] bg-slate-900 text-white text-center relative overflow-hidden group">
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tight">Don't see your hardware?</h2>
-                <p className="text-lg text-black/60 mb-12 max-w-lg mx-auto">
+                <p className="text-lg text-white/60 mb-12 max-w-lg mx-auto">
                   If it outputs data, we can ingest it. Talk to our engineering team about custom integrations.
                 </p>
                 <Link href="/#contact" aria-label="Talk to our engineering team about custom hardware integrations">
                   <Button
                     size="lg"
-                    className="bg-black text-white hover:bg-black/90 font-bold px-12 py-8 rounded-full text-xl"
+                    className="bg-slate-50 text-slate-900 hover:bg-slate-50/90 font-bold px-12 py-8 rounded-full text-xl"
                   >
                     Talk to us
                     <ArrowRight className="ml-3 h-6 w-6" />

@@ -38,7 +38,7 @@ const TeamPage = () => {
             <h1 className="text-5xl sm:text-7xl font-black mb-8 tracking-tighter">
               The team behind the telemetry.
             </h1>
-            <p className="text-xl sm:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               We aren't building a no-code tool. We're building the infrastructure layer
               mission-critical hardware deserves.
             </p>
@@ -54,12 +54,12 @@ const TeamPage = () => {
                 transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
                 className="group"
               >
-                <div className="p-10 rounded-3xl bg-card-bg backdrop-blur-3xl border border-border-subtle hover:bg-white/10 hover:border-white/20 transition-all duration-500 overflow-hidden relative">
+                <div className="p-10 rounded-3xl bg-card-bg backdrop-blur-3xl border border-border-subtle hover:bg-slate-200 hover:border-slate-300 transition-all duration-500 overflow-hidden relative">
                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Mail size={120} />
                   </div>
                   <div className="flex flex-col md:flex-row items-center gap-10 text-left">
-                    <div className="relative w-40 h-40 shrink-0 rounded-2xl overflow-hidden border-2 border-white/10 group-hover:border-white/30 transition-all duration-500">
+                    <div className="relative w-40 h-40 shrink-0 rounded-2xl overflow-hidden border-2 border-slate-200 group-hover:border-slate-300 transition-all duration-500">
                       <Image
                         src={member.image}
                         alt={member.name}
@@ -70,13 +70,13 @@ const TeamPage = () => {
                     </div>
                     <div>
                       <h3 className="text-3xl font-black mb-2">{member.name}</h3>
-                      <p className="text-xl text-white/60 mb-6 font-medium">{member.role}</p>
-                      <p className="text-lg text-white/70 leading-relaxed mb-8 max-w-xl">{member.bio}</p>
+                      <p className="text-xl text-slate-500 mb-6 font-medium">{member.role}</p>
+                      <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-xl">{member.bio}</p>
                       <a
                         href={member.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-card-bg border border-border-subtle text-white hover:bg-white/10 transition-all"
+                        className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-card-bg border border-border-subtle text-slate-900 hover:bg-slate-200 transition-all"
                       >
                         <Linkedin className="h-5 w-5" />
                         <span className="text-sm font-bold uppercase tracking-widest">Connect</span>
@@ -93,7 +93,7 @@ const TeamPage = () => {
       {/* Engineering Note */}
       <section className="py-12 px-6 border-t border-border-subtle/50">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-white/30 font-mono text-sm uppercase tracking-[0.3em] mb-8">Engineering Philosophy</p>
+          <p className="text-slate-300 font-mono text-sm uppercase tracking-[0.3em] mb-8">Engineering Philosophy</p>
           <h2 className="text-3xl sm:text-2xl font-bold leading-relaxed">
             We're obsessed with the hard plumbing: consistency, durability, and sub-second latency.
             Because when you're running a test, "mostly reliable" is just another way of saying it's broken.

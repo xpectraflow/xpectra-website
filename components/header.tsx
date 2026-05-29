@@ -22,27 +22,27 @@ export const Header = () => {
               height={24}
               className="w-6 h-6"
             />
-            <span className="font-mono text-sm font-bold text-white tracking-wider">xpectra</span>
+            <span className="font-mono text-sm font-bold text-slate-900 tracking-wider">xpectra</span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <Link href="/product" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <Link href="/product" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
               Product
             </Link>
-            <Link href="/integrations" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <Link href="/integrations" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
               Integrations
             </Link>
-            <Link href="/quickstart" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <Link href="/quickstart" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
               Quickstart
             </Link>
-            <Link href="/blog" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+            <Link href="/blog" className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
               Blog
             </Link>
             <Link href="/#contact" aria-label="Request a pilot for Xpectra">
               <Button
                 size="sm"
-                className="bg-white text-black hover:bg-gray-100 font-semibold"
+                className="bg-slate-900 text-white hover:bg-gray-100 font-semibold"
               >
                 Request pilot
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -54,7 +54,7 @@ export const Header = () => {
           <div className="md:hidden">
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="p-2 text-white/70 hover:text-white"
+              className="p-2 text-slate-600 hover:text-slate-900"
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -72,13 +72,13 @@ export const Header = () => {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-16 left-0 w-full bg-background/90 backdrop-blur-2xl border-b border-border-subtle p-6 flex flex-col gap-6 items-center"
           >
-            <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Product</Link>
-            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Integrations</Link>
-            <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Quickstart</Link>
-            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Blog</Link>
+            <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-slate-100">Product</Link>
+            <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-slate-100">Integrations</Link>
+            <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-slate-100">Quickstart</Link>
+            <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-slate-100">Blog</Link>
             <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} aria-label="Request a pilot for Xpectra" className="w-full pt-6">
               <Button
-                className="w-full bg-white text-black font-bold py-8 rounded-2xl text-lg"
+                className="w-full bg-slate-900 text-white font-bold py-8 rounded-2xl text-lg"
               >
                 Request pilot
               </Button>

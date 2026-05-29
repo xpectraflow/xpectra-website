@@ -25,7 +25,7 @@ export const SiteShell = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-background text-white overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-background text-slate-900 overflow-x-hidden">
       <div className="fixed inset-0 z-0 pointer-events-none">
         {mounted && (
           <ThreeBackground />

@@ -65,7 +65,7 @@ export const AnimatedCarousel = ({
   return (
     <div className={`w-full ${padding} bg-transparent ${containerClassName}`}>
       <div className={`flex flex-col items-center text-center ${spacing}`}>
-        <h2 className={`text-xl md:text-2xl tracking-tighter font-medium text-white/50 ${titleClassName}`}>
+        <h2 className={`text-xl md:text-2xl tracking-tighter font-medium text-slate-500 ${titleClassName}`}>
           {title}
         </h2>
 
@@ -75,6 +75,7 @@ export const AnimatedCarousel = ({
               {logoItems.map((logoItem, index) => {
                 const src = typeof logoItem === "string" ? logoItem : logoItem.src;
                 const name = typeof logoItem === "string" ? null : logoItem.name;
+                const customClass = typeof logoItem === "string" ? "" : (logoItem as any).className || "";
 
                 return (
                   <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
@@ -85,13 +86,13 @@ export const AnimatedCarousel = ({
                           alt={name || `Logo ${index + 1}`}
                           width={200}
                           height={100}
-                          className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
+                          className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500 ${customClass}`}
                           loading="lazy"
                         />
                       </div>
                       {name && (
                         <div className="flex justify-center w-full">
-                          <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.2em] text-white/60 group-hover:text-white/70 transition-colors whitespace-nowrap">
+                          <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-slate-700 group-hover:text-slate-900 transition-colors whitespace-nowrap">
                             {name}
                           </span>
                         </div>

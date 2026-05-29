@@ -4,72 +4,69 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Github, Twitter, Linkedin, ShieldCheck } from 'lucide-react';
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-24 px-6 border-t border-border-subtle/50 bg-background/5 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-20">
-
-          {/* Brand Column */}
-          <div className="lg:col-span-2 max-w-sm">
-            <Link href="/" className="flex items-center gap-3 mb-6">
-              <Image src="/logo.svg" alt="Xpectra Logo" width={32} height={32} />
-              <span className="font-mono text-xl font-bold tracking-tighter uppercase">XPECTRA</span>
+    <footer className="relative bg-[#0c0c0c] text-white pt-8 pb-8 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-32">
+          
+          {/* Left Column - Brand & Copyright */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center p-1">
+                <Image src="/logo.svg" alt="Xpectra Logo" width={24} height={24} className="invert" />
+              </div>
+              <span className="font-semibold text-xl tracking-tight">Xpectra</span>
             </Link>
-            <p className="text-white/70 text-lg leading-relaxed mb-8">
-              Mission-critical telemetry infrastructure. We standardize and validate sensor data at the edge so you can focus on the results that matter.
+            <p className="text-white/60 text-sm">
+              © {currentYear} Xpectraflow Pvt Ltd.
             </p>
-            <div className="flex gap-6">
-              <Link href="https://github.com/xpectraflow/" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="text-white/70 hover:text-white transition-colors p-2">
-                <Github size={24} />
-              </Link>
-              <Link href="https://x.com/XpectraF3662" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile" className="text-white/70 hover:text-white transition-colors p-2">
-                <Twitter size={24} />
-              </Link>
-              <Link href="https://www.linkedin.com/company/xpectraflow" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="text-white/70 hover:text-white transition-colors p-2">
-                <Linkedin size={24} />
+            <div className="mt-2">
+              <Link href="/#contact">
+                <Button className="bg-white hover:bg-gray-200 text-slate-900 font-medium px-8 rounded-md transition-colors">
+                  Contact
+                </Button>
               </Link>
             </div>
           </div>
 
-          {/* Platform Column */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Platform</h3>
-            <Link href="/product" className="text-sm text-white/60 hover:text-white transition-colors">Product Overview</Link>
-            <Link href="/integrations" className="text-sm text-white/60 hover:text-white transition-colors">Integrations</Link>
-            <Link href="/quickstart" className="text-sm text-white/60 hover:text-white transition-colors">Quickstart Guide</Link>
-            <Link href="/blog" className="text-sm text-white/60 hover:text-white transition-colors">Engineering Blog</Link>
-            <Link href="/#mission-control" className="text-sm text-white/60 hover:text-white transition-colors">Mission Control</Link>
-          </div>
+          {/* Right Columns - Links */}
+          <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-extrabold tracking-[0.15em] text-white uppercase mb-2">Product</h3>
+              <Link href="/product" className="text-[14px] text-white/70 hover:text-white transition-colors">Overview</Link>
+              <Link href="/integrations" className="text-[14px] text-white/70 hover:text-white transition-colors">Integrations</Link>
+              <Link href="/quickstart" className="text-[14px] text-white/70 hover:text-white transition-colors">Quickstart</Link>
+            </div>
+            
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-extrabold tracking-[0.15em] text-white uppercase mb-2">Resources</h3>
+              <Link href="/blog" className="text-[14px] text-white/70 hover:text-white transition-colors">Engineering Blog</Link>
+              <Link href="/#mission-control" className="text-[14px] text-white/70 hover:text-white transition-colors">Documentation</Link>
+              <Link href="/#contact" className="text-[14px] text-white/70 hover:text-white transition-colors">Support</Link>
+            </div>
 
-          {/* Industries Column (SEO Keywords) */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Industries</h3>
-            <span className="text-sm text-white/60 cursor-default">Aerospace</span>
-            <span className="text-sm text-white/60 cursor-default">Defense</span>
-            <span className="text-sm text-white/60 cursor-default">Robotics</span>
-            <span className="text-sm text-white/60 cursor-default">Automotive</span>
-            <span className="text-sm text-white/60 cursor-default">Energy</span>
-          </div>
-
-          {/* Resources & Trust Column */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Company</h3>
-            <Link href="/#contact" className="text-sm text-white/60 hover:text-white transition-colors">Contact Sales</Link>
+            <div className="flex flex-col gap-4">
+              <h3 className="text-xs font-extrabold tracking-[0.15em] text-white uppercase mb-2">Company</h3>
+              <Link href="/privacy" className="text-[14px] text-white/70 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-[14px] text-white/70 hover:text-white transition-colors">Terms of Service</Link>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="pt-12 border-t border-border-subtle/30 flex flex-col md:flex-row justify-between items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20">
-          <p>© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
-          <div className="flex gap-8">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-          </div>
-        </div>
+      {/* Large Faint Watermark Text */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden flex justify-center pointer-events-none select-none" style={{ transform: 'translateY(30%)' }}>
+        <h1 className="text-[20vw] font-bold leading-none text-transparent tracking-tighter" 
+            style={{ 
+              WebkitTextStroke: '2px rgba(255, 255, 255, 0.1)',
+              whiteSpace: 'nowrap'
+            }}>
+          Xpectra
+        </h1>
       </div>
     </footer>
   );

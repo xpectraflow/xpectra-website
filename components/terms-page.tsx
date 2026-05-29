@@ -8,12 +8,12 @@ import { Gavel, Globe, Cpu, Zap, AlertTriangle } from 'lucide-react';
 const Section = ({ title, icon: Icon, children }: { title: string, icon: any, children: React.ReactNode }) => (
   <div className="mb-16 last:mb-0">
     <div className="flex items-center gap-4 mb-6">
-      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70">
+      <div className="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-600">
         <Icon size={20} />
       </div>
       <h2 className="text-2xl font-bold tracking-tight uppercase tracking-widest text-sm font-mono opacity-50">{title}</h2>
     </div>
-    <div className="text-lg text-white/60 leading-relaxed space-y-4 max-w-3xl">
+    <div className="text-lg text-slate-500 leading-relaxed space-y-4 max-w-3xl">
       {children}
     </div>
   </div>
@@ -32,7 +32,7 @@ export const TermsPage = () => {
           >
             <p className="text-brand-orange font-mono text-sm uppercase tracking-[0.3em] mb-6">Agreement // v1.0</p>
             <h1 className="text-6xl md:text-8xl font-black mb-10 tracking-tighter">Terms of <br />Service.</h1>
-            <p className="text-xl md:text-2xl text-white/50 leading-relaxed max-w-2xl">
+            <p className="text-xl md:text-2xl text-slate-500 leading-relaxed max-w-2xl">
               By accessing the Xpectra platform, you agree to these legal conditions. We've written them to be clear, enforceable, and technically sound.
             </p>
           </motion.div>
@@ -83,9 +83,9 @@ export const TermsPage = () => {
               <p>
                 Questions about these terms should be directed to:
               </p>
-              <div className="mt-8 p-6 rounded-2xl bg-white/5 border border-white/10 w-fit">
-                <p className="text-white font-mono mb-1">arush@xpectraflow.com</p>
-                <p className="text-xs text-white/30 uppercase tracking-widest font-mono">Legal Ops // Xpectra Corporation</p>
+              <div className="mt-8 p-6 rounded-2xl bg-slate-100 border border-slate-200 w-fit">
+                <p className="text-slate-900 font-mono mb-1">arush@xpectraflow.com</p>
+                <p className="text-xs text-slate-300 uppercase tracking-widest font-mono">Legal Ops // Xpectra Corporation</p>
               </div>
             </Section>
           </div>

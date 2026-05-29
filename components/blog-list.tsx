@@ -66,7 +66,7 @@ export const BlogList = () => {
     <SiteShell>
       <div className="relative pt-20 pb-20 px-6 overflow-hidden">
         {/* Background Accents */}
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-slate-200/50 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[500px] h-[500px] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -76,11 +76,11 @@ export const BlogList = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-white/40 uppercase tracking-[0.2em] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-700 uppercase tracking-[0.2em] mb-4 shadow-sm">
               Insights & Engineering
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">The Xpectra Blog</h1>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto leading-relaxed">
+            <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight text-slate-900">The Xpectra Blog</h1>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Deep dives into telemetry infrastructure, sensor validation, and the future of hardware engineering.
             </p>
           </motion.div>
@@ -95,28 +95,28 @@ export const BlogList = () => {
                 className="flex"
               >
                 <Link href={`/blog/${post.slug}`} className="group block w-full">
-                  <Card className="h-full flex flex-col bg-white/[0.02] border-white/10 hover:border-white/30 hover:bg-white/[0.04] transition-all duration-700 overflow-hidden backdrop-blur-md relative group-hover:-translate-y-2">
+                  <Card className="h-full flex flex-col bg-slate-900/[0.02] border-slate-200 hover:border-slate-300 hover:bg-slate-900/[0.04] transition-all duration-700 overflow-hidden backdrop-blur-md relative group-hover:-translate-y-2">
                     <CardContent className="p-8 flex flex-col h-full">
-                      <div className="flex flex-wrap items-center gap-4 text-[10px] font-mono text-white/30 mb-6">
-                        <span className="px-2 py-1 rounded bg-white/5 text-white/60 border border-white/10 uppercase tracking-wider">{post.category}</span>
+                      <div className="flex flex-wrap items-center gap-4 text-[10px] font-mono text-slate-500 mb-6 font-semibold">
+                        <span className="px-2 py-1 rounded bg-slate-200/50 text-slate-700 border border-slate-200 uppercase tracking-wider">{post.category}</span>
                         <span className="flex items-center gap-1 uppercase tracking-widest">{post.date}</span>
                       </div>
                       
-                      <h2 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors leading-tight line-clamp-3">
+                      <h2 className="text-2xl font-extrabold mb-4 text-slate-800 group-hover:text-blue-600 transition-colors leading-tight line-clamp-3">
                         {post.title}
                       </h2>
                       
-                      <p className="text-white/40 mb-8 text-sm line-clamp-3 leading-relaxed">
+                      <p className="text-slate-600 mb-8 text-sm line-clamp-3 leading-relaxed">
                         {post.description}
                       </p>
                       
-                      <div className="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                      <div className="mt-auto pt-6 border-t border-slate-200 flex items-center justify-between">
                         <div className="flex flex-col">
-                          <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.2em] mb-1">Duration</span>
-                          <span className="text-xs font-mono text-white/50">{post.readTime}</span>
+                          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-1">Duration</span>
+                          <span className="text-xs font-bold text-slate-700">{post.readTime}</span>
                         </div>
-                        <div className="flex items-center text-xs font-bold text-white/40 group-hover:text-white transition-all">
-                          Read <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
+                        <div className="flex items-center text-xs font-bold text-blue-600 group-hover:text-blue-700 transition-all">
+                          Read <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
                     </CardContent>

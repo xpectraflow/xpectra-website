@@ -26,19 +26,19 @@ const Step = ({
   return (
     <div className="relative pl-12 md:pl-20 mb-32 group">
       {/* Connector Line */}
-      <div className="absolute left-[23px] md:left-[39px] top-12 bottom-0 w-px bg-white/5 group-last:hidden" />
+      <div className="absolute left-[23px] md:left-[39px] top-12 bottom-0 w-px bg-slate-100 group-last:hidden" />
 
       {/* Number Circle */}
-      <div className="absolute left-0 top-0 w-12 h-12 md:w-20 md:h-20 rounded-full bg-card-bg border border-border-subtle flex items-center justify-center font-mono text-xl md:text-3xl text-white/20 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all duration-500 shadow-2xl group-hover:shadow-white/10">
+      <div className="absolute left-0 top-0 w-12 h-12 md:w-20 md:h-20 rounded-full bg-card-bg border border-border-subtle flex items-center justify-center font-mono text-xl md:text-3xl text-slate-300 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900 transition-all duration-500 shadow-2xl group-hover:shadow-slate-200/50">
         {number}
       </div>
 
       <div className="max-w-4xl pt-2">
-        <h2 className="text-2xl md:text-4xl font-black mb-6 tracking-tighter text-white">{title}</h2>
-        <p className="text-lg text-white/50 leading-relaxed mb-10 max-w-2xl">{desc}</p>
+        <h2 className="text-2xl md:text-4xl font-black mb-6 tracking-tighter text-slate-900">{title}</h2>
+        <p className="text-lg text-slate-500 leading-relaxed mb-10 max-w-2xl">{desc}</p>
 
         {children && (
-          <div className="rounded-[2rem] border border-border-subtle bg-black/40 backdrop-blur-3xl p-8 shadow-2xl">
+          <div className="rounded-[2rem] border border-border-subtle bg-slate-50/40 backdrop-blur-3xl p-8 shadow-2xl">
             {children}
           </div>
         )}
@@ -59,10 +59,10 @@ const DocsPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-white">
+              <h1 className="text-4xl md:text-6xl font-black mb-10 tracking-tighter text-slate-900">
                 Real results in <br />5 minutes.
               </h1>
-              <p className="text-lg sm:text-xl text-white/70 leading-relaxed">
+              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed">
                 No complex configuration. No vendor lock-in. Just industrial-grade telemetry
                 infrastructure, pre-configured for your sensors.
               </p>
@@ -81,8 +81,8 @@ const DocsPage = () => {
                     <Key size={24} />
                   </div>
                   <div>
-                    <p className="text-white font-bold">API Key Generated</p>
-                    <p className="text-white/30 font-mono text-xs">x_prd_7829...ae21</p>
+                    <p className="text-slate-900 font-bold">API Key Generated</p>
+                    <p className="text-slate-300 font-mono text-xs">x_prd_7829...ae21</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-emerald/10 border border-brand-emerald/20 text-brand-emerald text-xs font-mono">
@@ -100,15 +100,15 @@ const DocsPage = () => {
                 {/* Python Section */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center">
                       <Terminal size={16} className="text-brand-blue" />
                     </div>
-                    <h3 className="text-lg font-bold tracking-tight text-white/90 uppercase">1. Python SDK</h3>
+                    <h3 className="text-lg font-bold tracking-tight text-slate-800 uppercase">1. Python SDK</h3>
                   </div>
-                  <CodeBlock className="border-border-subtle bg-black/40">
+                  <CodeBlock className="border-border-subtle bg-slate-50/40">
                     <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+                        <span className="text-[10px] font-mono text-slate-300 uppercase tracking-widest">
                           python_client.py
                         </span>
                       </div>
@@ -136,15 +136,15 @@ client.stream(
                 {/* C++ Section */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center">
                       <Cpu size={16} className="text-brand-emerald" />
                     </div>
-                    <h3 className="text-lg font-bold tracking-tight text-white/90 uppercase">2. C++ / gRPC</h3>
+                    <h3 className="text-lg font-bold tracking-tight text-slate-800 uppercase">2. C++ / gRPC</h3>
                   </div>
-                  <CodeBlock className="border-border-subtle bg-black/40">
+                  <CodeBlock className="border-border-subtle bg-slate-50/40">
                     <CodeBlockGroup className="border-border-subtle border-b px-4 py-1.5">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono text-white/30 uppercase tracking-widest">
+                        <span className="text-[10px] font-mono text-slate-300 uppercase tracking-widest">
                           main.cpp
                         </span>
                       </div>
@@ -174,12 +174,12 @@ int main() {
                 {/* LabVIEW Section */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center">
                       <Box size={16} className="text-brand-orange" />
                     </div>
-                    <h3 className="text-lg font-bold tracking-tight text-white/90 uppercase">3. LabVIEW Plugin</h3>
+                    <h3 className="text-lg font-bold tracking-tight text-slate-800 uppercase">3. LabVIEW Plugin</h3>
                   </div>
-                  <div className="relative aspect-[16/9] w-full rounded-2xl border border-white/10 overflow-hidden bg-white p-6 shadow-2xl">
+                  <div className="relative aspect-[16/9] w-full rounded-2xl border border-slate-200 overflow-hidden bg-slate-900 p-6 shadow-2xl">
                     <div className="relative w-full h-full">
                       <Image
                         src="/labview-full.png"
@@ -190,7 +190,7 @@ int main() {
                       />
                     </div>
                   </div>
-                  <p className="text-sm text-white/30 italic px-2">
+                  <p className="text-sm text-slate-300 italic px-2">
                     Standardized VIs for high-speed streaming without middleware.
                   </p>
                 </div>
@@ -202,7 +202,7 @@ int main() {
               title="Watch data appear."
               desc="Open the Mission Control Playground. Your data is being validated, standardized, and stored in XpectraDB in real-time."
             >
-              <div className="relative aspect-video rounded-xl bg-black/60 border border-border-subtle/50 overflow-hidden group/payoff">
+              <div className="relative aspect-video rounded-xl bg-slate-50/60 border border-border-subtle/50 overflow-hidden group/payoff">
                 <Image
                   src="/playground-payoff.png"
                   alt="Mission Control Playground"
@@ -213,7 +213,7 @@ int main() {
                 {/* Overlay Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="flex flex-col items-center gap-4 group/btn cursor-pointer">
-                    <div className="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl shadow-white/20 group-hover/btn:scale-110 transition-transform duration-500">
+                    <div className="w-20 h-20 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-2xl shadow-slate-300/50 group-hover/btn:scale-110 transition-transform duration-500">
                       <Eye size={32} />
                     </div>
                     <p className="text-sm font-bold tracking-widest uppercase">Open Playground</p>
@@ -224,12 +224,12 @@ int main() {
           </div>
 
           {/* Final CTA */}
-          <div className="mt-20 p-12 md:p-20 rounded-[3rem] bg-white/90 text-black text-center shadow-2xl shadow-white/10">
-            <Zap size={32} className="mx-auto mb-8 text-black" />
+          <div className="mt-20 p-12 md:p-20 rounded-[3rem] bg-slate-900 text-white text-center shadow-2xl shadow-slate-200/50">
+            <Zap size={32} className="mx-auto mb-8 text-white" />
             <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tighter">Your first test starts now.</h2>
             <Button
               size="lg"
-              className="bg-black text-white hover:bg-black/90 font-bold px-12 py-8 rounded-full text-xl"
+              className="bg-slate-50 text-slate-900 hover:bg-slate-50/90 font-bold px-12 py-8 rounded-full text-xl"
               onClick={() => {
                 const el = document.getElementById('contact');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });

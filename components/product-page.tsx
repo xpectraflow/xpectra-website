@@ -20,7 +20,7 @@ const FAQItem = ({ question, answer, defaultOpen = false }: { question: string, 
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full py-6 flex justify-between items-center text-left group"
             >
-                <span className="text-xl font-medium group-hover:text-white transition-colors">{question}</span>
+                <span className="text-xl font-medium group-hover:text-slate-900 transition-colors">{question}</span>
                 <ChevronDown className={cn("transition-transform duration-300", isOpen && "rotate-180")} />
             </button>
             <AnimatePresence>
@@ -32,7 +32,7 @@ const FAQItem = ({ question, answer, defaultOpen = false }: { question: string, 
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                     >
-                        <p className="pb-6 text-white/60 leading-relaxed max-w-2xl">
+                        <p className="pb-6 text-slate-500 leading-relaxed max-w-2xl">
                             {answer}
                         </p>
                     </motion.div>
@@ -44,7 +44,7 @@ const FAQItem = ({ question, answer, defaultOpen = false }: { question: string, 
 
 const ArchitectureDiagram = () => {
     return (
-        <div className="w-full p-12 md:p-20 bg-card-bg/40 border border-white/5 rounded-[3rem] backdrop-blur-3xl overflow-hidden relative group">
+        <div className="w-full p-12 md:p-20 bg-card-bg/40 border border-slate-100 rounded-[3rem] backdrop-blur-3xl overflow-hidden relative group">
             {/* Background Atmosphere */}
             <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-brand-orange/5 blur-[120px] rounded-full -mr-[20rem] -mt-[20rem] animate-pulse" />
             <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-brand-blue/5 blur-[120px] rounded-full -ml-[20rem] -mb-[20rem] animate-pulse" />
@@ -52,7 +52,7 @@ const ArchitectureDiagram = () => {
             <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between w-full h-full">
                 {/* Node 1: Sensor Stack */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-20 h-20 p-4 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 relative overflow-hidden group/node transition-all duration-500 hover:border-white/20 hover:bg-white/[0.05]">
+                    <div className="w-20 h-20 p-4 rounded-xl bg-slate-900/[0.03] flex items-center justify-center border border-slate-200 relative overflow-hidden group/node transition-all duration-500 hover:border-slate-300 hover:bg-slate-900/[0.05]">
                         <Image
                             src="/labview.webp"
                             alt="LabVIEW"
@@ -61,59 +61,59 @@ const ArchitectureDiagram = () => {
                         />
                     </div>
                     <div className="text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Sensor Stack</p>
-                        <p className="text-[9px] font-mono text-white/30 uppercase mt-1 tracking-wider whitespace-nowrap">NI-DAQ / LabVIEW</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-900">Sensor Stack</p>
+                        <p className="text-[9px] font-mono text-slate-300 uppercase mt-1 tracking-wider whitespace-nowrap">NI-DAQ / LabVIEW</p>
                     </div>
                 </div>
 
                 {/* Connector 1 */}
                 <div className="hidden md:flex items-center flex-1 md:mt-10">
-                    <div className="h-px w-full bg-white/80" />
+                    <div className="h-px w-full bg-slate-800" />
                 </div>
 
                 {/* Node 2: Xpectra Core */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
                     <div className="relative w-20 h-20 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-white/10 blur-2xl rounded-full opacity-30" />
-                        <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-2xl shadow-white/10 p-3 relative z-10 transition-transform duration-500 hover:scale-105">
+                        <div className="absolute inset-0 bg-slate-200 blur-2xl rounded-full opacity-30" />
+                        <div className="w-20 h-20 rounded-2xl bg-slate-900 flex items-center justify-center shadow-2xl shadow-slate-200/50 p-3 relative z-10 transition-transform duration-500 hover:scale-105">
                             <Image src="/logo.svg" alt="Xpectra Hub" width={60} height={60} className="brightness-100" />
                         </div>
                     </div>
                     <div className="text-center">
-                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white">Xpectra Core</p>
-                        <p className="text-[9px] font-mono text-white/40 uppercase mt-1 tracking-widest whitespace-nowrap">Xpectra Engine</p>
+                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-900">Xpectra Core</p>
+                        <p className="text-[9px] font-mono text-slate-400 uppercase mt-1 tracking-widest whitespace-nowrap">Xpectra Engine</p>
                     </div>
                 </div>
 
                 {/* Connector 2 */}
                 <div className="hidden md:flex items-center flex-1 md:mt-10">
-                    <div className="h-px w-full bg-white/80" />
+                    <div className="h-px w-full bg-slate-800" />
                 </div>
 
                 {/* Node 3: Storage */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-20 h-20 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
-                        <Database className="text-white/40" size={24} />
+                    <div className="w-20 h-20 rounded-xl bg-slate-900/[0.03] flex items-center justify-center border border-slate-200 hover:border-slate-300 hover:bg-slate-900/[0.05] transition-all duration-500">
+                        <Database className="text-slate-400" size={24} />
                     </div>
                     <div className="text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Storage</p>
-                        <p className="text-[9px] font-mono text-white/30 uppercase mt-1 tracking-wider whitespace-nowrap">XpectraDB</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-900">Storage</p>
+                        <p className="text-[9px] font-mono text-slate-300 uppercase mt-1 tracking-wider whitespace-nowrap">XpectraDB</p>
                     </div>
                 </div>
 
                 {/* Connector 3 */}
                 <div className="hidden md:flex items-center flex-1 md:mt-10">
-                    <div className="h-px w-full bg-white/80" />
+                    <div className="h-px w-full bg-slate-800" />
                 </div>
 
                 {/* Node 4: Console */}
                 <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-20 h-20 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
-                        <Server className="text-white/40" size={24} />
+                    <div className="w-20 h-20 rounded-xl bg-slate-900/[0.03] flex items-center justify-center border border-slate-200 hover:border-slate-300 hover:bg-slate-900/[0.05] transition-all duration-500">
+                        <Server className="text-slate-400" size={24} />
                     </div>
                     <div className="text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Console</p>
-                        <p className="text-[9px] font-mono text-white/30 uppercase mt-1 tracking-wider whitespace-nowrap">Web UI</p>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-900">Console</p>
+                        <p className="text-[9px] font-mono text-slate-300 uppercase mt-1 tracking-wider whitespace-nowrap">Web UI</p>
                     </div>
                 </div>
             </div>
@@ -171,15 +171,15 @@ const FeatureGrid = () => {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.6 }}
                 >
-                    <Card className="h-full p-8 bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                    <Card className="h-full p-8 bg-slate-100 border-slate-200 hover:bg-slate-200 hover:border-slate-300 transition-all duration-300">
                         <CardHeader className="p-0 pb-4">
-                            <div className="mb-4 p-3 w-fit rounded-lg bg-white/10 border border-white/20">
-                                <feature.icon className="h-6 w-6 text-white" />
+                            <div className="mb-4 p-3 w-fit rounded-lg bg-slate-200 border border-slate-300">
+                                <feature.icon className="h-6 w-6 text-slate-900" />
                             </div>
-                            <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
+                            <CardTitle className="text-xl text-slate-900">{feature.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0">
-                            <CardDescription className="text-white/60 leading-relaxed text-sm">{feature.description}</CardDescription>
+                            <CardDescription className="text-slate-500 leading-relaxed text-sm">{feature.description}</CardDescription>
                         </CardContent>
                     </Card>
                 </motion.div>
@@ -204,17 +204,17 @@ const ProductPage = () => {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-tight text-white md:text-3xl lg:text-4xl">
+                            <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-tight text-slate-900 md:text-3xl lg:text-4xl">
                                 Xpectra is the industrial-grade data layer for engineering teams who can't afford silent sensor failures.
                             </h1>
-                            <p className="text-xl sm:text-xl text-white/70 leading-relaxed mb-10">
+                            <p className="text-xl sm:text-xl text-slate-600 leading-relaxed mb-10">
                                 We standardize your telemetry ingestion and validation so your engineers spend 0% of their time on "data cleaning"
                                 and 100% on analysis.
                             </p>
                             <Link href="/#contact" aria-label="Get started with Xpectra in 5 minutes">
                                 <Button
                                     size="lg"
-                                    className="bg-white text-black hover:bg-gray-300 font-bold px-6 py-8 rounded-full text-lg"
+                                    className="bg-slate-900 text-white hover:bg-gray-300 font-bold px-6 py-8 rounded-full text-lg"
                                 >
                                     Get started in 5 minutes
                                 </Button>
@@ -226,10 +226,10 @@ const ProductPage = () => {
                     <div className="mb-40">
                         <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-12">
                             <div className="max-w-xl">
-                                <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">The Infrastructure</p>
+                                <p className="text-xs font-mono uppercase tracking-[0.3em] text-slate-300 mb-4">The Infrastructure</p>
                                 <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">How Xpectra fits into your stack.</h2>
                             </div>
-                            <p className="text-white/50 max-w-sm mb-1 text-lg leading-relaxed">
+                            <p className="text-slate-500 max-w-sm mb-1 text-lg leading-relaxed">
                                 Designed to sit between your raw sensor hardware and downstream analysis tools without replacing a single algorithm.
                             </p>
                         </div>
@@ -240,7 +240,7 @@ const ProductPage = () => {
                     <div className="mb-40">
                         <div className="grid lg:grid-cols-2 gap-20 items-center">
                             <div>
-                                <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">Hands-on Analysis</p>
+                                <p className="text-xs font-mono uppercase tracking-[0.3em] text-slate-300 mb-4">Hands-on Analysis</p>
                                 <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8">From raw telemetry to insight, without leaving the browser.</h2>
                                 <div className="space-y-12">
                                     {[
@@ -249,12 +249,12 @@ const ProductPage = () => {
                                         { title: "Zoom-Linked Charts", desc: "Zoom into an anomaly spike and every chart follows. See the full system response at once." }
                                     ].map((item, i) => (
                                         <div key={i} className="flex gap-6 group">
-                                            <div className="shrink-0 w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center font-mono text-sm text-white/30 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all">
+                                            <div className="shrink-0 w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center font-mono text-sm text-slate-300 group-hover:bg-slate-900 group-hover:text-white group-hover:border-slate-900 transition-all">
                                                 0{i + 1}
                                             </div>
                                             <div className="pt-1">
                                                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                                                <p className="text-white/50 leading-relaxed text-sm">{item.desc}</p>
+                                                <p className="text-slate-500 leading-relaxed text-sm">{item.desc}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -263,7 +263,7 @@ const ProductPage = () => {
 
                             <div className="relative">
                                 {/* Mock Browser/Playground */}
-                                <div className="aspect-video rounded-[2rem] bg-card-bg/50 border border-white/5 shadow-2xl overflow-hidden relative group/hero">
+                                <div className="aspect-video rounded-[2rem] bg-card-bg/50 border border-slate-100 shadow-2xl overflow-hidden relative group/hero">
                                     <Image
                                         src="/hero.png"
                                         alt="Xpectra Mission Control"
@@ -272,8 +272,8 @@ const ProductPage = () => {
                                     />
                                 </div>
                                 {/* Floating Badge */}
-                                <div className="absolute -bottom-10 -right-10 p-8 rounded-3xl bg-black border border-white/20 shadow-2xl backdrop-blur-3xl max-w-xs transition-transform hover:-translate-y-2">
-                                    <p className="text-sm font-mono text-white/40 mb-2 uppercase tracking-widest">Global Sync</p>
+                                <div className="absolute -bottom-10 -right-10 p-8 rounded-3xl bg-slate-50 border border-slate-300 shadow-2xl backdrop-blur-3xl max-w-xs transition-transform hover:-translate-y-2">
+                                    <p className="text-sm font-mono text-slate-400 mb-2 uppercase tracking-widest">Global Sync</p>
                                     <p className="text-lg font-bold">"Query terabytes. Plot anything. Export anywhere."</p>
                                 </div>
                             </div>
@@ -283,7 +283,7 @@ const ProductPage = () => {
                     {/* Capabilities Grid */}
                     <div className="mb-40">
                         <div className="text-center mb-16">
-                            <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">Technical Scope</p>
+                            <p className="text-xs font-mono uppercase tracking-[0.3em] text-slate-300 mb-4">Technical Scope</p>
                             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">Capabilities at a glance.</h2>
                         </div>
                         <FeatureGrid />
@@ -318,13 +318,13 @@ const ProductPage = () => {
             </section>
 
             {/* Footer CTA */}
-            <section className="py-32 px-6 border-t border-white/5 text-center">
+            <section className="py-32 px-6 border-t border-slate-100 text-center">
                 <div className="max-w-2xl mx-auto">
                     <h2 className="text-4xl sm:text-6xl font-bold mb-10 tracking-tight">Ready to harden your data stack?</h2>
                     <Link href="/#contact" aria-label="Request a pilot to harden your data stack">
                         <Button
                             size="lg"
-                            className="bg-white text-black hover:bg-gray-100 font-bold px-12 py-8 rounded-full text-xl"
+                            className="bg-slate-900 text-white hover:bg-gray-100 font-bold px-12 py-8 rounded-full text-xl"
                         >
                             Request a pilot
                             <ArrowRight className="ml-3 h-6 w-6" />

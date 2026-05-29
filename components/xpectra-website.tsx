@@ -96,47 +96,29 @@ const XpectraWebsite = () => {
       <section className="relative min-h-[95vh] flex flex-col items-center justify-center px-10 pt-12 pb-6 text-center overflow-hidden">
         {/* New Visual Background Elements */}
         <div className="flex flex-col items-end absolute -right-60 -top-10 blur-xl z-0 pointer-events-none">
-          <div className="h-[15rem] rounded-full w-[60rem] z-1 bg-gradient-to-b blur-[8rem] from-purple-600/10 to-sky-600/10"></div>
+          <div className="h-[15rem] rounded-full w-[60rem] z-1 bg-gradient-to-b blur-[8rem] from-slate-200/50 to-sky-600/10"></div>
           <div className="h-[15rem] rounded-full w-[90rem] z-1 bg-gradient-to-b blur-[8rem] from-pink-900/10 to-yellow-400/10"></div>
           <div className="h-[15rem] rounded-full w-[60rem] z-1 bg-gradient-to-b blur-[8rem] from-yellow-600/10 to-sky-500/10"></div>
         </div>
         <div className="absolute inset-0 z-0 bg-noise opacity-[0.03] pointer-events-none"></div>
 
         <div className="max-w-5xl relative z-10">
-          <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
+          <h1 className="mx-auto max-w-4xl text-5xl font-bold leading-tight text-slate-900 md:text-6xl lg:text-7xl">
             Infrastructure for mission critical sensor data
           </h1>
-          <p className="mt-6  text-md sm:text-xl text-white/70 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Xpectra validates, standardizes, and stores your sensor telemetry in real-time,
-            so your engineers analyse data, not clean it.
+          <p className="mt-6 text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+            Accelerate test.
+            <br />
+            Accelerate progress.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex items-center justify-center">
             <Link href="/#contact" aria-label="Request a pilot for Xpectra">
               <Button
                 size="lg"
-                className="h-12 rounded-full bg-white px-8 text-base font-medium text-black hover:bg-white/80"
+                className="h-14 sm:h-16 rounded-full bg-slate-900 px-10 text-lg sm:text-xl font-semibold text-white hover:bg-slate-800 shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 Request a pilot
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/#demo-video" aria-label="Watch how Xpectra works">
-              <Button
-                variant="outline"
-                size="lg"
-                className="h-12 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm px-8 text-base font-medium text-white hover:bg-white/10"
-              >
-                <Play className="mr-2 h-4 w-4 fill-white" />
-                How it works
-              </Button>
-            </Link>
-            <Link href="/product" aria-label="Explore Xpectra Products">
-              <Button
-                variant="ghost"
-                size="lg"
-                className="h-12 rounded-full text-base font-medium text-white/50 hover:text-white"
-              >
-                Explore Products
+                <ArrowRight className="ml-3 h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </Link>
           </div>
@@ -150,8 +132,8 @@ const XpectraWebsite = () => {
           transition={{ delay: 0.4, duration: 1 }}
           className="relative mx-auto mt-20 w-full max-w-6xl px-4 z-10"
         >
-          <div className="absolute inset-0 rounded-3xl shadow-2xl bg-white blur-[10rem] opacity-[0.07] pointer-events-none" />
-          <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-white/10 overflow-hidden bg-black/40 backdrop-blur-3xl group cursor-pointer"
+          <div className="absolute inset-0 rounded-3xl shadow-2xl bg-slate-900 blur-[10rem] opacity-[0.07] pointer-events-none" />
+          <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-slate-200 overflow-hidden bg-slate-100 group cursor-pointer"
             onClick={() => {
               const container = document.getElementById('video-container');
               if (container) {
@@ -170,13 +152,16 @@ const XpectraWebsite = () => {
                 src="/hero.png"
                 alt="Xpectra Demo Video Preview"
                 fill
-                className="object-cover opacity-60 transition-opacity group-hover:opacity-80"
+                className="object-cover transition-opacity group-hover:opacity-90"
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play size={32} className="fill-white translate-x-1" />
+                <div className="relative flex items-center justify-center">
+                  <div className="absolute inset-0 rounded-full bg-slate-50/60 animate-ping"></div>
+                  <div className="relative w-20 h-20 rounded-full bg-[#1c1e23] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl border border-white/5">
+                    <Play size={32} className="fill-white text-white translate-x-1" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,7 +169,7 @@ const XpectraWebsite = () => {
         </motion.div>
 
         {/* Logos Strip with Animated Carousel */}
-        <div className="w-full relative z-10 border-t border-white/5 ">
+        <div className="w-full relative z-10 border-t border-slate-100 ">
           <AnimatedCarousel
             title="Works with your existing setup"
             logos={[
@@ -192,14 +177,14 @@ const XpectraWebsite = () => {
               { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", name: "Python" },
               { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", name: "C++" },
               { src: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg", name: "NI-DAQ" },
-              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg", name: "gRPC" },
+              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg", name: "gRPC", className: "invert" },
             ]}
             autoPlay={false}
             autoPlayInterval={3000}
             itemsPerViewDesktop={5}
             padding="pt-10 md:pt-14 pb-10"
             spacing="gap-12"
-            titleClassName="text-[10px] font-mono uppercase tracking-[0.2em] text-white/75"
+            titleClassName="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-900"
             logoContainerWidth="w-32 md:w-44"
             logoContainerHeight="h-20 md:h-28"
             logoImageHeight="h-14 md:h-20"
@@ -207,8 +192,8 @@ const XpectraWebsite = () => {
           <div className="flex justify-center pb-12">
             <Link href="/integrations" aria-label="See all Xpectra integrations">
               <Button
-                variant="ghost"
-                className="mt-10 text-white/40 hover:text-white hover:bg-white/5 text-xs font-mono uppercase tracking-[0.2em] group h-auto py-2 px-4 rounded-full transition-all"
+                variant="outline"
+                className="mt-10 border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-bold uppercase tracking-[0.2em] group h-12 px-8 rounded-full transition-all shadow-sm"
               >
                 See all integrations <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -218,36 +203,36 @@ const XpectraWebsite = () => {
       </section>
 
       {/* Problem Section: The cost of "not yet" */}
-      <section className="relative pt-8 pb-32 px-6 bg-black/40 backdrop-blur-md border-y border-border-subtle/50">
+      <section className="relative pt-8 pb-32 px-6 bg-slate-50/40 backdrop-blur-md border-y border-border-subtle/50">
         <div className="max-w-7xl mx-auto">
           
           <div className="
             w-full flex flex-col lg:flex-row items-stretch justify-between
-            rounded-3xl border border-white/10
-            bg-white/[0.02] backdrop-blur-md
+            rounded-3xl border border-slate-200
+            bg-slate-900/[0.02] backdrop-blur-md
             py-12 px-8 my-10 md:my-16
             relative overflow-hidden
           ">
             {/* Background Accents */}
-            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[300px] h-[300px] bg-purple-600/10 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[300px] h-[300px] bg-slate-200/50 blur-[80px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[250px] h-[250px] bg-blue-600/5 blur-[70px] rounded-full pointer-events-none" />
 
             {/* Left Column: Title, Stats Callout (~38% width) */}
             <div className="w-full lg:w-[38%] text-left space-y-6 relative z-10">
               <div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight">
                   Every delayed decision means another test cycle lost to bad data.
                 </h2>
               </div>
               
               {/* 40% Stats Callout Card */}
-              <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-xl relative mt-6">
-                <span className="text-5xl font-black text-white mb-2 block">40%</span>
-                <p className="text-base text-white/70 italic leading-relaxed">
+              <div className="p-6 rounded-2xl bg-slate-900/[0.03] border border-slate-100 backdrop-blur-xl relative mt-6">
+                <span className="text-5xl font-black text-slate-900 mb-2 block">40%</span>
+                <p className="text-base text-slate-600 italic leading-relaxed">
                   "Engineers spend 40% of test prep rewriting the same ingestion scripts."
                 </p>
-                <div className="mt-4 h-px w-16 bg-white/10" />
-                <p className="mt-4 text-white/45 font-mono text-[10px] uppercase tracking-wider">
+                <div className="mt-4 h-px w-16 bg-slate-200" />
+                <p className="mt-4 text-slate-400 font-mono text-[10px] uppercase tracking-wider">
                   That's not a productivity problem. It's a missing infrastructure layer.
                 </p>
               </div>
@@ -272,7 +257,7 @@ const XpectraWebsite = () => {
                     {/* Today Card */}
                     <div className="flex flex-col">
                       <Card className="p-5 bg-brand-red/[0.03] hover:bg-brand-red/[0.07] border border-brand-red/10 hover:border-brand-red/25 transition-all duration-300 rounded-2xl flex flex-col justify-center text-left h-full min-h-[90px] cursor-default shadow-md">
-                        <CardContent className="p-0 text-white/65 text-sm sm:text-base leading-relaxed">
+                        <CardContent className="p-0 text-slate-500 text-sm sm:text-base leading-relaxed">
                           {point.today}
                         </CardContent>
                       </Card>
@@ -281,7 +266,7 @@ const XpectraWebsite = () => {
                     {/* With Xpectra Card */}
                     <div className="flex flex-col">
                       <Card className="p-5 bg-brand-emerald/[0.03] hover:bg-brand-emerald/[0.07] border border-brand-emerald/10 hover:border-brand-emerald/25 transition-all duration-300 rounded-2xl flex flex-col justify-center text-left h-full min-h-[90px] cursor-default shadow-md">
-                        <CardContent className="p-0 text-white font-semibold text-sm sm:text-base leading-relaxed">
+                        <CardContent className="p-0 text-slate-900 font-semibold text-sm sm:text-base leading-relaxed">
                           {point.xpectra}
                         </CardContent>
                       </Card>
@@ -317,15 +302,15 @@ const XpectraWebsite = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
               >
-                <Card className="h-full p-6 bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                <Card className="h-full p-6 bg-slate-100 border-slate-200 hover:bg-slate-200 hover:border-slate-300 transition-all duration-300">
                   <CardHeader className="p-0 pb-4">
-                    <div className="mb-4 p-3 w-fit rounded-lg bg-white/10 border border-white/20">
-                      <feature.icon className="h-6 w-6 text-white" />
+                    <div className="mb-4 p-3 w-fit rounded-lg bg-slate-200 border border-slate-300">
+                      <feature.icon className="h-6 w-6 text-slate-900" />
                     </div>
-                    <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
+                    <CardTitle className="text-xl text-slate-900">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent className="p-0">
-                    <CardDescription className="text-white/60">{feature.description}</CardDescription>
+                    <CardDescription className="text-slate-500">{feature.description}</CardDescription>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -353,15 +338,15 @@ const XpectraWebsite = () => {
                 { label: "Outcome", value: "Clear go/no-go with your own data" },
                 { label: "Data", value: "Your historical data, analysis-ready" }
               ].map((item, i) => (
-                <div key={i} className="p-6 rounded-lg bg-white/5 border border-white/10 text-left">
-                  <div className="text-sm text-white/50 mb-2 font-mono uppercase tracking-wider">{item.label}</div>
-                  <div className="text-lg font-semibold text-white">{item.value}</div>
+                <div key={i} className="p-6 rounded-lg bg-slate-100 border border-slate-200 text-left">
+                  <div className="text-sm text-slate-500 mb-2 font-mono uppercase tracking-wider">{item.label}</div>
+                  <div className="text-lg font-semibold text-slate-900">{item.value}</div>
                 </div>
               ))}
             </div>
 
-            <p className="text-xl text-white/40 font-mono text-center max-w-2xl mx-auto leading-relaxed">
-              No procurement cycles. No ripping out existing tools. <span className="text-white">We plug into your workflow.</span>
+            <p className="text-xl text-slate-400 font-mono text-center max-w-2xl mx-auto leading-relaxed">
+              No procurement cycles. No ripping out existing tools. <span className="text-slate-900">We plug into your workflow.</span>
             </p>
           </motion.div>
         </div>
@@ -377,7 +362,7 @@ const XpectraWebsite = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-8 text-center">Request a pilot</h2>
-            <p className="text-white/60 text-center mb-12">
+            <p className="text-slate-500 text-center mb-12">
               Let's discuss how xpectra can strengthen your sensor operations.
             </p>
 
@@ -388,7 +373,7 @@ const XpectraWebsite = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                  className="bg-slate-100 border-slate-200 text-slate-900 placeholder:text-slate-400"
                 />
               </div>
               <div>
@@ -398,7 +383,7 @@ const XpectraWebsite = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                  className="bg-slate-100 border-slate-200 text-slate-900 placeholder:text-slate-400"
                 />
               </div>
               <div>
@@ -408,13 +393,13 @@ const XpectraWebsite = () => {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   rows={5}
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40"
+                  className="bg-slate-100 border-slate-200 text-slate-900 placeholder:text-slate-400"
                 />
               </div>
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-white text-black hover:bg-gray-100 font-semibold"
+                className="w-full bg-slate-900 text-white hover:bg-gray-100 font-semibold"
               >
                 Send request
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -422,10 +407,10 @@ const XpectraWebsite = () => {
             </form>
 
             <div className="mt-8 text-center">
-              <p className="text-white/50 text-sm mb-2">or email us directly:</p>
+              <p className="text-slate-500 text-sm mb-2">or email us directly:</p>
               <a
                 href="mailto:arush@xpectraflow.com"
-                className="text-white hover:text-white/80 transition-colors inline-flex items-center gap-2"
+                className="text-slate-900 hover:text-slate-700 transition-colors inline-flex items-center gap-2"
               >
                 <Mail className="h-4 w-4" />
                 arush@xpectraflow.com

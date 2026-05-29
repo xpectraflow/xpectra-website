@@ -48,7 +48,7 @@ export function NotFound() {
   const isMobile = useIsMobile()
   return (
     <div className="h-screen w-full flex items-center justify-center py-16 px-4 md:py-24 md:px-20">
-      <div className="absolute hidden md:flex inset-0 items-center justify-center text-white/5 py-24 px-20">
+      <div className="absolute hidden md:flex inset-0 items-center justify-center text-slate-200 py-24 px-20">
         {ICONS.notFound()}
       </div>
 
@@ -57,7 +57,7 @@ export function NotFound() {
           <h1 className="text-center text-4xl md:text-6xl font-semibold">
             We lost this page
           </h1>
-          <p className="text-center text-lg md:text-xl text-white/60">
+          <p className="text-center text-lg md:text-xl text-slate-500">
             The page you are looking for doesn't exist or has been moved.{" "}
           </p>
         </div>
