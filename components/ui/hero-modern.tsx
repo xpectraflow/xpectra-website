@@ -207,19 +207,29 @@ export function HeroModeWidget() {
           Visualization
         </button>
       </div>
-      <ul className="grid grid-cols-2 gap-4 text-sm mt-4">
-        {activeMode.items.map((item, idx) => {
-          const Icon = item.icon;
-          return (
-            <li key={idx} className={`flex items-center gap-4 ${palette.subtle}`}>
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/80">
-                {Icon && <Icon className="h-5 w-5" />}
-              </div>
-              <span className="font-medium text-white/90">{item.title}</span>
-            </li>
-          );
-        })}
-      </ul>
+      {mode === "execution" ? (
+        <div className="mt-2 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+          <img
+            src="/dashboard-preview.png"
+            alt="Xpectra Data Visualization Dashboard"
+            className="w-full object-cover object-top"
+          />
+        </div>
+      ) : (
+        <ul className="grid grid-cols-2 gap-4 text-sm mt-4">
+          {activeMode.items.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <li key={idx} className={`flex items-center gap-4 ${palette.subtle}`}>
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/80">
+                  {Icon && <Icon className="h-5 w-5" />}
+                </div>
+                <span className="font-medium text-white/90">{item.title}</span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
