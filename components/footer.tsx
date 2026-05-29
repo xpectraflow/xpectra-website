@@ -67,24 +67,24 @@ export const Footer = () => {
         </div>
 
         {/* Mobile Copyright */}
-        <div className="flex md:hidden flex-col justify-center items-center text-[10px] sm:text-[12px] font-mono uppercase tracking-[0.2em] text-white/40 mb-8 text-center px-4">
+        <div className="block sm:hidden text-center text-[10px] sm:text-[12px] font-mono uppercase tracking-[0.2em] text-white/40 mb-8 px-4">
           <p>© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
         </div>
       </div>
 
-      <div className="pt-12 border-t border-border-subtle/30 flex flex-col relative min-h-[300px] sm:min-h-[400px] w-full overflow-hidden justify-end">
+      <div className="pt-12 border-t border-border-subtle/30 flex flex-col relative min-h-[300px] sm:min-h-[400px] w-full overflow-hidden">
         <div className="absolute inset-0 z-10 pt-4">
           <FooterChart />
         </div>
 
         {/* Desktop Copyright */}
-        <div className="hidden md:flex flex-col md:flex-row justify-center items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20 z-20 pointer-events-none absolute top-12 left-0 right-0">
+        <div className="hidden sm:flex flex-col sm:flex-row justify-center items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20 z-20 pointer-events-none absolute top-12 left-0 right-0">
           <p className="pointer-events-auto">© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
         </div>
 
-        <div className="w-full flex justify-center items-end select-none relative z-0 pointer-events-none mt-auto">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end select-none z-0 pointer-events-none overflow-hidden">
           <span 
-            className="text-[15vw] font-black leading-none tracking-tighter translate-y-[20%]" 
+            className="text-[15vw] font-black leading-none tracking-tighter translate-y-[25%]" 
             style={{ 
               WebkitTextStroke: '2px rgba(255,255,255,0.1)', 
               color: 'transparent' 
