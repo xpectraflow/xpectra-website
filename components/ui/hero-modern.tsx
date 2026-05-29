@@ -180,31 +180,16 @@ export function HeroModeWidget() {
   const activeMode = modes[mode];
 
   return (
-    <div
-      className={`relative flex flex-col gap-6 rounded-3xl border p-8 transition ${palette.border} h-full overflow-hidden`}
-      style={mode === "execution" ? {
-        backgroundImage: "url('/dashboard-preview.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "top center",
-      } : undefined}
-    >
-      {/* Dark overlay so text stays readable when image is the background */}
-      {mode === "execution" && (
-        <div className="absolute inset-0 bg-black/70 rounded-3xl pointer-events-none" />
-      )}
-      {/* Default card bg when not in visualization mode */}
-      {mode !== "execution" && (
-        <div className={`absolute inset-0 rounded-3xl ${palette.card}`} />
-      )}
-      <div className="relative z-10 flex items-start justify-between gap-4">
+    <div className={`relative flex flex-col gap-6 rounded-3xl border p-8 transition ${palette.border} ${palette.card} h-full`}>
+      <div className="flex items-start justify-between gap-4">
         <div className="space-y-3">
           <p className="text-xs uppercase tracking-[0.35em]">Mode</p>
           <h2 className="text-xl font-semibold tracking-tight">{activeMode.title}</h2>
         </div>
         <DeckGlyph theme={theme} />
       </div>
-      <p className={`relative z-10 text-sm leading-relaxed ${palette.subtle}`}>{activeMode.description}</p>
-      <div className="relative z-10 flex gap-2">
+      <p className={`text-sm leading-relaxed ${palette.subtle}`}>{activeMode.description}</p>
+      <div className="flex gap-2">
         <button
           type="button"
           onClick={() => setMode("strategy")}
@@ -222,21 +207,19 @@ export function HeroModeWidget() {
           Visualization
         </button>
       </div>
-      {mode !== "execution" && (
-        <ul className="relative z-10 grid grid-cols-2 gap-4 text-sm mt-4">
-          {activeMode.items.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <li key={idx} className={`flex items-center gap-4 ${palette.subtle}`}>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/80">
-                  {Icon && <Icon className="h-5 w-5" />}
-                </div>
-                <span className="font-medium text-white/90">{item.title}</span>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <ul className="grid grid-cols-2 gap-4 text-sm mt-4">
+        {activeMode.items.map((item, idx) => {
+          const Icon = item.icon;
+          return (
+            <li key={idx} className={`flex items-center gap-4 ${palette.subtle}`}>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white/80">
+                {Icon && <Icon className="h-5 w-5" />}
+              </div>
+              <span className="font-medium text-white/90">{item.title}</span>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
