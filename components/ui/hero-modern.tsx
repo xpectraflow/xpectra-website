@@ -342,7 +342,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
   }, []);
 
   return (
-    <div className={`relative isolate min-h-screen w-full transition-colors duration-700 ${palette.surface}`}>
+    <div className={`relative isolate min-h-screen w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}>
       <div
         className="pointer-events-none absolute inset-0 -z-30"
         style={{
@@ -373,11 +373,11 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
 
       <section
         ref={sectionRef}
-        className={`relative flex min-h-screen w-full flex-col gap-16 px-6 py-24 transition-opacity duration-700 md:gap-20 md:px-10 lg:px-16 xl:px-24 motion-safe:animate-[hero3-intro_1s_cubic-bezier(.22,.68,0,1)_forwards]
+        className={`relative flex min-h-screen w-full flex-col gap-16 overflow-hidden px-6 py-24 transition-opacity duration-700 md:gap-20 md:px-10 lg:px-16 xl:px-24 motion-safe:animate-[hero3-intro_1s_cubic-bezier(.22,.68,0,1)_forwards]
           }`}
       >
-        <header className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-end">
-          <div className="space-y-8">
+        <header className="grid gap-10 overflow-hidden lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-end">
+          <div className="min-w-0 space-y-8">
             <div className="flex flex-wrap items-center gap-4">
               <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.4em] ${palette.border} ${palette.accent}`}>
                 Sensor Data Infrastructure
@@ -392,7 +392,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 Maximize test facility ROI.
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-between">
               <a
                 href="#contact"
                 onClick={(e) => {
@@ -414,18 +414,18 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                   </svg>
                 </span>
               </a>
-              <div className={`flex divide-x divide-white/10 overflow-hidden rounded-full border text-xs uppercase tracking-[0.35em] ${palette.border}`}>
+              <div className={`flex w-full sm:w-auto divide-x divide-white/10 overflow-hidden rounded-full border text-xs uppercase ${palette.border}`}>
                 {metrics.map((metric) => (
-                  <div key={metric.label} className="flex flex-col px-5 py-3">
-                    <span className={`text-[11px] ${palette.subtle}`}>{metric.label}</span>
-                    <span className="text-lg font-semibold tracking-tight">{metric.value}</span>
+                  <div key={metric.label} className="flex flex-1 flex-col items-center px-3 sm:px-5 py-3 sm:items-start">
+                    <span className={`text-[10px] tracking-[0.15em] sm:tracking-[0.35em] truncate ${palette.subtle}`}>{metric.label}</span>
+                    <span className="text-base sm:text-lg font-semibold tracking-tight">{metric.value}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {headerRightWidget ? headerRightWidget : <HeroModeWidget />}
+          <div className="min-w-0 w-full">{headerRightWidget ? headerRightWidget : <HeroModeWidget />}</div>
         </header>
 
         <div className="flex flex-col gap-10">

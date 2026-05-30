@@ -122,47 +122,46 @@ const XpectraWebsite = () => {
       }>
 
         <div className="grid gap-10 xl:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] xl:items-stretch">
-          <div className="min-w-0">
+          <div className="min-w-0 h-full">
             <HeroModeWidget />
           </div>
 
           {/* Logos Strip with Animated Carousel */}
-          <div className="min-w-0 w-full relative z-10 rounded-3xl border border-white/12 bg-white/6 p-6 md:p-8 transition hover:bg-white/10 flex flex-col justify-center">
-          <AnimatedCarousel
-            title="Works with your existing setup"
-            logos={[
-              { src: "/labview.webp", name: "LabVIEW" },
-              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", name: "Python" },
-              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", name: "C++" },
-              { src: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg", name: "NI-DAQ" },
-              { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg", name: "gRPC" },
-            ]}
-            autoPlay={false}
-            autoPlayInterval={3000}
-            itemsPerViewMobile={2}
-            itemsPerViewDesktop={3}
-            padding="pt-6 md:pt-10 pb-6 md:pb-10"
-            spacing="gap-12"
-            titleClassName="text-[10px] font-mono uppercase tracking-[0.2em] text-white/75"
-            logoContainerWidth="w-28 md:w-44"
-            logoContainerHeight="h-16 md:h-28"
-            logoImageHeight="h-10 md:h-20"
-          />
-          <div className="flex justify-center pb-12">
-            <Link href="/integrations" aria-label="See all Xpectra integrations">
-              <Button
-                variant="ghost"
-                className="mt-10 text-white/40 hover:text-white hover:bg-white/5 text-xs font-mono uppercase tracking-[0.2em] group h-auto py-2 px-4 rounded-full transition-all"
-              >
-                See all integrations <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+          <div className="min-w-0 w-full relative z-10 rounded-3xl border border-white/12 bg-white/6 p-6 md:p-7 transition hover:bg-white/10 flex flex-col h-full">
+            {/* Carousel grows to fill all available space */}
+            <div className="flex-1 flex items-center">
+              <AnimatedCarousel
+                title="Works with your existing setup"
+                logos={[
+                  { src: "/labview.webp", name: "LabVIEW" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg", name: "Python" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg", name: "C++" },
+                  { src: "https://cdn.worldvectorlogo.com/logos/national-instruments.svg", name: "NI-DAQ" },
+                  { src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grpc/grpc-original.svg", name: "gRPC" },
+                ]}
+                autoPlayInterval={2200}
+                padding="py-0"
+                spacing="gap-6"
+                titleClassName="text-[10px] font-mono uppercase tracking-[0.2em] text-white/75"
+              />
+            </div>
+            {/* Button pinned to bottom */}
+            <div className="flex justify-center pt-5 pb-1">
+              <Link href="/integrations" aria-label="See all Xpectra integrations">
+                <button
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-1.5 text-[10px] font-mono uppercase tracking-[0.25em] text-white/50 transition-all duration-300 hover:border-white/40 hover:text-white/80 hover:bg-white/5"
+                >
+                  See all integrations
+                  <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
-        </div>
-        {/* 3-Column Problem / Comparison Grid */}
-        <div className="grid gap-10 lg:grid-cols-3 lg:items-stretch">
-          {/* Column 1: Problem Statement */}
+        {/* Problem Statement + ROI — left narrow, right wide */}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-stretch">
+
+          {/* LEFT — Original Problem Statement */}
           <div className="relative z-10 rounded-3xl border border-white/12 bg-white/6 p-8 transition hover:bg-white/10 flex flex-col justify-center">
             <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight mb-8">
               Every delayed decision means another test cycle lost to bad data.
@@ -179,31 +178,57 @@ const XpectraWebsite = () => {
             </div>
           </div>
 
-          {/* Column 2: Today */}
-          <div className="relative z-10 rounded-3xl border border-brand-red/20 bg-brand-red/5 p-8 transition hover:bg-brand-red/10 flex flex-col gap-4">
-            <h3 className="text-sm font-mono text-brand-red flex items-center gap-2 uppercase tracking-widest mb-2">
-              <X className="h-4 w-4" /> Today
-            </h3>
-            {comparisonPairs.map((point, i) => (
-              <div key={`today-${i}`} className="p-5 rounded-2xl bg-brand-red/[0.03] border border-brand-red/10 text-white/65 text-sm leading-relaxed shadow-sm flex-1 flex items-center">
-                {point.today}
-              </div>
-            ))}
+          {/* RIGHT — ROI card */}
+          <div className="relative z-10 rounded-3xl border border-white/12 bg-white/6 p-8 transition hover:bg-white/10 flex flex-col gap-6 overflow-hidden">
+            {/* Faint glow accent */}
+            <div className="pointer-events-none absolute -top-16 -right-16 w-72 h-72 rounded-full bg-brand-emerald/10 blur-3xl" />
+
+            <div className="relative">
+              {/* Blinking green IMPACT label */}
+              <p className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.35em] text-brand-emerald mb-3">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-emerald" />
+                </span>
+                Impact
+              </p>
+              <h2 className="text-3xl font-bold tracking-tight text-white leading-snug">
+                The return on Xpectra
+              </h2>
+              <p className="mt-2 text-sm text-white/45 leading-relaxed max-w-sm">
+                Measurable outcomes across your test and launch pipeline.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4 relative">
+              {[
+                "Faster Launch Readiness",
+                "Reduced Engineering Overhead",
+                "Faster Engineering Decisions",
+                "Cross-Mission Data Layer",
+                "Early Failure Detection",
+                "Persistent Engineering Knowledge",
+                "Higher Test Facility Utilization",
+                "Lower Cost Per Test Run",
+              ].map((title, i) => (
+                <div
+                  key={i}
+                  className="group flex items-center gap-4 p-5 rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20 transition-all duration-300"
+                >
+                  <span className="shrink-0 h-2.5 w-2.5 rounded-full bg-brand-emerald/70 group-hover:bg-brand-emerald transition-colors duration-300" />
+                  <p className="text-[18px] font-semibold text-white/90 leading-snug tracking-tight">
+                    {title}
+                  </p>
+                </div>
+              ))}
+            </div>
+
           </div>
 
-          {/* Column 3: With Xpectra */}
-          <div className="relative z-10 rounded-3xl border border-brand-emerald/40 bg-brand-emerald/10 p-8 transition hover:bg-brand-emerald/20 flex flex-col gap-4">
-            <h3 className="text-sm font-mono text-brand-emerald flex items-center gap-2 uppercase tracking-widest mb-2">
-              <CheckCircle2 className="h-4 w-4" /> With Xpectra
-            </h3>
-            {comparisonPairs.map((point, i) => (
-              <div key={`xpectra-${i}`} className="p-5 rounded-2xl bg-brand-emerald/[0.15] border border-brand-emerald/30 text-white font-semibold text-sm leading-relaxed shadow-[0_0_15px_rgba(16,185,129,0.15)] flex-1 flex items-center">
-                {point.xpectra}
-              </div>
-            ))}
-          </div>
+
         </div>
       </HeroOrbitDeck>
+
 
 
 

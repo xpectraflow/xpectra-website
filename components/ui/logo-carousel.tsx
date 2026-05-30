@@ -2,112 +2,136 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 import Image from "next/image";
+
+type LogoItem = { src: string; name: string | null };
+
+// Horizontal distance between slot centers (card width + gap)
+const SLOT_PX = 160;
+
+interface AnimatedCarouselProps {
+  title?: string;
+  logos?: LogoItem[] | null;
+  autoPlayInterval?: number;
+  titleClassName?: string;
+  padding?: string;
+  spacing?: string;
+  [key: string]: unknown; // absorb legacy props
+}
 
 export const AnimatedCarousel = ({
   title = "Trusted by thousands of businesses worldwide",
-  logoCount = 15,
-  autoPlay = true,
+  logos = null,
   autoPlayInterval = 2000,
-  logos = null as (string | { src: string; name: string | null })[] | null,
-  containerClassName = "",
   titleClassName = "",
-  carouselClassName = "",
-  logoClassName = "",
-  itemsPerViewMobile = 4,
-  itemsPerViewDesktop = 6,
-  spacing = "gap-10",
-  padding = "py-20 lg:py-40",
-  logoContainerWidth = "w-48",
-  logoContainerHeight = "h-24",
-  logoImageWidth = "w-auto",
-  logoImageHeight = "h-full",
-  logoMaxWidth = "",
-  logoMaxHeight = "",
-}) => {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
+  padding = "py-10",
+  spacing = "gap-6",
+}: AnimatedCarouselProps) => {
+  const items: LogoItem[] = (logos ?? []) as LogoItem[];
+  const count = items.length;
+  const [center, setCenter] = useState(0);
 
+  // Auto-advance forever
   useEffect(() => {
-    if (!api || !autoPlay) {
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      // Don't auto-play if page is hidden to save main thread
-      if (typeof document !== 'undefined' && document.hidden) return;
-
-      if (api.selectedScrollSnap() + 1 === api.scrollSnapList().length) {
-        setCurrent(0);
-        api.scrollTo(0);
-      } else {
-        api.scrollNext();
-        setCurrent((prev) => prev + 1);
-      }
+    if (count < 2) return;
+    const id = setInterval(() => {
+      setCenter((prev) => (prev + 1) % count);
     }, autoPlayInterval);
+    return () => clearInterval(id);
+  }, [count, autoPlayInterval]);
 
-    return () => clearTimeout(timer);
-  }, [api, current, autoPlay, autoPlayInterval]);
-
-  const logoItems = logos || Array.from({ length: logoCount }, (_, i) => ({
-    src: `https://th.bing.com/th/id/R.4aa108082e7d3cbd55add79f84612aaa?rik=I4dbPhSe%2fbHHSg&riu=http%3a%2f%2fpurepng.com%2fpublic%2fuploads%2flarge%2fpurepng.com-google-logo-2015brandlogobrand-logoiconssymbolslogosgoogle-6815229372333mqrr.png&ehk=ewmaCOvP0Ji4QViEJnxSdlrYUrTSTWhi8nZ9XdyCgAI%3d&risl=&pid=ImgRaw&r=0100x100?text=Logo+${i + 1}`,
-    name: null
-  }));
-
-  const logoImageSizeClasses = `${logoImageWidth} ${logoImageHeight} ${logoMaxWidth} ${logoMaxHeight}`.trim();
+  if (count === 0) return null;
 
   return (
-    <div className={`w-full ${padding} bg-transparent ${containerClassName}`}>
+    // w-full so it fills whatever flex container it's placed in
+    <div className={`w-full ${padding} bg-transparent`}>
       <div className={`flex flex-col items-center text-center ${spacing}`}>
+
         <h2 className={`text-xl md:text-2xl tracking-tighter font-medium text-white/50 ${titleClassName}`}>
           {title}
         </h2>
 
-        <div className="w-full max-w-5xl mx-auto px-4">
-          <Carousel setApi={setApi} opts={{ loop: true, align: "center" }} className={`w-full ${carouselClassName}`}>
-            <CarouselContent>
-              {logoItems.map((logoItem, index) => {
-                const src = typeof logoItem === "string" ? logoItem : logoItem.src;
-                const name = typeof logoItem === "string" ? null : logoItem.name;
+        {/* ── Sliding spotlight track ── fixed height, logos absolutely centered */}
+        <div className="relative w-full overflow-hidden" style={{ height: 180 }}>
+          <div className="absolute inset-0 flex items-center justify-center">
+            {items.map((item, idx) => {
+              // Compute signed slot offset relative to current center, with wrapping
+              let offset = ((idx - center) % count + count) % count;
+              if (offset > Math.floor(count / 2)) offset -= count;
 
-                return (
-                  <CarouselItem className={`basis-1/${itemsPerViewMobile} lg:basis-1/${itemsPerViewDesktop} flex justify-center`} key={index}>
-                    <div className="flex flex-col items-center gap-3 group">
-                      <div className={`flex ${logoContainerWidth} ${logoContainerHeight} items-center justify-center transition-all ${logoClassName}`}>
-                        <Image
-                          src={src}
-                          alt={name || `Logo ${index + 1}`}
-                          width={200}
-                          height={100}
-                          className={`${logoImageSizeClasses} object-contain opacity-80 group-hover:opacity-100 transition-all duration-500`}
-                          loading="lazy"
-                        />
-                      </div>
-                      {name && (
-                        <div className="flex justify-center w-full">
-                          <span className="text-[9px] md:text-[11px] font-mono uppercase tracking-[0.2em] text-white/60 group-hover:text-white/70 transition-colors whitespace-nowrap">
-                            {name}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-          </Carousel>
+              const isCenter = offset === 0;
+              const isVisible = Math.abs(offset) <= 1;
+
+              return (
+                <motion.div
+                  key={idx}
+                  className="absolute flex flex-col items-center gap-3 pointer-events-none"
+                  animate={{
+                    x: offset * SLOT_PX,
+                    scale: isCenter ? 1 : 0.82,
+                    opacity: isCenter ? 1 : isVisible ? 0.68 : 0,
+                  }}
+                  transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+                >
+                  {/* Card */}
+                  <div
+                    className={`relative flex items-center justify-center rounded-2xl transition-all duration-500
+                      ${isCenter
+                        ? "w-28 h-28 bg-white/8 border border-white/22 shadow-[0_0_40px_rgba(255,255,255,0.07)]"
+                        : "w-20 h-20 bg-white/6 border border-white/14"
+                      }`}
+                  >
+                    {isCenter && (
+                      <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/20 animate-pulse" />
+                    )}
+                    <Image
+                      src={item.src}
+                      alt={item.name ?? `Logo ${idx + 1}`}
+                      width={120}
+                      height={120}
+                      className={`object-contain transition-all duration-500
+                        ${isCenter ? "h-14 w-14 opacity-100" : "h-9 w-9 opacity-80"}`}
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Name */}
+                  {item.name && (
+                    <span
+                      className={`font-mono uppercase whitespace-nowrap transition-all duration-500
+                        ${isCenter
+                          ? "text-[10px] tracking-[0.25em] text-white/90"
+                          : "text-[9px] tracking-[0.18em] text-white/55"
+                        }`}
+                    >
+                      {item.name}
+                    </span>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Dot indicators */}
+        <div className="flex items-center gap-2">
+          {items.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCenter(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`rounded-full transition-all duration-300 ${
+                i === center
+                  ? "w-5 h-1.5 bg-white/65"
+                  : "w-1.5 h-1.5 bg-white/18 hover:bg-white/35"
+              }`}
+            />
+          ))}
+        </div>
+
       </div>
     </div>
   );
 };
 
-export const Case1 = (props: any) => {
-  return <AnimatedCarousel {...props} />;
-};
+export const Case1 = (props: AnimatedCarouselProps) => <AnimatedCarousel {...props} />;
