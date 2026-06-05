@@ -387,14 +387,14 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 Maximize test facility ROI.
               </p>
             </div>
-            <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-6">
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`group inline-flex w-full sm:w-[360px] justify-center items-center gap-4 rounded-full border px-8 py-5 text-sm font-bold uppercase tracking-[0.25em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] ${theme === "dark"
+                className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-4 rounded-full border px-6 py-4 text-sm font-bold uppercase tracking-[0.25em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] ${theme === "dark"
                   ? "bg-white text-black border-transparent"
                   : "bg-black text-white border-transparent"
                   }`}
@@ -409,11 +409,11 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                   </svg>
                 </span>
               </a>
-              <div className={`flex w-full sm:w-auto divide-x divide-white/10 overflow-hidden rounded-full border text-xs uppercase ${palette.border}`}>
+              <div className={`hidden sm:flex w-full sm:w-auto divide-x divide-white/10 overflow-hidden rounded-full border text-xs uppercase ${palette.border}`}>
                 {metrics.map((metric) => (
-                  <div key={metric.label} className="flex flex-1 flex-col items-center px-2 sm:px-5 py-3 sm:items-start">
-                    <span className={`text-[10px] tracking-[0.05em] sm:tracking-[0.35em] whitespace-nowrap ${palette.subtle}`}>{metric.label}</span>
-                    <span className="text-base sm:text-lg font-semibold tracking-tight">{metric.value}</span>
+                  <div key={metric.label} className="flex flex-1 flex-col items-center px-3 sm:px-4 py-2 sm:items-start">
+                    <span className={`text-[10px] tracking-[0.1em] whitespace-nowrap ${palette.subtle}`}>{metric.label}</span>
+                    <span className="text-sm sm:text-base font-semibold tracking-tight">{metric.value}</span>
                   </div>
                 ))}
               </div>
