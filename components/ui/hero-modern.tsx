@@ -282,7 +282,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
   const metrics = [
     { label: "Setup time", value: "< 1h" },
     { label: "Data streams", value: "Unlimited" },
-    { label: "Time saved", value: "> 50%" },
+    { label: "Time saved", value: "> 40%" },
   ];
 
 
@@ -321,7 +321,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     {
       src: "/hero-sensor.png",
       alt: "Futuristic 3D wireframe diagram of a complex hardware sensor rendering telemetry data",
-      label: "Live rocket telemetry",
+      label: "Live Engine telemetry",
       description: "Real-time validation"
     },
     {
