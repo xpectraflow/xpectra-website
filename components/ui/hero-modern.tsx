@@ -378,14 +378,9 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
       >
         <header className="grid gap-10 overflow-hidden lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-end">
           <div className="min-w-0 space-y-8">
-            <div className="flex flex-wrap items-center gap-4">
-              <span className={`inline-flex items-center gap-2 rounded-full border px-4 py-1 text-[10px] font-semibold uppercase tracking-[0.4em] ${palette.border} ${palette.accent}`}>
-                Sensor Data Infrastructure
-              </span>
-            </div>
             <div className="space-y-6">
-              <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
-                Infrastructure for <br />mission critical sensor data.
+              <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-6xl">
+                Infrastructure for <br />mission critical sensor data
               </h1>
               <p className={`max-w-2xl text-base md:text-lg ${palette.subtle}`}>
                 Compress launch timelines. Accelerate test.<br />
@@ -416,8 +411,8 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
               </a>
               <div className={`flex w-full sm:w-auto divide-x divide-white/10 overflow-hidden rounded-full border text-xs uppercase ${palette.border}`}>
                 {metrics.map((metric) => (
-                  <div key={metric.label} className="flex flex-1 flex-col items-center px-3 sm:px-5 py-3 sm:items-start">
-                    <span className={`text-[10px] tracking-[0.15em] sm:tracking-[0.35em] truncate ${palette.subtle}`}>{metric.label}</span>
+                  <div key={metric.label} className="flex flex-1 flex-col items-center px-2 sm:px-5 py-3 sm:items-start">
+                    <span className={`text-[10px] tracking-[0.05em] sm:tracking-[0.35em] whitespace-nowrap ${palette.subtle}`}>{metric.label}</span>
                     <span className="text-base sm:text-lg font-semibold tracking-tight">{metric.value}</span>
                   </div>
                 ))}
