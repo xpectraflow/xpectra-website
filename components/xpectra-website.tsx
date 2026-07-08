@@ -85,11 +85,11 @@ const XpectraWebsite = () => {
           >
           <div className="absolute inset-0 rounded-3xl shadow-2xl bg-white blur-[10rem] opacity-[0.07] pointer-events-none" />
           <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-white/10 overflow-hidden bg-black/40 backdrop-blur-3xl group cursor-pointer"
-            onClick={() => {
+             onClick={() => {
               const container = document.getElementById('video-container');
               if (container) {
                 container.innerHTML = `<iframe 
-                     src="https://www.youtube.com/embed/CLUqwdlTMtw?rel=0&modestbranding=1&autoplay=1" 
+                     src="https://www.youtube.com/embed/yRJlbAfxUm4?rel=0&modestbranding=1&autoplay=1" 
                      title="Xpectra Demo"
                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                      allowFullScreen
