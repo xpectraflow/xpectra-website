@@ -117,7 +117,7 @@ const IntegrationsPage = () => {
       name: "Python",
       desc: "5 lines to start streaming telemetry. Perfect for data scientists and rapid prototyping.",
       language: "python",
-      snippet: "import xpectra\n\nclient = xpectra.Client(\"XPECTRA_API_KEY\")\nclient.stream(\n    channel=\"voltage_rail_3v3\",\n    value=3.31,\n    unit=\"V\"\n)",
+      snippet: "# pip install xpectra-client\nfrom xpectra import Client\nimport pandas as pd\n\nclient  = Client(api_key=\"sk_xp_...\")\ndataset = client.experiments.get(\"<uuid>\") \\\n               .datasets.get(\"Sensors\")\n\n# Batch ingest — channels created automatically\ndataset.ingest(pd.read_csv(\"sensors.csv\"))\n\n# Or stream live from any generator\nfrom datetime import datetime, timezone\ndataset.ingest_live(\n    (datetime.now(timezone.utc), \"voltage_rail_3v3\", v)\n    for v in sensor_feed()\n)",
       badge: "Native SDK"
     },
     {

@@ -114,19 +114,28 @@ const DocsPage = () => {
                       </div>
                     </CodeBlockGroup>
                     <CodeBlockCode
-                      code={`import xpectra
+                      code={`# pip install xpectra-client
+from xpectra import Client
+import pandas as pd
 
-# Your ingest key from the Console
-client = xpectra.Client("xp_live_a1b2c3d4")
+# Connect with your API key (Settings → API Keys)
+client = Client(api_key="sk_xp_...")
 
-# Stream any named channel with any value
-client.stream(
-    channel="voltage_01", 
-    value=24.5, 
-    unit="V"
-)
+# Navigate to your experiment and dataset
+experiment = client.experiments.get("<experiment-uuid>")
+dataset    = experiment.datasets.get("My Dataset")
 
-# That's it. Open the Playground to see it live.`}
+# Batch ingest — upload a CSV or any DataFrame
+dataset.ingest(pd.read_csv("sensor_data.csv"))
+
+# Or stream live data from any generator (zero buffering)
+from datetime import datetime, timezone
+
+def sensor():
+    while True:
+        yield datetime.now(timezone.utc), "voltage_01", read_adc()
+
+dataset.ingest_live(sensor())`}
                       language="python"
                       theme="github-dark"
                     />

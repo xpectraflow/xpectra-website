@@ -573,23 +573,31 @@ export const BlogPost = ({ post }: { post: any }) => {
         </p>
 
         <pre className="p-6 rounded-2xl bg-white/5 border border-white/10 overflow-x-auto text-sm text-purple-300 font-mono mb-8">
-{`import xpectra
+{`# pip install xpectra-client
+from xpectra import Client, CcsdsDecoder
 
-# Initialize Xpectra client
-client = xpectra.Client(endpoint="https://telemetry.internal.xpectraflow.com")
+client = Client(
+    api_key="sk_xp_...",
+    base_url="https://telemetry.internal.xpectraflow.com"
+)
 
-# Start a tracked test session linked to DO-178C requirement ID
-session = client.start_session(
-    name="Actuator_Step_Response_Test",
-    tags=["HIL", "DAL-A", "DO-178C"],
-    metadata={
-        "RequirementID": "REQ-SYS-FCS-402",
-        "TestCaseID": "TC-SW-FCS-804",
-        "FlightComputerID": "FC-PRIMARY-SN042",
-        "HILHardwareConfig": "HIL-RACK-03B",
-        "SoftwareVersion": "v2.4.1-rc3"
-    }
-)`}
+# Dataset name encodes the traceability chain:
+# experiment → requirement ID → test case ID
+experiment = client.experiments.get("<experiment-uuid>")
+dataset    = experiment.datasets.get(
+    "HIL_DAL-A_REQ-SYS-FCS-402_TC-SW-FCS-804"
+)
+
+# Decode binary CCSDS telemetry captured from the HIL rig
+# and stream it directly into Xpectra — no intermediate files
+decoder = CcsdsDecoder("fcs_xtce_schema.xml")
+with open("actuator_step_response.ccsds", "rb") as f:
+    raw = f.read()
+
+accepted = dataset.ingest_live(
+    decoder.stream(raw, rate_hz=100.0)  # 100 Hz actuator data
+)
+print(f"Compliance evidence ingested: {accepted:,} points")`}
         </pre>
 
         <h3 className="text-xl font-bold text-white mt-8 mb-4">2. Unified Time-Series Architecture for Verification</h3>
