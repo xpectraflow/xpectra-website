@@ -392,8 +392,8 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
               <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-6xl">
                 Accelerate hardware testing <br />Compress launch timeline
               </h1>
-              <p className={`max-w-2xl text-base md:text-lg ${palette.subtle}`}>
-                Get live alerts and instant insights at the testbed. Catch critical failures before disassembly and run more experiments in your test facility window.
+              <p className={`max-w-2xl text-base md:text-2xl ${palette.subtle}`}>
+                Run more experiments in your test facility window <br /> Get live alerts and instant insights at the testbed. <br />Catch critical failures before disassembly
               </p>
             </div>
             {showDemo && createPortal(
