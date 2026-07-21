@@ -53,7 +53,7 @@ export const BlogPost = ({ post }: { post: any }) => {
         </p>
 
         <p className="text-lg text-white/60 mb-8">
-          In hardware testing—especially during Hardware-in-the-Loop (HIL) simulations or destructive engine tests—data is generated at thousands of hertz. Traditional relational databases choke on continuous, high-frequency time-stamped inserts. Xpectra handles dense, binary-encoded sensor streams at the edge, standardizes the telemetry, and routes it through a modern data pipeline optimized for sub-second range queries.
+          In hardware testing (especially during Hardware-in-the-Loop (HIL) simulations or destructive engine tests), data is generated at thousands of hertz. Traditional relational databases choke on continuous, high-frequency time-stamped inserts. Xpectra handles dense, binary-encoded sensor streams at the edge, standardizes the telemetry, and routes it through a modern data pipeline optimized for sub-second range queries.
         </p>
 
         <h2 className="text-2xl font-bold text-white mt-12 mb-6">Deployment and Agility: Months vs. Minutes</h2>

@@ -43,7 +43,7 @@ const XpectraWebsite = () => {
     },
     {
       today: "Hardware revision on Monday, ingestion scripts broken by Tuesday",
-      xpectra: "Xpectra absorbs the revision — pipelines keep running"
+      xpectra: "Xpectra absorbs the revision, pipelines keep running"
     },
     {
       today: "Test results are tied to the engineer, not the platform",
@@ -175,9 +175,9 @@ const XpectraWebsite = () => {
             <div className="grid sm:grid-cols-2 gap-4 relative">
               {[
                 "No script rewrites on hardware revision",
-                "400 GB test runs — zero custom code",
+                "400 GB test runs, zero custom code",
                 "Post-test analysis: 3 hours → 30 minutes",
-                "TDMS · MDF · Binary — one ingestion layer",
+                "TDMS · MDF · Binary, one ingestion layer",
                 "FlatSat-to-orbit data continuity",
                 "Catch failures before disassembly",
                 "250-channel DAQ → dashboard in < 1 hour",

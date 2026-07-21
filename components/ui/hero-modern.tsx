@@ -140,7 +140,7 @@ export function HeroModeWidget() {
       strategy: {
         title: "Data Ingestion",
         description:
-          "Every hardware revision breaks your ingestion scripts. Xpectra fixes the middle layer — your data survives revisions, so engineers analyze instead of rewrite.",
+          "Every hardware revision breaks your ingestion scripts. Xpectra fixes the middle layer so your data survives revisions and engineers analyze instead of rewrite.",
         items: [
           {
             title: "Script-free hardware revision",
@@ -288,59 +288,81 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
   ];
 
 
-  const protocols = [
+  const carouselSlides = [
     {
-      name: "Engine Test Run",
-      detail: "400 GB of binary/TDMS telemetry per 20-min run — analysis-ready without a single script rewrite.",
-      status: "Live",
+      badge: "Propulsion",
+      counter: "01 / 05",
+      vertical: "Liquid & Solid Rocket Testing",
+      description:
+        "250 channels. 20-minute burns. 400 GB of binary telemetry per run. Management demands analysis in 3 hours, before the next team arrives at the stand. Xpectra standardizes binary-to-TDMS so your team analyzes, not reformats.",
+      specs: [
+        { label: "Channels", value: "250+ per test run" },
+        { label: "Turnaround", value: "3h post-test ready" },
+      ],
+      image: "/propulsion.jpg",
+      imageAlt: "Rocket propulsion test stand with engine firing",
     },
     {
-      name: "FlatSat Campaign",
-      detail: "Multi-bus AIT data across SpaceWire, CAN, and Ethernet — unified in one queryable stream.",
-      status: "Ready",
+      badge: "Aerospace",
+      counter: "02 / 05",
+      vertical: "Ground Engine Test Facility",
+      description:
+        "2–3 day analysis cycles per test run. Manual benchmarking against previous runs. LabVIEW scripts that break on every hardware revision. Xpectra vaults every run and surfaces comparisons automatically.",
+      specs: [
+        { label: "Format", value: "TDMS · MDF · Binary" },
+        { label: "Benchmarking", value: "Auto cross-run compare" },
+      ],
+      image: "/hero-sensor.png",
+      imageAlt: "Ground engine test facility sensor array rendering live telemetry",
     },
     {
-      name: "OILS / HILS Session",
-      detail: "Software-in-the-loop and hardware-in-the-loop data timestamped and correlated side by side.",
-      status: "Active",
+      badge: "Space",
+      counter: "03 / 05",
+      vertical: "Satellite AIT & V&V",
+      description:
+        "FlatSat campaigns generate unique data every hour across SpaceWire, CAN, and Ethernet. Every hardware revision breaks your ingestion scripts. Teams stay up all night rewriting code before launch windows close. Xpectra fixes the middle layer so your AIT team tests, not debugs.",
+      specs: [
+        { label: "Bus Protocols", value: "SpaceWire · CAN · Ethernet" },
+        { label: "Compatible", value: "YAMCS · RocksDB" },
+      ],
+      image: "/satellite-sensor.png",
+      imageAlt: "Satellite FlatSat test bench with multi-bus data streams",
+    },
+    {
+      badge: "Aerial",
+      counter: "04 / 05",
+      vertical: "UAV & Drone Fleets",
+      description:
+        "Your drones fly in the field. Your data lives in separate folders per flight, per pilot, per site. Custom firmware scripts break every hardware change. Xpectra aggregates all flight telemetry into one mission control dashboard, across drone brands and firmware versions.",
+      specs: [
+        { label: "Aggregation", value: "Multi-drone · Multi-site" },
+        { label: "Bus", value: "CAN · Custom firmware" },
+      ],
+      image: "/drone.jpg",
+      imageAlt: "UAV drone in flight over test field",
+    },
+    {
+      badge: "Mobility",
+      counter: "05 / 05",
+      vertical: "EV & Automotive Testing",
+      description:
+        "10+ VCU versions in the field. 15-day hardware redesign cycles. OTA updates to 2,000+ units over GSM. Every revision breaks your CAN bus logging scripts. Xpectra keeps your telemetry pipeline alive through every hardware iteration, from bench to fleet.",
+      specs: [
+        { label: "Protocol", value: "CAN bus · OTA · GSM" },
+        { label: "Coverage", value: "Bench → Fleet VCU" },
+      ],
+      image: "/automobile.jpg",
+      imageAlt: "Electric vehicle test bench with VCU and CAN bus analyzer",
     },
   ];
 
-  const setSpotlight = (event: React.MouseEvent<HTMLLIElement>) => {
-    const target = event.currentTarget;
-    const rect = target.getBoundingClientRect();
-    target.style.setProperty("--hero3-x", `${event.clientX - rect.left}px`);
-    target.style.setProperty("--hero3-y", `${event.clientY - rect.top}px`);
-  };
-
-  const clearSpotlight = (event: React.MouseEvent<HTMLLIElement>) => {
-    const target = event.currentTarget;
-    target.style.removeProperty("--hero3-x");
-    target.style.removeProperty("--hero3-y");
-  };
-
-  const showcaseImages = [
-    {
-      src: "/hero-sensor.png",
-      alt: "Futuristic 3D wireframe diagram of a complex hardware sensor rendering telemetry data",
-      label: "Live Engine telemetry",
-      description: "Real-time validation"
-    },
-    {
-      src: "/satellite-sensor.png",
-      alt: "Futuristic 3D wireframe diagram of a satellite sensor rendering telemetry data",
-      label: "Live satellite sensors telemetry",
-      description: "Orbital sync"
-    }
-  ];
-
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
   const [showDemo, setShowDemo] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveImageIndex((prev) => (prev + 1) % showcaseImages.length);
-    }, 10000);
+      setActiveSlide((prev) => (prev + 1) % carouselSlides.length);
+    }, 7000);
     return () => clearInterval(interval);
   }, []);
 
@@ -477,84 +499,82 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
         </header>
 
         <div className="flex flex-col gap-10">
-          <div className="grid gap-10 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] xl:items-stretch">
-            <div className={`order-2 flex flex-col gap-6 rounded-3xl border p-8 transition ${palette.border} ${palette.card} xl:order-1`}>
-              <div className="flex items-center justify-between">
-                <h3 className="text-xs uppercase tracking-[0.35em]">Ingestion layer</h3>
-                <span className="text-xs uppercase tracking-[0.35em] opacity-60">v1.0</span>
-              </div>
-              <p className={`text-sm leading-relaxed ${palette.subtle}`}>
-                Plug in your TDMS, MDF, HDF5, or raw binary streams — Xpectra absorbs the format, so your pipeline survives every hardware revision.
-              </p>
-              <div className="grid gap-3">
-                {["TDMS · MDF · HDF5 · Binary", "CAN · SpaceWire · UART · Ethernet", "250+ channel DAQ ready"].map((item) => (
-                  <div key={item} className="relative overflow-hidden rounded-2xl border px-4 py-3 text-xs uppercase tracking-[0.3em] transition duration-500 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(0,0,0,0.18)] dark:hover:shadow-[0_14px_40px_rgba(0,0,0,0.45)]">
-                    <span>{item}</span>
-                    <span className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 hover:opacity-100" style={{ background: `radial-gradient(180px circle at 50% 20%, ${palette.glow}, transparent 70%)` }} />
-                  </div>
+          {/* Section label */}
+          <div className="flex items-center gap-3">
+            <span className="w-6 h-px bg-current opacity-40" />
+            <span className="text-sm font-mono uppercase tracking-[0.25em] opacity-60">All-in-one Platform for complex hardware testing</span>
+          </div>
+
+          {/* Carousel */}
+          <div className={`relative rounded-3xl border overflow-hidden transition ${palette.border} ${palette.card}`}>
+            {/* Header bar — counter + progress bars */}
+            <div className={`flex items-center justify-between px-8 py-6 border-b ${palette.border}`}>
+              <span className="text-base font-mono tracking-[0.2em] opacity-60">
+                {carouselSlides[activeSlide].counter}
+              </span>
+              <div className="flex gap-2">
+                {carouselSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveSlide(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                      idx === activeSlide ? "w-12 bg-white" : "w-8 bg-white/20 hover:bg-white/40"
+                    }`}
+                  />
                 ))}
               </div>
             </div>
 
-            <figure className="order-1 overflow-hidden rounded-[32px] border transition xl:order-2" style={{ position: "relative" }}>
-              <div className="relative w-full pb-[120%] sm:pb-[90%] lg:pb-[72%]">
-                {showcaseImages.map((img, idx) => (
+            {/* Slide area */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
+              {/* Image */}
+              <div className="relative h-64 lg:h-auto overflow-hidden bg-black">
+                {carouselSlides.map((slide, idx) => (
                   <img
                     key={idx}
-                    src={img.src}
-                    alt={img.alt}
+                    src={slide.image}
+                    alt={slide.imageAlt}
                     loading="lazy"
-                    className={`absolute inset-0 h-full w-full object-cover grayscale transition-all duration-1000 ease-out hover:scale-[1.03] ${idx === activeImageIndex ? "opacity-100" : "opacity-0"
-                      }`}
+                    className={`absolute inset-0 h-full w-full object-cover grayscale mix-blend-screen transition-opacity duration-700 ${
+                      idx === activeSlide ? "opacity-80" : "opacity-0"
+                    }`}
                   />
                 ))}
-                <span className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/50 mix-blend-soft-light dark:from-white/10" />
-                <div className="pointer-events-none absolute inset-0 border border-white/10 mix-blend-overlay dark:border-white/20" />
-                <span className="pointer-events-none absolute -left-16 top-16 h-40 w-40 rounded-full border border-white/15 opacity-70 motion-safe:animate-[hero3-glow_9s_ease-in-out_infinite]" />
-                <span className="pointer-events-none absolute -right-12 bottom-16 h-48 w-48 rounded-full border border-white/10 opacity-40 motion-safe:animate-[hero3-drift_12s_ease-in-out_infinite]" />
+                {/* Corner brackets */}
+                <span className="pointer-events-none absolute top-3 left-3 w-4 h-4 border-t border-l border-white/30" />
+                <span className="pointer-events-none absolute top-3 right-3 w-4 h-4 border-t border-r border-white/30" />
+                <span className="pointer-events-none absolute bottom-3 left-3 w-4 h-4 border-b border-l border-white/30" />
+                <span className="pointer-events-none absolute bottom-3 right-3 w-4 h-4 border-b border-r border-white/30" />
               </div>
-              <figcaption className={`flex items-center justify-between px-6 py-5 text-[10px] uppercase tracking-[0.2em] ${palette.subtle}`}>
-                <span className="truncate pr-4">{showcaseImages[activeImageIndex].label}</span>
-                <span className="flex items-center gap-2 shrink-0">
-                  <span className="h-1 w-6 sm:w-8 bg-current" />
-                  <span className="hidden sm:inline">{showcaseImages[activeImageIndex].description}</span>
-                </span>
-              </figcaption>
-            </figure>
 
-            <aside className={`order-3 flex flex-col gap-6 rounded-3xl border p-8 transition ${palette.border} ${palette.card} xl:order-3`}>
-              <div className="flex items-center justify-between">
-                <h3 className="text-xs uppercase tracking-[0.35em]">Test campaigns</h3>
-                <span className="text-xs uppercase tracking-[0.35em] opacity-60">Indexed</span>
-              </div>
-              <ul className="space-y-4">
-                {protocols.map((protocol, index) => (
-                  <li
-                    key={protocol.name}
-                    onMouseMove={setSpotlight}
-                    onMouseLeave={clearSpotlight}
-                    className="group relative overflow-hidden rounded-2xl border px-5 py-4 transition duration-500 hover:-translate-y-0.5"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div
-                      className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
-                      style={{
-                        background:
-                          theme === "dark"
-                            ? "radial-gradient(190px circle at var(--hero3-x, 50%) var(--hero3-y, 50%), rgba(255,255,255,0.18), transparent 72%)"
-                            : "radial-gradient(190px circle at var(--hero3-x, 50%) var(--hero3-y, 50%), rgba(17,17,17,0.12), transparent 72%)",
-                      }}
-                    />
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-semibold uppercase tracking-[0.25em]">{protocol.name}</h4>
-                      <span className="text-[10px] uppercase tracking-[0.35em] opacity-70">{protocol.status}</span>
+              {/* Content */}
+              <div className={`flex flex-col justify-between p-8 lg:p-10 border-t lg:border-t-0 lg:border-l ${palette.border}`}>
+                <div className="flex flex-col gap-5">
+                  <p className="text-xs font-mono uppercase tracking-[0.35em] opacity-50">
+                    {carouselSlides[activeSlide].badge}
+                  </p>
+                  <h3 className="text-3xl lg:text-4xl font-bold tracking-tight leading-snug">
+                    {carouselSlides[activeSlide].vertical}
+                  </h3>
+                  <p className={`text-base leading-relaxed ${palette.subtle}`}>
+                    {carouselSlides[activeSlide].description}
+                  </p>
+                </div>
+
+                {/* Technical specs footer */}
+                <div className={`mt-8 pt-6 border-t ${palette.border} grid grid-cols-2 gap-6`}>
+                  {carouselSlides[activeSlide].specs.map((spec) => (
+                    <div key={spec.label}>
+                      <div className="text-xs font-mono uppercase tracking-wider opacity-40 mb-1">{spec.label}</div>
+                      <div className="text-base font-semibold">{spec.value}</div>
                     </div>
-                    <p className={`mt-3 text-sm leading-relaxed ${palette.subtle}`}>{protocol.detail}</p>
-                  </li>
-                ))}
-              </ul>
-            </aside>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
+
           {children}
         </div>
       </section>
