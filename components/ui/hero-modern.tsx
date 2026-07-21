@@ -393,7 +393,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 Accelerate hardware testing <br />Compress launch timeline
               </h1>
               <p className={`max-w-2xl text-base md:text-2xl ${palette.subtle}`}>
-                Run more experiments in your test facility window <br /> Get live alerts and instant insights at the testbed. <br />Catch critical failures before disassembly
+                Run more experiments in your test facility window <br /> Get live alerts and instant insights at the testbed <br />Catch critical failures before disassembly
               </p>
             </div>
             {showDemo && createPortal(
