@@ -118,24 +118,19 @@ const DocsPage = () => {
 from xpectra import Client
 import pandas as pd
 
-# Connect with your API key (Settings → API Keys)
-client = Client(api_key="sk_xp_...")
+client  = Client(api_key="sk_xp_...")
+dataset = client.experiments.get("<experiment-uuid>") \
+               .datasets.get("My Dataset")
 
-# Navigate to your experiment and dataset
-experiment = client.experiments.get("<experiment-uuid>")
-dataset    = experiment.datasets.get("My Dataset")
-
-# Batch ingest — upload a CSV or any DataFrame
+# Batch — ingest a CSV or any DataFrame
 dataset.ingest(pd.read_csv("sensor_data.csv"))
 
-# Or stream live data from any generator (zero buffering)
+# Live — stream from any generator, zero buffering
 from datetime import datetime, timezone
-
-def sensor():
-    while True:
-        yield datetime.now(timezone.utc), "voltage_01", read_adc()
-
-dataset.ingest_live(sensor())`}
+dataset.ingest_live(
+    (datetime.now(timezone.utc), "voltage_01", v)
+    for v in sensor_feed()
+)`}
                       language="python"
                       theme="github-dark"
                     />

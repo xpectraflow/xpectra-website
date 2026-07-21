@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { DatabaseBackup, ShieldCheck, Combine, Workflow, Cpu, LayoutDashboard } from "lucide-react";
 
 
@@ -234,6 +235,7 @@ export function HeroModeWidget() {
   );
 }
 
+
 function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.ReactNode; headerRightWidget?: React.ReactNode }) {
   const [theme, setTheme] = useThemeSync();
   const sectionRef = useRef(null);
@@ -333,6 +335,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
   ];
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [showDemo, setShowDemo] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -340,6 +343,13 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     }, 10000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (!showDemo) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setShowDemo(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [showDemo]);
 
   return (
     <div className={`relative isolate min-h-screen w-full overflow-hidden transition-colors duration-700 ${palette.surface}`}>
@@ -387,36 +397,80 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 Maximize test facility ROI.
               </p>
             </div>
-            <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-6">
+            {showDemo && createPortal(
+              <div
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+                onClick={() => setShowDemo(false)}
+              >
+                <div
+                  className="w-full max-w-4xl aspect-video p-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    src="https://www.youtube.com/embed/yRJlbAfxUm4?rel=0&modestbranding=1&autoplay=1"
+                    title="Xpectra Demo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full rounded-lg"
+                  />
+                </div>
+                <button
+                  onClick={() => setShowDemo(false)}
+                  className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors"
+                  aria-label="Close video"
+                >
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                </button>
+              </div>,
+              document.body
+            )}
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-3">
+              {/* Primary — Request Pilot */}
               <a
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-4 rounded-full border px-6 py-4 text-sm font-bold uppercase tracking-[0.25em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] ${theme === "dark"
+                className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-3 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ${theme === "dark"
                   ? "bg-white text-black border-transparent"
                   : "bg-black text-white border-transparent"
-                  }`}
+                }`}
               >
-                <span className="flex items-center gap-2">
-                  <span className={`h-2 w-2 rounded-full animate-pulse ${theme === "dark" ? "bg-black" : "bg-white"}`} />
-                  Request Pilot
-                </span>
-                <span className="flex items-center group-hover:translate-x-1 transition-transform">
-                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1">
-                    <path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd"></path>
-                  </svg>
-                </span>
+                <span className={`h-1.5 w-1.5 rounded-full animate-pulse ${theme === "dark" ? "bg-black/50" : "bg-white/50"}`} />
+                Request Pilot
               </a>
-              <div className={`hidden sm:flex w-full sm:w-auto divide-x divide-white/10 overflow-hidden rounded-full border text-xs uppercase ${palette.border}`}>
-                {metrics.map((metric) => (
-                  <div key={metric.label} className="flex flex-1 flex-col items-center px-3 sm:px-4 py-2 sm:items-start">
-                    <span className={`text-[10px] tracking-[0.1em] whitespace-nowrap ${palette.subtle}`}>{metric.label}</span>
-                    <span className="text-sm sm:text-base font-semibold tracking-tight">{metric.value}</span>
-                  </div>
-                ))}
-              </div>
+
+              {/* Secondary — Watch Demo */}
+              <button
+                type="button"
+                onClick={() => setShowDemo(true)}
+                className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-2.5 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] ${theme === "dark"
+                  ? "border-white/20 text-white/70 hover:border-white/40 hover:text-white"
+                  : "border-black/20 text-black/60 hover:border-black/40 hover:text-black"
+                }`}
+              >
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <path d="M4.5 2.5L10.5 6.5L4.5 10.5V2.5Z" fill="currentColor"/>
+                </svg>
+                Watch Demo
+              </button>
+
+              {/* Tertiary — Try Xpectra */}
+              <a
+                href="https://app.xpectraflow.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-2.5 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] ${theme === "dark"
+                  ? "border-white/10 text-white/40 hover:border-white/20 hover:text-white/60"
+                  : "border-black/10 text-black/40 hover:border-black/20 hover:text-black/60"
+                }`}
+              >
+                Try Xpectra
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
             </div>
           </div>
 

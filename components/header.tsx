@@ -48,15 +48,15 @@ export const Header = () => {
             >
               <Github className="h-5 w-5" />
             </a>
-            <Link href="/#contact" aria-label="Request a pilot for Xpectra">
+            <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer" aria-label="Try Xpectra">
               <Button
                 size="sm"
                 className="bg-white text-black hover:bg-gray-100 font-semibold"
               >
-                Request pilot
+                Try Xpectra
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -95,13 +95,13 @@ export const Header = () => {
               <Github className="h-5 w-5" />
               GitHub
             </a>
-            <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} aria-label="Request a pilot for Xpectra" className="w-full pt-6">
+            <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} aria-label="Try Xpectra" className="w-full pt-6 block">
               <Button
                 className="w-full bg-white text-black font-bold py-8 rounded-2xl text-lg"
               >
-                Request pilot
+                Try Xpectra
               </Button>
-            </Link>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

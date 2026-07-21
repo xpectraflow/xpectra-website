@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import {
   ArrowRight, CheckCircle2, Mail, Database, ShieldCheck, Zap, BarChart3,
-  Activity, X, DatabaseBackup, Combine, Workflow, Cpu, LayoutDashboard, Play
+  Activity, X, DatabaseBackup, Combine, Workflow, Cpu, LayoutDashboard
 } from 'lucide-react';
+import { VideoPlayer } from '@/components/ui/video-thumbnail-player';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { SiteShell } from '@/components/site-shell';
@@ -76,48 +77,19 @@ const XpectraWebsite = () => {
     <SiteShell>
       {/* New Hero Section from 21st.dev */}
       <HeroOrbitDeck headerRightWidget={
-          <motion.div
-            id="demo-video"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 1 }}
-            className="relative w-full z-10 rounded-3xl border border-white/12 bg-white/6 p-3 sm:p-4 transition hover:bg-white/10"
-          >
-          <div className="absolute inset-0 rounded-3xl shadow-2xl bg-white blur-[10rem] opacity-[0.07] pointer-events-none" />
-          <div className="relative aspect-video w-full shadow-2xl rounded-2xl border border-white/10 overflow-hidden bg-black/40 backdrop-blur-3xl group cursor-pointer"
-             onClick={() => {
-              const container = document.getElementById('video-container');
-              if (container) {
-                container.innerHTML = `<iframe 
-                     src="https://www.youtube.com/embed/yRJlbAfxUm4?rel=0&modestbranding=1&autoplay=1" 
-                     title="Xpectra Demo"
-                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                     allowFullScreen
-                     class="absolute inset-0 w-full h-full"
-                   ></iframe>`;
-              }
-            }}
-          >
-            <div id="video-container" className="absolute inset-0 w-full h-full">
-              <Image
-                src="/hero.png"
-                alt="Xpectra Demo Video Preview"
-                fill
-                className="object-cover opacity-60 transition-opacity group-hover:opacity-80"
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Ripple effect rings */}
-                <div className="absolute w-20 h-20 rounded-full bg-white/30 motion-safe:animate-ping [animation-duration:3s]" />
-                <div className="absolute w-20 h-20 rounded-full bg-white/20 motion-safe:animate-ping [animation-duration:3s] [animation-delay:1.5s]" />
-                
-                <div className="relative z-10 w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play size={32} className="fill-white translate-x-1" />
-                </div>
-              </div>
-            </div>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+          className="relative w-full z-10"
+        >
+          <VideoPlayer
+            thumbnailUrl="/hero.png"
+            videoUrl="https://www.youtube.com/embed/yRJlbAfxUm4?rel=0&modestbranding=1&autoplay=1"
+            title="See Xpectra in Action"
+            description="From sensor to dashboard in under 5 minutes."
+            className="w-full rounded-3xl border border-white/10 shadow-2xl"
+          />
         </motion.div>
       }>
 
