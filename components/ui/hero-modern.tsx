@@ -140,30 +140,30 @@ export function HeroModeWidget() {
       strategy: {
         title: "Data Ingestion",
         description:
-          "Standardize data across all missions instantly without rewriting scripts. Your historical data, analysis-ready.",
+          "Every hardware revision breaks your ingestion scripts. Xpectra fixes the middle layer — your data survives revisions, so engineers analyze instead of rewrite.",
         items: [
           {
-            title: "Standardized ingestion",
+            title: "Script-free hardware revision",
             icon: Combine,
           },
           {
-            title: "Real-time data validation",
-            icon: ShieldCheck,
-          },
-          {
-            title: "Reusable pipelines",
-            icon: Workflow,
-          },
-          {
-            title: "Smart Data Lifecycle Management",
+            title: "TDMS / MDF / HDF5 / Binary",
             icon: DatabaseBackup,
           },
           {
-            title: "Hardware Diagnostics",
+            title: "250+ channel DAQ support",
             icon: Cpu,
           },
           {
-            title: "Real-time Observability",
+            title: "CAN / SpaceWire / Ethernet buses",
+            icon: Workflow,
+          },
+          {
+            title: "Real-time anomaly detection",
+            icon: ShieldCheck,
+          },
+          {
+            title: "Full test campaign audit trail",
             icon: LayoutDashboard,
           },
         ],
@@ -290,19 +290,19 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
 
   const protocols = [
     {
-      name: "Data Ingestion",
-      detail: "Connect any sensor and standardize data across tests instantly.",
+      name: "Engine Test Run",
+      detail: "400 GB of binary/TDMS telemetry per 20-min run — analysis-ready without a single script rewrite.",
+      status: "Live",
+    },
+    {
+      name: "FlatSat Campaign",
+      detail: "Multi-bus AIT data across SpaceWire, CAN, and Ethernet — unified in one queryable stream.",
       status: "Ready",
     },
     {
-      name: "Real-time Validation",
-      detail: "Schema, timestamps, dropouts caught instantly before they cascade.",
+      name: "OILS / HILS Session",
+      detail: "Software-in-the-loop and hardware-in-the-loop data timestamped and correlated side by side.",
       status: "Active",
-    },
-    {
-      name: "Data Querying",
-      detail: "Query events from terabytes of historical data in seconds.",
-      status: "Live",
     },
   ];
 
@@ -480,14 +480,14 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
           <div className="grid gap-10 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)_minmax(0,0.9fr)] xl:items-stretch">
             <div className={`order-2 flex flex-col gap-6 rounded-3xl border p-8 transition ${palette.border} ${palette.card} xl:order-1`}>
               <div className="flex items-center justify-between">
-                <h3 className="text-xs uppercase tracking-[0.35em]">Data Lifecycle</h3>
+                <h3 className="text-xs uppercase tracking-[0.35em]">Ingestion layer</h3>
                 <span className="text-xs uppercase tracking-[0.35em] opacity-60">v1.0</span>
               </div>
               <p className={`text-sm leading-relaxed ${palette.subtle}`}>
-                Designed for hardware engineering teams where data clarity outruns everything. Query events from terabytes of historical data in seconds using optimized models.
+                Plug in your TDMS, MDF, HDF5, or raw binary streams — Xpectra absorbs the format, so your pipeline survives every hardware revision.
               </p>
               <div className="grid gap-3">
-                {["Real-time data validation", "Standardized ingestion logic", "Unified data standards"].map((item) => (
+                {["TDMS · MDF · HDF5 · Binary", "CAN · SpaceWire · UART · Ethernet", "250+ channel DAQ ready"].map((item) => (
                   <div key={item} className="relative overflow-hidden rounded-2xl border px-4 py-3 text-xs uppercase tracking-[0.3em] transition duration-500 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(0,0,0,0.18)] dark:hover:shadow-[0_14px_40px_rgba(0,0,0,0.45)]">
                     <span>{item}</span>
                     <span className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 hover:opacity-100" style={{ background: `radial-gradient(180px circle at 50% 20%, ${palette.glow}, transparent 70%)` }} />
@@ -524,7 +524,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
 
             <aside className={`order-3 flex flex-col gap-6 rounded-3xl border p-8 transition ${palette.border} ${palette.card} xl:order-3`}>
               <div className="flex items-center justify-between">
-                <h3 className="text-xs uppercase tracking-[0.35em]">Test protocols</h3>
+                <h3 className="text-xs uppercase tracking-[0.35em]">Test campaigns</h3>
                 <span className="text-xs uppercase tracking-[0.35em] opacity-60">Indexed</span>
               </div>
               <ul className="space-y-4">

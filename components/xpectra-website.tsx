@@ -42,8 +42,8 @@ const XpectraWebsite = () => {
       xpectra: "Unified data standards across all missions"
     },
     {
-      today: "Engineers spend 2+ days per test rewriting initial scripts",
-      xpectra: "Standardized ingestion logic ready for reuse"
+      today: "Hardware revision on Monday, ingestion scripts broken by Tuesday",
+      xpectra: "Xpectra absorbs the revision — pipelines keep running"
     },
     {
       today: "Test results are tied to the engineer, not the platform",
@@ -136,7 +136,7 @@ const XpectraWebsite = () => {
           {/* LEFT — Original Problem Statement */}
           <div className="relative z-10 rounded-3xl border border-white/12 bg-white/6 p-8 transition hover:bg-white/10 flex flex-col justify-center">
             <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-white leading-tight mb-8">
-              Every delayed decision means another test cycle lost to bad data.
+              Every hardware revision breaks your data pipeline. Engineers spend days rewriting scripts instead of analyzing results.
             </h2>
             <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-xl">
               <span className="text-5xl font-black text-white mb-2 block">40%</span>
@@ -174,14 +174,14 @@ const XpectraWebsite = () => {
 
             <div className="grid sm:grid-cols-2 gap-4 relative">
               {[
-                "Faster Launch Readiness",
-                "Reduced Engineering Overhead",
-                "Faster Engineering Decisions",
-                "Cross-Mission Data Layer",
-                "Early Failure Detection",
-                "Persistent Engineering Knowledge",
-                "Higher Test Facility Utilization",
-                "Lower Cost Per Test Run",
+                "No script rewrites on hardware revision",
+                "400 GB test runs — zero custom code",
+                "Post-test analysis: 3 hours → 30 minutes",
+                "TDMS · MDF · Binary — one ingestion layer",
+                "FlatSat-to-orbit data continuity",
+                "Catch failures before disassembly",
+                "250-channel DAQ → dashboard in < 1 hour",
+                "Mission context queryable by the whole team",
               ].map((title, i) => (
                 <div
                   key={i}
