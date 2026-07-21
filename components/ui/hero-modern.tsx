@@ -390,11 +390,10 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
           <div className="min-w-0 space-y-8">
             <div className="space-y-6">
               <h1 className="text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-6xl">
-                Infrastructure for <br />mission critical sensor data
+                Accelerate hardware testing <br />Compress launch timeline
               </h1>
               <p className={`max-w-2xl text-base md:text-lg ${palette.subtle}`}>
-                Compress launch timelines. Accelerate test.<br />
-                Maximize test facility ROI.
+                Get live alerts and instant insights at the testbed. Catch critical failures before disassembly and run more experiments in your test facility window.
               </p>
             </div>
             {showDemo && createPortal(
@@ -419,7 +418,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                   className="absolute top-4 right-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition-colors"
                   aria-label="Close video"
                 >
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
                 </button>
               </div>,
               document.body
@@ -435,7 +434,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-3 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ${theme === "dark"
                   ? "bg-white text-black border-transparent"
                   : "bg-black text-white border-transparent"
-                }`}
+                  }`}
               >
                 <span className={`h-1.5 w-1.5 rounded-full animate-pulse ${theme === "dark" ? "bg-black/50" : "bg-white/50"}`} />
                 Request Pilot
@@ -448,10 +447,10 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-2.5 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] ${theme === "dark"
                   ? "border-white/20 text-white/70 hover:border-white/40 hover:text-white"
                   : "border-black/20 text-black/60 hover:border-black/40 hover:text-black"
-                }`}
+                  }`}
               >
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                  <path d="M4.5 2.5L10.5 6.5L4.5 10.5V2.5Z" fill="currentColor"/>
+                  <path d="M4.5 2.5L10.5 6.5L4.5 10.5V2.5Z" fill="currentColor" />
                 </svg>
                 Watch Demo
               </button>
@@ -464,11 +463,11 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                 className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-2.5 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] ${theme === "dark"
                   ? "border-white/10 text-white/40 hover:border-white/20 hover:text-white/60"
                   : "border-black/10 text-black/40 hover:border-black/20 hover:text-black/60"
-                }`}
+                  }`}
               >
                 Try Xpectra
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4.5M9.5 2.5V7.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </a>
             </div>
