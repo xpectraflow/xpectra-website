@@ -112,7 +112,7 @@ const XpectraWebsite = () => {
         <style>{`
           @keyframes xpectra-scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-25%); }
           }
           .xpectra-marquee { animation: xpectra-scroll 28s linear infinite; display: flex; }
           .xpectra-marquee:hover { animation-play-state: paused; }
@@ -122,7 +122,7 @@ const XpectraWebsite = () => {
         </p>
         <div className="overflow-hidden">
           <div className="xpectra-marquee">
-            {[0, 1].map((set) => (
+            {[0, 1, 2, 3].map((set) => (
               <div key={set} className="flex items-center shrink-0">
                 {[
                   {
