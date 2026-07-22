@@ -291,23 +291,31 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
   const carouselSlides = [
     {
       badge: "Propulsion",
-      counter: "01 / 05",
+      counter: "01 / 06",
       vertical: "Liquid & Solid Rocket Testing",
-      description:
-        "250 channels. 20-minute burns. 400 GB of binary telemetry per run. Management demands analysis in 3 hours, before the next team arrives at the stand. Xpectra standardizes binary-to-TDMS so your team analyzes, not reformats.",
+      bullets: [
+        "250 channels, 20-minute burn, 400 GB the moment the test stops",
+        "Binary-to-TDMS conversion takes as long as the run itself",
+        "Next team is already waiting at the stand",
+        "Xpectra gives insights under 10 mins so your team analyzes, not waiting for data",
+      ],
       specs: [
         { label: "Channels", value: "250+ per test run" },
-        { label: "Turnaround", value: "3h post-test ready" },
+        { label: "Turnaround", value: "10 min post-test ready" },
       ],
       image: "/propulsion.jpg",
       imageAlt: "Rocket propulsion test stand with engine firing",
     },
     {
       badge: "Aerospace",
-      counter: "02 / 05",
+      counter: "02 / 06",
       vertical: "Ground Engine Test Facility",
-      description:
-        "2–3 day analysis cycles per test run. Manual benchmarking against previous runs. LabVIEW scripts that break on every hardware revision. Xpectra vaults every run and surfaces comparisons automatically.",
+      bullets: [
+        "2 to 3 days to close out a single test run",
+        "Benchmarking against last month's data is a full day's job",
+        "LabVIEW scripts that work today break after the next hardware revision",
+        "Longer tests mean millions of data points with no fast way to query them",
+      ],
       specs: [
         { label: "Format", value: "TDMS · MDF · Binary" },
         { label: "Benchmarking", value: "Auto cross-run compare" },
@@ -317,10 +325,14 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     },
     {
       badge: "Space",
-      counter: "03 / 05",
-      vertical: "Satellite AIT & V&V",
-      description:
-        "FlatSat campaigns generate unique data every hour across SpaceWire, CAN, and Ethernet. Every hardware revision breaks your ingestion scripts. Teams stay up all night rewriting code before launch windows close. Xpectra fixes the middle layer so your AIT team tests, not debugs.",
+      counter: "03 / 06",
+      vertical: "Satellite AIT & VnV",
+      bullets: [
+        "FlatSat generates a new dataset every hour",
+        "SpaceWire, CAN, Ethernet. Three buses, three formats, three databases",
+        "Your team flew to the test site. The pipeline broke. They stayed up all night",
+        "Testers should be testing, not handling data",
+      ],
       specs: [
         { label: "Bus Protocols", value: "SpaceWire · CAN · Ethernet" },
         { label: "Compatible", value: "YAMCS · RocksDB" },
@@ -330,10 +342,14 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     },
     {
       badge: "Aerial",
-      counter: "04 / 05",
+      counter: "04 / 06",
       vertical: "UAV & Drone Fleets",
-      description:
-        "Your drones fly in the field. Your data lives in separate folders per flight, per pilot, per site. Custom firmware scripts break every hardware change. Xpectra aggregates all flight telemetry into one mission control dashboard, across drone brands and firmware versions.",
+      bullets: [
+        "Every pilot has their own folder. Every site has its own format",
+        "Firmware changed. Your logging script broke again",
+        "No single view of what flew, where, and what failed",
+        "Mission control across every drone you own, not just one brand",
+      ],
       specs: [
         { label: "Aggregation", value: "Multi-drone · Multi-site" },
         { label: "Bus", value: "CAN · Custom firmware" },
@@ -343,10 +359,14 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
     },
     {
       badge: "Mobility",
-      counter: "05 / 05",
+      counter: "05 / 06",
       vertical: "EV & Automotive Testing",
-      description:
-        "10+ VCU versions in the field. 15-day hardware redesign cycles. OTA updates to 2,000+ units over GSM. Every revision breaks your CAN bus logging scripts. Xpectra keeps your telemetry pipeline alive through every hardware iteration, from bench to fleet.",
+      bullets: [
+        "10+ VCU versions live in the field right now",
+        "Hardware redesign every 15 days, new revision breaks the CAN logger",
+        "OTA pushed to 2,000 units. How many got it? You don't know",
+        "GPS cold-start takes 6 minutes. Your protocol assumed 30 seconds",
+      ],
       specs: [
         { label: "Protocol", value: "CAN bus · OTA · GSM" },
         { label: "Coverage", value: "Bench → Fleet VCU" },
@@ -354,17 +374,35 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
       image: "/automobile.jpg",
       imageAlt: "Electric vehicle test bench with VCU and CAN bus analyzer",
     },
+    {
+      badge: "Robotics",
+      counter: "06 / 06",
+      vertical: "Industrial & Field Robotics",
+      bullets: [
+        "Every firmware update breaks your sensor integration again",
+        "Simulation data and real field data live in separate silos, no correlation",
+        "Multiple robot variants, multiple calibration files, zero unified view",
+        "Field failures show up in logs nobody reads until the post-incident review",
+      ],
+      specs: [
+        { label: "Integration", value: "ROS · CAN · Custom firmware" },
+        { label: "Data", value: "Sim + field unified" },
+      ],
+      image: "/robots.jpg",
+      imageAlt: "Industrial robot arm at test bench with sensor array",
+    },
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
   const [showDemo, setShowDemo] = useState(false);
+  const slidesCount = carouselSlides.length;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % carouselSlides.length);
+      setActiveSlide((prev) => (prev + 1) % slidesCount);
     }, 7000);
     return () => clearInterval(interval);
-  }, []);
+  }, [slidesCount]);
 
   useEffect(() => {
     if (!showDemo) return;
@@ -502,25 +540,24 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
           {/* Section label */}
           <div className="flex items-center gap-3">
             <span className="w-6 h-px bg-current opacity-40" />
-            <span className="text-sm font-mono uppercase tracking-[0.25em] opacity-60">All-in-one Platform for complex hardware testing</span>
+            <span className="text-lg font-mono uppercase tracking-[0.25em] opacity-60">All-in-one Platform for complex hardware testing</span>
           </div>
 
           {/* Carousel */}
           <div className={`relative rounded-3xl border overflow-hidden transition ${palette.border} ${palette.card}`}>
             {/* Header bar — counter + progress bars */}
-            <div className={`flex items-center justify-between px-8 py-6 border-b ${palette.border}`}>
-              <span className="text-base font-mono tracking-[0.2em] opacity-60">
+            <div className={`flex items-center justify-between gap-4 px-4 py-4 sm:px-8 sm:py-5 border-b ${palette.border}`}>
+              <span className="whitespace-nowrap text-sm sm:text-base font-mono tracking-[0.15em] sm:tracking-[0.2em] opacity-60">
                 {carouselSlides[activeSlide].counter}
               </span>
-              <div className="flex gap-2">
+              <div className="flex gap-1.5 sm:gap-2">
                 {carouselSlides.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveSlide(idx)}
                     aria-label={`Go to slide ${idx + 1}`}
-                    className={`h-1.5 rounded-full transition-all duration-500 ${
-                      idx === activeSlide ? "w-12 bg-white" : "w-8 bg-white/20 hover:bg-white/40"
-                    }`}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${idx === activeSlide ? "w-7 sm:w-12 bg-white" : "w-4 sm:w-8 bg-white/20 hover:bg-white/40"
+                      }`}
                   />
                 ))}
               </div>
@@ -536,9 +573,8 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
                     src={slide.image}
                     alt={slide.imageAlt}
                     loading="lazy"
-                    className={`absolute inset-0 h-full w-full object-cover grayscale mix-blend-screen transition-opacity duration-700 ${
-                      idx === activeSlide ? "opacity-80" : "opacity-0"
-                    }`}
+                    className={`absolute inset-0 h-full w-full object-cover grayscale mix-blend-screen transition-opacity duration-700 ${idx === activeSlide ? "opacity-80" : "opacity-0"
+                      }`}
                   />
                 ))}
                 {/* Corner brackets */}
@@ -549,21 +585,26 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
               </div>
 
               {/* Content */}
-              <div className={`flex flex-col justify-between p-8 lg:p-10 border-t lg:border-t-0 lg:border-l ${palette.border}`}>
-                <div className="flex flex-col gap-5">
+              <div className={`flex flex-col justify-between p-5 sm:p-8 lg:p-10 border-t lg:border-t-0 lg:border-l ${palette.border}`}>
+                <div className="flex flex-col gap-4 sm:gap-5">
                   <p className="text-xs font-mono uppercase tracking-[0.35em] opacity-50">
                     {carouselSlides[activeSlide].badge}
                   </p>
-                  <h3 className="text-3xl lg:text-4xl font-bold tracking-tight leading-snug">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight leading-snug">
                     {carouselSlides[activeSlide].vertical}
                   </h3>
-                  <p className={`text-base leading-relaxed ${palette.subtle}`}>
-                    {carouselSlides[activeSlide].description}
-                  </p>
+                  <ul className={`space-y-2 text-base leading-relaxed ${palette.subtle}`}>
+                    {carouselSlides[activeSlide].bullets.map((bullet, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="mt-[6px] shrink-0 h-1.5 w-1.5 rounded-full bg-current opacity-60" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
                 {/* Technical specs footer */}
-                <div className={`mt-8 pt-6 border-t ${palette.border} grid grid-cols-2 gap-6`}>
+                <div className={`mt-6 sm:mt-8 pt-5 sm:pt-6 border-t ${palette.border} grid grid-cols-2 gap-4 sm:gap-6`}>
                   {carouselSlides[activeSlide].specs.map((spec) => (
                     <div key={spec.label}>
                       <div className="text-xs font-mono uppercase tracking-wider opacity-40 mb-1">{spec.label}</div>
