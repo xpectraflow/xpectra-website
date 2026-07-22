@@ -108,105 +108,88 @@ const XpectraWebsite = () => {
       </HeroOrbitDeck>
 
       {/* Pilot Section */}
-      <section id="pilot" className="relative pt-0 -mt-8 pb-24 px-6 md:px-10 lg:px-16 xl:px-24 bg-[#040404] overflow-hidden">
+      <section id="pilot" className="relative py-24 px-6 md:px-10 lg:px-16 xl:px-24 bg-[#040404] overflow-hidden">
+        {/* Dotted background */}
         <div
-          className="pointer-events-none absolute inset-0 z-0 opacity-80"
+          className="pointer-events-none absolute inset-0 z-0 opacity-60"
           style={{
-            backgroundImage: "radial-gradient(circle at 25% 25%, rgba(250,250,250,0.08) 0.7px, transparent 1px), radial-gradient(circle at 75% 75%, rgba(250,250,250,0.08) 0.7px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle at 25% 25%, rgba(250,250,250,0.07) 0.7px, transparent 1px), radial-gradient(circle at 75% 75%, rgba(250,250,250,0.07) 0.7px, transparent 1px)",
             backgroundSize: "12px 12px",
             backgroundRepeat: "repeat",
           }}
         />
+        {/* Subtle blue center glow */}
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-blue-500/[0.06] blur-3xl z-0" />
 
-        <div className="w-full relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] gap-10 lg:items-stretch"
-          >
-            {/* Left side: Pilot Info */}
-            <div className="relative z-10 rounded-3xl border border-white/12 bg-white/6 p-8 transition hover:bg-white/10 flex flex-col h-full">
-              <div className="flex items-start justify-between gap-4 mb-10">
-                <div className="space-y-3 text-left">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/50">Action</p>
-                  <h2 className="text-xl font-semibold tracking-tight text-white">Start with a pilot</h2>
-                </div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          id="contact"
+          className="relative z-10 max-w-5xl mx-auto"
+        >
+          {/* Card */}
+          <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] px-8 py-10 md:px-12 md:py-12 flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-16 overflow-hidden">
+            {/* Top accent line */}
+            <div className="absolute top-0 left-16 right-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            {/* Inner glow */}
+            <div className="pointer-events-none absolute -top-20 left-1/4 w-80 h-40 rounded-full bg-blue-400/[0.08] blur-2xl" />
 
-              <div className="grid sm:grid-cols-2 gap-x-8 gap-y-10 mb-10">
-                {[
-                  { label: "Duration", value: "30-45 days, one sprint" },
-                  { label: "Scope", value: "One sensor workflow you already run" },
-                  { label: "Outcome", value: "Clear go/no-go with your own data" },
-                  { label: "Data", value: "Your historical data, analysis-ready" }
-                ].map((item, i) => (
-                  <div key={i} className="text-left">
-                    <div className="text-xs text-white/50 mb-2 font-mono uppercase tracking-wider">{item.label}</div>
-                    <div className="text-base font-medium text-white/90">{item.value}</div>
-                  </div>
+            {/* Left: text */}
+            <div className="flex flex-col gap-4 flex-1 min-w-0">
+              <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-white/30">Pilot Program</p>
+              <h2 className="text-4xl font-bold tracking-tight text-white leading-[1.15]">
+                Stop debugging the pipeline<br />Start debugging the hardware
+              </h2>
+              <p className="text-white/45 text-base">One pilot. Your sensor workflow. 30 days.</p>
+              <div className="flex flex-wrap gap-2 mt-1">
+                {["Your hardware & data", "Setup in days", "No lock in"].map((chip) => (
+                  <span key={chip} className="inline-flex items-center px-3 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.1em] border border-white/10 bg-white/[0.04] text-white/40 whitespace-nowrap">
+                    {chip}
+                  </span>
                 ))}
-              </div>
-
-              <div className="mt-auto pt-8 border-t border-white/10">
-                <p className="text-sm text-white/50 font-mono text-left leading-relaxed">
-                  No procurement cycles. No ripping out existing tools. <br /><span className="text-white mt-1 inline-block">We plug into your workflow.</span>
-                </p>
               </div>
             </div>
 
-            {/* Right side: Request Form */}
-            <div id="contact" className="relative z-10 rounded-3xl border border-white/12 bg-white/6 p-8 transition hover:bg-white/10 flex flex-col h-full">
-              <div className="flex items-start justify-between gap-4 mb-8">
-                <div className="space-y-3 text-left">
-                  <p className="text-xs uppercase tracking-[0.35em] text-white/50">Contact</p>
-                  <h2 className="text-xl font-semibold tracking-tight text-white">Request a pilot</h2>
-                </div>
-              </div>
+            {/* Divider */}
+            <div className="hidden lg:block shrink-0 w-px self-stretch bg-white/[0.08]" />
 
-              <p className="text-white/60 mb-8 text-sm">
-                Let's discuss how xpectra can strengthen your sensor operations.
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Right: form */}
+            <div className="flex flex-col justify-center gap-4 lg:w-[340px] shrink-0">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <Input
                   type="email"
-                  placeholder="Your email address"
+                  placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 h-12 rounded-xl px-4"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/25 h-12 rounded-xl px-4"
                 />
                 <Button
                   type="submit"
                   size="lg"
-                  className="w-full h-12 bg-white text-black hover:bg-gray-200 font-bold transition-all duration-300 rounded-xl"
+                  className="h-12 px-6 bg-white text-black hover:bg-gray-100 font-semibold transition-all duration-200 rounded-xl"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending..." : "Send request"}
-                  {!isSubmitting && <ArrowRight className="ml-2 h-5 w-5" />}
+                  {isSubmitting ? "Sending…" : "Request pilot"}
+                  {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
                 </Button>
-                {formStatus && (
-                  <div className={`mt-4 p-3 rounded-xl border text-sm ${formStatus.success ? 'bg-brand-emerald/10 border-brand-emerald/20 text-brand-emerald' : 'bg-brand-red/10 border-brand-red/20 text-brand-red'}`}>
-                    {formStatus.message}
-                  </div>
-                )}
               </form>
-
-              <div className="mt-auto pt-8 border-t border-transparent text-center">
-                <p className="text-white/40 text-xs mb-3 uppercase tracking-wider font-mono">Or email us directly</p>
-                <a
-                  href="mailto:arush@xpectraflow.com"
-                  className="text-white hover:text-white/80 transition-colors inline-flex items-center gap-2 font-medium text-sm"
-                >
-                  <Mail className="h-4 w-4" />
-                  arush@xpectraflow.com
-                </a>
-              </div>
+              {formStatus && (
+                <div className={`p-3 rounded-xl border text-sm text-center ${formStatus.success ? 'bg-brand-emerald/10 border-brand-emerald/20 text-brand-emerald' : 'bg-red-500/10 border-red-500/20 text-red-400'}`}>
+                  {formStatus.message}
+                </div>
+              )}
+              <a
+                href="mailto:arush@xpectraflow.com"
+                className="text-white/25 hover:text-white/55 transition-colors text-sm font-mono text-center"
+              >
+                arush@xpectraflow.com
+              </a>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
     </SiteShell>
