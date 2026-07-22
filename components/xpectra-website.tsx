@@ -107,6 +107,72 @@ const XpectraWebsite = () => {
         }>
       </HeroOrbitDeck>
 
+      {/* Infrastructure ribbon */}
+      <div className="relative bg-[#040404] border-y border-white/[0.05] py-6 overflow-hidden">
+        <style>{`
+          @keyframes xpectra-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .xpectra-marquee { animation: xpectra-scroll 28s linear infinite; display: flex; }
+          .xpectra-marquee:hover { animation-play-state: paused; }
+        `}</style>
+        <p className="text-center text-[9px] font-mono uppercase tracking-[0.45em] text-white/20 mb-5">
+          Deploy anywhere
+        </p>
+        <div className="overflow-hidden">
+          <div className="xpectra-marquee">
+            {[0, 1].map((set) => (
+              <div key={set} className="flex items-center gap-14 pr-14 shrink-0">
+                {/* AWS */}
+                <div className="flex items-center gap-2.5 text-white/30">
+                  <svg viewBox="0 0 40 24" fill="currentColor" className="h-5 w-auto shrink-0">
+                    <text x="0" y="17" fontSize="16" fontWeight="800" fontFamily="monospace" letterSpacing="1">AWS</text>
+                  </svg>
+                </div>
+                <span className="text-white/10 text-lg select-none">·</span>
+                {/* GCP */}
+                <div className="flex items-center gap-2.5 text-white/30">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0">
+                    <path d="M12 2L6 5.5v7L12 16l6-3.5v-7L12 2zm0 2.3l4.5 2.6v5.2L12 14.7 7.5 12.1V6.9L12 4.3z"/>
+                  </svg>
+                  <span className="text-sm font-medium whitespace-nowrap">Google Cloud</span>
+                </div>
+                <span className="text-white/10 text-lg select-none">·</span>
+                {/* Azure */}
+                <div className="flex items-center gap-2.5 text-white/30">
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0">
+                    <path d="M13.05 4.24L6.56 18.05l2.22.01 1.34-2.95h5.78l1.01 2.95H19L13.05 4.24zm-.1 3.68l2.07 5.54h-3.96l1.89-5.54z"/>
+                  </svg>
+                  <span className="text-sm font-medium">Azure</span>
+                </div>
+                <span className="text-white/10 text-lg select-none">·</span>
+                {/* On-Prem */}
+                <div className="flex items-center gap-2.5 text-white/30">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 shrink-0">
+                    <rect x="2" y="4" width="20" height="5" rx="1"/>
+                    <rect x="2" y="10" width="20" height="5" rx="1"/>
+                    <rect x="2" y="16" width="20" height="5" rx="1"/>
+                    <circle cx="18" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                    <circle cx="18" cy="12.5" r="1" fill="currentColor" stroke="none"/>
+                    <circle cx="18" cy="18.5" r="1" fill="currentColor" stroke="none"/>
+                  </svg>
+                  <span className="text-sm font-medium whitespace-nowrap">On-Premises</span>
+                </div>
+                <span className="text-white/10 text-lg select-none">·</span>
+                {/* Self-Hosted */}
+                <div className="flex items-center gap-2.5 text-white/30">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 shrink-0">
+                    <path d="M3 15a4 4 0 004 4h10a4 4 0 000-8h-.5A5.5 5.5 0 005.5 8.5 4 4 0 003 12v3z"/>
+                  </svg>
+                  <span className="text-sm font-medium whitespace-nowrap">Self-Hosted</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Pilot Section */}
       <section id="pilot" className="relative py-24 px-6 md:px-10 lg:px-16 xl:px-24 bg-[#040404] overflow-hidden">
         {/* Dotted background */}
