@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { DatabaseBackup, ShieldCheck, Combine, Workflow, Cpu, LayoutDashboard } from "lucide-react";
 
@@ -236,7 +236,7 @@ export function HeroModeWidget() {
 }
 
 
-function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.ReactNode; headerRightWidget?: React.ReactNode }) {
+function HeroOrbitDeck({ children, headerRightWidget, problemStatement }: { children?: React.ReactNode; headerRightWidget?: React.ReactNode; problemStatement?: React.ReactNode }) {
   const [theme, setTheme] = useThemeSync();
   const sectionRef = useRef(null);
 
@@ -324,7 +324,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
       imageAlt: "Ground engine test facility sensor array rendering live telemetry",
     },
     {
-      badge: "Space",
+      badge: "Satellite",
       counter: "03 / 06",
       vertical: "Satellite AIT & VnV",
       bullets: [
@@ -337,7 +337,7 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
         { label: "Bus Protocols", value: "SpaceWire · CAN · Ethernet" },
         { label: "Compatible", value: "YAMCS · RocksDB" },
       ],
-      image: "/satellite-sensor.png",
+      image: "/satellite.webp",
       imageAlt: "Satellite FlatSat test bench with multi-bus data streams",
     },
     {
@@ -396,13 +396,19 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
   const [activeSlide, setActiveSlide] = useState(0);
   const [showDemo, setShowDemo] = useState(false);
   const slidesCount = carouselSlides.length;
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startAutoScroll = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slidesCount);
     }, 7000);
-    return () => clearInterval(interval);
   }, [slidesCount]);
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [startAutoScroll]);
 
   useEffect(() => {
     if (!showDemo) return;
@@ -537,6 +543,9 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
         </header>
 
         <div className="flex flex-col gap-10">
+          {/* Problem statement — just below hero */}
+          {problemStatement}
+
           {/* Section label */}
           <div className="flex items-center gap-3">
             <span className="w-6 h-px bg-current opacity-40" />
@@ -545,22 +554,21 @@ function HeroOrbitDeck({ children, headerRightWidget }: { children?: React.React
 
           {/* Carousel */}
           <div className={`relative rounded-3xl border overflow-hidden transition ${palette.border} ${palette.card}`}>
-            {/* Header bar — counter + progress bars */}
-            <div className={`flex items-center justify-between gap-4 px-4 py-4 sm:px-8 sm:py-5 border-b ${palette.border}`}>
-              <span className="whitespace-nowrap text-sm sm:text-base font-mono tracking-[0.15em] sm:tracking-[0.2em] opacity-60">
-                {carouselSlides[activeSlide].counter}
-              </span>
-              <div className="flex gap-1.5 sm:gap-2">
-                {carouselSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveSlide(idx)}
-                    aria-label={`Go to slide ${idx + 1}`}
-                    className={`h-1.5 rounded-full transition-all duration-500 ${idx === activeSlide ? "w-7 sm:w-12 bg-white" : "w-4 sm:w-8 bg-white/20 hover:bg-white/40"
-                      }`}
-                  />
-                ))}
-              </div>
+            {/* Tab bar — all verticals visible and selectable */}
+            <div className={`flex overflow-x-auto border-b ${palette.border}`} style={{ scrollbarWidth: 'none' }}>
+              {carouselSlides.map((slide, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => { setActiveSlide(idx); startAutoScroll(); }}
+                  className={`shrink-0 px-5 py-4 text-xs font-mono uppercase tracking-[0.18em] whitespace-nowrap transition-all duration-200 border-b-2 -mb-px ${
+                    idx === activeSlide
+                      ? "border-white text-white"
+                      : `border-transparent opacity-40 hover:opacity-70`
+                  }`}
+                >
+                  {slide.badge}
+                </button>
+              ))}
             </div>
 
             {/* Slide area */}
