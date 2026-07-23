@@ -346,7 +346,7 @@ const StatisticsMockup = ({ videoSrc, poster }: MockupProps) => {
    ========================================================================= */
 const RealtimeMockup = ({ videoSrc, poster }: MockupProps) => {
     return (
-        <VideoPlaceholder title="combuster testing demo" tag="Real-Time Engine" videoSrc={videoSrc} poster={poster ?? "/dashboard-preview.png"}>
+        <VideoPlaceholder title="Propeller test" tag="Real-Time Engine" videoSrc={videoSrc} poster={poster ?? "/realtime-preview.png"}>
             <div className="space-y-3 font-mono text-xs">
                 <div className="flex items-center justify-between text-[11px] border-b border-white/10 pb-2">
                     <span className="text-white/50">Ingestion Protocols: <strong className="text-white">gRPC / MQTT / Kafka</strong></span>
