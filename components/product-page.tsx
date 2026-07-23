@@ -929,9 +929,10 @@ const ProductPage = () => {
                                 href="https://github.com/xpectraflow/xpectra"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-8 py-3.5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors font-semibold text-xs tracking-[0.15em] uppercase flex items-center justify-center gap-2"
+                                className="px-7 py-4 rounded-full border border-white/20 bg-white/[0.04] text-white hover:bg-white/10 transition-all font-semibold text-xs tracking-[0.15em] uppercase flex items-center justify-center gap-2.5 hover:scale-105 cursor-pointer shadow-2xl"
                             >
-                                Read Documentation
+                                <Github className="w-4 h-4 text-white shrink-0" />
+                                <span>VIEW ON GITHUB →</span>
                             </a>
                         </div>
                     </div>
