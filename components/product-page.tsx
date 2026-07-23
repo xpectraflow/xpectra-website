@@ -380,52 +380,62 @@ const RealtimeMockup = ({ videoSrc, poster }: MockupProps) => {
 const GithubMockup = ({ videoSrc, poster }: MockupProps) => {
     return (
         <VideoPlaceholder title="github.com/xpectraflow/xpectra" tag="Open Source" videoSrc={videoSrc} poster={poster}>
-            <div className="space-y-3 font-mono text-xs">
-                {/* Repository Header */}
-                <div className="flex items-center justify-between p-3.5 bg-black/60 rounded-xl border border-white/10">
-                    <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
-                            <Github className="w-5 h-5 text-white" />
+            <div className="space-y-3 font-mono text-xs relative overflow-hidden">
+                {/* Subtle Faded GitHub Octocat Watermark */}
+                <Github className="absolute -right-8 -bottom-10 w-48 h-48 text-white/[0.04] pointer-events-none -rotate-12" />
+
+                {/* Repository Header with Glowing GitHub Logo */}
+                <div className="flex items-center justify-between p-3.5 bg-black/70 rounded-2xl border border-white/15 relative z-10 backdrop-blur-md">
+                    <div className="flex items-center gap-3.5">
+                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/20 via-white/10 to-white/5 border border-white/25 flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.15)] shrink-0 transition-transform group-hover:scale-105">
+                            <Github className="w-6 h-6 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" />
                         </div>
                         <div>
                             <div className="flex items-center gap-2">
-                                <span className="font-bold text-white text-sm">xpectraflow / xpectra</span>
-                                <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-white/60 font-semibold border border-white/10">Public</span>
+                                <span className="font-bold text-white text-sm tracking-wide flex items-center gap-1.5">
+                                    xpectraflow / xpectra
+                                </span>
+                                <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-white/80 font-semibold border border-white/20 flex items-center gap-1">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                    Public Repo
+                                </span>
                             </div>
-                            <p className="text-[10px] text-white/50 mt-0.5">High-Performance Open Source Telemetry Core SDK</p>
+                            <p className="text-[10px] text-white/50 mt-0.5 font-sans">High-Performance Open Source Telemetry Core SDK</p>
                         </div>
                     </div>
                     <a
                         href="https://github.com/xpectraflow/xpectra"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-black font-bold text-xs hover:bg-slate-200 transition-all shrink-0"
+                        className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white text-black font-bold text-xs hover:bg-slate-100 transition-all shadow-[0_0_15px_rgba(255,255,255,0.25)] hover:scale-105 shrink-0 cursor-pointer"
                     >
-                        <Sparkles className="w-3.5 h-3.5 text-black" />
-                        <span>★ 2.4k</span>
+                        <Github className="w-4 h-4 text-black" />
+                        <span>★ 2.4k Star</span>
                     </a>
                 </div>
 
                 {/* Grid Status Metrics */}
-                <div className="grid grid-cols-2 gap-2 text-[11px]">
-                    <div className="p-2.5 bg-black/60 rounded-xl border border-white/10 text-white/80">
+                <div className="grid grid-cols-2 gap-2 text-[11px] relative z-10">
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10 text-white/80">
                         <span className="text-white/40 block text-[10px] uppercase tracking-wider">Latest Release</span>
-                        <strong className="text-emerald-400 font-bold">v2.4.0-stable</strong>
+                        <strong className="text-emerald-400 font-bold text-xs mt-0.5 block">v2.4.0-stable</strong>
                         <span className="text-[9px] text-white/40 block mt-0.5">Apache Arrow 16.0 core</span>
                     </div>
-                    <div className="p-2.5 bg-black/60 rounded-xl border border-white/10 text-white/80">
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10 text-white/80">
                         <span className="text-white/40 block text-[10px] uppercase tracking-wider">CI/CD Pipeline</span>
-                        <strong className="text-white font-bold flex items-center gap-1 mt-0.5">
-                            <Check className="w-3 h-3 text-emerald-400" /> Passing 100%
+                        <strong className="text-white font-bold text-xs flex items-center gap-1 mt-0.5">
+                            <Check className="w-3.5 h-3.5 text-emerald-400" /> Passing 100%
                         </strong>
                         <span className="text-[9px] text-white/40 block mt-0.5">Ubuntu / macOS / Windows</span>
                     </div>
                 </div>
 
                 {/* Language Breakdown Bar */}
-                <div className="p-2.5 bg-black/60 rounded-xl border border-white/10 space-y-1.5">
+                <div className="p-3 bg-black/60 rounded-xl border border-white/10 space-y-1.5 relative z-10">
                     <div className="flex justify-between text-[10px] text-white/60">
-                        <span>Languages</span>
+                        <span className="flex items-center gap-1.5 text-white/80 font-semibold">
+                            <Github className="w-3 h-3 text-white/60" /> Core Stack Languages
+                        </span>
                         <span className="text-white/40">Rust 78% · C++ 14% · Python 8%</span>
                     </div>
                     <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden flex gap-0.5">
@@ -435,10 +445,13 @@ const GithubMockup = ({ videoSrc, poster }: MockupProps) => {
                     </div>
                 </div>
 
-                {/* Terminal Quick Clone */}
-                <div className="p-2.5 bg-black/80 rounded-xl border border-white/10 flex items-center justify-between text-[10px]">
-                    <span className="text-white/40">$ <span className="text-white">git clone https://github.com/xpectraflow/xpectra.git</span></span>
-                    <span className="text-white/40 text-[9px] uppercase tracking-wider">MIT License</span>
+                {/* Terminal Quick Clone with GitHub Icon */}
+                <div className="p-3 bg-black/80 rounded-xl border border-white/10 flex items-center justify-between text-[10px] relative z-10">
+                    <div className="flex items-center gap-2">
+                        <Github className="w-3.5 h-3.5 text-white/50" />
+                        <span className="text-white/40">$ <span className="text-white">git clone https://github.com/xpectraflow/xpectra.git</span></span>
+                    </div>
+                    <span className="text-emerald-400 font-semibold text-[9px] uppercase tracking-wider">MIT License</span>
                 </div>
             </div>
         </VideoPlaceholder>
