@@ -1,339 +1,935 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { SiteShell } from '@/components/site-shell';
 import { Button } from '@/components/ui/button';
 import {
-    ArrowRight, ChevronDown, CheckCircle2, Server, Database, Activity,
-    ShieldCheck, Zap, BarChart3, DatabaseBackup, Combine, Workflow, Cpu, LayoutDashboard
+    ArrowRight, ChevronRight, Check, Code2, Database, Activity, Play, Pause, FastForward,
+    RotateCcw, Search, Terminal, Cpu, Zap, GitBranch, Github, Layers, Server, Shield,
+    Sparkles, Sliders, BarChart3, LineChart, FileText, ArrowUpRight, Copy, Share2, Globe,
+    Lock, Workflow, Radio, HardDrive, RefreshCw, Box, ExternalLink, Calculator, Gauge
 } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
-const FAQItem = ({ question, answer, defaultOpen = false }: { question: string, answer: string, defaultOpen?: boolean }) => {
-    const [isOpen, setIsOpen] = useState(defaultOpen);
+function cn(...classes: (string | boolean | undefined)[]) {
+    return classes.filter(Boolean).join(' ');
+}
+
+/* =========================================================================
+   STICKY SECTION NAVIGATION (xpectraflow.com Dark Glassmorphism Theme)
+   ========================================================================= */
+const SectionNav = () => {
+    const [activeSection, setActiveSection] = useState('formats');
+
+    const navItems = [
+        { id: 'formats', label: 'Formats' },
+        { id: 'playback', label: 'Playback' },
+        { id: 'playground', label: 'Playground' },
+        { id: 'statistics', label: 'Statistics' },
+        { id: 'realtime', label: 'Real-Time' },
+        { id: 'opensource', label: 'Open Source' },
+        { id: 'architecture', label: 'Architecture' },
+    ];
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = navItems.map(item => document.getElementById(item.id));
+            const scrollPos = window.scrollY + 200;
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
+                if (section && section.offsetTop <= scrollPos) {
+                    setActiveSection(navItems[i].id);
+                    break;
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <div className="border-b border-border-subtle">
-            <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full py-6 flex justify-between items-center text-left group"
-            >
-                <span className="text-xl font-medium group-hover:text-white transition-colors">{question}</span>
-                <ChevronDown className={cn("transition-transform duration-300", isOpen && "rotate-180")} />
-            </button>
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                    >
-                        <p className="pb-6 text-white/60 leading-relaxed max-w-2xl">
-                            {answer}
-                        </p>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
-    );
-};
-
-const ArchitectureDiagram = () => {
-    return (
-        <div className="w-full p-12 md:p-20 bg-card-bg/40 border border-white/5 rounded-[3rem] backdrop-blur-3xl overflow-hidden relative group">
-            {/* Background Atmosphere */}
-            <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-brand-orange/5 blur-[120px] rounded-full -mr-[20rem] -mt-[20rem] animate-pulse" />
-            <div className="absolute bottom-0 left-0 w-[40rem] h-[40rem] bg-brand-blue/5 blur-[120px] rounded-full -ml-[20rem] -mb-[20rem] animate-pulse" />
-
-            <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between w-full h-full">
-                {/* Node 1: Sensor Stack */}
-                <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-20 h-20 p-4 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 relative overflow-hidden group/node transition-all duration-500 hover:border-white/20 hover:bg-white/[0.05]">
-                        <Image
-                            src="/labview.webp"
-                            alt="LabVIEW"
-                            fill
-                            className="object-contain p-3 grayscale group-hover/node:grayscale-0 transition-all duration-500 opacity-50 group-hover/node:opacity-100"
-                        />
-                    </div>
-                    <div className="text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Sensor Stack</p>
-                        <p className="text-[9px] font-mono text-white/30 uppercase mt-1 tracking-wider whitespace-nowrap">NI-DAQ / LabVIEW</p>
-                    </div>
+        <div className="sticky top-16 z-30 w-full bg-[#050505]/90 backdrop-blur-xl border-b border-white/10 shadow-2xl">
+            <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
+                <div className="flex items-center space-x-2 overflow-x-auto no-scrollbar py-2">
+                    {navItems.map(item => (
+                        <a
+                            key={item.id}
+                            href={`#${item.id}`}
+                            className={cn(
+                                "px-4 py-1.5 rounded-full text-xs font-mono uppercase tracking-[0.15em] transition-all whitespace-nowrap",
+                                activeSection === item.id
+                                    ? "bg-white text-black font-semibold shadow-md"
+                                    : "text-white/60 hover:text-white hover:bg-white/10"
+                            )}
+                        >
+                            {item.label}
+                        </a>
+                    ))}
                 </div>
-
-                {/* Connector 1 */}
-                <div className="hidden md:flex items-center flex-1 md:mt-10">
-                    <div className="h-px w-full bg-white/80" />
-                </div>
-
-                {/* Node 2: Xpectra Core */}
-                <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="relative w-20 h-20 flex items-center justify-center">
-                        <div className="absolute inset-0 bg-white/10 blur-2xl rounded-full opacity-30" />
-                        <div className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-2xl shadow-white/10 p-3 relative z-10 transition-transform duration-500 hover:scale-105">
-                            <Image src="/logo.svg" alt="Xpectra Hub" width={60} height={60} className="brightness-100" />
-                        </div>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white">Xpectra Core</p>
-                        <p className="text-[9px] font-mono text-white/40 uppercase mt-1 tracking-widest whitespace-nowrap">Xpectra Engine</p>
-                    </div>
-                </div>
-
-                {/* Connector 2 */}
-                <div className="hidden md:flex items-center flex-1 md:mt-10">
-                    <div className="h-px w-full bg-white/80" />
-                </div>
-
-                {/* Node 3: Storage */}
-                <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-20 h-20 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
-                        <Database className="text-white/40" size={24} />
-                    </div>
-                    <div className="text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Storage</p>
-                        <p className="text-[9px] font-mono text-white/30 uppercase mt-1 tracking-wider whitespace-nowrap">XpectraDB</p>
-                    </div>
-                </div>
-
-                {/* Connector 3 */}
-                <div className="hidden md:flex items-center flex-1 md:mt-10">
-                    <div className="h-px w-full bg-white/80" />
-                </div>
-
-                {/* Node 4: Console */}
-                <div className="flex flex-col items-center gap-4 w-[120px]">
-                    <div className="w-20 h-20 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/10 hover:border-white/20 hover:bg-white/[0.05] transition-all duration-500">
-                        <Server className="text-white/40" size={24} />
-                    </div>
-                    <div className="text-center">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Console</p>
-                        <p className="text-[9px] font-mono text-white/30 uppercase mt-1 tracking-wider whitespace-nowrap">Web UI</p>
-                    </div>
+                <div className="hidden md:flex items-center gap-3 font-mono text-[11px] text-white/40 uppercase tracking-widest">
+                    <span className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        API v2.4 Active
+                    </span>
                 </div>
             </div>
         </div>
     );
 };
 
-const FeatureGrid = () => {
-    const features = [
-        {
-            id: "ingestion",
-            icon: Combine,
-            title: "Standardized Ingestion",
-            description: "Across sensors and missions. No more rewriting scripts every experiment."
-        },
-        {
-            id: "validation",
-            icon: ShieldCheck,
-            title: "Real-time Validation",
-            description: "Schema, timestamps, dropouts caught instantly before they cascade."
-        },
-        {
-            id: "observability",
-            icon: LayoutDashboard,
-            title: "Dynamic Observability",
-            description: "Interactive dashboards that let you choose what you want to see, when you want it."
-        },
-        {
-            id: "diagnostics",
-            icon: Cpu,
-            title: "Hardware Diagnostics",
-            description: "Track sensor performance over test cycles to identify statistical drift."
-        },
-        {
-            id: "pipelines",
-            icon: Workflow,
-            title: "Reusable Pipelines",
-            description: "Build ingestion logic once and reuse it across every future experiment."
-        },
-        {
-            id: "query",
-            icon: DatabaseBackup,
-            title: "Historical Query Engine",
-            description: "Query terabytes of historical telemetry in sub-second timeframes."
-        }
-    ];
+/* =========================================================================
+   MOCKUP CONTAINER (16:9 GIF / Video Placeholder - xpectraflow.com Frame)
+   ========================================================================= */
+interface VideoPlaceholderProps {
+    title: string;
+    tag: string;
+    videoSrc?: string;
+    poster?: string;
+    children?: React.ReactNode;
+}
+
+const VideoPlaceholder = ({ title, tag, videoSrc, poster, children }: VideoPlaceholderProps) => {
+    const isYouTube = videoSrc && (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be'));
+    const isVimeo = videoSrc && videoSrc.includes('vimeo.com');
+
+    if (poster && !videoSrc) {
+        return (
+            <div className="w-full aspect-video rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0c0d10]/95 relative group transition-all duration-500 hover:border-white/25 flex items-center justify-center">
+                <img
+                    src={poster}
+                    alt={title}
+                    className="w-full h-full object-contain bg-black/90"
+                />
+            </div>
+        );
+    }
 
     return (
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, i) => (
-                <motion.div
-                    key={feature.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1, duration: 0.6 }}
-                >
-                    <Card className="h-full p-8 bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-                        <CardHeader className="p-0 pb-4">
-                            <div className="mb-4 p-3 w-fit rounded-lg bg-white/10 border border-white/20">
-                                <feature.icon className="h-6 w-6 text-white" />
-                            </div>
-                            <CardTitle className="text-xl text-white">{feature.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="p-0">
-                            <CardDescription className="text-white/60 leading-relaxed text-sm">{feature.description}</CardDescription>
-                        </CardContent>
-                    </Card>
-                </motion.div>
-            ))}
+        <div className="w-full aspect-video rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl bg-[#0c0d10]/95 relative group transition-all duration-500 hover:border-white/25">
+            {/* Header bar of developer tool */}
+            <div className="h-10 bg-white/[0.03] border-b border-white/10 px-5 flex items-center justify-between text-xs text-white/50 font-mono z-10 relative">
+                <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                        <div className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                    </div>
+                    <span className="ml-3 text-white/80 font-medium text-[11px] tracking-wide">{title}</span>
+                </div>
+                <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 text-[10px] font-mono font-semibold uppercase tracking-widest">
+                    {tag}
+                </span>
+            </div>
+
+            {/* Content: Video / GIF or Fallback Mockup UI */}
+            {videoSrc ? (
+                <div className="w-full h-[calc(100%-2.5rem)] relative overflow-hidden bg-black flex items-center justify-center">
+                    {isYouTube || isVimeo ? (
+                        <iframe
+                            src={videoSrc}
+                            title={title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full h-full border-0"
+                        />
+                    ) : (
+                        <video
+                            src={videoSrc}
+                            poster={poster}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
+                    )}
+                </div>
+            ) : (
+                <div className="p-6 h-[calc(100%-2.5rem)] relative flex flex-col justify-between overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(#ffffff12_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
+                    {children}
+
+                    {/* Corner Video Label Indicator */}
+                    <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                        <VideoIcon className="w-3.5 h-3.5 text-white/80" />
+                        <span>Video / GIF Supported</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
 
-function cn(...classes: (string | boolean | undefined)[]) {
-    return classes.filter(Boolean).join(' ');
+const VideoIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" {...props}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+    </svg>
+);
+
+interface MockupProps {
+    videoSrc?: string;
+    poster?: string;
 }
 
+/* =========================================================================
+   MOCKUP 1: FORMAT DETECTION & PARSING PIPELINE
+   ========================================================================= */
+const FormatMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="xpectra-ingest --detect-schema" tag="Format Engine" videoSrc={videoSrc ?? "/video.engin.mov"} poster={poster}>
+            <div className="space-y-3 font-mono text-xs text-white/80">
+                <div className="flex items-center justify-between text-[11px] text-white/50 border-b border-white/10 pb-2">
+                    <span>Input Stream: <strong className="text-white">flight_campaign_04.tdms</strong></span>
+                    <span className="text-emerald-400 font-semibold">✓ Auto-Detected Schema</span>
+                </div>
+                <div className="space-y-2 text-[11px]">
+                    <div className="flex items-center gap-2 text-white/70">
+                        <span className="text-white/40">01</span>
+                        <span>Ingesting TDMS Binary Header (NI-DAQmx 2026.1)</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-white/70">
+                        <span className="text-white/40">02</span>
+                        <span>Extracted 256 telemetry channels @ 100 kHz sample rate</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                        <span>03</span>
+                        <span>Converted byte stream -&gt; Apache Arrow Columnar Chunk [Zero-Copy]</span>
+                    </div>
+                </div>
+
+                <div className="pt-2 grid grid-cols-3 gap-2 text-center">
+                    <div className="p-2.5 rounded-xl bg-black/60 border border-white/10 text-[10px]">
+                        <span className="text-white/40 block uppercase tracking-wider">Channels</span>
+                        <strong className="text-white font-bold text-xs">256 CH</strong>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-black/60 border border-white/10 text-[10px]">
+                        <span className="text-white/40 block uppercase tracking-wider">Sampling</span>
+                        <strong className="text-white font-bold text-xs">100,000 Hz</strong>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-black/60 border border-white/10 text-[10px]">
+                        <span className="text-white/40 block uppercase tracking-wider">Dropouts</span>
+                        <strong className="text-emerald-400 font-bold text-xs">0.00 %</strong>
+                    </div>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MOCKUP 2: INTERACTIVE PLAYBACK CONTROL UI
+   ========================================================================= */
+const PlaybackMockup = ({ videoSrc, poster }: MockupProps) => {
+    const [progress, setProgress] = useState(38);
+    const [isPlaying, setIsPlaying] = useState(true);
+
+    useEffect(() => {
+        if (!isPlaying) return;
+        const interval = setInterval(() => {
+            setProgress(p => (p >= 100 ? 0 : p + 1.2));
+        }, 100);
+        return () => clearInterval(interval);
+    }, [isPlaying]);
+
+    return (
+        <VideoPlaceholder title="Telemetry Playback --session-id=4821" tag="Playback UI" videoSrc={videoSrc} poster={poster ?? "/dashboard-preview.png"}>
+            <div className="flex flex-col justify-between h-full font-mono text-xs">
+                <div className="flex items-center justify-between text-[11px] text-white/50">
+                    <span>TIMECODE: <strong className="text-white">00:14:{(progress * 0.6).toFixed(2)}s</strong></span>
+                    <span className="text-white/80 font-bold">SPEED: 1.0x (REALTIME)</span>
+                </div>
+
+                {/* Animated multi-channel signal waveform */}
+                <div className="h-24 bg-black/60 rounded-xl border border-white/10 p-3 flex flex-col justify-end relative overflow-hidden">
+                    <div className="absolute top-2 left-2 text-[10px] text-white/40">Ch_1: Vibration_X | Ch_2: Temp_Core</div>
+                    <div className="w-full h-14 flex items-end gap-1">
+                        {Array.from({ length: 36 }).map((_, i) => {
+                            const val = Math.abs(Math.sin((i + progress / 2) * 0.3)) * 80 + 15;
+                            return (
+                                <div
+                                    key={i}
+                                    style={{ height: `${val}%` }}
+                                    className={cn(
+                                        "flex-1 rounded-t transition-all duration-75",
+                                        i * 2.77 <= progress ? "bg-white" : "bg-white/15"
+                                    )}
+                                />
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Control bar */}
+                <div className="flex items-center gap-3 pt-1">
+                    <button
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className="w-8 h-8 rounded-full bg-white hover:bg-slate-200 text-black flex items-center justify-center transition-transform hover:scale-105 shrink-0"
+                    >
+                        {isPlaying ? <Pause className="w-3.5 h-3.5 fill-black" /> : <Play className="w-3.5 h-3.5 fill-black ml-0.5" />}
+                    </button>
+                    <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-white" style={{ width: `${progress}%` }} />
+                    </div>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MOCKUP 3: DATA PLAYGROUND CODE NOTEBOOK
+   ========================================================================= */
+const PlaygroundMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="Xpectra Playground --notebook.ipynb" tag="Data Playground" videoSrc={videoSrc} poster={poster ?? "/playground-payoff.png"}>
+            <div className="space-y-3 font-mono text-xs">
+                {/* Code Cell */}
+                <div className="p-3 rounded-xl bg-black/60 border border-white/10 space-y-1">
+                    <p className="text-white/40 text-[10px]">In [1]: <span className="text-white font-bold">import</span> xpectra <span className="text-white font-bold">as</span> xp</p>
+                    <p className="text-white/90 text-[11px]">
+                        df = xp.query(<span className="text-emerald-400">&quot;SELECT timestamp, vibe_x, temp_a FROM 'test_run_09'&quot;</span>)
+                    </p>
+                    <p className="text-white/90 text-[11px]">
+                        df.<span className="text-yellow-300">plot_cross_channel</span>(x=<span className="text-emerald-400">&quot;timestamp&quot;</span>, window=<span className="text-emerald-400">&quot;10ms&quot;</span>)
+                    </p>
+                </div>
+
+                {/* Output Chart Preview */}
+                <div className="p-3 rounded-xl bg-black/60 border border-white/10 flex items-center justify-between text-[11px]">
+                    <div>
+                        <span className="text-white/40 block text-[10px] uppercase">AI Insight</span>
+                        <strong className="text-emerald-400">✓ 0 Anomaly breaches detected in 1.4M rows</strong>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-white/10 text-white/80 text-[10px] font-bold">Export Parquet</span>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MOCKUP 4: SUPERFAST STATISTICS ENGINE DASHBOARD
+   ========================================================================= */
+const StatisticsMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="combuster testing demo" tag="Stats Engine" videoSrc={videoSrc} poster={poster ?? "/hero-sensor.png"}>
+            <div className="space-y-3 font-mono text-xs">
+                <div className="grid grid-cols-2 gap-2">
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10">
+                        <span className="text-[10px] text-white/40 uppercase">Throughput</span>
+                        <p className="text-xl font-bold text-white mt-1">10,000,000</p>
+                        <p className="text-[10px] text-white/50">samples / 8.4 ms</p>
+                    </div>
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10">
+                        <span className="text-[10px] text-white/40 uppercase">FFT Decomposition</span>
+                        <p className="text-xl font-bold text-emerald-400 mt-1">1024-Point</p>
+                        <p className="text-[10px] text-white/50">Real-time spectrum</p>
+                    </div>
+                </div>
+
+                <div className="p-3 bg-black/60 rounded-xl border border-white/10 flex items-center justify-between text-[11px]">
+                    <span className="text-white/50">Rolling RMS: <strong className="text-white">4.12 g</strong></span>
+                    <span className="text-white/50">Peak Anomaly: <strong className="text-amber-400">+9.82 g</strong></span>
+                    <span className="text-white/50">P99 Latency: <strong className="text-emerald-400">&lt; 1 ms</strong></span>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MOCKUP 5: REAL-TIME STREAMING PIPELINE
+   ========================================================================= */
+const RealtimeMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="combuster testing demo" tag="Real-Time Engine" videoSrc={videoSrc} poster={poster ?? "/dashboard-preview.png"}>
+            <div className="space-y-3 font-mono text-xs">
+                <div className="flex items-center justify-between text-[11px] border-b border-white/10 pb-2">
+                    <span className="text-white/50">Ingestion Protocols: <strong className="text-white">gRPC / MQTT / Kafka</strong></span>
+                    <span className="text-white font-bold flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                        LIVE STREAMING
+                    </span>
+                </div>
+
+                <div className="p-3 bg-black/60 rounded-xl border border-white/10 space-y-2">
+                    <div className="flex justify-between text-[10px] text-white/40">
+                        <span>Ring Buffer Usage</span>
+                        <span>0.00% Packet Loss</span>
+                    </div>
+                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-white w-[28%]" />
+                    </div>
+                </div>
+
+                <div className="text-[10px] text-white/60 bg-black/80 p-2.5 rounded-lg border border-white/10">
+                    <p className="text-emerald-400">✓ gRPC stream connected: 500,000 msg/sec ingested into memory buffer</p>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MOCKUP 6: GITHUB OPEN SOURCE CARD
+   ========================================================================= */
+const GithubMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="github.com/xpectraflow/xpectra" tag="Open Source" videoSrc={videoSrc} poster={poster}>
+            <div className="space-y-3 font-mono text-xs">
+                {/* Repository Header */}
+                <div className="flex items-center justify-between p-3.5 bg-black/60 rounded-xl border border-white/10">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
+                            <Github className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                            <div className="flex items-center gap-2">
+                                <span className="font-bold text-white text-sm">xpectraflow / xpectra</span>
+                                <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-white/60 font-semibold border border-white/10">Public</span>
+                            </div>
+                            <p className="text-[10px] text-white/50 mt-0.5">High-Performance Open Source Telemetry Core SDK</p>
+                        </div>
+                    </div>
+                    <a
+                        href="https://github.com/xpectraflow/xpectra"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-black font-bold text-xs hover:bg-slate-200 transition-all shrink-0"
+                    >
+                        <Sparkles className="w-3.5 h-3.5 text-black" />
+                        <span>★ 2.4k</span>
+                    </a>
+                </div>
+
+                {/* Grid Status Metrics */}
+                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                    <div className="p-2.5 bg-black/60 rounded-xl border border-white/10 text-white/80">
+                        <span className="text-white/40 block text-[10px] uppercase tracking-wider">Latest Release</span>
+                        <strong className="text-emerald-400 font-bold">v2.4.0-stable</strong>
+                        <span className="text-[9px] text-white/40 block mt-0.5">Apache Arrow 16.0 core</span>
+                    </div>
+                    <div className="p-2.5 bg-black/60 rounded-xl border border-white/10 text-white/80">
+                        <span className="text-white/40 block text-[10px] uppercase tracking-wider">CI/CD Pipeline</span>
+                        <strong className="text-white font-bold flex items-center gap-1 mt-0.5">
+                            <Check className="w-3 h-3 text-emerald-400" /> Passing 100%
+                        </strong>
+                        <span className="text-[9px] text-white/40 block mt-0.5">Ubuntu / macOS / Windows</span>
+                    </div>
+                </div>
+
+                {/* Language Breakdown Bar */}
+                <div className="p-2.5 bg-black/60 rounded-xl border border-white/10 space-y-1.5">
+                    <div className="flex justify-between text-[10px] text-white/60">
+                        <span>Languages</span>
+                        <span className="text-white/40">Rust 78% · C++ 14% · Python 8%</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden flex gap-0.5">
+                        <div className="h-full bg-emerald-400 w-[78%]" />
+                        <div className="h-full bg-blue-400 w-[14%]" />
+                        <div className="h-full bg-amber-400 w-[8%]" />
+                    </div>
+                </div>
+
+                {/* Terminal Quick Clone */}
+                <div className="p-2.5 bg-black/80 rounded-xl border border-white/10 flex items-center justify-between text-[10px]">
+                    <span className="text-white/40">$ <span className="text-white">git clone https://github.com/xpectraflow/xpectra.git</span></span>
+                    <span className="text-white/40 text-[9px] uppercase tracking-wider">MIT License</span>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MOCKUP 7: LIGHTWEIGHT CLIENT ARCHITECTURE FLOW
+   ========================================================================= */
+const ArchitectureMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="Xpectra Architecture Topology" tag="Architecture" videoSrc={videoSrc} poster={poster}>
+            <div className="h-full flex flex-col justify-center font-mono text-xs">
+                <div className="grid grid-cols-4 gap-2 text-center text-[10px]">
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10">
+                        <span className="text-white font-bold block">Sensors &amp; DAQ</span>
+                        <span className="text-white/40">Hardware Layer</span>
+                    </div>
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10">
+                        <span className="text-emerald-400 font-bold block">Client SDK</span>
+                        <span className="text-white/40">Lightweight Agent</span>
+                    </div>
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/30">
+                        <span className="text-white font-bold block">Xpectra Engine</span>
+                        <span className="text-white/60">Validation &amp; Ingest</span>
+                    </div>
+                    <div className="p-3 bg-black/60 rounded-xl border border-white/10">
+                        <span className="text-white font-bold block">Storage &amp; UI</span>
+                        <span className="text-white/40">Columnar DB / UI</span>
+                    </div>
+                </div>
+                <div className="mt-4 text-center text-[10px] text-white/40">
+                    <span>Low Footprint (&lt; 15MB Binary) • Distributed Cloud &amp; Air-Gapped Ready</span>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
+   MAIN PRODUCT PAGE COMPONENT (Exact xpectraflow.com Theme & Fonts)
+   ========================================================================= */
 const ProductPage = () => {
+    const formats = [
+        "CSV", "Excel", "TDMS", "MDF / MF4", "CCSDS", "ROS 1 / ROS 2",
+        "PX4 ULog", "BIN Logs", "CAN Bus", "MQTT", "JSON", "Parquet",
+        "HDF5", "PCAP", "Serial", "TCP / UDP", "WebSocket"
+    ];
+
     return (
         <SiteShell>
-            <section className="relative pt-32 pb-20 px-6">
-                <div className="max-w-7xl mx-auto">
-                    {/* Hero */}
-                    <div className="max-w-3xl mb-32">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-tight text-white md:text-3xl lg:text-4xl">
-                                Xpectra is the industrial-grade data layer for engineering teams who can't afford silent sensor failures.
-                            </h1>
-                            <p className="text-xl sm:text-xl text-white/70 leading-relaxed mb-10">
-                                We standardize your telemetry ingestion and validation so your engineers spend 0% of their time on "data cleaning"
-                                and 100% on analysis.
-                            </p>
-                            <Link href="/#contact" aria-label="Get started with Xpectra in 5 minutes">
-                                <Button
-                                    size="lg"
-                                    className="bg-white text-black hover:bg-gray-300 font-bold px-6 py-8 rounded-full text-lg"
-                                >
-                                    Get started in 5 minutes
-                                </Button>
+            <div className="min-h-screen bg-[#050505] bg-[radial-gradient(#ffffff12_1px,transparent_1px)] [background-size:24px_24px] text-white font-sans">
+
+                {/* HERO HEADER */}
+                <section className="pt-24 pb-20 px-6 border-b border-white/10 relative overflow-hidden">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.06),transparent_70%)] pointer-events-none" />
+
+                    <div className="max-w-5xl mx-auto text-center relative z-10">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.1] tracking-tight mb-8 font-normal">
+                            Infrastructure for mission critical sensor data
+                        </h1>
+
+                        <p className="text-base md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed mb-12 font-sans font-normal">
+                            Compress launch timelines. Accelerate test. Maximize test facility ROI.
+                        </p>
+
+                        {/* Button + Stats Strip (Exact match to xpectraflow.com screenshot) */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+                            <Link href="/#contact">
+                                <button className="rounded-full bg-white text-black hover:bg-slate-200 font-semibold px-7 py-4 text-xs tracking-[0.15em] uppercase flex items-center gap-2.5 shadow-2xl transition-transform hover:scale-105 cursor-pointer">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-black inline-block" />
+                                    REQUEST PILOT →
+                                </button>
                             </Link>
-                        </motion.div>
-                    </div>
 
-                    {/* Architecture Diagram */}
-                    <div className="mb-40">
-                        <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-12">
-                            <div className="max-w-xl">
-                                <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">The Infrastructure</p>
-                                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">How Xpectra fits into your stack.</h2>
-                            </div>
-                            <p className="text-white/50 max-w-sm mb-1 text-lg leading-relaxed">
-                                Designed to sit between your raw sensor hardware and downstream analysis tools without replacing a single algorithm.
-                            </p>
+                            <a
+                                href="https://github.com/xpectraflow/xpectra"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-7 py-4 rounded-full border border-white/20 bg-white/[0.04] text-white hover:bg-white/10 transition-all font-semibold text-xs tracking-[0.15em] uppercase flex items-center justify-center gap-2.5 hover:scale-105 cursor-pointer shadow-2xl"
+                            >
+                                <Github className="w-4 h-4 text-white shrink-0" />
+                                <span>VIEW ON GITHUB →</span>
+                            </a>
                         </div>
-                        <ArchitectureDiagram />
                     </div>
+                </section>
 
-                    {/* Playground Walkthrough */}
-                    <div className="mb-40">
-                        <div className="grid lg:grid-cols-2 gap-20 items-center">
-                            <div>
-                                <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">Hands-on Analysis</p>
-                                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-8">From raw telemetry to insight, without leaving the browser.</h2>
-                                <div className="space-y-12">
+                {/* MAIN ALTERNATING SECTIONS WRAPPER */}
+                <div className="max-w-7xl mx-auto px-6 py-20 space-y-32">
+
+                    {/* =========================================================================
+                        SECTION 1: Universal Data Format Support (Left Image, Right Content)
+                       ========================================================================= */}
+                    <section id="formats" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <FormatMockup />
+                            </div>
+
+                            {/* Right Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>DATA INGESTION</span>
+                                        <span>READY</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Universal Data Format Support
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Import telemetry from virtually any engineering data source without manual cleanup or script rewrites.
+                                    </p>
+                                </div>
+
+                                {/* Supported Formats Badges */}
+                                <div className="space-y-3">
+                                    <span className="text-xs font-mono font-semibold text-white/40 uppercase tracking-widest">
+                                        Supported Native Formats
+                                    </span>
+                                    <div className="flex flex-wrap gap-2">
+                                        {formats.map(fmt => (
+                                            <span
+                                                key={fmt}
+                                                className="px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-white/90 text-xs font-mono font-semibold hover:border-white/30 hover:bg-white/10 transition-all cursor-default"
+                                            >
+                                                {fmt}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Bottom Text */}
+                                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-xs text-white/70 font-mono flex items-center justify-between">
+                                    <span>Don&apos;t see your format? Build your own parser using the Xpectra SDK.</span>
+                                    <ArrowUpRight className="w-4 h-4 text-white shrink-0 ml-2" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* =========================================================================
+                        SECTION 2: Interactive Playback (Right Image, Left Content)
+                       ========================================================================= */}
+                    <section id="playback" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>TIME REPLAY</span>
+                                        <span>SYNCHRONIZED</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Interactive Playback
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Replay recorded telemetry exactly as it happened with nanosecond timestamp sync.
+                                    </p>
+                                </div>
+
+                                {/* Features List */}
+                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
                                     {[
-                                        { title: "Dataset Tree", desc: "Navigate 6 months of test history in seconds. No SQL, no exports." },
-                                        { title: "Channel Selector", desc: "Overlay any combination of sensors. Find cross-channel anomalies visually." },
-                                        { title: "Zoom-Linked Charts", desc: "Zoom into an anomaly spike and every chart follows. See the full system response at once." }
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex gap-6 group">
-                                            <div className="shrink-0 w-12 h-12 rounded-full border border-border-subtle flex items-center justify-center font-mono text-sm text-white/30 group-hover:bg-white group-hover:text-black group-hover:border-white transition-all">
-                                                0{i + 1}
-                                            </div>
-                                            <div className="pt-1">
-                                                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                                                <p className="text-white/50 leading-relaxed text-sm">{item.desc}</p>
-                                            </div>
+                                        { title: "Play / Pause", desc: "Frame-accurate stream playback control." },
+                                        { title: "Variable Speed", desc: "Slow-motion to 50x fast forward." },
+                                        { title: "Timeline Scrubbing", desc: "Jump to anomaly timecodes instantly." },
+                                        { title: "Multi-stream Synchronization", desc: "Align 250+ DAQ channels on one clock." },
+                                        { title: "Frame-by-frame Playback", desc: "Inspect microsecond transient glitches." },
+                                        { title: "Event Markers", desc: "Automatic incident & anomaly flags." }
+                                    ].map(f => (
+                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
+                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="relative">
-                                {/* Mock Browser/Playground */}
-                                <div className="aspect-video rounded-[2rem] bg-card-bg/50 border border-white/5 shadow-2xl overflow-hidden relative group/hero">
-                                    <Image
-                                        src="/hero.png"
-                                        alt="Xpectra Mission Control"
-                                        fill
-                                        className="object-contain transition-transform duration-700"
-                                    />
+                            {/* Right Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <PlaybackMockup />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* =========================================================================
+                        SECTION 3: Data Playground (Left Image, Right Content)
+                       ========================================================================= */}
+                    <section id="playground" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <PlaygroundMockup />
+                            </div>
+
+                            {/* Right Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>ANALYTICS SANDBOX</span>
+                                        <span>INTERACTIVE</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Data Playground
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Explore telemetry without writing complex data processing pipelines.
+                                    </p>
                                 </div>
-                                {/* Floating Badge */}
-                                <div className="absolute -bottom-10 -right-10 p-8 rounded-3xl bg-black border border-white/20 shadow-2xl backdrop-blur-3xl max-w-xs transition-transform hover:-translate-y-2">
-                                    <p className="text-sm font-mono text-white/40 mb-2 uppercase tracking-widest">Global Sync</p>
-                                    <p className="text-lg font-bold">"Query terabytes. Plot anything. Export anywhere."</p>
+
+                                {/* Features List */}
+                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                    {[
+                                        { title: "SQL Query", desc: "Execute ANSI SQL directly on time-series." },
+                                        { title: "Python Notebook", desc: "Integrated Pandas & Polars Jupyter kernels." },
+                                        { title: "Signal Plotting", desc: "Multi-channel zoom-linked browser charts." },
+                                        { title: "Compare Channels", desc: "Overlay test campaign signals side-by-side." },
+                                        { title: "Export Results", desc: "One-click export to Parquet, CSV, or Arrow." },
+                                        { title: "AI Assisted Analysis", desc: "Natural language query & anomaly flags." }
+                                    ].map(f => (
+                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
+                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    {/* Capabilities Grid */}
-                    <div className="mb-40">
-                        <div className="text-center mb-16">
-                            <p className="text-xs font-mono uppercase tracking-[0.3em] text-white/30 mb-4">Technical Scope</p>
-                            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">Capabilities at a glance.</h2>
-                        </div>
-                        <FeatureGrid />
-                    </div>
+                    {/* =========================================================================
+                        SECTION 4: Superfast Statistics Engine (Right Image, Left Content)
+                       ========================================================================= */}
+                    <section id="statistics" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>PERFORMANCE ENGINE</span>
+                                        <span>SIMD / GPU</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Superfast Statistics Engine
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Built for millions of telemetry samples with sub-second aggregate computation.
+                                    </p>
+                                </div>
 
-                    {/* FAQ Section */}
-                    <div className="mb-40 max-w-4xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">Questions and answers.</h2>
+                                {/* Features Badges Grid */}
+                                <div className="flex flex-wrap gap-2 pt-2">
+                                    {[
+                                        "Mean", "RMS", "FFT", "Peak Detection",
+                                        "Histogram", "Window Functions", "Rolling Statistics",
+                                        "Correlation", "Custom Formula Engine"
+                                    ].map(stat => (
+                                        <span
+                                            key={stat}
+                                            className="px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 text-white/90 text-xs font-mono font-semibold hover:border-white/30 transition-all cursor-default"
+                                        >
+                                            ✓ {stat}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Right Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <StatisticsMockup />
+                            </div>
                         </div>
-                        <div className="space-y-2">
-                            <FAQItem
-                                question="How long does a pilot take?"
-                                answer="30–45 days with one live sensor workflow. You'll get real-time validation and standardized storage, with a clear decision point at the end."
-                            />
-                            <FAQItem
-                                question="Does Xpectra replace our existing tools?"
-                                answer="No. Xpectra sits between raw sensors and your downstream pipelines. It strengthens what you already run without replacing algorithms, firmware, or workflows."
-                            />
-                            <FAQItem
-                                question="What kind of sensors does Xpectra support?"
-                                answer="Every major industrial sensor and hardware client. If it outputs data via gRPC, HTTP, or CSV, we ingest it natively."
-                            />
-                            <FAQItem
-                                question="Is it too early for us to adopt Xpectra?"
-                                answer="If you're running tests and losing data quality, it's not too early it's already late. The teams that move fast on data infrastructure are the ones with reproducible results a year from now. Our pilot is 30 days, one workflow. The risk of trying is zero."
-                                defaultOpen={true}
-                            />
+                    </section>
+
+                    {/* =========================================================================
+                        SECTION 5: Real-Time Streaming (Left Image, Right Content)
+                       ========================================================================= */}
+                    <section id="realtime" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <RealtimeMockup />
+                            </div>
+
+                            {/* Right Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>REAL-TIME STREAMING</span>
+                                        <span>ULTRA LOW LATENCY</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Real-Time Streaming
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Process live telemetry streams with ultra-low latency and zero packet loss.
+                                    </p>
+                                </div>
+
+                                {/* Supported Protocols */}
+                                <div className="space-y-2">
+                                    <span className="text-xs font-mono font-semibold text-white/40 uppercase tracking-widest">
+                                        Supported Ingestion Protocols
+                                    </span>
+                                    <div className="flex flex-wrap gap-2">
+                                        {["MQTT", "Kafka", "WebSocket", "TCP", "UDP", "gRPC", "REST API"].map(proto => (
+                                            <span key={proto} className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs font-bold">
+                                                {proto}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Features List */}
+                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                    {[
+                                        { title: "Live Processing", desc: "Ingest 500k+ msg/sec per cluster node." },
+                                        { title: "Auto Buffering", desc: "Zero-loss ring buffer against backpressure." },
+                                        { title: "Stream Validation", desc: "Enforce schemas & resequence out-of-order logs." },
+                                        { title: "Low Latency", desc: "Sub-millisecond ingestion to storage pipeline." },
+                                        { title: "Event Triggering", desc: "Real-time webhooks on threshold breach." }
+                                    ].map(f => (
+                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10">
+                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
+                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </section>
+
+                    {/* =========================================================================
+                        SECTION 6: Open Source on GitHub (Right Image, Left Content)
+                       ========================================================================= */}
+                    <section id="opensource" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>OPEN SOURCE</span>
+                                        <span>GITHUB REPO</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Open Source on GitHub
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Built with transparency, developer trust, and community-driven innovation.
+                                    </p>
+                                </div>
+
+                                {/* Show Cards */}
+                                <div className="grid sm:grid-cols-2 gap-3">
+                                    {[
+                                        { title: "MIT License", desc: "Permissive license for client SDKs." },
+                                        { title: "Community Driven", desc: "Engineered with feedback from aerospace leads." },
+                                        { title: "Pull Requests Welcome", desc: "Documented extension points." },
+                                        { title: "Issue Tracking", desc: "Transparent public roadmap & bug reports." },
+                                        { title: "Version Releases", desc: "Automated semver builds with changelogs." },
+                                        { title: "Documentation", desc: "Complete API references & guides." }
+                                    ].map(card => (
+                                        <div key={card.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10">
+                                            <h4 className="font-bold text-white text-sm font-sans">{card.title}</h4>
+                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{card.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* CTA Button */}
+                                <div>
+                                    <a
+                                        href="https://github.com/xpectraflow/xpectra"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-black hover:bg-slate-200 font-semibold text-xs uppercase tracking-widest transition-transform hover:scale-105 shadow-xl"
+                                    >
+                                        <Github className="w-4 h-4 text-black" />
+                                        Star on GitHub
+                                        <span className="px-2 py-0.5 rounded-full bg-black/10 text-black text-[10px] font-mono ml-2 font-bold">★ 2.4k</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Right Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <GithubMockup />
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* =========================================================================
+                        SECTION 7: Lightweight Client. Powerful Engine. (Left Image, Right Content)
+                       ========================================================================= */}
+                    <section id="architecture" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: 16:9 GIF Placeholder */}
+                            <div className="lg:col-span-6">
+                                <ArchitectureMockup />
+                            </div>
+
+                            {/* Right Side: Content */}
+                            <div className="lg:col-span-6 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>SYSTEM ARCHITECTURE</span>
+                                        <span>DECOUPLED</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Lightweight Client.<br />Powerful Engine.
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        Decoupled architecture built to scale seamlessly from embedded DAQ edge units to cloud telemetry clusters.
+                                    </p>
+                                </div>
+
+                                {/* Architecture Flow Breakdown */}
+                                <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
+                                    <span className="text-xs font-mono font-semibold text-white/40 uppercase tracking-widest">
+                                        End-to-End Pipeline Flow
+                                    </span>
+                                    <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-bold text-white">
+                                        <span>Sensors</span> <span className="text-white/40">→</span>
+                                        <span>DAQ</span> <span className="text-white/40">→</span>
+                                        <span>Client SDK</span> <span className="text-white/40">→</span>
+                                        <span className="text-white underline">Xpectra Engine</span> <span className="text-white/40">→</span>
+                                        <span>Validation</span> <span className="text-white/40">→</span>
+                                        <span>Transformation</span> <span className="text-white/40">→</span>
+                                        <span>Storage</span> <span className="text-white/40">→</span>
+                                        <span className="text-emerald-400">Visualization</span>
+                                    </div>
+                                </div>
+
+                                {/* Features List */}
+                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                    {[
+                                        { title: "Remote Processing", desc: "Offload computation from edge DAQs." },
+                                        { title: "Distributed Architecture", desc: "Horizontal scaling across cluster nodes." },
+                                        { title: "Cloud Ready", desc: "Deploy on AWS, Azure, GCP, or Kubernetes." },
+                                        { title: "Edge Compatible", desc: "Zero-dependency ARM64 / Linux binary." },
+                                        { title: "Multi Client Support", desc: "Concurrent connections from Python, C++, Rust." }
+                                    ].map(f => (
+                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10">
+                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
+                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
-            </section>
 
-            {/* Footer CTA */}
-            <section className="py-32 px-6 border-t border-white/5 text-center">
-                <div className="max-w-2xl mx-auto">
-                    <h2 className="text-4xl sm:text-6xl font-bold mb-10 tracking-tight">Ready to harden your data stack?</h2>
-                    <Link href="/#contact" aria-label="Request a pilot to harden your data stack">
-                        <Button
-                            size="lg"
-                            className="bg-white text-black hover:bg-gray-100 font-bold px-12 py-8 rounded-full text-xl"
-                        >
-                            Request a pilot
-                            <ArrowRight className="ml-3 h-6 w-6" />
-                        </Button>
-                    </Link>
-                </div>
-            </section>
+                {/* BOTTOM ENTERPRISE CTA */}
+                <section className="py-28 px-6 bg-[#040404] text-white text-center border-t border-white/10 relative overflow-hidden">
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(255,255,255,0.05),transparent_60%)]" />
+                    <div className="max-w-3xl mx-auto space-y-6 relative z-10">
+                        <h2 className="text-3xl md:text-5xl font-serif text-white tracking-tight font-normal">
+                            Ready to modernize your telemetry stack?
+                        </h2>
+                        <p className="text-white/60 text-base md:text-lg max-w-xl mx-auto font-sans font-normal">
+                            Deploy Xpectra in your environment with a 30-day enterprise evaluation.
+                        </p>
+                        <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+                            <Link href="/#contact">
+                                <button className="rounded-full bg-white text-black hover:bg-slate-200 font-semibold px-8 py-4 text-xs tracking-[0.15em] uppercase flex items-center gap-2 shadow-2xl transition-transform hover:scale-105 cursor-pointer">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-black inline-block" />
+                                    REQUEST PILOT →
+                                </button>
+                            </Link>
+                            <a
+                                href="https://github.com/xpectraflow/xpectra"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-3.5 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors font-semibold text-xs tracking-[0.15em] uppercase flex items-center justify-center gap-2"
+                            >
+                                Read Documentation
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
         </SiteShell>
     );
 };
 
 export default ProductPage;
+
+
+
