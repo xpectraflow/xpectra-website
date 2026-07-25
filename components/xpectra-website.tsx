@@ -16,6 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { SiteShell } from '@/components/site-shell';
 import HeroOrbitDeck, { HeroModeWidget } from "@/components/ui/hero-modern";
 import { requestPilotAction } from "@/app/actions/request-pilot";
+import { EngineeringStandards } from "@/components/engineering-standards";
 
 import dynamic from 'next/dynamic';
 const AnimatedCarousel = dynamic(() => import('@/components/ui/logo-carousel').then(mod => mod.AnimatedCarousel), {
@@ -197,8 +198,10 @@ const XpectraWebsite = () => {
 
           </div>
 
-
         </div>
+
+        {/* Global Engineering Standards Section */}
+        <EngineeringStandards />
       </HeroOrbitDeck>
 
 

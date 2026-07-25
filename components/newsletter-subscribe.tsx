@@ -25,12 +25,11 @@ export const NewsletterSubscribe = () => {
       className="w-full max-w-4xl mx-auto mt-24 p-10 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-xl relative overflow-hidden"
     >
       {/* Background Glows */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-purple-600/10 blur-[100px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-64 h-64 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-64 h-64 bg-emerald-600/5 blur-[80px] rounded-full pointer-events-none" />
       
       <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-[10px] font-mono text-purple-400 uppercase tracking-wider mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-mono text-emerald-400 uppercase tracking-wider mb-6">
             <Mail size={12} /> Stay Ahead of the Curve
           </div>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Xpectra Engineering Insights</h3>
@@ -58,7 +57,7 @@ export const NewsletterSubscribe = () => {
                   name="email"
                   placeholder="engineer@company.com"
                   required
-                  className="bg-white/5 border-white/10 focus:border-purple-500/50 h-14 pl-5 text-white text-lg rounded-xl"
+                  className="bg-white/5 border-white/10 focus:border-emerald-500/50 h-14 pl-5 text-white text-lg rounded-xl"
                   disabled={isPending}
                 />
                 {state?.error && (
