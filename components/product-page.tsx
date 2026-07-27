@@ -179,7 +179,7 @@ interface MockupProps {
    ========================================================================= */
 const FormatMockup = ({ videoSrc, poster }: MockupProps) => {
     return (
-        <VideoPlaceholder title="xpectra-ingest --detect-schema" tag="Format Engine" videoSrc={videoSrc} poster={poster ?? "/network-telemetry.jpg"}>
+        <VideoPlaceholder title="xpectra-ingest --detect-schema" tag="Format Engine" videoSrc={videoSrc} poster={poster ?? "/xpectra-core-diagram.jpg"}>
             <div className="space-y-3 font-mono text-xs text-white/80">
                 <div className="flex items-center justify-between text-[11px] text-white/50 border-b border-white/10 pb-2">
                     <span>Input Stream: <strong className="text-white">flight_campaign_04.tdms</strong></span>
@@ -571,7 +571,7 @@ const ProductPage = () => {
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
                             {/* Left Side: 16:9 GIF Placeholder */}
                             <div className="lg:col-span-6">
-                                <FormatMockup poster="/network-telemetry.jpg" />
+                                <FormatMockup poster="/xpectra-core-diagram.jpg" />
                             </div>
 
                             {/* Right Side: Content */}
