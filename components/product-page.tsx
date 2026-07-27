@@ -638,12 +638,12 @@ const ProductPage = () => {
                                 {/* Features List */}
                                 <div className="grid sm:grid-cols-2 gap-3 pt-2">
                                     {[
-                                        { title: "Play / Pause", desc: "Frame-accurate stream playback control." },
+                                        { title: "Event Markers", desc: "Automatic incident & anomaly flags." },
+                                        { title: "Multi-stream Synchronization", desc: "Align 250+ DAQ channels on one clock." },
                                         { title: "Variable Speed", desc: "Slow-motion to 50x fast forward." },
                                         { title: "Timeline Scrubbing", desc: "Jump to anomaly timecodes instantly." },
-                                        { title: "Multi-stream Synchronization", desc: "Align 250+ DAQ channels on one clock." },
                                         { title: "Frame-by-frame Playback", desc: "Inspect microsecond transient glitches." },
-                                        { title: "Event Markers", desc: "Automatic incident & anomaly flags." }
+                                        { title: "Telemetry Playback", desc: "Frame-accurate stream playback control." }
                                     ].map(f => (
                                         <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
                                             <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
