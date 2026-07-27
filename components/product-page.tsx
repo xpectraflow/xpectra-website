@@ -485,6 +485,34 @@ const ArchitectureMockup = ({ videoSrc, poster }: MockupProps) => {
 };
 
 /* =========================================================================
+   MOCKUP 8: CLIENT ENGINE MOCKUP
+   ========================================================================= */
+const ClientEngineMockup = ({ videoSrc, poster }: MockupProps) => {
+    return (
+        <VideoPlaceholder title="xpectra-client-engine --wasmer=v2.4" tag="Client Engine" videoSrc={videoSrc} poster={poster ?? "/client-engine-preview.png"}>
+            <div className="space-y-3 font-mono text-xs">
+                <div className="flex items-center justify-between text-[11px] border-b border-white/10 pb-2">
+                    <span className="text-white/50">Client Runtime: <strong className="text-white">Rust + WASM / SIMD</strong></span>
+                    <span className="text-emerald-400 font-bold flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        0ms LATENCY
+                    </span>
+                </div>
+                <div className="p-3 bg-black/60 rounded-xl border border-white/10 space-y-2">
+                    <div className="flex justify-between text-[10px] text-white/40">
+                        <span>Local Memory Buffer</span>
+                        <span>100% Client-Side</span>
+                    </div>
+                    <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-400 w-[85%]" />
+                    </div>
+                </div>
+            </div>
+        </VideoPlaceholder>
+    );
+};
+
+/* =========================================================================
    MAIN PRODUCT PAGE COMPONENT (Exact xpectraflow.com Theme & Fonts)
    ========================================================================= */
 const ProductPage = () => {
@@ -714,7 +742,7 @@ const ProductPage = () => {
                                 </div>
                             </div>
 
-                            {/* Right Side: 16:9 GIF Placeholder */}
+                            {/* Right Side: Image / Mockup */}
                             <div className="lg:col-span-6">
                                 <StatisticsMockup />
                             </div>
@@ -726,7 +754,7 @@ const ProductPage = () => {
                        ========================================================================= */}
                     <section id="realtime" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: 16:9 GIF Placeholder */}
+                            {/* Left Side: Image / Mockup */}
                             <div className="lg:col-span-6">
                                 <RealtimeMockup />
                             </div>
@@ -746,20 +774,6 @@ const ProductPage = () => {
                                     </p>
                                 </div>
 
-                                {/* Supported Protocols */}
-                                <div className="space-y-2">
-                                    <span className="text-xs font-mono font-semibold text-white/40 uppercase tracking-widest">
-                                        Supported Ingestion Protocols
-                                    </span>
-                                    <div className="flex flex-wrap gap-2">
-                                        {["MQTT", "Kafka", "WebSocket", "TCP", "UDP", "gRPC", "REST API"].map(proto => (
-                                            <span key={proto} className="px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-white font-mono text-xs font-bold">
-                                                {proto}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-
                                 {/* Features List */}
                                 <div className="grid sm:grid-cols-2 gap-3 pt-2">
                                     {[
@@ -767,9 +781,10 @@ const ProductPage = () => {
                                         { title: "Auto Buffering", desc: "Zero-loss ring buffer against backpressure." },
                                         { title: "Stream Validation", desc: "Enforce schemas & resequence out-of-order logs." },
                                         { title: "Low Latency", desc: "Sub-millisecond ingestion to storage pipeline." },
-                                        { title: "Event Triggering", desc: "Real-time webhooks on threshold breach." }
+                                        { title: "Event Triggering", desc: "Real-time webhooks on threshold breach." },
+                                        { title: "High Availability", desc: "Multi-region failover & zero data loss." }
                                     ].map(f => (
-                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10">
+                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
                                             <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
                                             <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
                                         </div>
@@ -779,7 +794,50 @@ const ProductPage = () => {
                         </div>
                     </section>
 
+                    {/* =========================================================================
+                        SECTION 6: Client Engine (Left GIF/Mockup, Right Client-Engine Content)
+                       ========================================================================= */}
+                    <section id="client-engine" className="scroll-mt-36">
+                        <div className="grid lg:grid-cols-12 gap-12 items-center">
+                            {/* Left Side: Client Engine Content */}
+                            <div className="lg:col-span-7 space-y-6">
+                                <div>
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                        <span>CLIENT ENGINE</span>
+                                        <span>EDGE &amp; WASM COMPUTE</span>
+                                    </div>
+                                    <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
+                                        Client Engine
+                                    </h2>
+                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                        High-performance local processing engine running directly in your browser or edge hardware for zero-latency telemetry manipulation and offline evaluation.
+                                    </p>
+                                </div>
 
+                                {/* Features List Grid */}
+                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                    {[
+                                        { title: "Local WASM Processing", desc: "Execute sub-millisecond filter & FFT math client-side." },
+                                        { title: "Zero Network Latency", desc: "Instant chart rendering & local formula evaluation." },
+                                        { title: "Offline Cache & Sync", desc: "Buffer test telemetry locally & auto-sync when online." },
+                                        { title: "Multi-Threaded Workers", desc: "Parallel Web Workers for smooth 120 FPS signal plotting." },
+                                        { title: "Native Edge Bindings", desc: "C++, Rust, and Python SDKs for embedded DAQ hardware." },
+                                        { title: "Air-Gapped Security", desc: "Keep sensitive telemetry enclosed inside local client memory." }
+                                    ].map(f => (
+                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
+                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Right Side: Image / Mockup */}
+                            <div className="lg:col-span-5">
+                                <ClientEngineMockup poster="/client-engine-preview.png" />
+                            </div>
+                        </div>
+                    </section>
 
                 </div>
 
