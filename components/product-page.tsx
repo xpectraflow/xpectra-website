@@ -688,12 +688,12 @@ const ProductPage = () => {
                                 {/* Features List */}
                                 <div className="grid sm:grid-cols-2 gap-2.5 pt-1">
                                     {[
-                                        { title: "SQL Query", desc: "Execute ANSI SQL directly on time-series." },
-                                        { title: "Python Notebook", desc: "Integrated Pandas & Polars Jupyter kernels." },
+                                        { title: "AI Assisted Analysis", desc: "Natural language query & anomaly flags." },
                                         { title: "Signal Plotting", desc: "Multi-channel zoom-linked browser charts." },
                                         { title: "Compare Channels", desc: "Overlay test campaign signals side-by-side." },
-                                        { title: "Export Results", desc: "One-click export to Parquet, CSV, or Arrow." },
-                                        { title: "AI Assisted Analysis", desc: "Natural language query & anomaly flags." }
+                                        { title: "SQL Query", desc: "Execute ANSI SQL directly on time-series." },
+                                        { title: "Python Notebook", desc: "Integrated Pandas & Polars Jupyter kernels." },
+                                        { title: "Export Results", desc: "One-click export to Parquet, CSV, or Arrow." }
                                     ].map(f => (
                                         <div key={f.title} className="px-3.5 py-2.5 rounded-xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
                                             <h4 className="font-bold text-white text-xs md:text-sm font-sans">{f.title}</h4>
@@ -777,12 +777,12 @@ const ProductPage = () => {
                                 {/* Features List */}
                                 <div className="grid sm:grid-cols-2 gap-2.5 pt-1">
                                     {[
+                                        { title: "High Availability", desc: "Multi-region failover & zero data loss." },
+                                        { title: "Low Latency", desc: "Sub-millisecond ingestion to storage pipeline." },
                                         { title: "Live Processing", desc: "Ingest 500k+ msg/sec per cluster node." },
                                         { title: "Auto Buffering", desc: "Zero-loss ring buffer against backpressure." },
                                         { title: "Stream Validation", desc: "Enforce schemas & resequence out-of-order logs." },
-                                        { title: "Low Latency", desc: "Sub-millisecond ingestion to storage pipeline." },
-                                        { title: "Event Triggering", desc: "Real-time webhooks on threshold breach." },
-                                        { title: "High Availability", desc: "Multi-region failover & zero data loss." }
+                                        { title: "Event Triggering", desc: "Real-time webhooks on threshold breach." }
                                     ].map(f => (
                                         <div key={f.title} className="px-3.5 py-2.5 rounded-xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
                                             <h4 className="font-bold text-white text-xs md:text-sm font-sans">{f.title}</h4>
