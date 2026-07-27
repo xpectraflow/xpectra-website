@@ -621,22 +621,22 @@ const ProductPage = () => {
                     <section id="playback" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
                             {/* Left Side: Content */}
-                            <div className="lg:col-span-6 space-y-6">
+                            <div className="lg:col-span-6 space-y-4">
                                 <div>
-                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>TIME REPLAY</span>
                                         <span>SYNCHRONIZED</span>
                                     </div>
                                     <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
                                         Interactive Playback
                                     </h2>
-                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                    <p className="text-white/60 text-sm md:text-base mt-2 leading-relaxed font-sans">
                                         Replay recorded telemetry exactly as it happened with nanosecond timestamp sync.
                                     </p>
                                 </div>
 
                                 {/* Features List */}
-                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                <div className="grid sm:grid-cols-2 gap-2.5 pt-1">
                                     {[
                                         { title: "Event Markers", desc: "Automatic incident & anomaly flags." },
                                         { title: "Multi-stream Synchronization", desc: "Align 250+ DAQ channels on one clock." },
@@ -645,9 +645,9 @@ const ProductPage = () => {
                                         { title: "Frame-by-frame Playback", desc: "Inspect microsecond transient glitches." },
                                         { title: "Telemetry Playback", desc: "Frame-accurate stream playback control." }
                                     ].map(f => (
-                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
-                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
-                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        <div key={f.title} className="px-3.5 py-2.5 rounded-xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-xs md:text-sm font-sans">{f.title}</h4>
+                                            <p className="text-[11px] text-white/50 mt-0.5 leading-normal">{f.desc}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -671,22 +671,22 @@ const ProductPage = () => {
                             </div>
 
                             {/* Right Side: Content */}
-                            <div className="lg:col-span-6 space-y-6">
+                            <div className="lg:col-span-6 space-y-4">
                                 <div>
-                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>ANALYTICS SANDBOX</span>
                                         <span>INTERACTIVE</span>
                                     </div>
                                     <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
                                         Data Playground
                                     </h2>
-                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                    <p className="text-white/60 text-sm md:text-base mt-2 leading-relaxed font-sans">
                                         Explore telemetry without writing complex data processing pipelines.
                                     </p>
                                 </div>
 
                                 {/* Features List */}
-                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                <div className="grid sm:grid-cols-2 gap-2.5 pt-1">
                                     {[
                                         { title: "SQL Query", desc: "Execute ANSI SQL directly on time-series." },
                                         { title: "Python Notebook", desc: "Integrated Pandas & Polars Jupyter kernels." },
@@ -695,9 +695,9 @@ const ProductPage = () => {
                                         { title: "Export Results", desc: "One-click export to Parquet, CSV, or Arrow." },
                                         { title: "AI Assisted Analysis", desc: "Natural language query & anomaly flags." }
                                     ].map(f => (
-                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
-                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
-                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        <div key={f.title} className="px-3.5 py-2.5 rounded-xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-xs md:text-sm font-sans">{f.title}</h4>
+                                            <p className="text-[11px] text-white/50 mt-0.5 leading-normal">{f.desc}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -760,22 +760,22 @@ const ProductPage = () => {
                             </div>
 
                             {/* Right Side: Content */}
-                            <div className="lg:col-span-6 space-y-6">
+                            <div className="lg:col-span-6 space-y-4">
                                 <div>
-                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>REAL-TIME STREAMING</span>
                                         <span>ULTRA LOW LATENCY</span>
                                     </div>
                                     <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
                                         Real-Time Streaming
                                     </h2>
-                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                    <p className="text-white/60 text-sm md:text-base mt-2 leading-relaxed font-sans">
                                         Process live telemetry streams with ultra-low latency and zero packet loss.
                                     </p>
                                 </div>
 
                                 {/* Features List */}
-                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                <div className="grid sm:grid-cols-2 gap-2.5 pt-1">
                                     {[
                                         { title: "Live Processing", desc: "Ingest 500k+ msg/sec per cluster node." },
                                         { title: "Auto Buffering", desc: "Zero-loss ring buffer against backpressure." },
@@ -784,9 +784,9 @@ const ProductPage = () => {
                                         { title: "Event Triggering", desc: "Real-time webhooks on threshold breach." },
                                         { title: "High Availability", desc: "Multi-region failover & zero data loss." }
                                     ].map(f => (
-                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
-                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
-                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        <div key={f.title} className="px-3.5 py-2.5 rounded-xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-xs md:text-sm font-sans">{f.title}</h4>
+                                            <p className="text-[11px] text-white/50 mt-0.5 leading-normal">{f.desc}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -800,22 +800,22 @@ const ProductPage = () => {
                     <section id="client-engine" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
                             {/* Left Side: Client Engine Content */}
-                            <div className="lg:col-span-7 space-y-6">
+                            <div className="lg:col-span-6 space-y-4">
                                 <div>
-                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
+                                    <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>CLIENT ENGINE</span>
                                         <span>EDGE &amp; WASM COMPUTE</span>
                                     </div>
                                     <h2 className="text-3xl md:text-4xl font-serif text-white tracking-tight font-normal">
                                         Client Engine
                                     </h2>
-                                    <p className="text-white/60 text-base md:text-lg mt-3 leading-relaxed font-sans">
+                                    <p className="text-white/60 text-sm md:text-base mt-2 leading-relaxed font-sans">
                                         High-performance local processing engine running directly in your browser or edge hardware for zero-latency telemetry manipulation and offline evaluation.
                                     </p>
                                 </div>
 
                                 {/* Features List Grid */}
-                                <div className="grid sm:grid-cols-2 gap-3 pt-2">
+                                <div className="grid sm:grid-cols-2 gap-2.5 pt-1">
                                     {[
                                         { title: "Local WASM Processing", desc: "Execute sub-millisecond filter & FFT math client-side." },
                                         { title: "Zero Network Latency", desc: "Instant chart rendering & local formula evaluation." },
@@ -824,16 +824,16 @@ const ProductPage = () => {
                                         { title: "Native Edge Bindings", desc: "C++, Rust, and Python SDKs for embedded DAQ hardware." },
                                         { title: "Air-Gapped Security", desc: "Keep sensitive telemetry enclosed inside local client memory." }
                                     ].map(f => (
-                                        <div key={f.title} className="p-4 rounded-2xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
-                                            <h4 className="font-bold text-white text-sm font-sans">{f.title}</h4>
-                                            <p className="text-xs text-white/50 mt-1 leading-relaxed">{f.desc}</p>
+                                        <div key={f.title} className="px-3.5 py-2.5 rounded-xl bg-[#0c0d10]/90 border border-white/10 hover:border-white/20 transition-all">
+                                            <h4 className="font-bold text-white text-xs md:text-sm font-sans">{f.title}</h4>
+                                            <p className="text-[11px] text-white/50 mt-0.5 leading-normal">{f.desc}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
                             {/* Right Side: Image / Mockup */}
-                            <div className="lg:col-span-5">
+                            <div className="lg:col-span-6">
                                 <ClientEngineMockup poster="/client-engine-preview.png" />
                             </div>
                         </div>
