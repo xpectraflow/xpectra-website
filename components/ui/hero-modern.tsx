@@ -555,20 +555,25 @@ function HeroOrbitDeck({ children, headerRightWidget, problemStatement }: { chil
           {/* Carousel */}
           <div className={`relative rounded-3xl border overflow-hidden transition ${palette.border} ${palette.card}`}>
             {/* Tab bar — all verticals visible and selectable */}
-            <div className={`flex overflow-x-auto border-b ${palette.border}`} style={{ scrollbarWidth: 'none' }}>
-              {carouselSlides.map((slide, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => { setActiveSlide(idx); startAutoScroll(); }}
-                  className={`shrink-0 px-5 py-4 text-xs font-mono uppercase tracking-[0.18em] whitespace-nowrap transition-all duration-200 border-b-2 -mb-px ${
-                    idx === activeSlide
-                      ? "border-white text-white"
-                      : `border-transparent opacity-40 hover:opacity-70`
-                  }`}
-                >
-                  {slide.badge}
-                </button>
-              ))}
+            <div className="relative">
+              <div className={`flex overflow-x-auto border-b ${palette.border}`} style={{ scrollbarWidth: 'none' }}>
+                {carouselSlides.map((slide, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => { setActiveSlide(idx); startAutoScroll(); }}
+                    className={`shrink-0 px-5 py-4 text-xs font-mono uppercase tracking-[0.18em] whitespace-nowrap transition-all duration-200 border-b-2 -mb-px ${
+                      idx === activeSlide
+                        ? "border-white text-white"
+                        : `border-transparent opacity-40 hover:opacity-70`
+                    }`}
+                  >
+                    {slide.badge}
+                  </button>
+                ))}
+              </div>
+              {/* Right-edge fade hint for overflowing tabs on mobile */}
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 lg:hidden"
+                style={{ background: theme === "dark" ? "linear-gradient(to left, rgba(4,4,4,0.9), transparent)" : "linear-gradient(to left, rgba(245,245,244,0.9), transparent)" }} />
             </div>
 
             {/* Slide area */}

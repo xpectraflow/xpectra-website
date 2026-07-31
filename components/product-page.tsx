@@ -285,7 +285,7 @@ const PlaybackMockup = ({ videoSrc, poster }: MockupProps) => {
    ========================================================================= */
 const PlaygroundMockup = ({ videoSrc, poster }: MockupProps) => {
     return (
-        <VideoPlaceholder title="Xpectra Playground --notebook.ipynb" tag="Data Playground" videoSrc={videoSrc} poster={poster ?? "/dashboard-preview.png"}>
+        <VideoPlaceholder title="Xpectra Playground --notebook.ipynb" tag="Data Playground" videoSrc={videoSrc} poster={poster ?? "/playground-payoff.png"}>
             <div className="space-y-3 font-mono text-xs">
                 {/* Code Cell */}
                 <div className="p-3 rounded-xl bg-black/60 border border-white/10 space-y-1">
@@ -316,7 +316,7 @@ const PlaygroundMockup = ({ videoSrc, poster }: MockupProps) => {
    ========================================================================= */
 const StatisticsMockup = ({ videoSrc, poster }: MockupProps) => {
     return (
-        <VideoPlaceholder title="combuster testing demo" tag="Stats Engine" videoSrc={videoSrc} poster={poster ?? "/hero-sensor.png"}>
+        <VideoPlaceholder title="combuster testing demo" tag="Stats Engine" videoSrc={videoSrc} poster={poster ?? "/stats-engine-preview.png"}>
             <div className="space-y-3 font-mono text-xs">
                 <div className="grid grid-cols-2 gap-2">
                     <div className="p-3 bg-black/60 rounded-xl border border-white/10">
@@ -668,7 +668,7 @@ const ProductPage = () => {
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
                             {/* Left Side: 16:9 GIF Placeholder */}
                             <div className="lg:col-span-6">
-                                <PlaygroundMockup poster="/dashboard-preview.png" />
+                                <PlaygroundMockup poster="/playground-payoff.png" />
                             </div>
 
                             {/* Right Side: Content */}

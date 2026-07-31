@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { SiteShell } from '@/components/site-shell';
 import HeroOrbitDeck from "@/components/ui/hero-modern";
 import { requestPilotAction } from "@/app/actions/request-pilot";
-import { EngineeringStandards } from "@/components/engineering-standards";
 
 const XpectraWebsite = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -105,10 +104,7 @@ const XpectraWebsite = () => {
               className="w-full rounded-3xl border border-white/10 shadow-2xl"
             />
           </motion.div>
-        }
-      >
-        {/* Global Engineering Standards Section */}
-        <EngineeringStandards />
+        }>
       </HeroOrbitDeck>
 
       {/* Infrastructure ribbon */}
@@ -165,7 +161,7 @@ const XpectraWebsite = () => {
       </div>
 
       {/* Pilot Section */}
-      <section id="pilot" className="relative py-24 px-6 md:px-10 lg:px-16 xl:px-24 bg-[#040404] overflow-hidden">
+      <section id="pilot" className="relative py-16 md:py-24 px-6 md:px-10 lg:px-16 xl:px-24 bg-[#040404] overflow-hidden">
         {/* Dotted background */}
         <div
           className="pointer-events-none absolute inset-0 z-0 opacity-60"
@@ -181,7 +177,7 @@ const XpectraWebsite = () => {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.6 }}
           id="contact"
           className="relative z-10 max-w-5xl mx-auto"

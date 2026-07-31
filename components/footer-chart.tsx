@@ -152,7 +152,7 @@ export function FooterChart() {
       },
       {
         label: 'Acceleration',
-        borderColor: 'rgba(16, 185, 129, 0.8)', // emerald
+        borderColor: 'rgba(168, 85, 247, 0.8)', // purple
         borderWidth: 1.5,
         radius: 0,
         data: dataArrays.current.acceleration,
