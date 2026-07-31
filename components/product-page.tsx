@@ -10,7 +10,8 @@ import {
     ArrowRight, ChevronRight, Check, Code2, Database, Activity, Play, Pause, FastForward,
     RotateCcw, Search, Terminal, Cpu, Zap, GitBranch, Github, Layers, Server, Shield,
     Sparkles, Sliders, BarChart3, LineChart, FileText, ArrowUpRight, Copy, Share2, Globe,
-    Lock, Workflow, Radio, HardDrive, RefreshCw, Box, ExternalLink, Calculator, Gauge
+    Lock, Workflow, Radio, HardDrive, RefreshCw, Box, ExternalLink, Calculator, Gauge,
+    Rocket, Car, Bot
 } from 'lucide-react';
 
 function cn(...classes: (string | boolean | undefined)[]) {
@@ -235,7 +236,7 @@ const PlaybackMockup = ({ videoSrc, poster }: MockupProps) => {
     }, [isPlaying]);
 
     return (
-        <VideoPlaceholder title="Telemetry Playback --session-id=4821" tag="Playback UI" videoSrc={videoSrc ?? "/video.engin.mov"} poster={poster ?? "/dashboard-preview.png"}>
+        <VideoPlaceholder title="Telemetry Playback --session-id=4821" tag="Playback UI" videoSrc={videoSrc ?? "/video.engin.mp4"} poster={poster ?? "/dashboard-preview.png"}>
             <div className="flex flex-col justify-between h-full font-mono text-xs">
                 <div className="flex items-center justify-between text-[11px] text-white/50">
                     <span>TIMECODE: <strong className="text-white">00:14:{(progress * 0.6).toFixed(2)}s</strong></span>
@@ -655,7 +656,7 @@ const ProductPage = () => {
 
                             {/* Right Side: 16:9 GIF Placeholder */}
                             <div className="lg:col-span-6">
-                                <PlaybackMockup videoSrc="/video.engin.mov" />
+                                <PlaybackMockup videoSrc="/video.engin.mp4" />
                             </div>
                         </div>
                     </section>
