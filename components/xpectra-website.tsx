@@ -130,7 +130,7 @@ const XpectraWebsite = () => {
                     icon: (
                       <svg viewBox="0 0 72 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[18px] w-auto shrink-0">
                         <text x="4" y="27" fontSize="26" fontWeight="800" fontFamily="Arial,Helvetica,sans-serif" fill="white">aws</text>
-                        <path d="M13 38Q36 31 59 38" stroke="#FF9900" strokeWidth="4" strokeLinecap="round"/>
+                        <path d="M13 38Q36 45 59 38" stroke="#FF9900" strokeWidth="4" strokeLinecap="round"/>
                         <path d="M55 35.5L61 38L55 40.5" stroke="#FF9900" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     ),

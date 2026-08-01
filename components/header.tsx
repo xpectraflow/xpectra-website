@@ -23,21 +23,21 @@ export const Header = () => {
               height={28}
               className="w-7 h-7"
             />
-            <span className="font-mono text-base font-bold text-white tracking-wider">xpectra</span>
+            <span className="font-mono text-[17px] font-bold text-white tracking-wider">xpectra</span>
           </Link>
 
           {/* Center: Nav links */}
           <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-            <Link href="/product" className="text-base font-medium text-white/65 hover:text-white transition-colors">
+            <Link href="/product" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Product
             </Link>
-            <Link href="/integrations" className="text-base font-medium text-white/65 hover:text-white transition-colors">
+            <Link href="/integrations" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Integrations
             </Link>
-            <Link href="/quickstart" className="text-base font-medium text-white/65 hover:text-white transition-colors">
+            <Link href="/quickstart" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Quickstart
             </Link>
-            <Link href="/blog" className="text-base font-medium text-white/65 hover:text-white transition-colors">
+            <Link href="/blog" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Blog
             </Link>
           </div>
