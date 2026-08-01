@@ -127,23 +127,47 @@ const XpectraWebsite = () => {
                 {[
                   {
                     label: "AWS",
-                    icon: <svg viewBox="0 0 40 24" fill="currentColor" className="h-4 w-auto shrink-0"><text x="0" y="17" fontSize="16" fontWeight="800" fontFamily="monospace" letterSpacing="1">AWS</text></svg>,
+                    icon: (
+                      <svg viewBox="0 0 72 44" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[18px] w-auto shrink-0">
+                        <text x="4" y="27" fontSize="26" fontWeight="800" fontFamily="Arial,Helvetica,sans-serif" fill="white">aws</text>
+                        <path d="M13 38Q36 45 59 38" stroke="#FF9900" strokeWidth="4" strokeLinecap="round"/>
+                        <path d="M55 35.5L61 38L55 40.5" stroke="#FF9900" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    ),
                   },
                   {
                     label: "Google Cloud",
-                    icon: <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0"><path d="M12 2L6 5.5v7L12 16l6-3.5v-7L12 2zm0 2.3l4.5 2.6v5.2L12 14.7 7.5 12.1V6.9L12 4.3z"/></svg>,
+                    icon: (
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[18px] w-[18px] shrink-0">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="#4285F4"/>
+                      </svg>
+                    ),
                   },
                   {
                     label: "Azure",
-                    icon: <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0"><path d="M13.05 4.24L6.56 18.05l2.22.01 1.34-2.95h5.78l1.01 2.95H19L13.05 4.24zm-.1 3.68l2.07 5.54h-3.96l1.89-5.54z"/></svg>,
+                    icon: (
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-[18px] w-[18px] shrink-0">
+                        <path d="M13.05 4.24L6.56 18.05l2.22.01 1.34-2.95h5.78l1.01 2.95H19L13.05 4.24zm-.1 3.68 2.07 5.54h-3.96l1.89-5.54z" fill="#0078D4"/>
+                      </svg>
+                    ),
                   },
                   {
                     label: "On-Device",
-                    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1" fill="currentColor" stroke="none"/></svg>,
+                    icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-[18px] w-[18px] shrink-0">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <rect x="7" y="7" width="10" height="10" rx="1"/>
+                        <path d="M9 1v2M12 1v2M15 1v2M9 21v2M12 21v2M15 21v2M1 9h2M1 12h2M1 15h2M21 9h2M21 12h2M21 15h2"/>
+                      </svg>
+                    ),
                   },
                   {
                     label: "Xpectra Cloud",
-                    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4 w-4 shrink-0"><path d="M3 15a4 4 0 004 4h10a4 4 0 000-8h-.5A5.5 5.5 0 005.5 8.5 4 4 0 003 12v3z"/></svg>,
+                    icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-[18px] w-[18px] shrink-0">
+                        <path d="M3 15a4 4 0 0 0 4 4h10a4 4 0 0 0 0-8h-.5A5.5 5.5 0 0 0 5.5 8.5 4 4 0 0 0 3 12v3z"/>
+                      </svg>
+                    ),
                   },
                 ].map((item) => (
                   <React.Fragment key={`${set}-${item.label}`}>

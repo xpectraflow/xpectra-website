@@ -176,6 +176,100 @@ interface MockupProps {
 }
 
 /* =========================================================================
+   FORMAT GRID — animated badge grid for Universal Data Format Support
+   ========================================================================= */
+const FormatGridMockup = () => {
+    const formats = [
+        { name: "CCSDS",   ext: ".ccsds",   desc: "Space Packet" },
+        { name: "TDMS",    ext: ".tdms",    desc: "NI LabVIEW" },
+        { name: "MDF4",    ext: ".mf4",     desc: "ASAM Measure" },
+        { name: "HDF5",    ext: ".h5",      desc: "Scientific" },
+        { name: "CSV",     ext: ".csv",     desc: "Tabular" },
+        { name: "Parquet", ext: ".parquet", desc: "Columnar" },
+        { name: "Binary",  ext: ".bin",     desc: "Raw Stream" },
+        { name: "XTCE",    ext: ".xtce",    desc: "XML Telemetry" },
+        { name: "JSON",    ext: ".json",    desc: "Data Exchange" },
+    ];
+
+    const [accepted, setAccepted] = useState<boolean[]>(Array(formats.length).fill(false));
+
+    useEffect(() => {
+        formats.forEach((_, i) => {
+            setTimeout(() => {
+                setAccepted(prev => {
+                    const next = [...prev];
+                    next[i] = true;
+                    return next;
+                });
+            }, 500 + i * 250);
+        });
+    }, []);
+
+    return (
+        <div className="rounded-2xl border border-white/10 bg-[#0a0a0a] p-6 w-full">
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-5">
+                <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/30">Supported Formats</span>
+                <span className="text-[10px] font-mono text-emerald-400/70">9 / 9 indexed</span>
+            </div>
+
+            {/* 3×3 badge grid */}
+            <div className="grid grid-cols-3 gap-3">
+                {formats.map((fmt, i) => (
+                    <motion.div
+                        key={fmt.name}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.07, duration: 0.35, ease: "easeOut" }}
+                        whileHover={{ scale: 1.05, transition: { duration: 0.15 } }}
+                        className="relative rounded-xl border p-3 cursor-default select-none"
+                        style={{
+                            borderColor: accepted[i] ? "rgba(34,197,94,0.28)" : "rgba(255,255,255,0.07)",
+                            background: accepted[i] ? "rgba(34,197,94,0.04)" : "rgba(255,255,255,0.02)",
+                            boxShadow: accepted[i] ? "0 0 14px rgba(34,197,94,0.07)" : "none",
+                            transition: "border-color 0.5s, background 0.5s, box-shadow 0.5s",
+                        }}
+                    >
+                        {/* Checkmark badge */}
+                        <AnimatePresence>
+                            {accepted[i] && (
+                                <motion.div
+                                    initial={{ scale: 0, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    transition={{ type: "spring", stiffness: 320, damping: 22 }}
+                                    className="absolute top-2 right-2 w-4 h-4 rounded-full bg-emerald-500/15 flex items-center justify-center"
+                                >
+                                    <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2.2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M1.5 5l2.5 2.5 4.5-4.5" />
+                                    </svg>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        <p
+                            className="text-sm font-mono font-bold pr-5"
+                            style={{
+                                color: accepted[i] ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
+                                transition: "color 0.5s",
+                            }}
+                        >
+                            {fmt.name}
+                        </p>
+                        <p className="text-[10px] font-mono text-white/20 mt-0.5">{fmt.ext}</p>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Footer */}
+            <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between">
+                <span className="text-[10px] font-mono text-white/20">xpectra-ingest --detect-schema</span>
+                <span className="text-[10px] font-mono text-emerald-400/60">✓ Auto-detected</span>
+            </div>
+        </div>
+    );
+};
+
+/* =========================================================================
    MOCKUP 1: FORMAT DETECTION & PARSING PIPELINE
    ========================================================================= */
 const FormatMockup = ({ videoSrc, poster }: MockupProps) => {
@@ -533,12 +627,21 @@ const ProductPage = () => {
 
                     <div className="max-w-5xl mx-auto text-center relative z-10">
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.1] tracking-tight mb-8 font-normal">
-                            Infrastructure for mission critical sensor data
+                            Accelerate hardware testing
                         </h1>
 
-                        <p className="text-base md:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed mb-12 font-sans font-normal">
-                            Compress launch timelines. Accelerate test. Maximize test facility ROI.
-                        </p>
+                        <ul className="flex flex-col items-center gap-2 mb-12">
+                            {[
+                                "Run more experiments in your test facility window",
+                                "Get live alerts and instant insights at the testbed",
+                                "Catch critical failures before disassembly",
+                            ].map((line) => (
+                                <li key={line} className="flex items-center gap-2.5 text-base md:text-lg text-white/55 font-sans font-normal">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/70 shrink-0" />
+                                    {line}
+                                </li>
+                            ))}
+                        </ul>
 
                         {/* Button + Stats Strip (Exact match to xpectraflow.com screenshot) */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
@@ -572,7 +675,7 @@ const ProductPage = () => {
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
                             {/* Left Side: 16:9 GIF Placeholder */}
                             <div className="lg:col-span-6">
-                                <FormatMockup poster="/xpectra-core-diagram.jpg" />
+                                <FormatGridMockup />
                             </div>
 
                             {/* Right Side: Content */}
@@ -608,10 +711,10 @@ const ProductPage = () => {
                                 </div>
 
                                 {/* Bottom Text */}
-                                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-xs text-white/70 font-mono flex items-center justify-between">
+                                <a href="https://github.com/xpectraflow/xpectra-client" target="_blank" rel="noopener noreferrer" className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 text-xs text-white/70 font-mono flex items-center justify-between hover:bg-white/[0.06] hover:border-white/20 transition-colors">
                                     <span>Don&apos;t see your format? Build your own parser using the Xpectra SDK.</span>
                                     <ArrowUpRight className="w-4 h-4 text-white shrink-0 ml-2" />
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </section>
