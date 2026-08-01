@@ -58,28 +58,28 @@ export interface SolutionData {
 export const solutionsListSummary = [
   {
     id: "aerospace",
-    title: "Aerospace & Rocketry",
+    title: "Aerospace",
     desc: "Propulsion & hot-fire test stand telemetry",
     icon: Rocket,
     badge: "Flight-Grade"
   },
   {
     id: "defense",
-    title: "Defense & Tactical",
+    title: "Defense",
     desc: "Edge sensor fusion for contested environments",
     icon: Shield,
     badge: "Mission-Critical"
   },
   {
     id: "robotics",
-    title: "Robotics & HIL",
+    title: "Robotics",
     desc: "ROS 2 & hardware-in-the-loop deterministic replay",
     icon: Bot,
     badge: "Autonomy"
   },
   {
     id: "automotive",
-    title: "Automotive & EV",
+    title: "Automotive",
     desc: "CAN-bus decoding & battery thermal analytics",
     icon: Car,
     badge: "Automotive"
@@ -96,7 +96,7 @@ export const solutionsListSummary = [
 export const solutionsData: Record<string, SolutionData> = {
   aerospace: {
     id: "aerospace",
-    title: "Aerospace & Rocketry Telemetry",
+    title: "Aerospace Telemetry",
     tagline: "Nanosecond-precise telemetry stream ingest for rocket propulsion & satellite test stands.",
     badge: "Flight-Grade",
     description: "Built for propulsion engineers, hot-fire test stands, and aerospace test labs requiring zero packet drop under high vibration, high throughput sensor bursts.",
@@ -163,7 +163,7 @@ export const solutionsData: Record<string, SolutionData> = {
   },
   defense: {
     id: "defense",
-    title: "Defense & Tactical Edge Telemetry",
+    title: "Defense Telemetry",
     tagline: "Resilient edge sensor fusion for tactical vehicles, UAVs, and air-gapped defense systems.",
     badge: "Mission-Critical",
     description: "Engineered for contested electromagnetic environments, low-bandwidth radio links, and zero-trust tactical edge nodes.",
@@ -230,7 +230,7 @@ export const solutionsData: Record<string, SolutionData> = {
   },
   robotics: {
     id: "robotics",
-    title: "Robotics & HIL Simulation",
+    title: "Robotics Telemetry",
     tagline: "High-throughput sensor stream ingestion & frame-accurate playback for autonomous robots.",
     badge: "Autonomy Ready",
     description: "Empower robotics engineering teams to validate ROS 2 nodes, actuators, LIDAR point clouds, and Hardware-in-the-Loop (HIL) test benches.",
@@ -297,7 +297,7 @@ export const solutionsData: Record<string, SolutionData> = {
   },
   automotive: {
     id: "automotive",
-    title: "Automotive & EV Telemetry",
+    title: "Automotive Telemetry",
     tagline: "Powertrain stress testing, CAN-bus analytics, and fleet-wide battery thermal logging.",
     badge: "Automotive",
     description: "Designed for EV powertrain engineers, test track operations, and vehicle battery testing teams handling massive sensor channels.",

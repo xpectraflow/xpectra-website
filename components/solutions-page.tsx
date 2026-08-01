@@ -22,7 +22,7 @@ const solutionsList = [
   {
     id: "aerospace",
     icon: Rocket,
-    title: "Aerospace & Rocketry",
+    title: "Aerospace",
     tagline: "Nanosecond-precise telemetry for propulsion & flight systems",
     description: "Validate propulsion test stands, rocket engine hot-fires, and satellite telemetry streams with zero data drop and real-time visualization.",
     features: [
@@ -37,7 +37,7 @@ const solutionsList = [
   {
     id: "defense",
     icon: Shield,
-    title: "Defense & Tactical Systems",
+    title: "Defense",
     tagline: "Resilient edge sensor fusion in contested environments",
     description: "Deploy offline-first telemetry ingestion engines directly onto vehicle-mounted hardware, tactical UAVs, and remote edge nodes.",
     features: [
@@ -52,7 +52,7 @@ const solutionsList = [
   {
     id: "robotics",
     icon: Bot,
-    title: "Robotics & Autonomous Systems",
+    title: "Robotics",
     tagline: "HIL simulation & multi-sensor playback loop",
     description: "Stream high-throughput LIDAR, IMU, and actuator telemetry straight into hardware-in-the-loop (HIL) testing pipelines.",
     features: [
@@ -67,7 +67,7 @@ const solutionsList = [
   {
     id: "automotive",
     icon: Car,
-    title: "Automotive & EV Engineering",
+    title: "Automotive",
     tagline: "Powertrain stress testing & battery thermal analytics",
     description: "Monitor CAN-bus metrics, inverter thermals, and crash test telemetry with unified schema validation.",
     features: [
