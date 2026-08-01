@@ -30,13 +30,15 @@ import {
   FileCode2,
   ChevronLeft
 } from 'lucide-react';
-import { solutionsData } from '@/lib/solutions-data';
+import { solutionsData, satelliteAITData } from '@/lib/solutions-data';
 
 export default function SolutionDetailPage({ slug }: { slug: string }) {
-  const data = solutionsData[slug] || solutionsData.aerospace;
+  const data = solutionsData[slug] || solutionsData.satellite || solutionsData.aerospace;
   const [activeSlide, setActiveSlide] = useState(0);
+  const [activeAITPhase, setActiveAITPhase] = useState(0);
+  const isSatellitePage = slug === "satellite";
 
-  const capabilitiesCarousel = [
+  const defaultCarousel = [
     {
       title: "Every sample stays at its original rate",
       desc: "Your simulations, test beds, and flight tests stream into one timeline at the rate they were recorded. Separating storage from compute keeps every data channel queryable for the life of your program.",
@@ -54,6 +56,26 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     }
   ];
 
+  const satelliteCarousel = [
+    {
+      title: "2. EMI/EMC Anechoic Chamber Non-Interference",
+      desc: "Electromagnetic Interference / Electromagnetic Compatibility testing in an anechoic chamber. Conducted & radiated emissions checks ensure transponders, power buses, batteries, and thrusters don't cross-interfere.",
+      img: "/satellite-emc-chamber.png"
+    },
+    {
+      title: "3. CATR RF Pattern & Gravity-Offload Array Deployment",
+      desc: "Compact Antenna Test Range (CATR) pattern testing & link budget verification. Solar array and antenna deployment testing using gravity-offload rigs (simulating 0g deployment).",
+      img: "/stage-hardware-binding.png"
+    },
+    {
+      title: "5. HIL Simulation & Software Validation Test Bed (ISRO AOCS)",
+      desc: "Hardware-in-the-Loop simulation & ISRO Software Validation Test Bed for AOCS (Attitude & Orbit Control System) validation. Mission sequence rehearsal & Day-in-the-Life (DITL) testing.",
+      img: "/stage-realtime-ingest.png"
+    }
+  ];
+
+  const carouselItems = isSatellitePage ? satelliteCarousel : defaultCarousel;
+
   return (
     <div className="relative min-h-screen w-full bg-[#050608] text-white overflow-x-hidden">
       <Header />
@@ -64,8 +86,8 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
           {/* Background Media / Video Overlay */}
           <div className="absolute inset-0 bg-black z-0">
             <img
-              src="/aerospace-ui.png"
-              alt="Aerospace Telemetry"
+              src={data.heroImage}
+              alt={data.title}
               className="w-full h-full object-cover opacity-25 scale-105 filter blur-xs"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#050608] via-[#050608]/70 to-[#050608]/40" />
@@ -80,7 +102,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-white/90 mb-6 backdrop-blur-md"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>SIFT-GRADE TELEMETRY FOR {data.title.toUpperCase()}</span>
+              <span>ISRO (URSC/ISAC, SDSC-SHAR) & SPACEX (HAWTHORNE/STARBASE) AIT FLOW</span>
             </motion.div>
 
             <motion.h1
@@ -89,7 +111,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]"
             >
-              {data.title}
+              {isSatellitePage ? "Satellite AIT & Ground Segment Validation" : data.title}
             </motion.h1>
 
             <motion.p
@@ -98,7 +120,9 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-lg md:text-2xl font-light text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed"
             >
-              Capture data at the rate your sensors record it and cut flight-test review from days to hours.
+              {isSatellitePage
+                ? "Standard Assembly, Integration & Testing (AIT/ATLO) with nanosecond telemetry precision from cleanroom TVAC chambers to on-orbit commissioning."
+                : data.tagline}
             </motion.p>
 
             <motion.div
@@ -116,7 +140,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               <a href="#explore-platform">
                 <Button size="lg" variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10 px-8 h-13 rounded-xl text-base gap-2 backdrop-blur-md">
                   <Play className="w-4 h-4 fill-white/80" />
-                  <span>Launch Platform UI</span>
+                  <span>Explore AIT Pipeline</span>
                 </Button>
               </a>
             </motion.div>
@@ -130,14 +154,33 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <div className="lg:col-span-6 space-y-6">
               <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-white/60 font-semibold">
                 <Radio className="w-4 h-4 text-white" />
-                <span>XPECTRA FOR AEROSPACE</span>
+                <span>{isSatellitePage ? "01 / QUALIFICATION & ACCEPTANCE" : "XPECTRA FOR AEROSPACE"}</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-                Every sensor lands at the rate it was recorded, up to 10kHz and beyond
+                {isSatellitePage
+                  ? "Thermal Vacuum (TVAC/TBTV) & Multi-Axis Dynamic Telemetry"
+                  : "Every sensor lands at the rate it was recorded, up to 10kHz and beyond"}
               </h2>
               <p className="text-white/70 text-base leading-relaxed font-light">
-                Ingest tens of thousands of data channels at the rate each sensor recorded, up to 10kHz and beyond, with sub-second latency from sensor to simulation to flight test. Capture everything, so a pressure spike lasting microseconds reads as clearly as a slow thermal drift, and your flight-test review runs the moment telemetry lands.
+                {isSatellitePage
+                  ? "Simulate orbital vacuum with hot/soak/cold cycles in TVAC chambers while logging thousands of thermistors, heaters, and vacuum pressure channels. ISRO standard Thermal Balance Thermal Vacuum (TBTV) tests in the Space Simulation Chamber (ISAC/URSC/IISU) run with zero packet drop, capturing transient thermal spikes and vibration loads."
+                  : "Ingest tens of thousands of data channels at the rate each sensor recorded, up to 10kHz and beyond, with sub-second latency from sensor to simulation to flight test. Capture everything, so a pressure spike lasting microseconds reads as clearly as a slow thermal drift."}
               </p>
+
+              {/* Sub-capabilities tags */}
+              {isSatellitePage && (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">TVAC / TBTV Cycling</div>
+                    <div className="text-white/60 text-[11px]">ISRO URSC simulation chamber thermal math model validation</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">Mechanical & Mass</div>
+                    <div className="text-white/60 text-[11px]">Vibration, acoustic max-Q, shock & CG/MOI spin balance</div>
+                  </div>
+                </div>
+              )}
+
               <div className="pt-2">
                 <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-bold px-7 h-12 rounded-xl text-sm">
@@ -152,17 +195,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <div className="lg:col-span-6">
               <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl group">
                 <img
-                  src="/aerospace-ui.png"
-                  alt="Sift Aerospace Telemetry Dashboard"
+                  src={isSatellitePage ? "/satellite-tvac-chamber.png" : "/aerospace-ui.png"}
+                  alt={isSatellitePage ? "Satellite TVAC Chamber Telemetry" : "Sift Aerospace Telemetry Dashboard"}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/90 bg-black/80 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10">
                   <span className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
-                    <span>HIGH-FREQUENCY INGEST ACTIVE</span>
+                    <span>{isSatellitePage ? "TVAC CHAMBER MONITORING ONLINE" : "HIGH-FREQUENCY INGEST ACTIVE"}</span>
                   </span>
-                  <span className="text-white font-bold">&gt; 10,000 Hz</span>
+                  <span className="text-white font-bold">{isSatellitePage ? "8.9E-07 Torr" : "> 10,000 Hz"}</span>
                 </div>
               </div>
             </div>
@@ -179,54 +222,60 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   PLATFORM CAPABILITIES
                 </span>
                 <h2 className="text-2xl md:text-3xl font-bold text-white">
-                  Designed for Mission-Critical Fidelity
+                  {isSatellitePage ? "RF, EMC & Software Validation Workflows" : "Designed for Mission-Critical Fidelity"}
                 </h2>
               </div>
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : capabilitiesCarousel.length - 1))}
+                  onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : carouselItems.length - 1))}
                   className="p-3 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white transition-colors"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
-                  onClick={() => setActiveSlide((prev) => (prev < capabilitiesCarousel.length - 1 ? prev + 1 : 0))}
+                  onClick={() => setActiveSlide((prev) => (prev < carouselItems.length - 1 ? prev + 1 : 0))}
                   className="p-3 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white transition-colors"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
             </div>
 
-            {/* Carousel Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {capabilitiesCarousel.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  onClick={() => setActiveSlide(idx)}
-                  className={`rounded-2xl border transition-all duration-300 p-6 flex flex-col justify-between cursor-pointer ${
-                    activeSlide === idx
-                      ? 'border-white/40 bg-white/[0.06] shadow-2xl scale-[1.02]'
-                      : 'border-white/10 bg-zinc-950/60 opacity-60 hover:opacity-100 hover:border-white/20'
-                  }`}
-                >
-                  <div>
-                    <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-white/10 mb-6 bg-black">
-                      <img
-                        src={item.img}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-white/70 leading-relaxed font-light">
-                      {item.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+            {/* Slider Card Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-4">
+                <div className="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/10 text-white/90 border border-white/10">
+                  FEATURE 0{activeSlide + 1} / 0{carouselItems.length}
+                </div>
+                <h3 className="text-2xl font-bold text-white leading-snug">
+                  {carouselItems[activeSlide].title}
+                </h3>
+                <p className="text-white/70 text-sm leading-relaxed font-light">
+                  {carouselItems[activeSlide].desc}
+                </p>
+                <div className="flex items-center gap-2 pt-2">
+                  {carouselItems.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveSlide(idx)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        idx === activeSlide ? "w-8 bg-white" : "w-2 bg-white/20"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-span-7">
+                <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-zinc-950 shadow-xl">
+                  <img
+                    src={carouselItems[activeSlide].img}
+                    alt={carouselItems[activeSlide].title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -235,12 +284,14 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white max-w-4xl mx-auto leading-tight">
-              One platform, from your first prototype to your orbital fleet
+              {isSatellitePage
+                ? "One telemetry platform from cleanroom AIT to orbital commissioning"
+                : "One platform, from your first prototype to your orbital fleet"}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Step 01: DEVELOP */}
+            {/* Step 01: DEVELOP / AIT */}
             <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 flex flex-col justify-between hover:border-white/30 transition-all">
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -248,27 +299,27 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     01
                   </span>
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
-                    DEVELOP
+                    {isSatellitePage ? "4. FUNCTIONAL & AIT/ATLO" : "DEVELOP"}
                   </h3>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Validate your flight software and subsystems across every phase of development.</span>
+                    <span>{isSatellitePage ? "SpaceX ATLO & ISRO AIT integration campaign flows." : "Validate your flight software and subsystems across every phase of development."}</span>
                   </div>
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Trace anomalies across your control surfaces, avionics, and propulsion.</span>
+                    <span>{isSatellitePage ? "Comprehensive Performance Test (CPT) baseline, post-env & pre-ship." : "Trace anomalies across your control surfaces, avionics, and propulsion."}</span>
                   </div>
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Build faster with insight from every test and simulation.</span>
+                    <span>{isSatellitePage ? "Bus & payload integration, TT&C loop tests, static load & modal survey." : "Build faster with insight from every test and simulation."}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Step 02: VALIDATE */}
+            {/* Step 02: VALIDATE / PRE-LAUNCH */}
             <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 flex flex-col justify-between hover:border-white/30 transition-all">
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -276,27 +327,27 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     02
                   </span>
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
-                    VALIDATE
+                    {isSatellitePage ? "7 & 8. LAUNCH SITE & SPACEX" : "VALIDATE"}
                   </h3>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Run automated checks on your structural, thermal, and EMI data to catch issues early.</span>
+                    <span>{isSatellitePage ? "SDSC SHAR (ISRO) & Cape Canaveral / Vandenberg / Starbase (SpaceX) pre-launch." : "Automated structural and thermal checks speed up campaign sign-off."}</span>
                   </div>
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Track parts, configs, and test results across your vehicles with full traceability.</span>
+                    <span>{isSatellitePage ? "Propellant fueling, Final Health Check (FHC), encapsulation & mate/de-mate." : "Produce structured evidence for AS9100, FAA, and ITAR compliance."}</span>
                   </div>
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Generate structured evidence for FAA, AS9100, and ITAR review in minutes.</span>
+                    <span>{isSatellitePage ? "SpaceX PPF facility processing, Wet Dress Rehearsal (WDR) & static fire." : "Eliminate manual data wrangling between environmental tests."}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Step 03: OPERATE */}
+            {/* Step 03: OPERATE / ON-ORBIT */}
             <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 flex flex-col justify-between hover:border-white/30 transition-all">
               <div>
                 <div className="flex items-center gap-3 mb-6">
@@ -304,21 +355,21 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     03
                   </span>
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
-                    OPERATE
+                    {isSatellitePage ? "9. ON-ORBIT & LEOP" : "OPERATE"}
                   </h3>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Monitor propulsion, thermal, and control systems in real time across your vehicles and fleets.</span>
+                    <span>{isSatellitePage ? "LEOP (Launch and Early Orbit Phase) acquisition & solar array locking." : "Monitor propulsion, control, and fleet health in real time."}</span>
                   </div>
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Surface off-nominal behavior the moment it appears, using rules your team writes.</span>
+                    <span>{isSatellitePage ? "In-Orbit Testing (IOT) checks all satellite subsystems post-launch." : "Evaluate telemetry at high frequency during flight operations."}</span>
                   </div>
                   <div className="flex items-start gap-3 text-xs text-white/80 font-light leading-relaxed">
                     <span className="text-white font-mono text-sm shrink-0">→</span>
-                    <span>Catch component wear early by trending temperature, vibration, and power draw across your fleet.</span>
+                    <span>{isSatellitePage ? "Commissioning phase handoff to mission ops and payload customers." : "Compare flight performance against vehicle test history."}</span>
                   </div>
                 </div>
               </div>
@@ -448,6 +499,225 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             </div>
           </div>
         </section>
+
+        {/* 7. NEW SATELLITE AIT 9-PHASE VISUAL CAMPAIGN NAVIGATOR WITH IMAGES & CARDS */}
+        {isSatellitePage && (
+          <section className="max-w-7xl mx-auto px-6 lg:px-8" id="ait-validation-flow">
+            <div className="rounded-3xl border border-white/15 bg-[#0c0d10] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+              
+              {/* Header */}
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-white/90 mb-4">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>9-PHASE SATELLITE AIT & GROUND SEGMENT PIPELINE</span>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                  {satelliteAITData.title}
+                </h2>
+                <p className="text-white/70 text-base md:text-lg max-w-3xl mx-auto font-light leading-relaxed">
+                  {satelliteAITData.subtitle}
+                </p>
+              </div>
+
+              {/* 9-Phase Tab Selector Buttons */}
+              <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 border-b border-white/10">
+                {satelliteAITData.sections.map((sec, idx) => (
+                  <button
+                    key={sec.id}
+                    onClick={() => setActiveAITPhase(idx)}
+                    className={`px-4 py-2.5 rounded-xl text-xs font-mono shrink-0 transition-all flex items-center gap-2 border ${
+                      activeAITPhase === idx
+                        ? 'bg-white text-black font-bold border-white shadow-lg scale-[1.03]'
+                        : 'bg-white/5 text-white/70 hover:text-white border-white/10 hover:bg-white/10'
+                    }`}
+                  >
+                    <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+                      activeAITPhase === idx ? 'bg-black text-white font-bold' : 'bg-white/10 text-white/80'
+                    }`}>
+                      0{sec.id}
+                    </span>
+                    <span>{sec.shortName || `Phase 0${sec.id}`}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Featured Active Phase Visual Display Card */}
+              {(() => {
+                const currentSec = satelliteAITData.sections[activeAITPhase] || satelliteAITData.sections[0];
+                return (
+                  <div className="rounded-2xl border border-white/20 bg-zinc-950/90 p-6 md:p-10 mb-16 shadow-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                      
+                      {/* Left Details Column */}
+                      <div className="lg:col-span-6 space-y-6">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-bold">
+                            PHASE 0{currentSec.id} / 09
+                          </span>
+                          <span className="text-xs font-mono text-white/60">
+                            {currentSec.badge}
+                          </span>
+                        </div>
+
+                        <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                          {currentSec.title}
+                        </h3>
+
+                        {currentSec.subsections ? (
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
+                            {currentSec.subsections.map((sub, sIdx) => (
+                              <div key={sIdx} className="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.07] transition-all flex flex-col justify-between min-h-[180px]">
+                                <div>
+                                  <div className="flex items-center justify-between text-[10px] font-mono font-bold text-white/90 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-white/10">
+                                    <span>{sub.category}</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                                  </div>
+                                  <div className="space-y-2.5">
+                                    {sub.items.map((item, iIdx) => (
+                                      <div key={iIdx} className="text-xs space-y-0.5">
+                                        <div className="font-semibold text-white flex items-start gap-1.5">
+                                          <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                                          <span>{item.name}</span>
+                                        </div>
+                                        <p className="text-[11px] text-white/60 pl-5 font-light leading-relaxed">
+                                          {item.desc}
+                                        </p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                            {currentSec.items?.map((item, iIdx) => (
+                              <div key={iIdx} className="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.07] transition-all flex flex-col justify-between min-h-[90px]">
+                                <div>
+                                  <div className="text-xs font-bold text-white mb-1 flex items-start gap-2">
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                                    <span>{item.name}</span>
+                                  </div>
+                                  <p className="text-[11px] text-white/60 font-light leading-relaxed pl-5">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Phase Navigation Controls */}
+                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                          <button
+                            disabled={activeAITPhase === 0}
+                            onClick={() => setActiveAITPhase((prev) => Math.max(0, prev - 1))}
+                            className="text-xs font-mono px-4 py-2 rounded-lg border border-white/15 bg-white/5 hover:bg-white/15 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+                          >
+                            <ChevronLeft className="w-4 h-4" />
+                            <span>Previous Phase</span>
+                          </button>
+
+                          <span className="text-xs font-mono text-white/50">
+                            {activeAITPhase + 1} of {satelliteAITData.sections.length}
+                          </span>
+
+                          <button
+                            disabled={activeAITPhase === satelliteAITData.sections.length - 1}
+                            onClick={() => setActiveAITPhase((prev) => Math.min(satelliteAITData.sections.length - 1, prev + 1))}
+                            className="text-xs font-mono px-4 py-2 rounded-lg border border-white/15 bg-white/5 hover:bg-white/15 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+                          >
+                            <span>Next Phase</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+
+                      </div>
+
+                      {/* Right Visual Image Card */}
+                      <div className="lg:col-span-6">
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl group">
+                          <img
+                            src={currentSec.img}
+                            alt={currentSec.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                          
+                          {/* Live Telemetry Overlay */}
+                          <div className="absolute bottom-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-white/15 flex items-center justify-between text-xs font-mono">
+                            <div className="flex items-center gap-2">
+                              <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
+                              <span className="text-white font-bold uppercase">{currentSec.badge}</span>
+                            </div>
+                            <span className="text-white/70">ISRO / SPACEX READY</span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* 9-CARD VISUAL GRID AT A GLANCE (Showing ALL 9 Phases with Images) */}
+              <div className="border-t border-white/10 pt-12">
+                <div className="text-center mb-8">
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    Full 9-Phase AIT Campaign Visual Overview
+                  </h3>
+                  <p className="text-xs md:text-sm text-white/60 mt-1">
+                    Click any phase card to jump into detailed telemetry view
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {satelliteAITData.sections.map((sec, sIdx) => (
+                    <div
+                      key={sec.id}
+                      onClick={() => setActiveAITPhase(sIdx)}
+                      className={`rounded-2xl border p-5 transition-all cursor-pointer flex flex-col justify-between group ${
+                        activeAITPhase === sIdx
+                          ? 'border-white bg-white/10 shadow-2xl scale-[1.02]'
+                          : 'border-white/10 bg-zinc-950/80 hover:border-white/30 hover:bg-white/5'
+                      }`}
+                    >
+                      <div>
+                        {/* Thumbnail Image */}
+                        <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-white/10 mb-4 bg-black">
+                          <img
+                            src={sec.img}
+                            alt={sec.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono font-bold text-white border border-white/20">
+                            PHASE 0{sec.id}
+                          </div>
+                        </div>
+
+                        <h4 className="text-sm font-bold text-white mb-2 leading-snug">
+                          {sec.title}
+                        </h4>
+
+                        <p className="text-[11px] text-white/60 line-clamp-3 leading-relaxed font-light">
+                          {sec.subsections
+                            ? sec.subsections.map(s => s.category).join(', ')
+                            : sec.items?.map(i => i.name).join(' · ')}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/70">
+                        <span>{sec.badge}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </section>
+        )}
 
         {/* 8. BOTTOM CTA (Dual Buttons: Request Demo / Contact Sales) */}
         <section className="max-w-7xl mx-auto px-6 lg:px-8 text-center">

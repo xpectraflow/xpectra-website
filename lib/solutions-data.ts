@@ -13,7 +13,10 @@ import {
   Car,
   Zap,
   Rocket,
-  Shield
+  Shield,
+  Navigation,
+  Flame,
+  Radio
 } from 'lucide-react';
 
 export interface SolutionData {
@@ -64,39 +67,53 @@ export interface SolutionData {
 
 export const solutionsListSummary = [
   {
-    id: "aerospace",
-    title: "Aerospace",
-    desc: "Propulsion & hot-fire test stand telemetry",
-    icon: Rocket,
-    badge: "Flight-Grade"
+    id: "satellite",
+    title: "Satellite",
+    desc: "Constellation health, orbital telemetry & payload analytics",
+    icon: Globe,
+    badge: "Space Systems"
+  },
+  {
+    id: "propulsion",
+    title: "Propulsion",
+    desc: "Hot-fire engine test stand & transient DAQ",
+    icon: Flame,
+    badge: "Rocket Test"
+  },
+  {
+    id: "drones",
+    title: "Drones",
+    desc: "Autonomous UAV flight log parsing & fleet diagnostics",
+    icon: Navigation,
+    badge: "UAV Flight"
   },
   {
     id: "defense",
-    title: "Defense",
+    title: "Defence",
     desc: "Edge sensor fusion for contested environments",
     icon: Shield,
     badge: "Mission-Critical"
   },
   {
-    id: "robotics",
-    title: "Robotics",
-    desc: "ROS 2 & hardware-in-the-loop deterministic replay",
-    icon: Bot,
-    badge: "Autonomy"
+    id: "energy",
+    title: "Energy",
+    desc: "Turbine vibration FFT & 24/7 asset health",
+    icon: Zap,
+    badge: "Industrial IoT"
   },
   {
     id: "automotive",
     title: "Automotive",
-    desc: "CAN-bus decoding & battery thermal analytics",
+    desc: "CAN-bus decoding & EV battery thermal analytics",
     icon: Car,
     badge: "Automotive"
   },
   {
-    id: "energy",
-    title: "Energy & Infrastructure",
-    desc: "Turbine vibration FFT & 24/7 asset health",
-    icon: Zap,
-    badge: "Industrial IoT"
+    id: "robotics",
+    title: "Robotics",
+    desc: "ROS 2 & hardware-in-the-loop deterministic streaming",
+    icon: Bot,
+    badge: "Autonomy"
   }
 ];
 
@@ -465,5 +482,297 @@ export const solutionsData: Record<string, SolutionData> = {
       role: "Chief Reliability Officer",
       company: "GridPower Infrastructure"
     }
+  },
+  satellite: {
+    id: "satellite",
+    title: "Satellite Systems",
+    tagline: "Constellation health, orbital telemetry & payload diagnostics.",
+    badge: "Space Systems",
+    description: "Built for satellite operators, constellation mission controllers, and space hardware labs monitoring orbital telemetry at scale.",
+    heroImage: "/aerospace-ui.png",
+    customerProof: [
+      { stat: "1,000+", label: "Orbital Channels Monitored" },
+      { stat: "< 10 ms", label: "Ground Station Decoded" },
+      { stat: "99.99%", label: "Constellation Uptime" },
+      { stat: "CCSDS", label: "Protocol Standard" }
+    ],
+    solutionDeepDives: [
+      {
+        title: "Constellation Telemetry Unification",
+        problem: "Satellite fleets stream heterogeneous telemetry frames across multiple ground stations.",
+        solution: "Xpectra unifies CCSDS satellite frames into a real-time queryable timeline."
+      },
+      {
+        title: "Orbital Anomaly Detection",
+        problem: "Solar flare thermal spikes and attitude control drifts are hard to correlate across payloads.",
+        solution: "Automated rules analyze power draw, bus voltage, and thermistor telemetry in real-time."
+      },
+      {
+        title: "Ground Station Edge Sync",
+        problem: "Low-bandwidth ground contacts drop high-frequency payload diagnostic logs.",
+        solution: "Edge NVMe buffers stream prioritized telemetry bursts during ground contact windows."
+      }
+    ],
+    lifecycleStages: [
+      { step: "01", title: "Ground Ingest", description: "Connect ground station receivers directly to Xpectra edge ingest daemons." },
+      { step: "02", title: "CCSDS Parsing", description: "Decode telemetry frames and packets into structured time-series streams." },
+      { step: "03", title: "Payload Analytics", description: "Run automated rules against bus power, thermal, and attitude telemetry." },
+      { step: "04", title: "Orbit Archival", description: "Store full-fidelity orbital mission archives for mission life audit." }
+    ],
+    keyFeatures: [
+      { icon: Globe, title: "Constellation Scale Ingest", desc: "Scale to thousands of satellite channels seamlessly." },
+      { icon: Shield, title: "CCSDS Frame Decoding", desc: "Native parsing for space telemetry protocol standards." },
+      { icon: Activity, title: "Real-Time Bus Health", desc: "Sub-second dashboard updates for power, thermal, and ADCS." },
+      { icon: Database, title: "Parquet & HDF5 Archival", desc: "Open columnar data format export for orbital analysis." },
+      { icon: Lock, title: "Air-Gapped Security", desc: "Deploy in isolated mission operation centers with zero cloud dependencies." },
+      { icon: Gauge, title: "Ground Station Sync", desc: "Optimized for intermittent satellite pass contact windows." }
+    ],
+    proofOutcomes: [
+      { metric: "100%", label: "CCSDS Protocol Support", description: "Native frame decoding for satellite communication protocols." },
+      { metric: "< 5ms", label: "Ingest Latency", description: "Real-time telemetry stream visualization during pass windows." },
+      { metric: "99.999%", label: "Telemetry Integrity", description: "Zero packet loss across ground station telemetry receivers." }
+    ]
+  },
+  propulsion: {
+    id: "propulsion",
+    title: "Propulsion & Hot-Fire",
+    tagline: "High-frequency transient DAQ for rocket engine & thruster test stands.",
+    badge: "Rocket Test",
+    description: "Designed for propulsion engineers, rocket engine test stands, and combustion labs requiring microsecond pressure transient capture.",
+    heroImage: "/hotfire-stand.png",
+    customerProof: [
+      { stat: "250+ DAQ", label: "Synchronized Sensor Channels" },
+      { stat: "< 1 µs", label: "Timestamp Alignment Accuracy" },
+      { stat: "99.999%", label: "Zero-Drop Hot-Fire Record" },
+      { stat: "100 kHz", label: "Sampling Rate Supported" }
+    ],
+    solutionDeepDives: [
+      {
+        title: "High-Frequency Transient Capture",
+        problem: "Traditional cloud monitoring drops microsecond pressure spikes during rocket engine ignition.",
+        solution: "Xpectra edge binaries ingest raw sensor frames locally with ring-buffer memory, capturing transient spikes instantly."
+      },
+      {
+        title: "Multi-Stream Timestamp Sync",
+        problem: "Sensor streams from different hardware providers drift by milliseconds, confusing anomaly diagnosis.",
+        solution: "Hardware-level PTP (IEEE 1588) sync aligns all telemetry streams to a single master clock."
+      },
+      {
+        title: "Air-Gapped Hot-Fire Archival",
+        problem: "Test facilities lack cloud connectivity during high-security propulsion runs.",
+        solution: "Local zero-cloud deployment writes directly to NVMe arrays while exposing real-time web dashboards."
+      }
+    ],
+    lifecycleStages: [
+      { step: "01", title: "Hardware Binding", description: "Connect LabVIEW, MATLAB, or cDAQ controllers via Xpectra native Rust/C++ edge plugins." },
+      { step: "02", title: "Real-Time Ingestion", description: "Ingest multi-gigabit sensor channels with microsecond timestamp preservation." },
+      { step: "03", title: "Hot-Fire Analytics", description: "Live FFT frequency domain transforms and instant transient glitch detection." },
+      { step: "04", title: "Compliance Archival", description: "Automated Parquet export and immutable test session records for mission audit." }
+    ],
+    keyFeatures: [
+      { icon: Gauge, title: "100 kHz Ingest Rate", desc: "Native C++ edge buffer handles extreme data bursts without backpressure." },
+      { icon: Clock, title: "Nanosecond Sync", desc: "PTP IEEE 1588 synchronization across distributed test stands." },
+      { icon: Lock, title: "Air-Gapped Security", desc: "Deploy on isolated local subnets with zero internet dependency." },
+      { icon: Server, title: "LabVIEW & MATLAB Integration", desc: "Pre-built connectors for industry standard test bench software." },
+      { icon: Database, title: "Parquet & HDF5 Export", desc: "Instant export into open columnar data formats for post-test analysis." },
+      { icon: BarChart3, title: "Real-time FFT Graphs", desc: "Sub-10ms web UI graph updates for vibration and acoustic signatures." }
+    ],
+    proofOutcomes: [
+      { metric: "10x", label: "Faster Hot-Fire Analysis", description: "Engineers diagnose combustion instability in seconds rather than hours." },
+      { metric: "0 Packets", label: "Lost During Ignition", description: "Zero data drop recorded during high vibration propulsion runs." },
+      { metric: "100%", label: "Test Audit Compliance", description: "Fully reproducible telemetry sessions with immutable timestamps." }
+    ]
+  },
+  drones: {
+    id: "drones",
+    title: "Drones & Autonomous UAVs",
+    tagline: "Autonomous UAV telemetry, flight log parsing & swarm fleet diagnostics.",
+    badge: "UAV Flight",
+    description: "Built for drone manufacturers, autonomous flight operators, and defense UAV fleets analyzing high-rate flight controller logs.",
+    heroImage: "/hardware-daq.png",
+    customerProof: [
+      { stat: "PX4 / ULOG", label: "Native Log Parsing" },
+      { stat: "ROS 2", label: "DDS Telemetry Bridge" },
+      { stat: "Sub-10ms", label: "Edge Decision Latency" },
+      { stat: "100%", label: "Flight Audit Trail" }
+    ],
+    solutionDeepDives: [
+      {
+        title: "Automated ULOG & PX4 Parsing",
+        problem: "Analyzing binary flight logs after every test flight requires manual script execution and delays turnaround.",
+        solution: "Xpectra automatically ingests and parses PX4, ArduPilot, and ROS bag files the instant the UAV lands or connects."
+      },
+      {
+        title: "Fleet-Wide Battery & Motor Trending",
+        problem: "Individual ESC or motor degradation across drone fleets goes unnoticed until in-flight failure.",
+        solution: "Continuous analytics trend ESC current draw, motor vibration, and battery cell delta across hundreds of UAV flights."
+      },
+      {
+        title: "BVLOS Telemetry Streaming",
+        problem: "Beyond-Visual-Line-of-Sight flight data drops over cellular/satellite networks.",
+        solution: "Resilient edge ring-buffer syncs telemetry when cellular or satellite links reconnect."
+      }
+    ],
+    lifecycleStages: [
+      { step: "01", title: "Flight Controller Link", description: "Connect PX4, ArduPilot, or ROS 2 flight controllers via MAVLink / DDS." },
+      { step: "02", title: "Edge Telemetry Ingest", description: "Log high-frequency IMU, GPS, and motor telemetry locally." },
+      { step: "03", title: "Automated Log Review", description: "Run automated health and safety rules against every flight log." },
+      { step: "04", title: "Fleet Management", description: "Track component wear and maintenance intervals across UAV fleets." }
+    ],
+    keyFeatures: [
+      { icon: Navigation, title: "MAVLink & ROS 2 Bridge", desc: "Direct integration with popular autopilot and robotics software." },
+      { icon: Activity, title: "PX4 & ULOG Ingest", desc: "Instant binary flight log parsing and interactive timeline review." },
+      { icon: Shield, title: "BVLOS Link Resilience", desc: "Local buffer preserves data over cellular and satellite dropouts." },
+      { icon: Database, title: "Fleet Telemetry Vault", desc: "Centralized storage for multi-UAV flight data and sensor logs." },
+      { icon: Lock, title: "Secure Mission Storage", desc: "Encrypted local edge storage for sensitive defense flight operations." },
+      { icon: BarChart3, title: "ESC & Battery Diagnostics", desc: "Deep telemetry insights into motor wear and power consumption." }
+    ],
+    proofOutcomes: [
+      { metric: "10x", label: "Faster Log Parsing", description: "Flight review completed in seconds post-landing." },
+      { metric: "100%", label: "Fleet Traceability", description: "Full diagnostic record for every vehicle flight hour." },
+      { metric: "0", label: "Telemetry Lost", description: "Edge buffer protects data during BVLOS link dropouts." }
+    ]
   }
+};
+
+export const satelliteAITData = {
+  title: "Satellite AIT & Ground Segment Validation Flow",
+  subtitle: "Standard Assembly, Integration & Testing (AIT/ATLO) workflow using ISRO (URSC/ISAC, SDSC-SHAR) & SpaceX (Hawthorne/Starbase) industry terminology.",
+  sections: [
+    {
+      id: 1,
+      title: "1. Environmental Testing (Qualification & Acceptance)",
+      shortName: "Environmental",
+      badge: "ISRO Space Simulation Chamber",
+      img: "/satellite-tvac-chamber.png",
+      subsections: [
+        {
+          category: "Thermal",
+          items: [
+            { name: "Thermal Vacuum (TVAC) test", desc: "Simulates orbital vacuum + hot/soak/cold cycles" },
+            { name: "Thermal balance test", desc: "Validates thermal math model vs real hardware" },
+            { name: "ISRO TBTV Standard", desc: "ISRO calls this the TBTV (Thermal Balance Thermal Vacuum) test, usually run in the Space Simulation Chamber at ISAC/URSC or IISU" }
+          ]
+        },
+        {
+          category: "Mechanical / Dynamic",
+          items: [
+            { name: "Vibration testing (sine + random vibration)", desc: "Simulates launch vehicle loads" },
+            { name: "Acoustic testing", desc: "In a reverberation chamber, simulates acoustic pressure during liftoff/max-Q" },
+            { name: "Shock testing", desc: "Pyro shock simulation (separation events, deployment mechanisms)" },
+            { name: "Sine burst test", desc: "Static load simulation of max-g during ascent" }
+          ]
+        },
+        {
+          category: "Mass Properties",
+          items: [
+            { name: "CG (Center of Gravity) determination", desc: "Precise determination of satellite mass balance" },
+            { name: "MOI (Moment of Inertia) measurement", desc: "Rotational inertia measurement" },
+            { name: "Spin balancing", desc: "For spin-stabilized satellites" }
+          ]
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "2. EMI / EMC Testing",
+      shortName: "EMI / EMC",
+      badge: "Anechoic Chamber",
+      img: "/satellite-emc-chamber.png",
+      items: [
+        { name: "Anechoic Chamber Testing", desc: "Electromagnetic Interference / Electromagnetic Compatibility testing in an anechoic chamber" },
+        { name: "Emissions & Susceptibility Checks", desc: "Checks for conducted emissions, radiated emissions, susceptibility" },
+        { name: "Subsystem Non-Interference", desc: "Critical to ensure subsystems (transponders, batteries, thrusters) don't interfere with each other" }
+      ]
+    },
+    {
+      id: 3,
+      title: "3. RF & Antenna Testing",
+      shortName: "RF & Antenna",
+      badge: "CATR Range",
+      img: "/stage-hardware-binding.png",
+      items: [
+        { name: "Compact Antenna Test Range (CATR)", desc: "Antenna pattern testing in a Compact Antenna Test Range (CATR)" },
+        { name: "Link Budget Verification", desc: "RF power and communication link margin validation" },
+        { name: "Gravity-Offload Rig Deployment", desc: "Deployment testing for solar arrays, antennas (using gravity-offload rigs since deployment mechanisms can't be tested 'as-is' under 1g)" }
+      ]
+    },
+    {
+      id: 4,
+      title: "4. Functional & Electrical Testing",
+      shortName: "Functional & AIT",
+      badge: "ATLO / CPT Ingest",
+      img: "/aerospace-ui.png",
+      items: [
+        { name: "ATLO (Assembly, Test and Launch Operations)", desc: "SpaceX/NASA-style terminology for the full integration flow" },
+        { name: "AIT (Assembly, Integration & Testing)", desc: "ISRO's preferred term for the same" },
+        { name: "Comprehensive Performance Test (CPT)", desc: "Full health check run multiple times across the campaign (baseline, before/after environmental tests, pre-ship)" },
+        { name: "Bus & Payload Integration Checks", desc: "Bus and payload integration checks" },
+        { name: "TT&C (Telemetry, Tracking & Command) Loop Tests", desc: "TT&C loop tests" }
+      ]
+    },
+    {
+      id: 5,
+      title: "5. Software & Simulation Validation",
+      shortName: "Software & HIL",
+      badge: "ISRO AOCS Bed",
+      img: "/stage-realtime-ingest.png",
+      items: [
+        { name: "Hardware-in-the-Loop (HIL) Simulation", desc: "Real-time hardware-in-the-loop simulation" },
+        { name: "Software Validation Test Bed", desc: "ISRO uses this for AOCS (Attitude and Orbit Control System) validation" },
+        { name: "Mission Sequence Rehearsal / DITL", desc: "Mission sequence rehearsal / Day-in-the-Life (DITL) test" }
+      ]
+    },
+    {
+      id: 6,
+      title: "6. Structural / Static Testing",
+      shortName: "Structural",
+      badge: "Modal Survey",
+      img: "/transient-capture.png",
+      items: [
+        { name: "Static Load Test", desc: "Static load test" },
+        { name: "Modal Survey Test", desc: "Validates structural frequency model" }
+      ]
+    },
+    {
+      id: 7,
+      title: "7. Pre-Launch Ground Checks (Launch Site)",
+      shortName: "Launch Site",
+      badge: "SDSC SHAR / Cape",
+      img: "/airgapped-nvme.png",
+      items: [
+        { name: "Launch Site Operations", desc: "At SDSC SHAR (ISRO) or Cape Canaveral/Vandenberg/Starbase (SpaceX)" },
+        { name: "Fueling / Propellant Loading Checks", desc: "Fueling/propellant loading checks" },
+        { name: "Final Health Check (FHC)", desc: "Final health check / FHC" },
+        { name: "Pre-Launch Countdown Rehearsal", desc: "Pre-launch countdown rehearsal" },
+        { name: "Encapsulation", desc: "Encapsulation (satellite into payload fairing)" },
+        { name: "Mate / De-Mate Checks", desc: "Mate/de-mate checks with launch vehicle" }
+      ]
+    },
+    {
+      id: 8,
+      title: "8. SpaceX-Specific Terms (Falcon / Starship Payload Integration)",
+      shortName: "SpaceX ATLO",
+      badge: "SpaceX Hawthorne",
+      img: "/timestamp-sync.png",
+      items: [
+        { name: "Payload Processing Facility (PPF)", desc: "Payload processing at the payload processing facility (PPF)" },
+        { name: "Fairing Halves Integration & Encapsulation", desc: "Fairing halves integration & payload encapsulation" },
+        { name: "Wet Dress Rehearsal (WDR)", desc: "Full propellant load simulation without actual launch" },
+        { name: "Static Fire Test", desc: "For the rocket itself, not the satellite, but part of overall mission readiness" }
+      ]
+    },
+    {
+      id: 9,
+      title: "9. Post-Launch / On-Orbit Validation",
+      shortName: "On-Orbit / LEOP",
+      badge: "LEOP & IOT Ops",
+      img: "/compliance-archival.png",
+      items: [
+        { name: "LEOP (Launch and Early Orbit Phase)", desc: "LEOP (Launch and Early Orbit Phase) operations" },
+        { name: "In-Orbit Testing (IOT)", desc: "Checks all subsystems function correctly after reaching orbit" },
+        { name: "Commissioning Phase", desc: "Commissioning phase." }
+      ]
+    }
+  ]
 };

@@ -43,7 +43,7 @@ export const Header = () => {
               onMouseLeave={() => setSolutionsOpen(false)}
             >
               <Link 
-                href="/solutions/aerospace" 
+                href="/solutions/satellite" 
                 className="text-[17px] font-medium text-white/65 hover:text-white transition-colors inline-flex items-center gap-1.5 py-2"
               >
                 Solutions
