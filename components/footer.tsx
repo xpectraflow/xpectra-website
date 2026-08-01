@@ -41,7 +41,7 @@ export const Footer = () => {
           <div className="flex flex-col gap-4">
             <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Platform</h3>
             <Link href="/product" className="text-sm text-white/60 hover:text-white transition-colors">Product Overview</Link>
-            <Link href="/solutions" className="text-sm text-white/60 hover:text-white transition-colors">Solutions Overview</Link>
+            <Link href="/solutions/aerospace" className="text-sm text-white/60 hover:text-white transition-colors">Solutions</Link>
             <Link href="/integrations" className="text-sm text-white/60 hover:text-white transition-colors">Integrations</Link>
             <Link href="/quickstart" className="text-sm text-white/60 hover:text-white transition-colors">Quickstart Guide</Link>
             <Link href="/blog" className="text-sm text-white/60 hover:text-white transition-colors">Engineering Blog</Link>

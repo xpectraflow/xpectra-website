@@ -35,10 +35,68 @@ export const Header = () => {
             <Link href="/product" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Product
             </Link>
-            <Link href="/solutions" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
-              Solutions
-            </Link>
-            <Link href="/integrations" className="text-sm font-medium text-white/70 hover:text-white transition-colors">
+
+            {/* Solutions Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setSolutionsOpen(true)}
+              onMouseLeave={() => setSolutionsOpen(false)}
+            >
+              <Link 
+                href="/solutions/aerospace" 
+                className="text-[17px] font-medium text-white/65 hover:text-white transition-colors inline-flex items-center gap-1.5 py-2"
+              >
+                Solutions
+                <ChevronDown className={cn("w-4 h-4 transition-transform duration-200 text-white/60", solutionsOpen && "rotate-180 text-white")} />
+              </Link>
+
+              <AnimatePresence>
+                {solutionsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-80 p-2.5 rounded-2xl bg-zinc-950/95 backdrop-blur-2xl border border-white/10 shadow-2xl z-50"
+                  >
+                    <div className="flex flex-col gap-1">
+                      {solutionsListSummary.map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <Link
+                            key={item.id}
+                            href={`/solutions/${item.id}`}
+                            onClick={() => setSolutionsOpen(false)}
+                            className="group flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all"
+                          >
+                            <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/90 group-hover:bg-white/10 group-hover:border-white/20 transition-colors shrink-0">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between gap-2">
+                                <span className="text-sm font-medium text-white/90 group-hover:text-white transition-colors">
+                                  {item.title}
+                                </span>
+                                {item.badge && (
+                                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/5 text-white/40 border border-white/10">
+                                    {item.badge}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-xs text-white/50 truncate mt-0.5">
+                                {item.desc}
+                              </p>
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link href="/integrations" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Integrations
             </Link>
             <Link href="/quickstart" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
@@ -93,7 +151,36 @@ export const Header = () => {
             className="md:hidden absolute top-16 left-0 w-full bg-background/90 backdrop-blur-2xl border-b border-border-subtle p-6 flex flex-col gap-4 max-h-[calc(100vh-4rem)] overflow-y-auto"
           >
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Product</Link>
-            <Link href="/solutions" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Solutions</Link>
+            
+            {/* Mobile Solutions Collapsible */}
+            <div className="border-b border-white/5 pb-2">
+              <button
+                onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                className="w-full flex items-center justify-between text-xl font-medium py-4 text-left text-white"
+              >
+                <span>Solutions</span>
+                <ChevronDown className={cn("w-5 h-5 transition-transform duration-200 text-white/70", mobileSolutionsOpen && "rotate-180")} />
+              </button>
+              {mobileSolutionsOpen && (
+                <div className="pl-4 pb-2 flex flex-col gap-3.5">
+                  {solutionsListSummary.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.id}
+                        href={`/solutions/${item.id}`}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-3 text-base text-white/80 hover:text-white"
+                      >
+                        <Icon className="w-4 h-4 text-white/80 shrink-0" />
+                        <span>{item.title}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Integrations</Link>
             <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Quickstart</Link>
             <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Blog</Link>

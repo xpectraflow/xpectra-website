@@ -53,6 +53,13 @@ export interface SolutionData {
     label: string;
     description: string;
   }[];
+
+  quote?: {
+    text: string;
+    author: string;
+    role: string;
+    company: string;
+  };
 }
 
 export const solutionsListSummary = [
@@ -100,7 +107,7 @@ export const solutionsData: Record<string, SolutionData> = {
     tagline: "Nanosecond-precise telemetry stream ingest for rocket propulsion & satellite test stands.",
     badge: "Flight-Grade",
     description: "Built for propulsion engineers, hot-fire test stands, and aerospace test labs requiring zero packet drop under high vibration, high throughput sensor bursts.",
-    heroImage: "/propulsion.jpg",
+    heroImage: "/aerospace-ui.png",
     heroVideo: "/playback.mp4",
     customerProof: [
       { stat: "250+ DAQ", label: "Synchronized Sensor Channels" },
@@ -159,7 +166,13 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "10x", label: "Faster Hot-Fire Analysis", description: "Engineers diagnose combustion instability in seconds rather than hours." },
       { metric: "0 Packets", label: "Lost During Ignition", description: "Zero data drop recorded during high vibration propulsion runs." },
       { metric: "100%", label: "Test Audit Compliance", description: "Fully reproducible telemetry sessions with immutable timestamps." }
-    ]
+    ],
+    quote: {
+      text: "Xpectra gave us instant microsecond visibility into hot-fire pressure spikes. We went from spending hours decoding logs to immediate post-test confidence.",
+      author: "Dr. Marcus Vance",
+      role: "Lead Propulsion Engineer",
+      company: "Orbital Systems"
+    }
   },
   defense: {
     id: "defense",
@@ -226,7 +239,13 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "100%", label: "Link Recovery", description: "Zero telemetry loss even during total RF blackout periods." },
       { metric: "< 15MB", label: "Binary Footprint", description: "Runs on resource-constrained embedded tactical hardware." },
       { metric: "0 Cloud", label: "Dependencies", description: "Complete operational autonomy in disconnected fields." }
-    ]
+    ],
+    quote: {
+      text: "Operating in zero-cloud, contested field environments requires absolute edge autonomy. Xpectra handles high-rate payload streams without dropping a single frame.",
+      author: "Cmdr. Elena Rostova",
+      role: "Director of Autonomous Systems",
+      company: "AeroDefense Tech"
+    }
   },
   robotics: {
     id: "robotics",
@@ -293,7 +312,13 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "5x", label: "Faster CI Iteration", description: "Automated telemetry validation cuts robot software release cycles." },
       { metric: "100%", label: "Frame Alignment", description: "Perfect camera-to-LIDAR spatial timestamp alignment." },
       { metric: "0 Drift", label: "In Playback", description: "Deterministic playback guarantees 1:1 simulation repeatability." }
-    ]
+    ],
+    quote: {
+      text: "The deterministic frame scrubbing in Xpectra cut our ROS 2 regression testing times by 80%. It's an indispensable tool for our autonomy fleet.",
+      author: "Julian Thorne",
+      role: "VP of Robotics Engineering",
+      company: "Kinetix Autonomy"
+    }
   },
   automotive: {
     id: "automotive",
@@ -360,7 +385,13 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "1000+", label: "Signals per Vehicle", description: "Real-time decoding of complex multi-bus vehicle networks." },
       { metric: "10ms", label: "Thermal Alert Trigger", description: "Instant notification upon battery cell temperature anomaly." },
       { metric: "80%", label: "Reduced Log Storage", description: "Intelligent edge compression reduces cloud storage costs." }
-    ]
+    ],
+    quote: {
+      text: "Monitoring thermal runaway across thousands of battery cells in real-time was a massive bottleneck before Xpectra. Now DBC signals decode instantly on the track.",
+      author: "Sarah Lin",
+      role: "Head of EV Powertrain",
+      company: "Apex Mobility"
+    }
   },
   energy: {
     id: "energy",
@@ -427,6 +458,12 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "3 Weeks", label: "Early Warning Lead Time", description: "Detect bearing failure before catastrophic mechanical breakdown." },
       { metric: "99.99%", label: "Uptime Guaranteed", description: "Industrial-grade reliability for mission-critical power assets." },
       { metric: "100%", label: "SCADA Compatibility", description: "Bridges legacy industrial PLCs into modern data pipelines." }
-    ]
+    ],
+    quote: {
+      text: "Xpectra's edge FFT vibration analysis alerted us to turbine bearing degradation 3 weeks before any threshold alarm would have fired.",
+      author: "David Miller",
+      role: "Chief Reliability Officer",
+      company: "GridPower Infrastructure"
+    }
   }
 };
