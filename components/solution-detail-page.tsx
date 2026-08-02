@@ -30,17 +30,36 @@ import {
   FileCode2,
   ChevronLeft
 } from 'lucide-react';
-import { solutionsData, satelliteAITData, propulsionFlowData, dronesFlowData } from '@/lib/solutions-data';
+import { solutionsData, satelliteAITData, propulsionFlowData, dronesFlowData, defenceFlowData, energyFlowData, automotiveFlowData, roboticsFlowData, testingFlowData } from '@/lib/solutions-data';
 
 export default function SolutionDetailPage({ slug }: { slug: string }) {
   const data = solutionsData[slug] || solutionsData.satellite || solutionsData.aerospace;
   const [activeSlide, setActiveSlide] = useState(0);
   const [activeAITPhase, setActiveAITPhase] = useState(0);
   const isSatellitePage = slug === "satellite";
+  const isTestingPage = slug === "testing";
   const isPropulsionPage = slug === "propulsion";
   const isDronesPage = slug === "drones";
-  const isFlowPage = isSatellitePage || isPropulsionPage || isDronesPage;
-  const currentFlowData = isDronesPage ? dronesFlowData : isPropulsionPage ? propulsionFlowData : satelliteAITData;
+  const isDefencePage = slug === "defence" || slug === "defense";
+  const isEnergyPage = slug === "energy";
+  const isAutomotivePage = slug === "automotive";
+  const isRoboticsPage = slug === "robotics";
+  const isFlowPage = isSatellitePage || isTestingPage || isPropulsionPage || isDronesPage || isDefencePage || isEnergyPage || isAutomotivePage || isRoboticsPage;
+  const currentFlowData = isTestingPage
+    ? testingFlowData
+    : isRoboticsPage
+    ? roboticsFlowData
+    : isAutomotivePage
+    ? automotiveFlowData
+    : isEnergyPage
+    ? energyFlowData
+    : isDefencePage
+    ? defenceFlowData
+    : isDronesPage
+    ? dronesFlowData
+    : isPropulsionPage
+    ? propulsionFlowData
+    : satelliteAITData;
 
   const defaultCarousel = [
     {
@@ -114,7 +133,113 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     }
   ];
 
-  const carouselItems = isSatellitePage ? satelliteCarousel : isPropulsionPage ? propulsionCarousel : isDronesPage ? dronesCarousel : defaultCarousel;
+  const defenceCarousel = [
+    {
+      title: "3. Climatic & Extreme Terrain EQT (JSS 55555 & MIL-STD-810)",
+      desc: "Ruggedness qualification across extreme operating environments: Pokhran desert heat, Siachen sub-zero cold start, high-altitude Leh trials, and Chilka marine salt fog corrosion testing.",
+      img: "/satellite-emc-chamber.png"
+    },
+    {
+      title: "7. Live Firing Range & Ballistics Telemetry (ITR / PXE Chandipur)",
+      desc: "Static and dynamic live firing trials at PXE Chandipur & ITR Chandipur. Capture circular error probable (CEP), fuze functioning, and terminal ballistics penetration in real time.",
+      img: "/stage-realtime-ingest.png"
+    },
+    {
+      title: "8 & 9. Armoured Vehicle (CVRDE) & Naval Systems (NPOL / NSTL)",
+      desc: "CVRDE mobility, gradient & NBC protection trials alongside NPOL/NSTL Harbor Acceptance Trials (HAT), Sea Acceptance Trials (SAT), sonar performance, and underwater acoustic signature testing.",
+      img: "/stage-hardware-binding.png"
+    }
+  ];
+
+  const energyCarousel = [
+    {
+      title: "3. Transformer Tan Delta & DGA Chromatographic Monitoring",
+      desc: "Substation transformer testing: Megger insulation resistance, Tan Delta dissipation factor, oil dielectric BDV voltage withstand, and continuous Dissolved Gas Analysis (DGA) for predictive fault detection.",
+      img: "/satellite-emc-chamber.png"
+    },
+    {
+      title: "7. Performance Guarantee (PG) Tests (ASME PTC / IEC 60953)",
+      desc: "Plant PG test execution validating contracted turbine heat rate, generator MWe output, boiler efficiency, and CPCB/MoEF stack emissions (SOx, NOx, PM) at rated full load.",
+      img: "/stage-realtime-ingest.png"
+    },
+    {
+      title: "8. Turbine Rolling, Grid Sync & CEA 72-Hour Trial Operation",
+      desc: "Turbine rolling from barring gear to 3000 RPM, main stop valve stroke, overspeed trip, first-time generator grid synchronization, and CEA mandated 72-hour continuous trial run before COD.",
+      img: "/stage-hardware-binding.png"
+    }
+  ];
+
+  const automotiveCarousel = [
+    {
+      title: "2. BS6 / Euro 6 RDE PEMS & Dyno Emissions Telemetry",
+      desc: "Engine and chassis dynamometer mapping correlated with Real Driving Emissions (RDE) PEMS telemetry. Monitor BSFC fuel consumption, NOx, PM, and in-cylinder combustion pressure during 500-hour endurance runs.",
+      img: "/hotfire-stand.png"
+    },
+    {
+      title: "5. NATRAX Proving Ground & 4-Post Shaker Road Load Rig",
+      desc: "High-speed track trials at NATRAX Indore & 4-post road load shaker simulation. Ingest CAN bus metrics and strain gauge data simulating 160,000 km durability lifecycle stress in real time.",
+      img: "/stage-realtime-ingest.png"
+    },
+    {
+      title: "6 & 10. Bharat NCAP Crash Testing & EV Battery Thermal Runaway",
+      desc: "AIS-096 frontal, side, and Bharat NCAP crash test telemetry alongside EV battery thermal runaway propagation, nail penetration, BMS cell balancing, and CCS DC fast charge validation.",
+      img: "/stage-hardware-binding.png"
+    }
+  ];
+
+  const roboticsCarousel = [
+    {
+      title: "6. NVIDIA Isaac Sim / Gazebo Digital Twin & ROS 2 HIL Sync",
+      desc: "Synchronize physics-based digital twin simulations (NVIDIA Isaac Sim, Gazebo, Webots) with real-time ROS 2 DDS telemetry streams to validate MPC control loops and joint trajectory tracking.",
+      img: "/aerospace-ui.png"
+    },
+    {
+      title: "7. Functional & Cobot Safety (ISO 13849 & ISO/TS 15066)",
+      desc: "Validate PL d/e safety circuits, Power and Force Limiting (PFL) bio-fidelic human contact limits, E-stop response, and safety scanner light curtains across collaborative robot arms and humanoids.",
+      img: "/stage-hardware-binding.png"
+    },
+    {
+      title: "13. Fleet Management (FMS) Orchestration & OTA Updates",
+      desc: "Orchestrate 1000+ AMR and humanoid fleets with FMS task allocation, corridor deadlock avoidance, zero-downtime rolling OTA updates, and encrypted black-box incident telemetry.",
+      img: "/stage-hotfire-analytics.png"
+    }
+  ];
+
+  const testingCarousel = [
+    {
+      title: "1. GTRE Altitude Test Facility (ATF) High-Altitude Vacuum Sync",
+      desc: "Simulating low-pressure high-altitude vacuum conditions at GTRE Bangalore ATF for Kaveri cryogenic/jet engine combustor relight and thrust SFC measurement.",
+      img: "/stage-hotfire-analytics.png"
+    },
+    {
+      title: "2. FADEC HIL Simulation & Engine Health Monitoring (EHMS)",
+      desc: "Hardware-in-the-Loop simulation validating dual-redundant FADEC control laws, fuel metering valves, and EHMS real-time vibration FFT spectrum.",
+      img: "/aerospace-ui.png"
+    },
+    {
+      title: "3. Flying Test Bed (FTB) Flight Trials & 150-Hour PFRT",
+      desc: "Kaveri engine flight testing telemetry on IL-76 FTB at Gromov Flight Research Institute (GFRI) Russia and 150-hour PFRT Preliminary Flight Rating qualification.",
+      img: "/stage-hardware-binding.png"
+    }
+  ];
+
+  const carouselItems = isSatellitePage
+    ? satelliteCarousel
+    : isTestingPage
+    ? testingCarousel
+    : isPropulsionPage
+    ? propulsionCarousel
+    : isDronesPage
+    ? dronesCarousel
+    : isDefencePage
+    ? defenceCarousel
+    : isEnergyPage
+    ? energyCarousel
+    : isAutomotivePage
+    ? automotiveCarousel
+    : isRoboticsPage
+    ? roboticsCarousel
+    : defaultCarousel;
 
   return (
     <div className="relative min-h-screen w-full bg-[#050608] text-white overflow-x-hidden">
@@ -145,10 +270,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               <span>
                 {isSatellitePage
                   ? "ISRO (URSC/ISAC, SDSC-SHAR) & SPACEX (HAWTHORNE/STARBASE) AIT FLOW"
+                  : isTestingPage
+                  ? "GTRE (GAS TURBINE RESEARCH ESTABLISHMENT / DRDO) KAVERI ENGINE TEST PIPELINE"
                   : isPropulsionPage
                   ? "ISRO (LPSC/IPRC MAHENDARAGIRI) & SPACEX (MCGREGOR TEST STAND) PROPULSION FLOW"
                   : isDronesPage
                   ? "DRDO (ADE / ADRDE / RCI / CVRDE) UAV & DRONE GROUND CHECKOUT PIPELINE"
+                  : isDefencePage
+                  ? "DRDO / MOD DEFENCE TESTING & EVALUATION (T&E) FRAMEWORK"
+                  : isEnergyPage
+                  ? "NTPC / CEA / POWERGRID / BHEL ENERGY TESTING & COMMISSIONING PIPELINE"
+                  : isAutomotivePage
+                  ? "ARAI / ICAT / NATRAX AUTOMOTIVE TESTING & HOMOLOGATION FRAMEWORK"
+                  : isRoboticsPage
+                  ? "BOSTON DYNAMICS / ABB / KUKA / FANUC ROBOTICS TESTING FRAMEWORK"
                   : "MISSION-CRITICAL TELEMETRY PLATFORM"}
               </span>
             </motion.div>
@@ -161,10 +296,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             >
               {isSatellitePage
                 ? "Satellite AIT & Ground Segment Validation"
+                : isTestingPage
+                ? "Gas Turbine Engine Testing & Ground Validation"
                 : isPropulsionPage
                 ? "Rocket Propulsion Testing & Ground Validation"
                 : isDronesPage
                 ? "Drone & UAV Ground Testing & Validation"
+                : isDefencePage
+                ? "DRDO & MoD Defence Systems Testing & Evaluation"
+                : isEnergyPage
+                ? "Power Generation & Grid Testing & Commissioning"
+                : isAutomotivePage
+                ? "Automotive Vehicle & Powertrain Testing & Homologation"
+                : isRoboticsPage
+                ? "Robotics & Autonomous Systems Testing & Fleet Validation"
                 : data.title}
             </motion.h1>
 
@@ -176,10 +321,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             >
               {isSatellitePage
                 ? "Standard Assembly, Integration & Testing (AIT/ATLO) with nanosecond telemetry precision from cleanroom TVAC chambers to on-orbit commissioning."
+                : isTestingPage
+                ? "Dedicated telemetry and high-frequency DAQ framework for GTRE DRDO Kaveri, Kaveri Dry, and GTX-35VS engines — from compressor/combustor component rigs to GTRE ATF altitude simulation, FADEC HIL, and IL-76 Flying Test Bed trials."
                 : isPropulsionPage
                 ? "High-frequency transient DAQ, turbopump hot-fire telemetry, and acoustic vibration analysis for ISRO (LPSC/IPRC Mahendragiri) and SpaceX (McGregor Test Stand, Texas)."
                 : isDronesPage
                 ? "Complete ground qualification, Iron Bird HIL simulation, engine ground runs (EGR), GVT flutter clearance, MIL-STD-810 EQT, and CEMILAC airworthiness release for DRDO (ADE Rustom-II/TAPAS, Nishant, Netra, Abhyas, Ghatak) & military UAV systems."
+                : isDefencePage
+                ? "Institutional T&E framework across Land, Sea, and Air domains — from GSQR/ASR/NSQR documentation to DGQA/DGAQA qualification, PXE Chandipur live firing, CVRDE mobility, NPOL/NSTL naval HAT/SAT, CEMILAC certification, and Bulk Production Clearance (BPC)."
+                : isEnergyPage
+                ? "Institutional testing framework for thermal, hydro, renewable & substation power systems — from OEM FAT (BHEL/GE/Siemens) to boiler hydro, turbine rolling, POWERGRID DGA/Tan Delta, ASME PTC PG tests, CEA 72-hr trial, and CPRI certification."
+                : isAutomotivePage
+                ? "End-to-end testing and certification framework for OEMs (Maruti Suzuki, Tata Motors, Mahindra) & Tier-1s — from DVP&R and BS6 RDE engine dyno to NATRAX proving grounds, Bharat NCAP crash safety, EV battery thermal runaway, and ARAI/ICAT homologation."
+                : isRoboticsPage
+                ? "End-to-end testing and qualification framework for industrial manipulators, AMRs, humanoids, and robot fleets — from DVT joint dynos and ROS 2 HIL/Isaac Sim to ISO 13849 safety, ISO/TS 15066 cobot PFL, and FMS fleet orchestration."
                 : data.tagline}
             </motion.p>
 
@@ -201,10 +356,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   <span>
                     {isSatellitePage
                       ? "Explore AIT Pipeline"
+                      : isTestingPage
+                      ? "Explore Gas Turbine Testing Flow"
                       : isPropulsionPage
                       ? "Explore Hot-Fire Flow"
                       : isDronesPage
                       ? "Explore UAV Validation Flow"
+                      : isDefencePage
+                      ? "Explore Defence T&E Framework"
+                      : isEnergyPage
+                      ? "Explore Energy Commissioning Flow"
+                      : isAutomotivePage
+                      ? "Explore Automotive Validation Flow"
+                      : isRoboticsPage
+                      ? "Explore Robotics Qualification Flow"
                       : "Explore Platform"}
                   </span>
                 </Button>
@@ -223,29 +388,59 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                 <span>
                   {isSatellitePage
                     ? "01 / QUALIFICATION & ACCEPTANCE"
+                    : isTestingPage
+                    ? "01 / GTRE GAS TURBINE ENGINE QUALIFICATION"
                     : isPropulsionPage
                     ? "01 / HIGH-FREQUENCY HOT-FIRE DAQ"
                     : isDronesPage
                     ? "01 / STRUCTURAL & ENVIRONMENTAL EQT"
+                    : isDefencePage
+                    ? "01 / DEFENCE SYSTEM QUALIFICATION"
+                    : isEnergyPage
+                    ? "01 / POWER SYSTEM COMMISSIONING"
+                    : isAutomotivePage
+                    ? "01 / AUTOMOTIVE VALIDATION & HOMOLOGATION"
+                    : isRoboticsPage
+                    ? "01 / ROBOTICS & AUTONOMY QUALIFICATION"
                     : "XPECTRA FOR AEROSPACE"}
                 </span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
                 {isSatellitePage
                   ? "Thermal Vacuum (TVAC/TBTV) & Multi-Axis Dynamic Telemetry"
+                  : isTestingPage
+                  ? "GTRE ATF Altitude Simulation & Microsecond Engine Transient DAQ"
                   : isPropulsionPage
                   ? "Microsecond Hot-Fire Transient Capture & Rocket Engine DAQ"
                   : isDronesPage
                   ? "MIL-STD-810 / JSS 55555 Ground Qualification & Structural GVT"
+                  : isDefencePage
+                  ? "JSS 55555 Environmental EQT & DGQA Design Validation"
+                  : isEnergyPage
+                  ? "Substation Transformer DGA & Turbine Rolling Telemetry"
+                  : isAutomotivePage
+                  ? "BS6 RDE Dyno & NATRAX Proving Ground Telemetry"
+                  : isRoboticsPage
+                  ? "NVIDIA Isaac Sim Digital Twin & ROS 2 Telemetry Ingest"
                   : "Every sensor lands at the rate it was recorded, up to 10kHz and beyond"}
               </h2>
               <p className="text-white/70 text-base leading-relaxed font-light">
                 {isSatellitePage
                   ? "Simulate orbital vacuum with hot/soak/cold cycles in TVAC chambers while logging thousands of thermistors, heaters, and vacuum pressure channels. ISRO standard Thermal Balance Thermal Vacuum (TBTV) tests in the Space Simulation Chamber (ISAC/URSC/IISU) run with zero packet drop, capturing transient thermal spikes and vibration loads."
+                  : isTestingPage
+                  ? "Stream tens of thousands of pressure transducers, spool speed optical tachometers, turbine inlet thermocouples, and vibration accelerometers up to 100kHz. Capture combustor ignition pressure spikes, compressor surge margins, and FADEC closed-loop fuel metering response across GTRE Bangalore test stands and Gromov IL-76 FTB trials."
                   : isPropulsionPage
                   ? "Ingest tens of thousands of combustion chamber pressure transducers, turbopump vibration accelerometers, and cryogenic flow sensors up to 100kHz. Capture ignition pressure spikes, acoustic resonances, and LOX/LH2 chill-down transients across ISRO LPSC, IPRC Mahendragiri, and SpaceX McGregor test stands."
                   : isDronesPage
                   ? "Validate airframe static structural design load envelopes, wing/fuselage fatigue life, and Ground Vibration Testing (GVT) modal survey to eliminate flutter. Conduct DRDO JSS 55555 and MIL-STD-810 Environmental Qualification Testing (EQT) across temperature-altitude, vibration, salt fog, and desert sand/dust conditions."
+                  : isDefencePage
+                  ? "Qualify land, naval, and airborne defence hardware against MoD GSQR, ASR, and NSQR specifications. Execute Environmental Stress Screening (ESS) and JSS 55555 EQT across extreme Pokhran desert heat, Siachen high-altitude cold, and Chilka coastal salinity with microsecond telemetry precision."
+                  : isEnergyPage
+                  ? "Monitor power plant commissioning with microsecond DAQ precision. Stream BHEL boiler hydro tests, turbine rolling overspeed trips, POWERGRID transformer Dissolved Gas Analysis (DGA), Tan Delta insulation tests, and ASME PTC heat rate performance guarantee runs across NTPC and utility assets."
+                  : isAutomotivePage
+                  ? "Accelerate vehicle development from DVP&R design validation to ARAI/ICAT Type Approval. Ingest engine dynamometer BS6 emissions, CAN bus ECU logs, 4-post shaker road load strain, and EV battery pack thermal runaway metrics with microsecond synchronization."
+                  : isRoboticsPage
+                  ? "Qualify industrial manipulators, AMRs, and humanoid robots with nanosecond telemetry precision. Ingest ROS 2 DDS topics, 3D LiDAR point clouds, motor dyno torque curves, joint encoder metrics, and Isaac Sim synthetic data into a single queryable timeline."
                   : "Ingest tens of thousands of data channels at the rate each sensor recorded, up to 10kHz and beyond, with sub-second latency from sensor to simulation to flight test. Capture everything, so a pressure spike lasting microseconds reads as clearly as a slow thermal drift."}
               </p>
 
@@ -259,6 +454,19 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
                     <div className="font-bold text-white mb-0.5">Mechanical & Mass</div>
                     <div className="text-white/60 text-[11px]">Vibration, acoustic max-Q, shock & CG/MOI spin balance</div>
+                  </div>
+                </div>
+              )}
+
+              {isTestingPage && (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">Component Rigs & Core Engine</div>
+                    <div className="text-white/60 text-[11px]">Compressor surge margin, combustor pattern factor & Gas Generator (GG) test</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">GTRE ATF & IL-76 FTB Trials</div>
+                    <div className="text-white/60 text-[11px]">High-altitude vacuum relight, 150-hr PFRT & Gromov IL-76 FTB flight log sync</div>
                   </div>
                 </div>
               )}
@@ -289,6 +497,58 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                 </div>
               )}
 
+              {isDefencePage && (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">Services SQRs & DGQA</div>
+                    <div className="text-white/60 text-[11px]">GSQR / ASR / NSQR compliance, CQA category audits & PXE ballistics proof</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">JSS 55555 EQT & EMI/EMC</div>
+                    <div className="text-white/60 text-[11px]">MIL-STD-461 EMI/EMC, TEMPEST security & extreme terrain climatic trials</div>
+                  </div>
+                </div>
+              )}
+
+              {isEnergyPage && (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">Transformer DGA & Tan Delta</div>
+                    <div className="text-white/60 text-[11px]">Oil breakdown BDV voltage, Turns Ratio, DGA fault detection & Megger IR</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">Turbine Rolling & PG Test</div>
+                    <div className="text-white/60 text-[11px]">Main stop valve stroke, overspeed trip, ASME PTC heat rate & 72-hr trial COD</div>
+                  </div>
+                </div>
+              )}
+
+              {isAutomotivePage && (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">DVP&R & Powertrain Dyno</div>
+                    <div className="text-white/60 text-[11px]">BS6 RDE PEMS, engine dyno power mapping, 500-hr endurance & cold start</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">NATRAX Track & Bharat NCAP</div>
+                    <div className="text-white/60 text-[11px]">160k km road load shaker, AIS-096 crash safety & ARAI EV range cycle</div>
+                  </div>
+                </div>
+              )}
+
+              {isRoboticsPage && (
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">ROS 2 HIL & Digital Twin</div>
+                    <div className="text-white/60 text-[11px]">NVIDIA Isaac Sim / Gazebo sync, MPC control loop tuning & 100kHz joint dyno</div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs">
+                    <div className="font-bold text-white mb-0.5">Cobot Safety & Fleet FMS</div>
+                    <div className="text-white/60 text-[11px]">ISO 13849 PL d/e safety, ISO/TS 15066 PFL force limits & 1000+ AMR fleet FMS</div>
+                  </div>
+                </div>
+              )}
+
               <div className="pt-2">
                 <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-bold px-7 h-12 rounded-xl text-sm">
@@ -314,15 +574,25 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "TVAC CHAMBER MONITORING ONLINE"
+                        : isTestingPage
+                        ? "GTRE ATF & FADEC DAQ ONLINE"
                         : isPropulsionPage
                         ? "IPRC MAHENDARAGIRI & MCGREGOR DAQ ONLINE"
                         : isDronesPage
                         ? "ADE STRUCTURAL & EQT DAQ ONLINE"
+                        : isDefencePage
+                        ? "DGQA & JSS 55555 EQT DAQ ONLINE"
+                        : isEnergyPage
+                        ? "POWERGRID & NTPC DAQ ONLINE"
+                        : isAutomotivePage
+                        ? "ARAI & NATRAX DAQ ONLINE"
+                        : isRoboticsPage
+                        ? "ROS 2 DDS & ISAAC SIM DAQ ONLINE"
                         : "HIGH-FREQUENCY INGEST ACTIVE"}
                     </span>
                   </span>
                   <span className="text-white font-bold">
-                    {isSatellitePage ? "8.9E-07 Torr" : isPropulsionPage ? "100,000 Hz Ingest" : isDronesPage ? "MIL-STD-810 / JSS 55555" : "> 10,000 Hz"}
+                    {isSatellitePage ? "8.9E-07 Torr" : isTestingPage ? "100kHz / FADEC HIL" : isPropulsionPage ? "100,000 Hz Ingest" : isDronesPage ? "MIL-STD-810 / JSS 55555" : isDefencePage ? "JSS 55555 / MIL-STD-461" : isEnergyPage ? "72-Hr Trial / 50 Hz Grid" : isAutomotivePage ? "BS6 RDE / Bharat NCAP" : isRoboticsPage ? "ISO 13849 / ROS 2 DDS" : "> 10,000 Hz"}
                   </span>
                 </div>
               </div>
@@ -404,10 +674,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <h2 className="text-3xl md:text-5xl font-bold text-white max-w-4xl mx-auto leading-tight">
               {isSatellitePage
                 ? "One telemetry platform from cleanroom AIT to orbital commissioning"
+                : isTestingPage
+                ? "One telemetry platform from component compressor rig to IL-76 FTB flight clearance"
                 : isPropulsionPage
                 ? "One telemetry platform from component cold-flow to pad static fire"
                 : isDronesPage
                 ? "One telemetry platform from Iron Bird HIL rig to CEMILAC flight test release"
+                : isDefencePage
+                ? "One telemetry platform from GSQR design validation to MoD Bulk Production Clearance"
+                : isEnergyPage
+                ? "One telemetry platform from BHEL OEM works to Commercial Operation Date (COD)"
+                : isAutomotivePage
+                ? "One telemetry platform from DVP&R simulation to ARAI Homologation & SOP"
+                : isRoboticsPage
+                ? "One telemetry platform from Isaac Sim digital twin to 1000+ AMR fleet rollout"
                 : "One platform, from your first prototype to your orbital fleet"}
             </h2>
           </div>
@@ -423,10 +703,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
                     {isSatellitePage
                       ? "4. FUNCTIONAL & AIT/ATLO"
+                      : isTestingPage
+                      ? "01. COMPONENT & CORE ENGINE"
                       : isPropulsionPage
                       ? "ISRO LPSC & MAHENDARAGIRI"
                       : isDronesPage
                       ? "ADE IRON BIRD & HIL RIG"
+                      : isDefencePage
+                      ? "01. GSQR & DGQA DESIGN QUAL"
+                      : isEnergyPage
+                      ? "01. OEM FAT & BOILER TEST"
+                      : isAutomotivePage
+                      ? "01. DVP&R & POWERTRAIN DYNO"
+                      : isRoboticsPage
+                      ? "01. DVT & ACTUATOR DYNO"
                       : "DEVELOP"}
                   </h3>
                 </div>
@@ -436,10 +726,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "SpaceX ATLO & ISRO AIT integration campaign flows."
+                        : isTestingPage
+                        ? "Compressor rig surge margin, combustor pattern factor & turbine cooling effectiveness."
                         : isPropulsionPage
                         ? "Solid motor static test firing at SHAR STEX complex & S200 segment testing."
                         : isDronesPage
                         ? "Full avionics suite Iron Bird testing replicating Rustom-II / TAPAS airframe wiring."
+                        : isDefencePage
+                        ? "GSQR, ASR, and NSQR qualitative requirement definition & PSQR drafting."
+                        : isEnergyPage
+                        ? "Factory Acceptance Tests (FAT), Type & Routine tests at BHEL, GE & Siemens works."
+                        : isAutomotivePage
+                        ? "DVP&R test matrix, DFMEA/PFMEA risk mitigation & CAE simulation correlation."
+                        : isRoboticsPage
+                        ? "EVT/DVT/PVT test matrix, DFMEA risk mitigation & ISO 9283 repeatability."
                         : "Validate your flight software and subsystems across every phase of development."}
                     </span>
                   </div>
@@ -448,10 +748,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "Comprehensive Performance Test (CPT) baseline, post-env & pre-ship."
+                        : isTestingPage
+                        ? "Gas Generator (GG) standalone core engine development runs & thermodynamic cycle balance."
                         : isPropulsionPage
                         ? "High Altitude Test (HAT) facility vacuum ignition simulation for CE-7.5 & CE-20 cryo engines."
                         : isDronesPage
                         ? "HIL simulation validating Flight Control Computer (FCC) control laws & ATOL autopilot."
+                        : isDefencePage
+                        ? "DGQA, CQA (Vehicles, Weapons, ME), and PXE Chandipur ballistics proof testing."
+                        : isEnergyPage
+                        ? "Boiler hydraulic pressure test (1.5x design pressure), steam blowing, & acid cleaning."
+                        : isAutomotivePage
+                        ? "Engine dyno power/torque mapping, 500-hr durability, & cold start climatic trials."
+                        : isRoboticsPage
+                        ? "Joint actuator dyno torque-speed mapping, encoder resolution, & thermal derating."
                         : "Trace anomalies across your control surfaces, avionics, and propulsion."}
                     </span>
                   </div>
@@ -460,10 +770,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "Bus & payload integration, TT&C loop tests, static load & modal survey."
+                        : isTestingPage
+                        ? "High-pressure spool vibration dynamics, bearing oil cooling, & thermal seal expansion."
                         : isPropulsionPage
                         ? "Gas generator, turbopump cold/hot flow, injector head & stage static tests (L110, C25)."
                         : isDronesPage
                         ? "EMI/EMC anechoic chamber testing & Line of Sight / BLOS data link telemetry."
+                        : isDefencePage
+                        ? "JSS 55555 EQT, ESS screening, and extreme terrain climatic trials (Pokhran/Siachen/Chilka)."
+                        : isEnergyPage
+                        ? "Furnace purge, oil/coal firing light-up, & safety valve floating tests."
+                        : isAutomotivePage
+                        ? "BS6 / Euro 6 Real Driving Emissions (RDE) with on-road PEMS telemetry."
+                        : isRoboticsPage
+                        ? "Battery pack cycle life, C-rate charge/discharge, & IR auto-docking charging."
                         : "Build faster with insight from every test and simulation."}
                     </span>
                   </div>
@@ -481,10 +801,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
                     {isSatellitePage
                       ? "7 & 8. LAUNCH SITE & SPACEX"
+                      : isTestingPage
+                      ? "02. GTRE ATF & OPERABILITY"
                       : isPropulsionPage
                       ? "SPACEX MCGREGOR & STARBASE"
                       : isDronesPage
                       ? "GCS, LAUNCH & PAYLOADS"
+                      : isDefencePage
+                      ? "02. FIELD TRIALS & BALLISTICS"
+                      : isEnergyPage
+                      ? "02. TURBINE & SUBSTATION"
+                      : isAutomotivePage
+                      ? "02. PROVING GROUND & CRASH"
+                      : isRoboticsPage
+                      ? "02. HIL & COBOT SAFETY"
                       : "VALIDATE"}
                   </h3>
                 </div>
@@ -494,10 +824,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "SDSC SHAR (ISRO) & Cape Canaveral / Vandenberg / Starbase (SpaceX) pre-launch."
+                        : isTestingPage
+                        ? "GTRE Bangalore Altitude Test Facility (ATF) high-altitude vacuum & temperature simulation."
                         : isPropulsionPage
                         ? "Static fire test stand firings at McGregor development facility for Merlin & Raptor."
                         : isDronesPage
                         ? "Software-in-Loop (SIL) & Man-in-Loop (MILS) Ground Control Station (GCS) simulation."
+                        : isDefencePage
+                        ? "MIL-STD-461 EMI/EMC, TEMPEST emission security, & structural NDT inspection."
+                        : isEnergyPage
+                        ? "Turbine rolling to 3000 RPM, overspeed governor trip, & MSV/CV/IV valve stroke."
+                        : isAutomotivePage
+                        ? "NATRAX high-speed track, Belgian block pavé, & 160,000 km equivalent durability."
+                        : isRoboticsPage
+                        ? "3D LiDAR, camera, IMU sensor calibration, SLAM localization, & motion capture."
                         : "Automated structural and thermal checks speed up campaign sign-off."}
                     </span>
                   </div>
@@ -506,10 +846,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "Propellant fueling, Final Health Check (FHC), encapsulation & mate/de-mate."
+                        : isTestingPage
+                        ? "Sea-level static (SLS) baseline thrust/SFC & Accelerated Mission Testing (AMT) endurance."
                         : isPropulsionPage
                         ? "Component acceptance hot-fire testing for every engine prior to stage assembly."
                         : isDronesPage
                         ? "ADRDE catapult launch trials, parachute recovery, & net arrester landing checks."
+                        : isDefencePage
+                        ? "User Trials with Army/Navy/IAF under seasonal desert, monsoon & high-altitude conditions."
+                        : isEnergyPage
+                        ? "Generator OCC/SCC, POWERGRID transformer DGA, Tan Delta, & switchgear timing."
+                        : isAutomotivePage
+                        ? "4-post road load shaker rig strain gauge ingestion & CAN bus ECU HIL validation."
+                        : isRoboticsPage
+                        ? "ROS 2 MIL/SIL/HIL testing, MPC control loop tuning, & Isaac Sim digital twin."
                         : "Produce structured evidence for AS9100, FAA, and ITAR compliance."}
                     </span>
                   </div>
@@ -518,10 +868,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "SpaceX PPF facility processing, Wet Dress Rehearsal (WDR) & static fire."
+                        : isTestingPage
+                        ? "Ice/bird ingestion (FOD), crosswind, windmill relight envelope, & 150-hr PFRT type test."
                         : isPropulsionPage
                         ? "Full duration static fire burns, Wet Dress Rehearsals (WDR), and Starship LN2 cryo proof."
                         : isDronesPage
                         ? "EO/IR camera, SAR radar payload integration, & Ghatak stealth ground RCS measurement."
+                        : isDefencePage
+                        ? "PXE & ITR Chandipur live firing range trials, CEP accuracy, & terminal ballistics."
+                        : isEnergyPage
+                        ? "Field-to-DCS loop checking, protection relay secondary injection, & C&I logic."
+                        : isAutomotivePage
+                        ? "AIS-096 frontal/side impact & Bharat NCAP (BNVSAP) crash safety star rating."
+                        : isRoboticsPage
+                        ? "ISO 13849 PL d/e functional safety, ISO/TS 15066 cobot PFL force limits, & E-stop."
                         : "Eliminate manual data wrangling between environmental tests."}
                     </span>
                   </div>
@@ -539,10 +899,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
                     {isSatellitePage
                       ? "9. ON-ORBIT & LEOP"
+                      : isTestingPage
+                      ? "03. FADEC HIL & IL-76 FTB"
                       : isPropulsionPage
                       ? "PAD STATIC FIRE & HOPS"
                       : isDronesPage
                       ? "CEMILAC & FLIGHT TRIALS"
+                      : isDefencePage
+                      ? "03. LAND/NAVAL & MOD BPC"
+                      : isEnergyPage
+                      ? "03. PG TEST & CEA COD"
+                      : isAutomotivePage
+                      ? "03. EV BATTERY & HOMOLOGATION"
+                      : isRoboticsPage
+                      ? "03. FMS & FLEET DEPLOYMENT"
                       : "OPERATE"}
                   </h3>
                 </div>
@@ -552,10 +922,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "LEOP (Launch and Early Orbit Phase) acquisition & solar array locking."
+                        : isTestingPage
+                        ? "Dual-redundant FADEC HIL control loop tuning, fuel valve metering, & EHMS vibration FFT."
                         : isPropulsionPage
                         ? "Low-altitude flight testing (Starhopper, SN5/SN6 Starship vehicle hops)."
                         : isDronesPage
                         ? "Engine Ground Runs (EGR), low-speed & high-speed taxi trials on runway."
+                        : isDefencePage
+                        ? "CVRDE armoured mobility, gradient, NBC & NPOL/NSTL naval HAT/SAT sonar trials."
+                        : isEnergyPage
+                        ? "First-time generator grid synchronization & Indian Electricity Grid Code (IEGC) compliance."
+                        : isAutomotivePage
+                        ? "EV battery pack thermal runaway, nail penetration, BMS, & CCS DC fast charging."
+                        : isRoboticsPage
+                        ? "AMR navigation stopping accuracy, slope incline, & multi-robot deadlock avoidance."
                         : "Monitor propulsion, control, and fleet health in real time."}
                     </span>
                   </div>
@@ -564,10 +944,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "In-Orbit Testing (IOT) checks all satellite subsystems post-launch."
+                        : isTestingPage
+                        ? "Engine vibration survey, Low/High Cycle Fatigue (LCF/HCF), & rotor burst containment."
                         : isPropulsionPage
                         ? "Thrust Vector Control (TVC) hydraulic & electric gimbal actuator validation."
                         : isDronesPage
                         ? "First Flight (FF) clearance, envelope expansion, & Armed Forces user trials."
+                        : isDefencePage
+                        ? "DO-178 SQA, System Integration Testing (SIT), FAT/SAT, & CEMILAC MTC release."
+                        : isEnergyPage
+                        ? "ASME PTC / IEC 60953 Performance Guarantee (PG) heat rate & CPCB stack emission testing."
+                        : isAutomotivePage
+                        ? "ARAI Pune & ICAT Manesar CMVR Type Approval homologation certification."
+                        : isRoboticsPage
+                        ? "End-effector grasping success rate, force impedance, & 24/7 soak HALT/HASS."
                         : "Evaluate telemetry at high frequency during flight operations."}
                     </span>
                   </div>
@@ -576,10 +966,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     <span>
                       {isSatellitePage
                         ? "Commissioning phase handoff to mission ops and payload customers."
+                        : isTestingPage
+                        ? "IL-76 Flying Test Bed (FTB) flight trials at Gromov GFRI, aircraft EGR, & CEMILAC sign-off."
                         : isPropulsionPage
                         ? "Pre-launch pad static fire operations and zero-packet-drop microsecond DAQ archival."
                         : isDronesPage
                         ? "CEMILAC Type Certificate, RCMA audits, DGAQA QA, and IFTR/FTR flight release."
+                        : isDefencePage
+                        ? "Staff Evaluation Report (SER), TEC compliance, & Bulk Production Clearance (BPC)."
+                        : isEnergyPage
+                        ? "CEA mandated 72-hour continuous full-load trial operation, COD declaration & CPRI approval."
+                        : isAutomotivePage
+                        ? "Tier-1 PPAP Level 1-5 sign-off, pilot production run, & SOP launch readiness."
+                        : isRoboticsPage
+                        ? "1000+ robot Fleet Management System (FMS), rolling OTA updates, & ISO 10218 CE."
                         : "Compare flight performance against vehicle test history."}
                     </span>
                   </div>
@@ -601,10 +1001,20 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
               {isSatellitePage
                 ? "From Cleanroom TVAC Vacuum Chambers to Orbit. One Telemetry Platform."
+                : isTestingPage
+                ? "From GTRE Component Rigs to Gromov IL-76 Flying Test Bed. Zero Telemetry Loss."
                 : isPropulsionPage
                 ? "From Mahendragiri HAT Chambers to McGregor Test Stands. Zero Data Loss."
                 : isDronesPage
                 ? "From ADE Iron Bird Rig to CEMILAC Flight Release. Zero Telemetry Loss."
+                : isDefencePage
+                ? "From Pokhran Firing Ranges to Sea Acceptance Trials. Zero Telemetry Loss."
+                : isEnergyPage
+                ? "From BHEL Boiler Light-Up to Commercial Operation Date (COD). Zero Telemetry Loss."
+                : isAutomotivePage
+                ? "From DVP&R Dyno Mapping to Start of Production (SOP). Zero Telemetry Loss."
+                : isRoboticsPage
+                ? "From Isaac Sim Digital Twin to 1000+ Robot Fleet Operations. Zero Telemetry Loss."
                 : "One interface. One data model."}
             </h2>
           </div>
