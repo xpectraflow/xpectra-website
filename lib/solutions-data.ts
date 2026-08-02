@@ -771,7 +771,259 @@ export const satelliteAITData = {
       items: [
         { name: "LEOP (Launch and Early Orbit Phase)", desc: "LEOP (Launch and Early Orbit Phase) operations" },
         { name: "In-Orbit Testing (IOT)", desc: "Checks all subsystems function correctly after reaching orbit" },
-        { name: "Commissioning Phase", desc: "Commissioning phase." }
+      ]
+    }
+  ]
+};export const propulsionFlowData = {
+  title: "Rocket Propulsion Ground Testing & Validation Flow",
+  subtitle: "Standard rocket engine & stage testing workflow using ISRO (LPSC / IPRC Mahendragiri) & SpaceX (McGregor Test Facility, Texas) industry terminology.",
+  sections: [
+    {
+      id: 1,
+      title: "ISRO 1. Solid Motor Testing (SHAR STEX Complex)",
+      shortName: "ISRO Solid Motors",
+      badge: "STEX SDSC-SHAR",
+      img: "/hotfire-stand.png",
+      items: [
+        { name: "Static Test firing at SHAR", desc: "Static Test and Evaluation Complex (STEX) firing at SDSC SHAR" },
+        { name: "Sub-scale motor testing", desc: "Propellant grain burn rate & acoustic sub-scale motor validation" },
+        { name: "Full-scale segment testing", desc: "Segmented booster static test firing (S200 solid rocket booster)" }
+      ]
+    },
+    {
+      id: 2,
+      title: "ISRO 2. Liquid Engine Testing (IPRC Mahendragiri)",
+      shortName: "ISRO Liquid Engines",
+      badge: "IPRC Mahendragiri / HAT",
+      img: "/stage-hotfire-analytics.png",
+      items: [
+        { name: "Engine hot testing at IPRC", desc: "ISRO Propulsion Complex (IPRC) Mahendragiri liquid engine test stand firing" },
+        { name: "High Altitude Test (HAT) facility", desc: "Simulates vacuum conditions for upper-stage engine ignition (CE-7.5, CE-20 cryogenic engines)" },
+        { name: "Gas generator testing", desc: "Gas generator testing for turbopump-driven liquid engines" },
+        { name: "Turbopump testing", desc: "Cold flow + hot firing testing for high-pressure turbopumps" },
+        { name: "Injector head & chamber testing", desc: "Injector head testing / Sub-scale combustion chamber testing" },
+        { name: "Engine qualification / FAT", desc: "Engine qualification test / Flight Acceptance Test (FAT)" },
+        { name: "Stage-level static test", desc: "Integrated stage static test firing (L110 liquid stage, C25 cryogenic stage)" }
+      ]
+    },
+    {
+      id: 3,
+      title: "ISRO 3. Cryogenic-Specific Testing (LPSC & IPRC)",
+      shortName: "ISRO Cryo Engines",
+      badge: "LPSC Mahendragiri CUS",
+      img: "/stage-realtime-ingest.png",
+      items: [
+        { name: "Cryo engine chill-down test", desc: "Pre-firing LOX/LH2 liquid nitrogen/helium chill-down thermal conditioning" },
+        { name: "Propellant loading rehearsal", desc: "Cryogenic LOX/LH2 tank fill, hold, and drain rehearsal" },
+        { name: "Cryogenic Upper Stage (CUS) test", desc: "Cryogenic Upper Stage (CUS) integrated engine & stage testing" }
+      ]
+    },
+    {
+      id: 4,
+      title: "ISRO 4. Ground Checks & Pre-Firing Tests",
+      shortName: "ISRO Ground Checks",
+      badge: "Feed System & TVC",
+      img: "/transient-capture.png",
+      items: [
+        { name: "Leak test / Proof pressure test", desc: "High-pressure helium leak & structural proof pressure test" },
+        { name: "Cold flow test", desc: "Non-firing cold flow test validating propellant feed system valves & pressure drop" },
+        { name: "Igniter testing", desc: "Pyrotechnic & hypergolic igniter reliability testing" },
+        { name: "Thrust Vector Control (TVC) test", desc: "Gimbal actuator dynamic TVC response testing" }
+      ]
+    },
+    {
+      id: 5,
+      title: "SpaceX 1. McGregor Development & Hot-Fire Testing",
+      shortName: "SpaceX McGregor",
+      badge: "McGregor Test Stand",
+      img: "/aerospace-ui.png",
+      items: [
+        { name: "Static fire test", desc: "Full engine/stage firing while bolted to test stand (McGregor & launch pad)" },
+        { name: "Component acceptance testing", desc: "Every engine (Merlin, Raptor) individually hot-fire tested before stage integration" },
+        { name: "Full Duration Static Fire", desc: "Burns for full mission duration to validate performance" },
+        { name: "Wet Dress Rehearsal (WDR)", desc: "Full propellant load (sub-cooled LOX/CH4 or RP-1) + countdown without ignition" }
+      ]
+    },
+    {
+      id: 6,
+      title: "SpaceX 2. Starship, Cryo Proof & Pad Operations",
+      shortName: "SpaceX Starship & Pad",
+      badge: "Starbase / McGregor",
+      img: "/timestamp-sync.png",
+      items: [
+        { name: "Cryo proof testing", desc: "Tank pressurized with cryogenic fluid (LN2 for structural proof) to validate structural integrity" },
+        { name: "Starship Hop tests", desc: "Low-altitude flight tests (famously used for Starship — Starhopper, SN5/SN6 hops)" },
+        { name: "Raptor engine acceptance test", desc: "Every Raptor engine is individually test-fired at McGregor before shipping to Starbase" },
+        { name: "Static test stand TVC gimbaling", desc: "Includes gimbal testing for TVC validation on Merlin & Raptor" },
+        { name: "Pre-launch Static Fire at pad", desc: "Falcon 9 standard pre-launch static fire on the pad" },
+        { name: "NASA SLS Green Run Benchmark", desc: "Stage test firing comparison benchmark (NASA SLS core stage)" }
+      ]
+    },
+    {
+      id: 7,
+      title: "Common Ground Validation Elements (GTRE / ISRO / SpaceX)",
+      shortName: "Common Validation",
+      badge: "NDT & Telemetry Standards",
+      img: "/compliance-archival.png",
+      items: [
+        { name: "Non-Destructive Testing (NDT)", desc: "X-ray, ultrasonic, & dye-penetrant checks on turbine blades & combustion chambers" },
+        { name: "Propellant / fuel compatibility testing", desc: "Material compatibility with LOX, LH2, RP-1, Methane, & Hypergolics" },
+        { name: "Instrumentation calibration", desc: "Strain gauges, thermocouples, and pressure transducers calibration" },
+        { name: "Telemetry validation during hot tests", desc: "High-frequency microsecond transient capture during hot-fire tests" }
+      ]
+    }
+  ]
+};
+
+export const dronesFlowData = {
+  title: "UAV & Drone Systems Ground Testing & Validation Flow",
+  subtitle: "Standard ground testing workflow for military UAVs as per DRDO terminology (ADE Rustom-II/TAPAS-BH-201, Nishant, Netra, Abhyas, Ghatak/SWiFT, ADRDE, RCI, CVRDE, CEMILAC & DGAQA).",
+  sections: [
+    {
+      id: 1,
+      title: "1. Design & Ground Qualification Testing (Structural & Environmental)",
+      shortName: "Structural & EQT",
+      badge: "MIL-STD-810 / JSS 55555",
+      img: "/transient-capture.png",
+      subsections: [
+        {
+          category: "Structural Testing",
+          items: [
+            { name: "Static structural test", desc: "Validates airframe under design load envelope" },
+            { name: "Proof load testing", desc: "Validates structural margin under maximum design loads" },
+            { name: "Fatigue testing", desc: "Wing and fuselage lifecycle fatigue validation" },
+            { name: "Modal survey test", desc: "Structural frequency & mode shape validation to avoid flutter" },
+            { name: "Flutter clearance / GVT", desc: "Ground Vibration Test (GVT) for flutter margin clearance" }
+          ]
+        },
+        {
+          category: "Environmental (EQT)",
+          items: [
+            { name: "MIL-STD-810 / JSS 55555 EQT", desc: "DRDO military environmental qualification standard" },
+            { name: "Temperature-Altitude test", desc: "High-altitude environmental temperature soak" },
+            { name: "Vibration & shock testing", desc: "Transportation + flight-induced vibration & shock" },
+            { name: "Salt fog / spray test", desc: "Corrosion resistance for naval variants" },
+            { name: "Sand, dust & rain testing", desc: "Severe weather & desert environmental clearance" }
+          ]
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: "2. Avionics & Systems Integration (Iron Bird & HIL)",
+      shortName: "Avionics & HIL Rig",
+      badge: "Iron Bird / Anechoic",
+      img: "/stage-hardware-binding.png",
+      items: [
+        { name: "Avionics Integration Rig / Iron Bird", desc: "Full avionics suite tested on a ground rig replicating airframe wiring/systems before flight" },
+        { name: "HIL (Hardware-in-Loop) Simulation", desc: "Flight control laws validation using Flight Control Computer (FCC)" },
+        { name: "Autopilot & ATOL Validation", desc: "Autopilot testing and Auto Take-off and Landing (ATOL) system validation" },
+        { name: "EMI / EMC Anechoic Testing", desc: "Anechoic chamber testing critical for dense avionics & RF links" },
+        { name: "LOS & BLOS Data Link Testing", desc: "Line of Sight and Beyond Line of Sight command/control telemetry links" }
+      ]
+    },
+    {
+      id: 3,
+      title: "3. UAV Propulsion Testing (Turboprop / Jet & Rotor)",
+      shortName: "UAV Propulsion",
+      badge: "ADE Engine Rig / EGR",
+      img: "/hotfire-stand.png",
+      items: [
+        { name: "Engine Ground Run (EGR)", desc: "EGR testing for engines like NPO Saturn 36MT (Rustom-II) & indigenous PTAE-7 (Nishant/Lakshya)" },
+        { name: "Altitude Chamber Testing", desc: "Engine performance & fuel flow validation at operational altitudes" },
+        { name: "Fuel System Qualification", desc: "Fuel feed, tank slosh, & boost pump qualification" },
+        { name: "Propeller / Rotor Balancing", desc: "Dynamic rotor & propeller balancing for rotary & prop-driven UAVs" }
+      ]
+    },
+    {
+      id: 4,
+      title: "4. Flight Control & GCS (Ground Control Station) Validation",
+      shortName: "FCC & GCS Validation",
+      badge: "SIL / MILS / Redundancy",
+      img: "/aerospace-ui.png",
+      items: [
+        { name: "Software-in-Loop (SIL) Simulation", desc: "Pure software control law simulation & verification" },
+        { name: "Man-in-Loop Simulation (MILS)", desc: "Pilot/operator in the loop with simulated flight dynamics" },
+        { name: "GCS Integration Testing", desc: "Validates command, control, and mission planning software" },
+        { name: "Redundancy Testing", desc: "Dual/triple redundant flight control computer failover tests" },
+        { name: "Failsafe & GPS-Denial Testing", desc: "Validates behavior on link loss, engine failure, & GPS-denied environments" }
+      ]
+    },
+    {
+      id: 5,
+      title: "5. Launch & Recovery System Testing (ADRDE / Catapult / Parachute)",
+      shortName: "Launch & Recovery",
+      badge: "ADRDE Catapult / Chute",
+      img: "/airgapped-nvme.png",
+      items: [
+        { name: "Pneumatic / Hydraulic Launcher", desc: "Catapult launcher pressure & acceleration trials" },
+        { name: "Catapult Launch Trials", desc: "High-g launch release qualification for tactical UAVs" },
+        { name: "Parachute Recovery System", desc: "Canopy deployment, pyrotechnic mortar eject, & shock absorption" },
+        { name: "Arrested Landing / Net Recovery", desc: "Net recovery & hook arrester landing trials for Netra & Nishant" }
+      ]
+    },
+    {
+      id: 6,
+      title: "6. RF, Stealth & Payload Integration (EO/IR, SAR & RCS)",
+      shortName: "Payloads & RCS",
+      badge: "EO/IR / SAR / RCS Ghatak",
+      img: "/satellite-emc-chamber.png",
+      items: [
+        { name: "Payload Integration Testing", desc: "Electro-Optical/Infrared (EO/IR) camera, Synthetic Aperture Radar (SAR), & SIGINT payloads" },
+        { name: "Gimbal Stabilization Testing", desc: "Multi-axis gyro gimbal line-of-sight stabilization" },
+        { name: "Antenna Pattern Testing", desc: "Data link antenna radiation pattern & gain measurements" },
+        { name: "Ground RCS Measurement", desc: "Ground-based Radar Cross-Section (RCS) measurement for stealth UAVs (Ghatak / SWiFT)" }
+      ]
+    },
+    {
+      id: 7,
+      title: "7. Ground Runs & Taxi Trials (Pre-Flight Clearance)",
+      shortName: "Pre-Flight Taxi",
+      badge: "ADE Taxi Trials",
+      img: "/timestamp-sync.png",
+      items: [
+        { name: "Engine Ground Run (EGR)", desc: "Full power engine ground run & vibration check on apron" },
+        { name: "Low-Speed Taxi Trial", desc: "Brake response, ground handling, & low-speed steering check" },
+        { name: "High-Speed Taxi Trial", desc: "Nose wheel lift-off speed check & high-speed abort braking" },
+        { name: "Nose Wheel Steering & Brake Check", desc: "Differential braking & automated taxi steering validation" }
+      ]
+    },
+    {
+      id: 8,
+      title: "8. Flight Testing Phases (Envelope Expansion & User Trials)",
+      shortName: "Flight Trials",
+      badge: "FF / FET / Army Trials",
+      img: "/stage-realtime-ingest.png",
+      items: [
+        { name: "First Flight (FF) Clearance", desc: "Initial flight release milestone & first flight clearance" },
+        { name: "Envelope Expansion Trials", desc: "Gradually expanding speed, altitude, and maneuver envelope" },
+        { name: "User Trials (Armed Forces)", desc: "Conducting operational trials with Indian Army, Navy, & Air Force" },
+        { name: "Field Evaluation Trials (FET)", desc: "High-altitude desert & naval field evaluation trials" }
+      ]
+    },
+    {
+      id: 9,
+      title: "9. Certification & Clearance Bodies (DRDO / CEMILAC / DGAQA)",
+      shortName: "Certification (CEMILAC)",
+      badge: "CEMILAC MTC / DGAQA",
+      img: "/compliance-archival.png",
+      items: [
+        { name: "CEMILAC Type Certification", desc: "Centre for Military Airworthiness and Certification Type Certificate & Military Type Certificate (MTC)" },
+        { name: "RCMA Audit Clearance", desc: "Regional Centre for Military Airworthiness design & build standard audits" },
+        { name: "DGAQA Quality Assurance", desc: "Directorate General of Aeronautical Quality Assurance component & assembly audits" },
+        { name: "IFTR & FTR Clearances", desc: "Initial Flight Test Release (IFTR) and Flight Test Release (FTR) milestones" }
+      ]
+    },
+    {
+      id: 10,
+      title: "10. Swarm & Multi-UAV Specific Validation",
+      shortName: "Swarm & Mesh Network",
+      badge: "Autonomous Swarm",
+      img: "/stage-hotfire-analytics.png",
+      items: [
+        { name: "Swarm Coordination Algorithm", desc: "SIL/HIL based multi-UAV autonomous swarm formation validation" },
+        { name: "Collision Avoidance Testing", desc: "Dynamic sense-and-avoid collision avoidance algorithms" },
+        { name: "Mesh Network Communication", desc: "Ad-hoc mesh RF network telemetry & inter-drone data relay validation" }
       ]
     }
   ]
