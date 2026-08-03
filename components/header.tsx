@@ -57,7 +57,7 @@ export const Header = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.98 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-80 p-2.5 rounded-2xl bg-zinc-950/95 backdrop-blur-2xl border border-white/10 shadow-2xl z-50"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[350px] p-3 rounded-2xl bg-[#090a0f] border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.95)] z-50"
                   >
                     <div className="flex flex-col gap-1">
                       {solutionsListSummary.map((item) => {
@@ -67,23 +67,23 @@ export const Header = () => {
                             key={item.id}
                             href={`/solutions/${item.id}`}
                             onClick={() => setSolutionsOpen(false)}
-                            className="group flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/5 transition-all"
+                            className="group flex items-center gap-3 p-2.5 rounded-xl hover:bg-white/10 transition-all"
                           >
                             <div className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/90 group-hover:bg-white/10 group-hover:border-white/20 transition-colors shrink-0">
-                              <Icon className="w-4 h-4" />
+                              <Icon className="w-4 h-4 text-white" />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center justify-between gap-2">
-                                <span className="text-sm font-medium text-white/90 group-hover:text-white transition-colors">
+                                <span className="text-sm font-medium text-white group-hover:text-white transition-colors">
                                   {item.title}
                                 </span>
                                 {item.badge && (
-                                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/5 text-white/40 border border-white/10">
+                                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-white/70 border border-white/15">
                                     {item.badge}
                                   </span>
                                 )}
                               </div>
-                              <p className="text-xs text-white/50 truncate mt-0.5">
+                              <p className="text-xs text-white/60 truncate mt-0.5">
                                 {item.desc}
                               </p>
                             </div>
@@ -148,7 +148,7 @@ export const Header = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 left-0 w-full bg-background/90 backdrop-blur-2xl border-b border-border-subtle p-6 flex flex-col gap-4 max-h-[calc(100vh-4rem)] overflow-y-auto"
+            className="md:hidden absolute top-16 left-0 w-full bg-[#090a0f] border-b border-white/15 p-6 flex flex-col gap-4 max-h-[calc(100vh-4rem)] overflow-y-auto z-50 shadow-2xl"
           >
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Product</Link>
             

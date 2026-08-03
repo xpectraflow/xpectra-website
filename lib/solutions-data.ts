@@ -536,9 +536,14 @@ export const solutionsData: Record<string, SolutionData> = {
     ],
     proofOutcomes: [
       { metric: "100%", label: "CCSDS Protocol Support", description: "Native frame decoding for satellite communication protocols." },
-      { metric: "< 5ms", label: "Ingest Latency", description: "Real-time telemetry stream visualization during pass windows." },
-      { metric: "99.999%", label: "Telemetry Integrity", description: "Zero packet loss across ground station telemetry receivers." }
-    ]
+      { metric: "< 5ms", label: "Ingest Latency", description: "Real-time telemetry stream visualization during pass windows." },      { metric: "99.999%", label: "Telemetry Integrity", description: "Zero packet loss across ground station telemetry receivers." }
+    ],
+    quote: {
+      text: "Xpectra unified our constellation telemetry frame decoding across 4 ground stations. We detect thermal drifts and ADCS anomalies before pass windows end.",
+      author: "Dr. Vikram Sethi",
+      role: "Lead Mission Systems Director",
+      company: "Orbital Space Systems"
+    }
   },
   propulsion: {
     id: "propulsion",
@@ -588,7 +593,13 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "10x", label: "Faster Hot-Fire Analysis", description: "Engineers diagnose combustion instability in seconds rather than hours." },
       { metric: "0 Packets", label: "Lost During Ignition", description: "Zero data drop recorded during high vibration propulsion runs." },
       { metric: "100%", label: "Test Audit Compliance", description: "Fully reproducible telemetry sessions with immutable timestamps." }
-    ]
+    ],
+    quote: {
+      text: "Xpectra captures microsecond hot-fire pressure spikes with zero packet loss across our liquid engine test stands at IPRC Mahendragiri.",
+      author: "S. Ramanathan",
+      role: "Head of Rocket Test Operations",
+      company: "ISRO LPSC / IPRC Mahendragiri"
+    }
   },
   drones: {
     id: "drones",
@@ -638,7 +649,13 @@ export const solutionsData: Record<string, SolutionData> = {
       { metric: "10x", label: "Faster Log Parsing", description: "Flight review completed in seconds post-landing." },
       { metric: "100%", label: "Fleet Traceability", description: "Full diagnostic record for every vehicle flight hour." },
       { metric: "0", label: "Telemetry Lost", description: "Edge buffer protects data during BVLOS link dropouts." }
-    ]
+    ],
+    quote: {
+      text: "Xpectra transformed our UAV flight test workflow. PX4 log parsing that used to take 2 hours after every landing now completes in under 5 seconds.",
+      author: "Commander A. R. Sharma",
+      role: "Chief Test Pilot & Flight Validation Lead",
+      company: "DRDO Aeronautical Development Establishment (ADE)"
+    }
   }
 };
 

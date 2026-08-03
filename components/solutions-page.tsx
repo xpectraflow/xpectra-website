@@ -6,95 +6,27 @@ import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
-import {
-  Rocket,
-  Shield,
-  Bot,
-  Car,
-  Zap,
-  ArrowRight,
-  CheckCircle2,
-  Activity,
-  Sparkles
-} from 'lucide-react';
+import { ArrowRight, CheckCircle2, Activity, Sparkles } from 'lucide-react';
+import { solutionsListSummary, solutionsData } from '@/lib/solutions-data';
 
-const solutionsList = [
-  {
-    id: "aerospace",
-    icon: Rocket,
-    title: "Aerospace",
-    tagline: "Nanosecond-precise telemetry for propulsion & flight systems",
-    description: "Validate propulsion test stands, rocket engine hot-fires, and satellite telemetry streams with zero data drop and real-time visualization.",
-    features: [
-      "Microsecond transient glitch detection",
-      "High-frequency DAQ channel synchronization (250+ channels)",
-      "Automated incident & anomaly flagging during hot-fire tests",
-      "LabVIEW & MATLAB native plugin streaming"
+const solutionsList = solutionsListSummary.map((item) => {
+  const detail = solutionsData[item.id] || {};
+  return {
+    id: item.id,
+    icon: item.icon,
+    title: item.title,
+    tagline: item.desc,
+    description: detail.description || item.desc,
+    features: detail.keyFeatures?.slice(0, 4).map((f: any) => f.title) || [
+      "High-frequency sensor channel ingestion",
+      "Microsecond timestamp alignment & PTP IEEE 1588",
+      "Automated anomaly detection rules & alerts",
+      "Open columnar export (Parquet & HDF5)"
     ],
-    image: "/propulsion.jpg",
-    badge: "Flight-Grade"
-  },
-  {
-    id: "defense",
-    icon: Shield,
-    title: "Defense",
-    tagline: "Resilient edge sensor fusion in contested environments",
-    description: "Deploy offline-first telemetry ingestion engines directly onto vehicle-mounted hardware, tactical UAVs, and remote edge nodes.",
-    features: [
-      "Air-gapped, zero-cloud dependency options",
-      "End-to-end telemetry encryption & zero-trust auth",
-      "Bandwidth-adaptive streaming over tactical radio links",
-      "MIL-STD payload format converters"
-    ],
-    image: "/drone.jpg",
-    badge: "Mission-Critical"
-  },
-  {
-    id: "robotics",
-    icon: Bot,
-    title: "Robotics",
-    tagline: "HIL simulation & multi-sensor playback loop",
-    description: "Stream high-throughput LIDAR, IMU, and actuator telemetry straight into hardware-in-the-loop (HIL) testing pipelines.",
-    features: [
-      "ROS 2 / ROS 1 native stream ingestion",
-      "Sub-millisecond latency state estimation feeds",
-      "Frame-by-frame synchronized sensor replay",
-      "Python SDK for automated CI regression testing"
-    ],
-    image: "/robots.jpg",
-    badge: "Autonomy Ready"
-  },
-  {
-    id: "automotive",
-    icon: Car,
-    title: "Automotive",
-    tagline: "Powertrain stress testing & battery thermal analytics",
-    description: "Monitor CAN-bus metrics, inverter thermals, and crash test telemetry with unified schema validation.",
-    features: [
-      "CAN / CAN-FD & Ethernet telemetry parsing",
-      "Real-time battery thermal run-away alert triggers",
-      "Fleet-wide test track data ingestion",
-      "Cloud & edge hybrid telemetry archive"
-    ],
-    image: "/automobile.jpg",
-    badge: "Automotive"
-  },
-  {
-    id: "energy",
-    icon: Zap,
-    title: "Energy & Heavy Infrastructure",
-    tagline: "Vibration & acoustic monitoring for critical turbines",
-    description: "Continuous telemetry monitoring for wind turbines, grid sub-stations, and heavy industrial machinery.",
-    features: [
-      "24/7 continuous sensor health scoring",
-      "FFT spectral vibration analysis on the edge",
-      "Predictive maintenance trigger pipelines",
-      "Multi-region telemetry aggregation"
-    ],
-    image: "/network-telemetry.jpg",
-    badge: "Industrial IoT"
-  }
-];
+    image: detail.heroImage || "/propulsion.jpg",
+    badge: item.badge
+  };
+});
 
 export default function SolutionsPage() {
   return (

@@ -260,34 +260,6 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
           </div>
 
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 py-20 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-mono text-white/90 mb-6 backdrop-blur-md"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>
-                {isSatellitePage
-                  ? "ISRO (URSC/ISAC, SDSC-SHAR) & SPACEX (HAWTHORNE/STARBASE) AIT FLOW"
-                  : isTestingPage
-                  ? "GTRE (GAS TURBINE RESEARCH ESTABLISHMENT / DRDO) KAVERI ENGINE TEST PIPELINE"
-                  : isPropulsionPage
-                  ? "ISRO (LPSC/IPRC MAHENDARAGIRI) & SPACEX (MCGREGOR TEST STAND) PROPULSION FLOW"
-                  : isDronesPage
-                  ? "DRDO (ADE / ADRDE / RCI / CVRDE) UAV & DRONE GROUND CHECKOUT PIPELINE"
-                  : isDefencePage
-                  ? "DRDO / MOD DEFENCE TESTING & EVALUATION (T&E) FRAMEWORK"
-                  : isEnergyPage
-                  ? "NTPC / CEA / POWERGRID / BHEL ENERGY TESTING & COMMISSIONING PIPELINE"
-                  : isAutomotivePage
-                  ? "ARAI / ICAT / NATRAX AUTOMOTIVE TESTING & HOMOLOGATION FRAMEWORK"
-                  : isRoboticsPage
-                  ? "BOSTON DYNAMICS / ABB / KUKA / FANUC ROBOTICS TESTING FRAMEWORK"
-                  : "MISSION-CRITICAL TELEMETRY PLATFORM"}
-              </span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -600,7 +572,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
 
-        {/* 3. CAPABILITIES CAROUSEL / 3-CARD SHOWCASE (Sift Interactive Slider Style) */}
+        {/* 3. CAPABILITIES SLIDER CAROUSEL (Sift Interactive Slider Style) */}
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 lg:p-12 shadow-2xl relative overflow-hidden">
             {/* Header + Nav Arrows */}
@@ -1020,137 +992,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
           </div>
         </section>
 
-        {/* 6. KEY ARCHITECTURE GRID (Visualize. Validate. Operate. Evolve) */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              Visualize. Validate. Operate. Evolve.
-            </h2>
-            <p className="text-white/60 text-base max-w-2xl mx-auto font-light">
-              {isPropulsionPage
-                ? "Xpectra unifies rocket test stands, turbopump rigs, and cryogenic ground systems into one mission-grade platform."
-                : isDronesPage
-                ? "Xpectra unifies ADE Iron Bird rigs, FCC HIL simulation, and GCS flight telemetry into one airworthiness platform."
-                : "Xpectra replaces siloed tools and ad hoc dashboards with a mission-grade observability platform."}
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[#18181b]">
-            {/* Card 1: Unify Telemetry */}
-            <div className="rounded-2xl border border-white/10 bg-[#0c0d10] p-6 hover:border-white/30 transition-all flex flex-col justify-between">
-              <div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit text-white mb-6">
-                  <Database className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white uppercase mb-2">
-                  {isPropulsionPage ? "Unify Rocket Telemetry" : isDronesPage ? "Unify UAV Avionics & HIL" : "Unify your telemetry"}
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed font-light">
-                  {isPropulsionPage
-                    ? "Unified pressure transducers, accelerometers, flow meters, and TVC gimbal telemetry in one synchronized timeline."
-                    : isDronesPage
-                    ? "Unified Iron Bird wiring, Flight Control Computer (FCC) logs, GCS telemetry, and payload streams in one place."
-                    : "Unified telemetry, simulation, and operations data. Real-time and historical analysis at full fidelity."}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2: Full Fidelity */}
-            <div className="rounded-2xl border border-white/10 bg-[#0c0d10] p-6 hover:border-white/30 transition-all flex flex-col justify-between">
-              <div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit text-white mb-6">
-                  <Activity className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white uppercase mb-2">
-                  {isPropulsionPage ? "Microsecond Hot-Fire DAQ" : isDronesPage ? "Iron Bird & GVT Fidelity" : "Full fidelity analysis"}
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed font-light">
-                  {isPropulsionPage
-                    ? "100kHz real-time sensor streams with hardware PTP IEEE 1588 sub-microsecond timestamp alignment."
-                    : isDronesPage
-                    ? "Microsecond structural GVT modal survey sync & real-time HIL hardware-in-the-loop control law analysis."
-                    : "Real-time and historical analysis at full fidelity with microsecond timestamp alignment."}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Anomaly Detection */}
-            <div className="rounded-2xl border border-white/10 bg-[#0c0d10] p-6 hover:border-white/30 transition-all flex flex-col justify-between">
-              <div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit text-white mb-6">
-                  <Zap className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white uppercase mb-2">
-                  {isPropulsionPage ? "Combustion Anomaly Rules" : isDronesPage ? "Flight Law & Failsafe Rules" : "Anomaly detection"}
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed font-light">
-                  {isPropulsionPage
-                    ? "Automated rules catch combustion instability, turbopump cavitation, and pressure transients before alarms fire."
-                    : isDronesPage
-                    ? "Automated rules catch control law oscillations, link loss failsafe triggers, and engine EGR anomalies."
-                    : "Rules-based validation, automated anomaly detection, and instant notification alerts."}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: Sharing & Permissions */}
-            <div className="rounded-2xl border border-white/10 bg-[#0c0d10] p-6 hover:border-white/30 transition-all flex flex-col justify-between">
-              <div>
-                <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit text-white mb-6">
-                  <Share2 className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-white uppercase mb-2">
-                  {isPropulsionPage ? "Air-Gapped Test Vault" : isDronesPage ? "CEMILAC Certification Reports" : "Sharing and permissions"}
-                </h3>
-                <p className="text-xs text-white/60 leading-relaxed font-light">
-                  {isPropulsionPage
-                    ? "Local zero-cloud deployment on isolated test bench subnets at IPRC Mahendragiri or McGregor."
-                    : isDronesPage
-                    ? "Generate structured evidence for CEMILAC Type Certificate, RCMA audits, and DGAQA airworthiness releases."
-                    : "Shareable views, annotations, and version-controlled reports for compliance review."}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. FORMAT COMPATIBILITY & DEPLOYMENT ENVIRONMENTS (Sift Ingestion Grid) */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 lg:p-12 shadow-2xl">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                {isPropulsionPage
-                  ? "Your team ingests any rocket engine DAQ telemetry, at the rate each sensor recorded"
-                  : isDronesPage
-                  ? "Your team ingests any DRDO UAV telemetry, at the rate each sensor recorded"
-                  : "Your team ingests any aerospace telemetry, at the rate each sensor recorded"}
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-2xl border border-white/10 bg-zinc-950 flex flex-col justify-between">
-                <FileCode2 className="w-8 h-8 text-white mb-4" />
-                <p className="text-sm text-white/80 font-light leading-relaxed">
-                  Ingest your telemetry in any format: <span className="text-white font-mono font-semibold">{isPropulsionPage ? "LabVIEW, MATLAB, TDMS, CSV, PX4, Parquet, HDF5" : isDronesPage ? "PX4, ULOG, Mavlink, ROS2, LabVIEW, TDMS, CSV, Parquet" : "CSV, PX4, ULOG, ROS, TDMS, Parquet, HDF5"}</span>, and more.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-white/10 bg-zinc-950 flex flex-col justify-between">
-                <Lock className="w-8 h-8 text-white mb-4" />
-                <p className="text-sm text-white/80 font-light leading-relaxed">
-                  Run in your environment: <span className="text-white font-mono font-semibold">{isPropulsionPage ? "Air-Gapped Test Subnets, On-Prem, GovCloud, VPC" : isDronesPage ? "ADE Air-Gapped Test Bench, On-Prem, Military Mesh Subnets" : "On-Prem, GovCloud, VPC"}</span>, or classified networks.
-                </p>
-              </div>
-
-              <div className="p-6 rounded-2xl border border-white/10 bg-zinc-950 flex flex-col justify-between">
-                <Globe className="w-8 h-8 text-white mb-4" />
-                <p className="text-sm text-white/80 font-light leading-relaxed">
-                  Operate through <span className="text-white font-mono font-semibold">{isDronesPage ? "LOS & BLOS tactical telemetry links" : "disconnected and low-bandwidth conditions"}</span> with local NVMe edge ring buffers.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* 7. VISUAL CAMPAIGN FLOW NAVIGATOR WITH IMAGES & CARDS (FOR SATELLITE & PROPULSION) */}
         {isFlowPage && (
@@ -1316,7 +1158,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               <div className="border-t border-white/10 pt-12">
                 <div className="text-center mb-8">
                   <h3 className="text-xl md:text-2xl font-bold text-white">
-                    {isPropulsionPage ? "Full Rocket Propulsion Campaign Visual Overview" : "Full 9-Phase AIT Campaign Visual Overview"}
+                    {isPropulsionPage ? "Full Rocket Propulsion Campaign Visual Overview" : "Full Qualification Campaign Visual Overview"}
                   </h3>
                   <p className="text-xs md:text-sm text-white/60 mt-1">
                     Click any phase card to jump into detailed telemetry view
@@ -1371,22 +1213,120 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
           </section>
         )}
 
-        {/* 8. BOTTOM CTA (Dual Buttons: Request Demo / Contact Sales) */}
+        {/* 8. KEY FEATURES & PLATFORM CAPABILITIES GRID */}
+        {data.keyFeatures && data.keyFeatures.length > 0 && (
+          <section className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 font-bold block mb-2">
+                PLATFORM CAPABILITIES
+              </span>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                Engineered for High-Fidelity Domain Telemetry
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {data.keyFeatures.map((feat, idx) => {
+                const Icon = feat.icon;
+                return (
+                  <div key={idx} className="rounded-2xl border border-white/10 bg-[#0c0d10] p-6 hover:border-white/30 transition-all flex flex-col justify-between">
+                    <div>
+                      <div className="p-3 rounded-xl bg-white/5 border border-white/10 w-fit text-white mb-5">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-base font-bold text-white mb-2">
+                        {feat.title}
+                      </h3>
+                      <p className="text-xs text-white/60 leading-relaxed font-light">
+                        {feat.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* 9. PROOF OUTCOMES & MEASURABLE IMPACT METRICS */}
+        {data.proofOutcomes && data.proofOutcomes.length > 0 && (
+          <section className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 lg:p-12 shadow-2xl">
+              <div className="text-center mb-10">
+                <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 font-bold block mb-2">
+                  MEASURABLE IMPACT
+                </span>
+                <h2 className="text-2xl md:text-4xl font-bold text-white">
+                  Proven Results in Mission-Critical Facilities
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {data.proofOutcomes.map((outcome, idx) => (
+                  <div key={idx} className="p-6 rounded-2xl bg-zinc-950 border border-white/10 flex flex-col justify-between hover:border-white/20 transition-all">
+                    <div>
+                      <div className="text-3xl md:text-4xl font-bold font-mono text-white mb-2">
+                        {outcome.metric}
+                      </div>
+                      <div className="text-sm font-bold text-white mb-2">
+                        {outcome.label}
+                      </div>
+                      <p className="text-xs text-white/60 font-light leading-relaxed">
+                        {outcome.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 10. CUSTOMER TESTIMONIAL BANNER */}
+        {data.quote && (
+          <section className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="rounded-3xl border border-white/15 bg-gradient-to-r from-white/[0.08] via-white/[0.04] to-white/[0.08] p-8 lg:p-12 relative overflow-hidden shadow-2xl">
+              <Quote className="w-12 h-12 text-white/20 mb-6" />
+              <p className="text-lg md:text-2xl text-white font-light italic leading-relaxed mb-8 max-w-4xl">
+                "{data.quote.text}"
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-bold text-white text-sm font-mono shrink-0">
+                  {data.quote.author.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-white">{data.quote.author}</div>
+                  <div className="text-xs text-white/60">{data.quote.role} · <span className="text-white/80 font-medium">{data.quote.company}</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* 11. TAILORED BOTTOM CTA SECTION */}
         <section className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/10 to-white/5 p-12 lg:p-16 relative overflow-hidden shadow-2xl">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              {isPropulsionPage
-                ? "Ready to transform your rocket engine test stand?"
+              {isSatellitePage
+                ? "Ready to transform your satellite constellation telemetry?"
+                : isTestingPage
+                ? "Ready to transform your gas turbine engine test stand?"
+                : isPropulsionPage
+                ? "Ready to transform your rocket engine hot-fire test stand?"
                 : isDronesPage
-                ? "Ready to transform your DRDO UAV ground testing rig?"
-                : "Ready to transform your aerospace telemetry?"}
+                ? "Ready to transform your DRDO UAV ground checkout rig?"
+                : isDefencePage
+                ? "Ready to transform your defence testing & evaluation framework?"
+                : isEnergyPage
+                ? "Ready to transform your power plant & substation testing?"
+                : isAutomotivePage
+                ? "Ready to transform your vehicle powertrain & homologation testing?"
+                : isRoboticsPage
+                ? "Ready to transform your robotics qualification & fleet operations?"
+                : "Ready to transform your mission-critical telemetry?"}
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto text-base md:text-lg mb-8 font-light">
-              {isPropulsionPage
-                ? "Connect your hot-fire test stand, turbopump rig, or cryogenic feed sensors in under 15 minutes with our native edge binaries."
-                : isDronesPage
-                ? "Connect your ADE Iron Bird rig, HIL flight control computer, or GCS telemetry streams in under 15 minutes."
-                : "Connect your test stand, vehicle fleet, or edge sensors in under 15 minutes with our native edge binaries."}
+              Connect your test stand, vehicle fleet, or edge sensors in under 15 minutes with our native edge binaries.
             </p>
             
             <div className="flex flex-wrap justify-center gap-4">
