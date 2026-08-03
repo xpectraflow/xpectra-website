@@ -666,20 +666,15 @@ const ProductPage = () => {
                 </section>
 
                 {/* MAIN ALTERNATING SECTIONS WRAPPER */}
-                <div className="max-w-7xl mx-auto px-6 py-20 space-y-32">
+                <div className="max-w-7xl mx-auto px-6 py-10 md:py-20 space-y-16 lg:space-y-32">
 
                     {/* =========================================================================
                         SECTION 1: Universal Data Format Support (Left Image, Right Content)
                        ========================================================================= */}
                     <section id="formats" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: 16:9 GIF Placeholder */}
-                            <div className="lg:col-span-6">
-                                <FormatGridMockup />
-                            </div>
-
-                            {/* Right Side: Content */}
-                            <div className="lg:col-span-6 space-y-6">
+                            {/* Content — first in DOM so it appears above grid on mobile */}
+                            <div className="lg:col-span-6 lg:order-last space-y-6">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
                                         <span>DATA INGESTION</span>
@@ -715,6 +710,11 @@ const ProductPage = () => {
                                     <span>Don&apos;t see your format? Build your own parser using the Xpectra SDK.</span>
                                     <ArrowUpRight className="w-4 h-4 text-white shrink-0 ml-2" />
                                 </a>
+                            </div>
+
+                            {/* Grid — second in DOM (shows below content on mobile), left on desktop */}
+                            <div className="lg:col-span-6 lg:order-first">
+                                <FormatGridMockup />
                             </div>
                         </div>
                     </section>
