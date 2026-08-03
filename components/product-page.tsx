@@ -669,17 +669,17 @@ const ProductPage = () => {
                 <div className="max-w-7xl mx-auto px-6 py-20 space-y-32">
 
                     {/* =========================================================================
-                        SECTION 1: Universal Data Format Support (Left Image, Right Content)
+                        SECTION 1: Universal Data Format Support (Left Image, Right Content on Desktop; Text first, Image second on Mobile)
                        ========================================================================= */}
                     <section id="formats" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: 16:9 GIF Placeholder */}
-                            <div className="lg:col-span-6">
+                            {/* Left Side (Desktop) / Second (Mobile): Image */}
+                            <div className="lg:col-span-6 order-2 lg:order-1">
                                 <FormatGridMockup />
                             </div>
 
-                            {/* Right Side: Content */}
-                            <div className="lg:col-span-6 space-y-6">
+                            {/* Right Side (Desktop) / First (Mobile): Content */}
+                            <div className="lg:col-span-6 space-y-6 order-1 lg:order-2">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
                                         <span>DATA INGESTION</span>
@@ -720,12 +720,12 @@ const ProductPage = () => {
                     </section>
 
                     {/* =========================================================================
-                        SECTION 2: Interactive Playback (Right Image, Left Content)
+                        SECTION 2: Interactive Playback (Right Image, Left Content on Desktop; Text first, Image second on Mobile)
                        ========================================================================= */}
                     <section id="playback" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: Content */}
-                            <div className="lg:col-span-6 space-y-4">
+                            {/* Left Side (Desktop) / First (Mobile): Content */}
+                            <div className="lg:col-span-6 space-y-4 order-1 lg:order-1">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>TIME REPLAY</span>
@@ -757,25 +757,25 @@ const ProductPage = () => {
                                 </div>
                             </div>
 
-                            {/* Right Side: 16:9 GIF Placeholder */}
-                            <div className="lg:col-span-6">
+                            {/* Right Side (Desktop) / Second (Mobile): Image */}
+                            <div className="lg:col-span-6 order-2 lg:order-2">
                                 <PlaybackMockup videoSrc="/video.engin.mp4" />
                             </div>
                         </div>
                     </section>
 
                     {/* =========================================================================
-                        SECTION 3: Data Playground (Left Image, Right Content)
+                        SECTION 3: Data Playground (Left Image, Right Content on Desktop; Text first, Image second on Mobile)
                        ========================================================================= */}
                     <section id="playground" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: 16:9 GIF Placeholder */}
-                            <div className="lg:col-span-6">
+                            {/* Left Side (Desktop) / Second (Mobile): Image */}
+                            <div className="lg:col-span-6 order-2 lg:order-1">
                                 <PlaygroundMockup poster="/playground-payoff.png" />
                             </div>
 
-                            {/* Right Side: Content */}
-                            <div className="lg:col-span-6 space-y-4">
+                            {/* Right Side (Desktop) / First (Mobile): Content */}
+                            <div className="lg:col-span-6 space-y-4 order-1 lg:order-2">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>ANALYTICS SANDBOX</span>
@@ -810,12 +810,12 @@ const ProductPage = () => {
                     </section>
 
                     {/* =========================================================================
-                        SECTION 4: Superfast Statistics Engine (Right Image, Left Content)
+                        SECTION 4: Superfast Statistics Engine (Right Image, Left Content on Desktop; Text first, Image second on Mobile)
                        ========================================================================= */}
                     <section id="statistics" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: Content */}
-                            <div className="lg:col-span-6 space-y-6">
+                            {/* Left Side (Desktop) / First (Mobile): Content */}
+                            <div className="lg:col-span-6 space-y-6 order-1 lg:order-1">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-2 mb-4">
                                         <span>PERFORMANCE ENGINE</span>
@@ -846,25 +846,25 @@ const ProductPage = () => {
                                 </div>
                             </div>
 
-                            {/* Right Side: Image / Mockup */}
-                            <div className="lg:col-span-6">
+                            {/* Right Side (Desktop) / Second (Mobile): Image */}
+                            <div className="lg:col-span-6 order-2 lg:order-2">
                                 <StatisticsMockup />
                             </div>
                         </div>
                     </section>
 
                     {/* =========================================================================
-                        SECTION 5: Real-Time Streaming (Left Image, Right Content)
+                        SECTION 5: Real-Time Streaming (Left Image, Right Content on Desktop; Text first, Image second on Mobile)
                        ========================================================================= */}
                     <section id="realtime" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: Image / Mockup */}
-                            <div className="lg:col-span-6">
+                            {/* Left Side (Desktop) / Second (Mobile): Image */}
+                            <div className="lg:col-span-6 order-2 lg:order-1">
                                 <RealtimeMockup />
                             </div>
 
-                            {/* Right Side: Content */}
-                            <div className="lg:col-span-6 space-y-4">
+                            {/* Right Side (Desktop) / First (Mobile): Content */}
+                            <div className="lg:col-span-6 space-y-4 order-1 lg:order-2">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>REAL-TIME STREAMING</span>
@@ -899,12 +899,12 @@ const ProductPage = () => {
                     </section>
 
                     {/* =========================================================================
-                        SECTION 6: Client Engine (Left GIF/Mockup, Right Client-Engine Content)
+                        SECTION 6: Client Engine (Left Content, Right Image on Desktop; Text first, Image second on Mobile)
                        ========================================================================= */}
                     <section id="client-engine" className="scroll-mt-36">
                         <div className="grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Left Side: Client Engine Content */}
-                            <div className="lg:col-span-6 space-y-4">
+                            {/* Left Side (Desktop) / First (Mobile): Client Engine Content */}
+                            <div className="lg:col-span-6 space-y-4 order-1 lg:order-1">
                                 <div>
                                     <div className="flex items-center justify-between font-mono text-xs text-white/40 tracking-[0.25em] uppercase border-b border-white/10 pb-1.5 mb-2.5">
                                         <span>CLIENT ENGINE</span>
@@ -936,8 +936,8 @@ const ProductPage = () => {
                                 </div>
                             </div>
 
-                            {/* Right Side: Image / Mockup */}
-                            <div className="lg:col-span-6">
+                            {/* Right Side (Desktop) / Second (Mobile): Image */}
+                            <div className="lg:col-span-6 order-2 lg:order-2">
                                 <ClientEngineMockup poster="/client-engine-preview.png" />
                             </div>
                         </div>

@@ -75,7 +75,7 @@ export const solutionsListSummary = [
   },
   {
     id: "testing",
-    title: "Testing",
+    title: "Engine",
     desc: "Environmental EQT, AIT qualification & test bench DAQ",
     icon: Activity,
     badge: "Qualification"
@@ -660,6 +660,7 @@ export const solutionsData: Record<string, SolutionData> = {
 };
 
 solutionsData.defence = solutionsData.defense;
+solutionsData.engine = solutionsData.testing;
 
 export const satelliteAITData = {
   title: "Satellite AIT & Ground Segment Validation Flow",

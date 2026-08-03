@@ -41,7 +41,13 @@ export const Footer = () => {
           <div className="flex flex-col gap-4">
             <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2">Platform</h3>
             <Link href="/product" className="text-sm text-white/60 hover:text-white transition-colors">Product Overview</Link>
-            <Link href="/solutions/aerospace" className="text-sm text-white/60 hover:text-white transition-colors">Solutions</Link>
+            <Link 
+              href="/solutions" 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="text-sm text-white/60 hover:text-white transition-colors"
+            >
+              Solutions
+            </Link>
             <Link href="/integrations" className="text-sm text-white/60 hover:text-white transition-colors">Integrations</Link>
             <Link href="/quickstart" className="text-sm text-white/60 hover:text-white transition-colors">Quickstart Guide</Link>
             <Link href="/blog" className="text-sm text-white/60 hover:text-white transition-colors">Engineering Blog</Link>
@@ -52,7 +58,7 @@ export const Footer = () => {
           <div className="flex flex-col gap-3">
             <h3 className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 mb-2 font-bold">Industries</h3>
             <Link href="/solutions/satellite" className="text-sm text-white/60 hover:text-white transition-colors">Satellite</Link>
-            <Link href="/solutions/testing" className="text-sm text-white/60 hover:text-white transition-colors">Testing</Link>
+            <Link href="/solutions/testing" className="text-sm text-white/60 hover:text-white transition-colors">Engine</Link>
             <Link href="/solutions/propulsion" className="text-sm text-white/60 hover:text-white transition-colors">Propulsion</Link>
             <Link href="/solutions/drones" className="text-sm text-white/60 hover:text-white transition-colors">Drones</Link>
             <Link href="/solutions/defence" className="text-sm text-white/60 hover:text-white transition-colors">Defence</Link>

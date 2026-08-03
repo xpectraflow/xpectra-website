@@ -42,13 +42,13 @@ export const Header = () => {
               onMouseEnter={() => setSolutionsOpen(true)}
               onMouseLeave={() => setSolutionsOpen(false)}
             >
-              <Link 
-                href="/solutions/satellite" 
-                className="text-[17px] font-medium text-white/65 hover:text-white transition-colors inline-flex items-center gap-1.5 py-2"
+              <button 
+                onClick={() => setSolutionsOpen((prev) => !prev)}
+                className="text-[17px] font-medium text-white/65 hover:text-white transition-colors inline-flex items-center gap-1.5 py-2 cursor-pointer focus:outline-none"
               >
                 Solutions
                 <ChevronDown className={cn("w-4 h-4 transition-transform duration-200 text-white/60", solutionsOpen && "rotate-180 text-white")} />
-              </Link>
+              </button>
 
               <AnimatePresence>
                 {solutionsOpen && (
