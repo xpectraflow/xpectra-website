@@ -204,7 +204,7 @@ export const solutionsData: Record<string, SolutionData> = {
     tagline: "Resilient edge sensor fusion for tactical vehicles, UAVs, and air-gapped defense systems.",
     badge: "Mission-Critical",
     description: "Engineered for contested electromagnetic environments, low-bandwidth radio links, and zero-trust tactical edge nodes.",
-    heroImage: "/drone.jpg",
+    heroImage: "/xpectra-defence-tactical-telemetry-daq.png",
     heroVideo: "/playback.mp4",
     customerProof: [
       { stat: "Zero Cloud", label: "100% Air-Gapped Operation" },
@@ -423,7 +423,7 @@ export const solutionsData: Record<string, SolutionData> = {
     tagline: "Continuous vibration, thermal, and acoustic monitoring for power turbines & grid assets.",
     badge: "Industrial IoT",
     description: "Purpose-built for power plant operators, wind farm engineers, and grid managers monitoring critical heavy machinery 24/7.",
-    heroImage: "/network-telemetry.jpg",
+    heroImage: "/gas-turbine-engine-testbed.png",
     heroVideo: "/playback.mp4",
     customerProof: [
       { stat: "24/7/365", label: "Continuous Edge Monitoring" },
@@ -607,7 +607,7 @@ export const solutionsData: Record<string, SolutionData> = {
     tagline: "Autonomous UAV telemetry, flight log parsing & swarm fleet diagnostics.",
     badge: "UAV Flight",
     description: "Built for drone manufacturers, autonomous flight operators, and defense UAV fleets analyzing high-rate flight controller logs.",
-    heroImage: "/hardware-daq.png",
+    heroImage: "/xpectra-drone-flight-telemetry-gcs.png",
     customerProof: [
       { stat: "PX4 / ULOG", label: "Native Log Parsing" },
       { stat: "ROS 2", label: "DDS Telemetry Bridge" },
@@ -810,7 +810,7 @@ export const satelliteAITData = {
       title: "ISRO 1. Solid Motor Testing (SHAR STEX Complex)",
       shortName: "ISRO Solid Motors",
       badge: "STEX SDSC-SHAR",
-      img: "/hotfire-stand.png",
+      img: "/solid-rocket-booster-static-test.png",
       items: [
         { name: "Static Test firing at SHAR", desc: "Static Test and Evaluation Complex (STEX) firing at SDSC SHAR" },
         { name: "Sub-scale motor testing", desc: "Propellant grain burn rate & acoustic sub-scale motor validation" },
@@ -822,7 +822,7 @@ export const satelliteAITData = {
       title: "ISRO 2. Liquid Engine Testing (IPRC Mahendragiri)",
       shortName: "ISRO Liquid Engines",
       badge: "IPRC Mahendragiri / HAT",
-      img: "/stage-hotfire-analytics.png",
+      img: "/rocket-engine-hotfire-stand.png",
       items: [
         { name: "Engine hot testing at IPRC", desc: "ISRO Propulsion Complex (IPRC) Mahendragiri liquid engine test stand firing" },
         { name: "High Altitude Test (HAT) facility", desc: "Simulates vacuum conditions for upper-stage engine ignition (CE-7.5, CE-20 cryogenic engines)" },
@@ -838,7 +838,7 @@ export const satelliteAITData = {
       title: "ISRO 3. Cryogenic-Specific Testing (LPSC & IPRC)",
       shortName: "ISRO Cryo Engines",
       badge: "LPSC Mahendragiri CUS",
-      img: "/stage-realtime-ingest.png",
+      img: "/isro-lpsc-cryo-hat-stand.png",
       items: [
         { name: "Cryo engine chill-down test", desc: "Pre-firing LOX/LH2 liquid nitrogen/helium chill-down thermal conditioning" },
         { name: "Propellant loading rehearsal", desc: "Cryogenic LOX/LH2 tank fill, hold, and drain rehearsal" },
@@ -850,7 +850,7 @@ export const satelliteAITData = {
       title: "ISRO 4. Ground Checks & Pre-Firing Tests",
       shortName: "ISRO Ground Checks",
       badge: "Feed System & TVC",
-      img: "/transient-capture.png",
+      img: "/rocket-tvc-gimbal-combustion-transient.png",
       items: [
         { name: "Leak test / Proof pressure test", desc: "High-pressure helium leak & structural proof pressure test" },
         { name: "Cold flow test", desc: "Non-firing cold flow test validating propellant feed system valves & pressure drop" },
@@ -863,7 +863,7 @@ export const satelliteAITData = {
       title: "SpaceX 1. McGregor Development & Hot-Fire Testing",
       shortName: "SpaceX McGregor",
       badge: "McGregor Test Stand",
-      img: "/aerospace-ui.png",
+      img: "/spacex-mcgregor-rocket-test-stand.png",
       items: [
         { name: "Static fire test", desc: "Full engine/stage firing while bolted to test stand (McGregor & launch pad)" },
         { name: "Component acceptance testing", desc: "Every engine (Merlin, Raptor) individually hot-fire tested before stage integration" },
@@ -876,7 +876,7 @@ export const satelliteAITData = {
       title: "SpaceX 2. Starship, Cryo Proof & Pad Operations",
       shortName: "SpaceX Starship & Pad",
       badge: "Starbase / McGregor",
-      img: "/timestamp-sync.png",
+      img: "/spacex-mcgregor-rocket-test-stand.png",
       items: [
         { name: "Cryo proof testing", desc: "Tank pressurized with cryogenic fluid (LN2 for structural proof) to validate structural integrity" },
         { name: "Starship Hop tests", desc: "Low-altitude flight tests (famously used for Starship — Starhopper, SN5/SN6 hops)" },
@@ -891,7 +891,7 @@ export const satelliteAITData = {
       title: "Common Ground Validation Elements (GTRE / ISRO / SpaceX)",
       shortName: "Common Validation",
       badge: "NDT & Telemetry Standards",
-      img: "/compliance-archival.png",
+      img: "/rocket-engine-hotfire-stand.png",
       items: [
         { name: "Non-Destructive Testing (NDT)", desc: "X-ray, ultrasonic, & dye-penetrant checks on turbine blades & combustion chambers" },
         { name: "Propellant / fuel compatibility testing", desc: "Material compatibility with LOX, LH2, RP-1, Methane, & Hypergolics" },
@@ -911,7 +911,7 @@ export const dronesFlowData = {
       title: "1. Design & Ground Qualification Testing (Structural & Environmental)",
       shortName: "Structural & EQT",
       badge: "MIL-STD-810 / JSS 55555",
-      img: "/transient-capture.png",
+      img: "/satellite-emc-chamber.png",
       subsections: [
         {
           category: "Structural Testing",
@@ -940,7 +940,7 @@ export const dronesFlowData = {
       title: "2. Avionics & Systems Integration (Iron Bird & HIL)",
       shortName: "Avionics & HIL Rig",
       badge: "Iron Bird / Anechoic",
-      img: "/stage-hardware-binding.png",
+      img: "/xpectra-drone-iron-bird-hil-rig.png",
       items: [
         { name: "Avionics Integration Rig / Iron Bird", desc: "Full avionics suite tested on a ground rig replicating airframe wiring/systems before flight" },
         { name: "HIL (Hardware-in-Loop) Simulation", desc: "Flight control laws validation using Flight Control Computer (FCC)" },
@@ -954,7 +954,7 @@ export const dronesFlowData = {
       title: "3. UAV Propulsion Testing (Turboprop / Jet & Rotor)",
       shortName: "UAV Propulsion",
       badge: "ADE Engine Rig / EGR",
-      img: "/hotfire-stand.png",
+      img: "/gas-turbine-engine-testbed.png",
       items: [
         { name: "Engine Ground Run (EGR)", desc: "EGR testing for engines like NPO Saturn 36MT (Rustom-II) & indigenous PTAE-7 (Nishant/Lakshya)" },
         { name: "Altitude Chamber Testing", desc: "Engine performance & fuel flow validation at operational altitudes" },
@@ -967,7 +967,7 @@ export const dronesFlowData = {
       title: "4. Flight Control & GCS (Ground Control Station) Validation",
       shortName: "FCC & GCS Validation",
       badge: "SIL / MILS / Redundancy",
-      img: "/aerospace-ui.png",
+      img: "/xpectra-drone-flight-telemetry-gcs.png",
       items: [
         { name: "Software-in-Loop (SIL) Simulation", desc: "Pure software control law simulation & verification" },
         { name: "Man-in-Loop Simulation (MILS)", desc: "Pilot/operator in the loop with simulated flight dynamics" },
@@ -981,7 +981,7 @@ export const dronesFlowData = {
       title: "5. Launch & Recovery System Testing (ADRDE / Catapult / Parachute)",
       shortName: "Launch & Recovery",
       badge: "ADRDE Catapult / Chute",
-      img: "/airgapped-nvme.png",
+      img: "/xpectra-drone-catapult-launch-telemetry.png",
       items: [
         { name: "Pneumatic / Hydraulic Launcher", desc: "Catapult launcher pressure & acceleration trials" },
         { name: "Catapult Launch Trials", desc: "High-g launch release qualification for tactical UAVs" },
@@ -994,7 +994,7 @@ export const dronesFlowData = {
       title: "6. RF, Stealth & Payload Integration (EO/IR, SAR & RCS)",
       shortName: "Payloads & RCS",
       badge: "EO/IR / SAR / RCS Ghatak",
-      img: "/satellite-emc-chamber.png",
+      img: "/xpectra-drone-stealth-rcs-anechoic.png",
       items: [
         { name: "Payload Integration Testing", desc: "Electro-Optical/Infrared (EO/IR) camera, Synthetic Aperture Radar (SAR), & SIGINT payloads" },
         { name: "Gimbal Stabilization Testing", desc: "Multi-axis gyro gimbal line-of-sight stabilization" },
@@ -1007,7 +1007,7 @@ export const dronesFlowData = {
       title: "7. Ground Runs & Taxi Trials (Pre-Flight Clearance)",
       shortName: "Pre-Flight Taxi",
       badge: "ADE Taxi Trials",
-      img: "/timestamp-sync.png",
+      img: "/xpectra-drone-runway-taxi-telemetry.png",
       items: [
         { name: "Engine Ground Run (EGR)", desc: "Full power engine ground run & vibration check on apron" },
         { name: "Low-Speed Taxi Trial", desc: "Brake response, ground handling, & low-speed steering check" },
@@ -1020,7 +1020,7 @@ export const dronesFlowData = {
       title: "8. Flight Testing Phases (Envelope Expansion & User Trials)",
       shortName: "Flight Trials",
       badge: "FF / FET / Army Trials",
-      img: "/stage-realtime-ingest.png",
+      img: "/xpectra-drone-envelope-expansion-telemetry.png",
       items: [
         { name: "First Flight (FF) Clearance", desc: "Initial flight release milestone & first flight clearance" },
         { name: "Envelope Expansion Trials", desc: "Gradually expanding speed, altitude, and maneuver envelope" },
@@ -1033,7 +1033,7 @@ export const dronesFlowData = {
       title: "9. Certification & Clearance Bodies (DRDO / CEMILAC / DGAQA)",
       shortName: "Certification (CEMILAC)",
       badge: "CEMILAC MTC / DGAQA",
-      img: "/compliance-archival.png",
+      img: "/defence-gsqr-documentation-audit.png",
       items: [
         { name: "CEMILAC Type Certification", desc: "Centre for Military Airworthiness and Certification Type Certificate & Military Type Certificate (MTC)" },
         { name: "RCMA Audit Clearance", desc: "Regional Centre for Military Airworthiness design & build standard audits" },
@@ -1046,7 +1046,7 @@ export const dronesFlowData = {
       title: "10. Swarm & Multi-UAV Specific Validation",
       shortName: "Swarm & Mesh Network",
       badge: "Autonomous Swarm",
-      img: "/stage-hotfire-analytics.png",
+      img: "/xpectra-drone-swarm-mesh-telemetry.png",
       items: [
         { name: "Swarm Coordination Algorithm", desc: "SIL/HIL based multi-UAV autonomous swarm formation validation" },
         { name: "Collision Avoidance Testing", desc: "Dynamic sense-and-avoid collision avoidance algorithms" },
@@ -1065,7 +1065,7 @@ export const defenceFlowData = {
       title: "1. Requirement & Design Stage Documentation",
       shortName: "GSQR / ASR / NSQR",
       badge: "Services SQRs",
-      img: "/transient-capture.png",
+      img: "/defence-gsqr-documentation-audit.png",
       items: [
         { name: "GSQR (General Staff Qualitative Requirement)", desc: "Issued by Army/Navy/Air Force, defines parameters equipment must achieve" },
         { name: "PSQR (Preliminary Services Qualitative Requirement)", desc: "Draft requirements formulated during initial design phase" },
@@ -1078,7 +1078,7 @@ export const defenceFlowData = {
       title: "2. Development & Design Validation (DGQA, CQA & PXE)",
       shortName: "DGQA / CQA / PXE",
       badge: "MoD Apex QA Bodies",
-      img: "/stage-hardware-binding.png",
+      img: "/defence-tactical-airgapped-hardware.png",
       items: [
         { name: "DGQA (Directorate General Quality Assurance)", desc: "Apex QA body under MoD for land and land-air systems" },
         { name: "CQA (Controllerate of Quality Assurance)", desc: "CQAs per category: CQA(Vehicles), CQA(Weapons), CQA(ME Military Explosives)" },
@@ -1091,7 +1091,7 @@ export const defenceFlowData = {
       title: "3. Environmental & Ruggedness Testing (JSS 55555 EQT)",
       shortName: "JSS 55555 EQT",
       badge: "Climatic & Terrain EQT",
-      img: "/satellite-emc-chamber.png",
+      img: "/defence-military-system-eqt-test.png",
       subsections: [
         {
           category: "Standards & ESS",
@@ -1116,7 +1116,7 @@ export const defenceFlowData = {
       title: "4. Electrical & Electromagnetic Testing (EMI/EMC & TEMPEST)",
       shortName: "EMI/EMC & TEMPEST",
       badge: "MIL-STD-461 / TEMPEST",
-      img: "/hotfire-stand.png",
+      img: "/defence-military-system-eqt-test.png",
       items: [
         { name: "EMI / EMC Testing", desc: "MIL-STD-461 & DRDO-adapted electromagnetic compatibility testing" },
         { name: "TEMPEST Testing", desc: "Electromagnetic emission security for classified/sensitive comms equipment" },
@@ -1128,7 +1128,7 @@ export const defenceFlowData = {
       title: "5. Mechanical & Structural Testing (NDT & Proof Loads)",
       shortName: "Mechanical & NDT",
       badge: "Vibration / Shock / NDT",
-      img: "/airgapped-nvme.png",
+      img: "/transient-capture.png",
       items: [
         { name: "Vibration & Shock Testing", desc: "Transportation, recoil, and flight-induced dynamic shock loads" },
         { name: "Fatigue & Endurance Testing", desc: "Lifecycle stress fatigue and structural endurance testing" },
@@ -1141,7 +1141,7 @@ export const defenceFlowData = {
       title: "6. Field & User Trials (Climatic & Terrain Firing Ranges)",
       shortName: "Field & User Trials",
       badge: "Pokhran / Siachen / FET",
-      img: "/timestamp-sync.png",
+      img: "/defence-missile-radar-firing-range-telemetry.png",
       items: [
         { name: "DGQA Preliminary Trials", desc: "Initial quality assurance clearance before handing over to Services" },
         { name: "User Trials (Army / Navy / IAF)", desc: "Conducting trials with actual Service personnel under field conditions" },
@@ -1154,7 +1154,7 @@ export const defenceFlowData = {
       title: "7. Weapon & Ammunition-Specific Testing (ITR / PXE Chandipur)",
       shortName: "Weapons & Ballistics",
       badge: "ITR / PXE Firing Range",
-      img: "/stage-realtime-ingest.png",
+      img: "/defence-missile-radar-firing-range-telemetry.png",
       items: [
         { name: "Static & Dynamic Live Firing", desc: "Static bench firing and dynamic live-fire target engagement" },
         { name: "Accuracy & Dispersion Trials", desc: "Evaluating shot group dispersion & circular error probable (CEP)" },
@@ -1167,7 +1167,7 @@ export const defenceFlowData = {
       title: "8. Armoured Vehicle & Land Systems Specific (CVRDE-Driven)",
       shortName: "Armoured Systems (CVRDE)",
       badge: "CVRDE Mobility / NBC",
-      img: "/stage-hardware-binding.png",
+      img: "/defence-military-system-eqt-test.png",
       items: [
         { name: "Mobility & Gradient Trials", desc: "Cross-country speed, steep gradient climbing, & trench crossing trials" },
         { name: "Amphibious Trials", desc: "Water obstacle swimming & amphibious entry/exit stability" },
@@ -1180,7 +1180,7 @@ export const defenceFlowData = {
       title: "9. Naval Systems Specific (NPOL & NSTL Driven)",
       shortName: "Naval Systems (NPOL/NSTL)",
       badge: "HAT / SAT / Underwater",
-      img: "/stage-hotfire-analytics.png",
+      img: "/defence-naval-sonar-underwater-trials.png",
       items: [
         { name: "Harbor Acceptance Trials (HAT)", desc: "Moored vessel systems checkout in harbor environment" },
         { name: "Sea Acceptance Trials (SAT)", desc: "Open sea full power trials & combat system integration" },
@@ -1206,7 +1206,7 @@ export const defenceFlowData = {
       title: "11. Certification Bodies & Milestones (CEMILAC, DGAQA & BPC)",
       shortName: "CEMILAC & BPC Clearance",
       badge: "CEMILAC MTC / BPC",
-      img: "/compliance-archival.png",
+      img: "/defence-gsqr-documentation-audit.png",
       items: [
         { name: "CEMILAC & DGAQA Airworthiness", desc: "Centre for Military Airworthiness & DGAQA Type Certificate & MTC release" },
         { name: "RCMA Audit Clearance", desc: "Regional Centre for Military Airworthiness design & build standard audits" },
@@ -1219,7 +1219,7 @@ export const defenceFlowData = {
       title: "12. Trial Evaluation & MoD Acquisition Procurement Pipeline",
       shortName: "MoD Procurement Flow",
       badge: "AoN / RFP / FET / CNC / BPC",
-      img: "/transient-capture.png",
+      img: "/defence-tactical-airgapped-hardware.png",
       items: [
         { name: "Acceptance of Necessity (AoN)", desc: "MoD procurement approval milestone preceding field trials" },
         { name: "Technical Evaluation Committee (TEC)", desc: "Evaluating technical compliance against GSQR/ASR/NSQR" },
@@ -1239,7 +1239,7 @@ export const energyFlowData = {
       title: "1. Pre-Commissioning Testing (OEM Works - BHEL, GE, Siemens)",
       shortName: "OEM Pre-Commissioning",
       badge: "BHEL / GE / Siemens FAT",
-      img: "/transient-capture.png",
+      img: "/component-compressor-combustor-rig.png",
       items: [
         { name: "Factory Acceptance Test (FAT)", desc: "Witnessed by NTPC/utility QA engineers at OEM works before dispatch" },
         { name: "Type Test (IS/IEC Standards)", desc: "One-time test on representative unit to validate design per IS/IEC standards" },
@@ -1252,7 +1252,7 @@ export const energyFlowData = {
       title: "2. Boiler, Turbine & Generator Testing (Thermal Power Plants)",
       shortName: "Boiler, Turbine & Gen",
       badge: "Hydro / Rolling / OCC-SCC",
-      img: "/hotfire-stand.png",
+      img: "/gas-turbine-engine-testbed.png",
       subsections: [
         {
           category: "Boiler & Steam Piping",
@@ -1315,7 +1315,7 @@ export const energyFlowData = {
       title: "5. Control & Instrumentation (C&I) Testing (DCS & SCADA)",
       shortName: "C&I DCS / SCADA",
       badge: "DCS Loop Checking",
-      img: "/aerospace-ui.png",
+      img: "/fadec-hil-ehms-simulation.png",
       items: [
         { name: "Field-to-DCS Loop Checking", desc: "Validates signal path from field transmitter to DCS/SCADA" },
         { name: "Hot & Cold Loop Checks", desc: "Cold loop wiring check & hot loop powered signal verification" },
@@ -1354,7 +1354,7 @@ export const energyFlowData = {
       title: "8. Commissioning Milestones (Boiler Light-up to COD)",
       shortName: "Commissioning & COD",
       badge: "CEA 72-Hr Trial / COD",
-      img: "/timestamp-sync.png",
+      img: "/core-engine-gas-generator-test.png",
       items: [
         { name: "Boiler Light-up & Steam Blowing", desc: "Initial oil light-up, steam blowing clearance, & coal firing" },
         { name: "Turbine Rolling & Grid Synchronization", desc: "Turbine rolling to 3000 RPM & first-time grid synchronization" },
@@ -1367,7 +1367,7 @@ export const energyFlowData = {
       title: "9. Renewable Energy Testing (NTPC Solar PV & Wind Fleet)",
       shortName: "Solar & Wind RE",
       badge: "NTPC RE / Grid LVRT",
-      img: "/stage-hotfire-analytics.png",
+      img: "/network-telemetry.jpg",
       items: [
         { name: "Solar Module Flash & IV Curve", desc: "PV module flash testing, IV curve tracing, & array IR insulation test" },
         { name: "Inverter Efficiency & THD", desc: "Central inverter efficiency, Total Harmonic Distortion, & PR validation" },
@@ -1380,7 +1380,7 @@ export const energyFlowData = {
       title: "10. Grid Compliance & Regulatory Standards (CEA, CERC & IEGC)",
       shortName: "CEA & IEGC Compliance",
       badge: "CEA / CERC / IEGC",
-      img: "/compliance-archival.png",
+      img: "/defence-gsqr-documentation-audit.png",
       items: [
         { name: "CEA Technical Standards", desc: "Central Electricity Authority technical standards compliance audit" },
         { name: "CERC / SERC Grid Code", desc: "Central & State Electricity Regulatory Commission grid code compliance" },
@@ -1393,7 +1393,7 @@ export const energyFlowData = {
       title: "11. Periodic & In-Service Condition Monitoring (O&M Phase)",
       shortName: "Condition Monitoring",
       badge: "Vibration / DGA / Overhaul",
-      img: "/transient-capture.png",
+      img: "/engine-blade-containment-vibration-test.png",
       items: [
         { name: "Vibration & Thermography Monitoring", desc: "Turbine bearing vibration spectrum & IR thermal imaging" },
         { name: "Predictive Oil & DGA Trending", desc: "Transformer oil DGA gas trending & lube oil contamination analysis" },
@@ -1406,12 +1406,12 @@ export const energyFlowData = {
       title: "12. Certification & Testing Bodies (CPRI, NABL, BIS & CEA)",
       shortName: "CPRI & NABL Certification",
       badge: "CPRI / NABL / BIS",
-      img: "/stage-hardware-binding.png",
+      img: "/stage-compliance-archival.png",
       items: [
-        { name: "CPRI Apex Certification", desc: "Central Power Research Institute short-circuit & impulse certification" },
-        { name: "NABL Accredited Testing", desc: "National Accreditation Board for Testing and Calibration Laboratories" },
-        { name: "BIS Product Standards", desc: "Bureau of Indian Standards product qualification compliance" },
-        { name: "CEA Technical Approval", desc: "CEA final approval for electrical equipment installation & energization" }
+        { name: "CPRI Type Testing Clearance", desc: "Central Power Research Institute high-power short circuit & high-voltage testing clearance" },
+        { name: "NABL Accredited Lab Testing", desc: "NABL accredited calibration & testing laboratory reports" },
+        { name: "BIS Marking & Certification", desc: "Bureau of Indian Standards product safety & performance mark" },
+        { name: "CEA Electrical Inspectorate Clearance", desc: "Statutory charging permission & energization clearance from CEA" }
       ]
     }
   ]
@@ -1863,7 +1863,7 @@ export const testingFlowData = {
       title: "1. Component-Level Rig Testing (Compressor, Combustor, Turbine & Fan)",
       shortName: "Component Rig Testing",
       badge: "Compressor / Combustor / Rig",
-      img: "/transient-capture.png",
+      img: "/component-compressor-combustor-rig.png",
       items: [
         { name: "Compressor Rig Testing", desc: "Validates pressure ratio, surge margin, & aerodynamic stall characteristics" },
         { name: "Combustor Rig Testing", desc: "Combustion efficiency, pattern factor, ignition, & emission characteristics" },
@@ -1876,7 +1876,7 @@ export const testingFlowData = {
       title: "2. Core Engine Testing (Gas Generator & Development Runs)",
       shortName: "Core Engine & Gas Generator",
       badge: "Gas Generator / Core Engine",
-      img: "/hotfire-stand.png",
+      img: "/core-engine-gas-generator-test.png",
       items: [
         { name: "Gas Generator (GG) Standalone Testing", desc: "Core engine (compressor + combustor + HP turbine) standalone validation before full engine build" },
         { name: "Core Engine Development Testing", desc: "Thermodynamic cycle match, spool speed balance, & turbine inlet temperature (TIT) limits" },
@@ -1888,7 +1888,7 @@ export const testingFlowData = {
       title: "3. Full Engine Ground Testing (ATF Bangalore, Static Thrust & PFRT)",
       shortName: "Full Engine ATF & PFRT",
       badge: "ATF / PFRT / 150-Hr Test",
-      img: "/stage-hotfire-analytics.png",
+      img: "/gtre-atf-altitude-vacuum.png",
       subsections: [
         {
           category: "Altitude Test Facility (ATF)",
@@ -1912,7 +1912,7 @@ export const testingFlowData = {
       title: "4. Environmental & Operability Testing (FOD, Icing & Windmill Relight)",
       shortName: "Environmental & Operability",
       badge: "FOD / Icing / Relight",
-      img: "/satellite-emc-chamber.png",
+      img: "/engine-operability-fod-icing-test.png",
       items: [
         { name: "Ice & Bird Ingestion (FOD)", desc: "Foreign Object Damage (FOD), bird strike, & ice slab ingestion structural survivability" },
         { name: "Crosswind & Icing Chamber", desc: "Crosswind distortion sensitivity & inlet cowl icing accretion testing" },
@@ -1925,7 +1925,7 @@ export const testingFlowData = {
       title: "5. Structural & Vibration Testing (LCF, HCF & Blade-Off Containment)",
       shortName: "Structural & Containment",
       badge: "LCF / HCF / Blade-Off",
-      img: "/stage-hardware-binding.png",
+      img: "/engine-blade-containment-vibration-test.png",
       items: [
         { name: "Engine Vibration Survey & Campbell Diagram", desc: "Rotor dynamics, vibration spectrum FFT analysis, & Campbell diagram resonance mapping" },
         { name: "LCF & HCF Fatigue Testing", desc: "Low Cycle Fatigue (LCF) & High Cycle Fatigue (HCF) on turbine discs and single-crystal blades" },
@@ -1938,7 +1938,7 @@ export const testingFlowData = {
       title: "6. Control System & FADEC HIL Validation (FADEC & EHMS)",
       shortName: "FADEC HIL & Health EHMS",
       badge: "FADEC HIL / EHMS",
-      img: "/aerospace-ui.png",
+      img: "/fadec-hil-ehms-simulation.png",
       items: [
         { name: "FADEC Hardware-in-the-Loop (HIL)", desc: "Full Authority Digital Engine Control dual-redundant channel HIL simulator bench" },
         { name: "Engine Health Monitoring System (EHMS)", desc: "Real-time engine diagnostic telemetry, vibration FFT, & oil debris chip detection" },
@@ -1950,7 +1950,7 @@ export const testingFlowData = {
       title: "7. Flight Testing Integration (IL-76 FTB & Engine Ground Run)",
       shortName: "IL-76 FTB & Aircraft Integration",
       badge: "IL-76 FTB / Gromov / EGR",
-      img: "/airgapped-nvme.png",
+      img: "/il76-ftb-flying-test-bed.png",
       items: [
         { name: "Flying Test Bed (FTB) Trials", desc: "Kaveri engine flight testing on IL-76 FTB at Gromov Flight Research Institute (GFRI) Russia" },
         { name: "Aircraft Engine Ground Run (EGR)", desc: "On-aircraft engine ground runs, bay ventilation, & throttle response before first flight" },
@@ -1966,7 +1966,7 @@ solutionsData.testing = {
   tagline: "High-frequency transient DAQ for GTRE Kaveri & GTX gas turbine engines — from component rigs to ATF and IL-76 FTB trials.",
   badge: "GTRE / DRDO Engine Test",
   description: "Dedicated telemetry & DAQ framework for GTRE (Gas Turbine Research Establishment, DRDO) Kaveri, Kaveri Dry, and GTX-35VS engines — covering compressor rigs, ATF high-altitude vacuum simulation, FADEC HIL, and IL-76 Flying Test Bed trials.",
-  heroImage: "/transient-capture.png",
+  heroImage: "/gas-turbine-engine-testbed.png",
   heroVideo: "/playback.mp4",
   customerProof: [
     { stat: "100 kHz", label: "High-Dynamic Transient Ingest" },

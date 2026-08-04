@@ -31,6 +31,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import { solutionsData, satelliteAITData, propulsionFlowData, dronesFlowData, defenceFlowData, energyFlowData, automotiveFlowData, roboticsFlowData, testingFlowData } from '@/lib/solutions-data';
+import { DroneFlightHUDMockup } from '@/components/drone-hud-mockup';
 
 export default function SolutionDetailPage({ slug }: { slug: string }) {
   const data = solutionsData[slug] || solutionsData.satellite || solutionsData.aerospace;
@@ -101,17 +102,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "ISRO LPSC / IPRC Mahendragiri HAT & Cryogenic Test Stand",
       desc: "High Altitude Test (HAT) facility vacuum ignition simulation for CE-7.5 and CE-20 cryogenic upper stage engines. Monitor LOX/LH2 chill-down, turbopump cold flow, and CUS integrated stage static firing in real time.",
-      img: "/stage-hotfire-analytics.png"
+      img: "/isro-lpsc-cryo-hat-stand.png"
     },
     {
       title: "SpaceX McGregor Stand & Raptor Acceptance Hot-Fire",
       desc: "Stream 100,000 Hz DAQ data during Merlin and Raptor acceptance firings at McGregor, Texas. Capture full duration static fire burns, Wet Dress Rehearsals (WDR), and Starship LN2 cryo proof structural pressure tests.",
-      img: "/stage-hardware-binding.png"
+      img: "/spacex-mcgregor-rocket-test-stand.png"
     },
     {
       title: "Microsecond Combustion Transient & Gimbal TVC Sync",
       desc: "Hardware PTP (IEEE 1588) microsecond time alignment correlates combustion chamber pressure oscillations with hydraulic/electric TVC gimbal actuator feedback during engine hot-fire.",
-      img: "/transient-capture.png"
+      img: "/rocket-tvc-gimbal-combustion-transient.png"
     }
   ];
 
@@ -119,17 +120,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "2. Avionics Integration Rig (Iron Bird) & HIL Testing",
       desc: "Full avionics suite tested on a ground Iron Bird rig replicating Rustom-II / TAPAS BH-201 wiring and systems. HIL (Hardware-in-Loop) simulation validates Flight Control Computer (FCC) control laws.",
-      img: "/stage-hardware-binding.png"
+      img: "/xpectra-drone-iron-bird-hil-rig.png"
     },
     {
       title: "4. Flight Control Laws & Ground Control Station (GCS)",
       desc: "Software-in-Loop (SIL) and Man-in-Loop (MILS) pilot simulations. Validates mission planning software, dual/triple redundant FCC failover, and failsafe behavior in link loss or GPS-denied environments.",
-      img: "/aerospace-ui.png"
+      img: "/xpectra-drone-flight-telemetry-gcs.png"
     },
     {
       title: "6 & 10. EO/IR SAR Payloads, Stealth RCS & Autonomous Swarm Mesh",
       desc: "Ground-based RCS measurement for stealth UAVs (Ghatak / SWiFT). Multi-UAV swarm coordination algorithm validation, dynamic collision avoidance, and ad-hoc mesh RF network telemetry.",
-      img: "/stage-hotfire-analytics.png"
+      img: "/xpectra-drone-stealth-rcs-anechoic.png"
     }
   ];
 
@@ -137,17 +138,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "3. Climatic & Extreme Terrain EQT (JSS 55555 & MIL-STD-810)",
       desc: "Ruggedness qualification across extreme operating environments: Pokhran desert heat, Siachen sub-zero cold start, high-altitude Leh trials, and Chilka marine salt fog corrosion testing.",
-      img: "/satellite-emc-chamber.png"
+      img: "/defence-military-system-eqt-test.png"
     },
     {
       title: "7. Live Firing Range & Ballistics Telemetry (ITR / PXE Chandipur)",
       desc: "Static and dynamic live firing trials at PXE Chandipur & ITR Chandipur. Capture circular error probable (CEP), fuze functioning, and terminal ballistics penetration in real time.",
-      img: "/stage-realtime-ingest.png"
+      img: "/defence-missile-radar-firing-range-telemetry.png"
     },
     {
       title: "8 & 9. Armoured Vehicle (CVRDE) & Naval Systems (NPOL / NSTL)",
       desc: "CVRDE mobility, gradient & NBC protection trials alongside NPOL/NSTL Harbor Acceptance Trials (HAT), Sea Acceptance Trials (SAT), sonar performance, and underwater acoustic signature testing.",
-      img: "/stage-hardware-binding.png"
+      img: "/defence-tactical-airgapped-hardware.png"
     }
   ];
 
@@ -160,12 +161,12 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "7. Performance Guarantee (PG) Tests (ASME PTC / IEC 60953)",
       desc: "Plant PG test execution validating contracted turbine heat rate, generator MWe output, boiler efficiency, and CPCB/MoEF stack emissions (SOx, NOx, PM) at rated full load.",
-      img: "/stage-realtime-ingest.png"
+      img: "/fadec-hil-ehms-simulation.png"
     },
     {
       title: "8. Turbine Rolling, Grid Sync & CEA 72-Hour Trial Operation",
       desc: "Turbine rolling from barring gear to 3000 RPM, main stop valve stroke, overspeed trip, first-time generator grid synchronization, and CEA mandated 72-hour continuous trial run before COD.",
-      img: "/stage-hardware-binding.png"
+      img: "/gas-turbine-engine-testbed.png"
     }
   ];
 
@@ -209,17 +210,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "1. GTRE Altitude Test Facility (ATF) High-Altitude Vacuum Sync",
       desc: "Simulating low-pressure high-altitude vacuum conditions at GTRE Bangalore ATF for Kaveri cryogenic/jet engine combustor relight and thrust SFC measurement.",
-      img: "/stage-hotfire-analytics.png"
+      img: "/gtre-atf-altitude-vacuum.png"
     },
     {
       title: "2. FADEC HIL Simulation & Engine Health Monitoring (EHMS)",
       desc: "Hardware-in-the-Loop simulation validating dual-redundant FADEC control laws, fuel metering valves, and EHMS real-time vibration FFT spectrum.",
-      img: "/aerospace-ui.png"
+      img: "/fadec-hil-ehms-simulation.png"
     },
     {
       title: "3. Flying Test Bed (FTB) Flight Trials & 150-Hour PFRT",
       desc: "Kaveri engine flight testing telemetry on IL-76 FTB at Gromov Flight Research Institute (GFRI) Russia and 150-hour PFRT Preliminary Flight Rating qualification.",
-      img: "/stage-hardware-binding.png"
+      img: "/il76-ftb-flying-test-bed.png"
     }
   ];
 
@@ -535,8 +536,36 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <div className="lg:col-span-6">
               <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-white/15 bg-zinc-950 shadow-2xl group">
                 <img
-                  src={isSatellitePage ? "/satellite-tvac-chamber.png" : isPropulsionPage ? "/hotfire-stand.png" : isDronesPage ? "/transient-capture.png" : "/aerospace-ui.png"}
-                  alt={isSatellitePage ? "Satellite TVAC Chamber Telemetry" : isPropulsionPage ? "Rocket Engine Hot-Fire DAQ Stand" : isDronesPage ? "DRDO ADE UAV GVT & EQT Telemetry" : "Sift Aerospace Telemetry Dashboard"}
+                  src={
+                    isSatellitePage
+                      ? "/satellite-tvac-chamber.png"
+                      : isTestingPage
+                      ? "/gas-turbine-engine-testbed.png"
+                      : isPropulsionPage
+                      ? "/rocket-engine-hotfire-stand.png"
+                      : isDronesPage
+                      ? "/xpectra-drone-flight-telemetry-gcs.png"
+                      : isDefencePage
+                      ? "/xpectra-defence-tactical-telemetry-daq.png"
+                      : isEnergyPage
+                      ? "/gas-turbine-engine-testbed.png"
+                      : "/aerospace-ui.png"
+                  }
+                  alt={
+                    isSatellitePage
+                      ? "Satellite TVAC Chamber Telemetry"
+                      : isTestingPage
+                      ? "GTRE Gas Turbine Engine Test Cell Telemetry"
+                      : isPropulsionPage
+                      ? "Rocket Engine Hot-Fire DAQ Stand"
+                      : isDronesPage
+                      ? "DRDO ADE TAPAS-BH-201 Military UAV Flight Telemetry"
+                      : isDefencePage
+                      ? "Xpectra Defence Telemetry Dashboard & Tactical Armored Vehicle DAQ Stand"
+                      : isEnergyPage
+                      ? "NTPC / BHEL Heavy Power Plant Gas Turbine Test Cell Telemetry"
+                      : "Xpectra Telemetry Dashboard"
+                  }
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -551,7 +580,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                         : isPropulsionPage
                         ? "IPRC MAHENDARAGIRI & MCGREGOR DAQ ONLINE"
                         : isDronesPage
-                        ? "ADE STRUCTURAL & EQT DAQ ONLINE"
+                        ? "ADE TAPAS-BH-201 UAV FLIGHT DAQ ONLINE"
                         : isDefencePage
                         ? "DGQA & JSS 55555 EQT DAQ ONLINE"
                         : isEnergyPage
@@ -564,7 +593,23 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                     </span>
                   </span>
                   <span className="text-white font-bold">
-                    {isSatellitePage ? "8.9E-07 Torr" : isTestingPage ? "100kHz / FADEC HIL" : isPropulsionPage ? "100,000 Hz Ingest" : isDronesPage ? "MIL-STD-810 / JSS 55555" : isDefencePage ? "JSS 55555 / MIL-STD-461" : isEnergyPage ? "72-Hr Trial / 50 Hz Grid" : isAutomotivePage ? "BS6 RDE / Bharat NCAP" : isRoboticsPage ? "ISO 13849 / ROS 2 DDS" : "> 10,000 Hz"}
+                    {isSatellitePage
+                      ? "8.9E-07 Torr"
+                      : isTestingPage
+                      ? "100kHz / FADEC HIL"
+                      : isPropulsionPage
+                      ? "100,000 Hz Ingest"
+                      : isDronesPage
+                      ? "MIL-STD-810H / JSS 55555"
+                      : isDefencePage
+                      ? "JSS 55555 / MIL-STD-461"
+                      : isEnergyPage
+                      ? "72-Hr Trial / 50 Hz Grid"
+                      : isAutomotivePage
+                      ? "BS6 RDE / Bharat NCAP"
+                      : isRoboticsPage
+                      ? "ISO 13849 / ROS 2 DDS"
+                      : "> 10,000 Hz"}
                   </span>
                 </div>
               </div>
