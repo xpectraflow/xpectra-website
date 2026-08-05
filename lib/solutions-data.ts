@@ -350,7 +350,7 @@ export const solutionsData: Record<string, SolutionData> = {
     tagline: "Powertrain stress testing, CAN-bus analytics, and fleet-wide battery thermal logging.",
     badge: "Automotive",
     description: "Designed for EV powertrain engineers, test track operations, and vehicle battery testing teams handling massive sensor channels.",
-    heroImage: "/automobile.jpg",
+    heroImage: "/xpectra-automotive-ev-powertrain-telemetry.png",
     heroVideo: "/playback.mp4",
     customerProof: [
       { stat: "CAN / CAN-FD", label: "DBC File Support" },
@@ -423,7 +423,7 @@ export const solutionsData: Record<string, SolutionData> = {
     tagline: "Continuous vibration, thermal, and acoustic monitoring for power turbines & grid assets.",
     badge: "Industrial IoT",
     description: "Purpose-built for power plant operators, wind farm engineers, and grid managers monitoring critical heavy machinery 24/7.",
-    heroImage: "/gas-turbine-engine-testbed.png",
+    heroImage: "/xpectra-energy-power-plant-telemetry.png",
     heroVideo: "/playback.mp4",
     customerProof: [
       { stat: "24/7/365", label: "Continuous Edge Monitoring" },
@@ -1252,7 +1252,7 @@ export const energyFlowData = {
       title: "2. Boiler, Turbine & Generator Testing (Thermal Power Plants)",
       shortName: "Boiler, Turbine & Gen",
       badge: "Hydro / Rolling / OCC-SCC",
-      img: "/gas-turbine-engine-testbed.png",
+      img: "/xpectra-energy-power-plant-telemetry.png",
       subsections: [
         {
           category: "Boiler & Steam Piping",
@@ -1277,7 +1277,7 @@ export const energyFlowData = {
       title: "3. Electrical Equipment Testing (Substation & Switchyard)",
       shortName: "Transformers & Switchgear",
       badge: "POWERGRID Substation",
-      img: "/satellite-emc-chamber.png",
+      img: "/xpectra-energy-substation-transformer-telemetry.png",
       subsections: [
         {
           category: "Power Transformers",
@@ -1315,7 +1315,7 @@ export const energyFlowData = {
       title: "5. Control & Instrumentation (C&I) Testing (DCS & SCADA)",
       shortName: "C&I DCS / SCADA",
       badge: "DCS Loop Checking",
-      img: "/fadec-hil-ehms-simulation.png",
+      img: "/xpectra-energy-scada-control-room-audit.png",
       items: [
         { name: "Field-to-DCS Loop Checking", desc: "Validates signal path from field transmitter to DCS/SCADA" },
         { name: "Hot & Cold Loop Checks", desc: "Cold loop wiring check & hot loop powered signal verification" },
@@ -1341,7 +1341,7 @@ export const energyFlowData = {
       title: "7. Performance Guarantee (PG) Tests (ASME PTC / IEC 60953)",
       shortName: "PG Tests (ASME PTC)",
       badge: "ASME PTC / IEC 60953",
-      img: "/stage-realtime-ingest.png",
+      img: "/xpectra-energy-scada-control-room-audit.png",
       items: [
         { name: "PG Test Execution", desc: "Validates contracted performance (heat rate, output, efficiency) per ASME PTC / IEC 60953" },
         { name: "Heat Rate & Efficiency Test", desc: "Turbine-generator heat rate & boiler thermal efficiency testing" },
@@ -1354,7 +1354,7 @@ export const energyFlowData = {
       title: "8. Commissioning Milestones (Boiler Light-up to COD)",
       shortName: "Commissioning & COD",
       badge: "CEA 72-Hr Trial / COD",
-      img: "/core-engine-gas-generator-test.png",
+      img: "/xpectra-energy-power-plant-telemetry.png",
       items: [
         { name: "Boiler Light-up & Steam Blowing", desc: "Initial oil light-up, steam blowing clearance, & coal firing" },
         { name: "Turbine Rolling & Grid Synchronization", desc: "Turbine rolling to 3000 RPM & first-time grid synchronization" },
@@ -1367,7 +1367,7 @@ export const energyFlowData = {
       title: "9. Renewable Energy Testing (NTPC Solar PV & Wind Fleet)",
       shortName: "Solar & Wind RE",
       badge: "NTPC RE / Grid LVRT",
-      img: "/network-telemetry.jpg",
+      img: "/xpectra-energy-renewable-solar-wind-grid.png",
       items: [
         { name: "Solar Module Flash & IV Curve", desc: "PV module flash testing, IV curve tracing, & array IR insulation test" },
         { name: "Inverter Efficiency & THD", desc: "Central inverter efficiency, Total Harmonic Distortion, & PR validation" },
@@ -1380,7 +1380,7 @@ export const energyFlowData = {
       title: "10. Grid Compliance & Regulatory Standards (CEA, CERC & IEGC)",
       shortName: "CEA & IEGC Compliance",
       badge: "CEA / CERC / IEGC",
-      img: "/defence-gsqr-documentation-audit.png",
+      img: "/xpectra-energy-scada-control-room-audit.png",
       items: [
         { name: "CEA Technical Standards", desc: "Central Electricity Authority technical standards compliance audit" },
         { name: "CERC / SERC Grid Code", desc: "Central & State Electricity Regulatory Commission grid code compliance" },
@@ -1393,7 +1393,7 @@ export const energyFlowData = {
       title: "11. Periodic & In-Service Condition Monitoring (O&M Phase)",
       shortName: "Condition Monitoring",
       badge: "Vibration / DGA / Overhaul",
-      img: "/engine-blade-containment-vibration-test.png",
+      img: "/xpectra-energy-power-plant-telemetry.png",
       items: [
         { name: "Vibration & Thermography Monitoring", desc: "Turbine bearing vibration spectrum & IR thermal imaging" },
         { name: "Predictive Oil & DGA Trending", desc: "Transformer oil DGA gas trending & lube oil contamination analysis" },
@@ -1406,7 +1406,7 @@ export const energyFlowData = {
       title: "12. Certification & Testing Bodies (CPRI, NABL, BIS & CEA)",
       shortName: "CPRI & NABL Certification",
       badge: "CPRI / NABL / BIS",
-      img: "/stage-compliance-archival.png",
+      img: "/xpectra-energy-scada-control-room-audit.png",
       items: [
         { name: "CPRI Type Testing Clearance", desc: "Central Power Research Institute high-power short circuit & high-voltage testing clearance" },
         { name: "NABL Accredited Lab Testing", desc: "NABL accredited calibration & testing laboratory reports" },
@@ -1426,7 +1426,7 @@ export const automotiveFlowData = {
       title: "1. Design Validation & Development Testing (DVP&R, DFMEA & CAE)",
       shortName: "DVP&R & Design Validation",
       badge: "DVP&R / DFMEA / CAE",
-      img: "/transient-capture.png",
+      img: "/xpectra-automotive-dvpr-cae-audit.png",
       items: [
         { name: "DVP&R (Design Verification Plan & Report)", desc: "Master test matrix mapping requirement specs to validation tests" },
         { name: "DV & PV Testing", desc: "Design Validation (DV) & Process Validation (PV) testing for production intent" },
@@ -1439,7 +1439,7 @@ export const automotiveFlowData = {
       title: "2. Powertrain & Engine Testing (BS6 RDE & Climatic Dyno)",
       shortName: "Powertrain & BS6 Dyno",
       badge: "BS6 RDE / Dyno / Leh-Desert",
-      img: "/hotfire-stand.png",
+      img: "/xpectra-automotive-engine-dyno-bs6.png",
       subsections: [
         {
           category: "Dyno & Endurance",
@@ -1464,7 +1464,7 @@ export const automotiveFlowData = {
       title: "3. Transmission & Driveline Testing",
       shortName: "Transmission & Driveline",
       badge: "Shift Quality / CV Joint",
-      img: "/stage-hardware-binding.png",
+      img: "/xpectra-automotive-transmission-driveline-rig.png",
       items: [
         { name: "Transmission Dyno & Shift Quality", desc: "Automated manual & automatic shift quality & efficiency testing" },
         { name: "Clutch & Propeller Shaft Durability", desc: "Clutch actuation fatigue & CV joint torsional durability" },
@@ -1476,7 +1476,7 @@ export const automotiveFlowData = {
       title: "4. Vehicle-Level Performance & ARAI/ICAT Homologation",
       shortName: "ARAI Homologation",
       badge: "CMVR / Type Approval",
-      img: "/timestamp-sync.png",
+      img: "/xpectra-automotive-arai-homologation-track.png",
       items: [
         { name: "CMVR Mandatory Homologation", desc: "Central Motor Vehicle Rules certification at ARAI, ICAT, or GARC" },
         { name: "Type Approval Testing", desc: "Full vehicle Type Approval clearance for mass production" },
@@ -1489,7 +1489,7 @@ export const automotiveFlowData = {
       title: "5. Durability, Proving Ground & Shaker Rig Testing (NATRAX)",
       shortName: "Proving Ground & Shaker",
       badge: "NATRAX / 4-Post Shaker",
-      img: "/satellite-emc-chamber.png",
+      img: "/xpectra-automotive-proving-ground-natrax.png",
       items: [
         { name: "NATRAX Proving Ground Track", desc: "High-speed track & durability trials at NATRAX Indore / OEM tracks" },
         { name: "Belgian Block & Pavé Testing", desc: "Accelerated rough road cobble pave durability testing" },
@@ -1502,7 +1502,7 @@ export const automotiveFlowData = {
       title: "6. Structural & Crash Safety Testing (AIS-096 & BNVSAP NCAP)",
       shortName: "Crash & NCAP Safety",
       badge: "AIS-096 / Bharat NCAP",
-      img: "/airgapped-nvme.png",
+      img: "/xpectra-automotive-battery-thermal-runaway.png",
       items: [
         { name: "Frontal & Offset Crash (AIS-096)", desc: "Frontal impact & Offset Deformable Barrier (ODB) crash validation" },
         { name: "Side & Pole Impact Testing", desc: "Side barrier & rigid pole side crash testing for occupant safety" },
@@ -1515,7 +1515,7 @@ export const automotiveFlowData = {
       title: "7. Structural & Component Durability Testing",
       shortName: "Component Fatigue",
       badge: "Chassis Fatigue / ISO",
-      img: "/stage-realtime-ingest.png",
+      img: "/xpectra-automotive-proving-ground-natrax.png",
       items: [
         { name: "Chassis & Suspension Fatigue", desc: "Multi-axis servo-hydraulic fatigue testing on suspension arms & chassis" },
         { name: "Torsional Rigidity Testing", desc: "Airframe & body-in-white (BIW) static & dynamic torsional stiffness" },
@@ -1528,7 +1528,7 @@ export const automotiveFlowData = {
       title: "8. Environmental & Climatic Chamber Testing",
       shortName: "Environmental & IP",
       badge: "Climatic / IP67 / IP68",
-      img: "/hotfire-stand.png",
+      img: "/engine-operability-fod-icing-test.png",
       items: [
         { name: "Climatic Thermal Cycling", desc: "Hot/cold/humidity chamber cycling (-40°C to +85°C)" },
         { name: "Solar Load Thermal Soak", desc: "Full-vehicle sun load simulation chamber testing" },
@@ -1541,7 +1541,7 @@ export const automotiveFlowData = {
       title: "9. EMI/EMC & Electronics HIL Testing (AIS-004 & CAN Bus)",
       shortName: "EMI/EMC & ECU HIL",
       badge: "AIS-004 / CAN / SIL-HIL",
-      img: "/aerospace-ui.png",
+      img: "/xpectra-automotive-ecu-hil-canfd-telemetry.png",
       items: [
         { name: "AIS-004 / CISPR EMI/EMC Testing", desc: "Radiated & conducted immunity/emissions in anechoic chamber" },
         { name: "CAN Bus & Network Testing", desc: "CAN, LIN, & Ethernet network latency, jitter, & fault injection" },
@@ -1554,7 +1554,7 @@ export const automotiveFlowData = {
       title: "10. EV-Specific Testing (Battery Pack, BMS & Fast Charge)",
       shortName: "EV Battery & Motor",
       badge: "Battery Thermal / CCS / BMS",
-      img: "/stage-hotfire-analytics.png",
+      img: "/xpectra-automotive-ev-powertrain-telemetry.png",
       subsections: [
         {
           category: "Battery & Safety",
@@ -1579,7 +1579,7 @@ export const automotiveFlowData = {
       title: "11. NVH & Ride Comfort Testing (Semi-Anechoic Chamber)",
       shortName: "NVH & Ride Comfort",
       badge: "Semi-Anechoic / Modal",
-      img: "/satellite-emc-chamber.png",
+      img: "/xpectra-automotive-4post-shaker-rig.png",
       items: [
         { name: "Semi-Anechoic Acoustic Testing", desc: "Powertrain & interior cabin noise isolation in acoustic chamber" },
         { name: "Modal Analysis & Frequency Response", desc: "Identifying body panel & structural natural resonance frequencies" },
@@ -1592,7 +1592,7 @@ export const automotiveFlowData = {
       title: "12. Interior, Comfort & Ergonomics Testing",
       shortName: "Interior & HVAC",
       badge: "HVAC / Airbag / Ergonomics",
-      img: "/airgapped-nvme.png",
+      img: "/automobile.jpg",
       items: [
         { name: "HVAC Thermal Comfort Testing", desc: "Cabin pull-down cooling & heating performance in solar chamber" },
         { name: "Seat Durability & Ergonomics", desc: "H-point seating ergonomics & H-point durability fatigue testing" },
@@ -1605,7 +1605,7 @@ export const automotiveFlowData = {
       title: "13. Certification & Regulatory Bodies (ARAI, ICAT, NATRAX & GARC)",
       shortName: "ARAI / ICAT / NATRAX",
       badge: "ARAI / ICAT / GARC / VRDE",
-      img: "/compliance-archival.png",
+      img: "/xpectra-automotive-arai-homologation-track.png",
       items: [
         { name: "ARAI Pune Homologation", desc: "Automotive Research Association of India primary certification body" },
         { name: "ICAT Manesar Certification", desc: "International Centre for Automotive Technology homologation" },
@@ -1618,7 +1618,7 @@ export const automotiveFlowData = {
       title: "14. Pre-Production & Launch Validation (PPAP, SOP & Fleet Trials)",
       shortName: "PPAP & Launch Readiness",
       badge: "PPAP / SOP / Fleet",
-      img: "/stage-hardware-binding.png",
+      img: "/xpectra-automotive-proving-ground-natrax.png",
       items: [
         { name: "PPAP Component Sign-Off", desc: "Production Part Approval Process Level 1-5 supplier component clearance" },
         { name: "Pilot Production Run", desc: "Validating assembly line tooling, jigs, & takt time on pilot batch" },
@@ -1638,7 +1638,7 @@ export const roboticsFlowData = {
       title: "1. Design Validation Testing (EVT, DVT, PVT & DFMEA)",
       shortName: "EVT / DVT / PVT",
       badge: "DVT / DFMEA / PVT",
-      img: "/transient-capture.png",
+      img: "/xpectra-drone-iron-bird-hil-rig.png",
       items: [
         { name: "EVT (Engineering Validation Test)", desc: "Early prototype functional hardware & actuator proof of concept" },
         { name: "DVT (Design Verification Test)", desc: "Mid-stage pre-production hardware & sensor integration validation" },
@@ -1651,7 +1651,7 @@ export const roboticsFlowData = {
       title: "2. Mechanical & Structural Testing (ISO 9283 Performance Criteria)",
       shortName: "Mechanical & ISO 9283",
       badge: "ISO 9283 / Stiffness",
-      img: "/hotfire-stand.png",
+      img: "/robots.jpg",
       items: [
         { name: "ISO 9283 Repeatability & Accuracy", desc: "Pose positioning accuracy, pose repeatability, & trajectory path error" },
         { name: "Payload Capacity Validation", desc: "Rated payload vs maximum payload static & dynamic deflection" },
@@ -1664,7 +1664,7 @@ export const roboticsFlowData = {
       title: "3. Actuator & Drive System Testing (Joint Dyno & Thermal)",
       shortName: "Actuator & Joint Dyno",
       badge: "Dyno / ROM / Encoder",
-      img: "/stage-hardware-binding.png",
+      img: "/xpectra-automotive-transmission-driveline-rig.png",
       items: [
         { name: "Actuator Dyno & Torque-Speed Curve", desc: "Motor dyno efficiency mapping, continuous & peak torque limits" },
         { name: "Joint Range of Motion (ROM)", desc: "Multi-axis joint hard-stop limits & high-resolution encoder accuracy" },
@@ -1677,7 +1677,7 @@ export const roboticsFlowData = {
       title: "4. Power System Testing (AMR Batteries & Auto-Docking)",
       shortName: "Power & Auto-Docking",
       badge: "AMR Battery / Auto-Dock",
-      img: "/timestamp-sync.png",
+      img: "/xpectra-automotive-battery-thermal-runaway.png",
       items: [
         { name: "Battery Pack Cycle Life & C-Rate", desc: "Charge/discharge rate mapping, cell balancing, & cycle endurance" },
         { name: "Thermal Runaway & Safety", desc: "Cell propagation prevention, thermal abuse, & BMS fault validation" },
@@ -1690,7 +1690,7 @@ export const roboticsFlowData = {
       title: "5. Sensor & Perception Testing (LiDAR, SLAM & Vision)",
       shortName: "Sensors & Perception",
       badge: "LiDAR / SLAM / Mocap",
-      img: "/satellite-emc-chamber.png",
+      img: "/xpectra-drone-stealth-rcs-anechoic.png",
       items: [
         { name: "Sensor Calibration & Fusion", desc: "Extrinsic/intrinsic calibration for 3D LiDAR, stereo cameras, IMU, & F/T sensors" },
         { name: "SLAM & Localization Accuracy", desc: "Simultaneous Localization and Mapping vs optoelectronic motion capture ground truth" },
@@ -1703,7 +1703,7 @@ export const roboticsFlowData = {
       title: "6. Control System & Digital Twin Software Testing (MIL, SIL, HIL & Isaac Sim)",
       shortName: "Control SIL/HIL & Sim",
       badge: "MIL / SIL / HIL / Isaac Sim",
-      img: "/aerospace-ui.png",
+      img: "/xpectra-automotive-ecu-hil-canfd-telemetry.png",
       items: [
         { name: "MIL, SIL & HIL Testing", desc: "Model-in-Loop, Software-in-Loop, & real-time Hardware-in-Loop controller test bench" },
         { name: "PID / MPC Control Loop Tuning", desc: "Trajectory tracking, Model Predictive Control (MPC), & torque loop latency" },
@@ -1716,7 +1716,7 @@ export const roboticsFlowData = {
       title: "7. Functional & Cobot Safety Testing (ISO 13849 & ISO/TS 15066)",
       shortName: "Safety & ISO 13849",
       badge: "ISO 13849 / ISO/TS 15066",
-      img: "/airgapped-nvme.png",
+      img: "/hardware-daq.png",
       items: [
         { name: "ISO 13849 & IEC 62061 Functional Safety", desc: "Performance Level (PL d/e) & SIL 3 safety control circuit validation" },
         { name: "ISO/TS 15066 Power & Force Limiting (PFL)", desc: "Collaborative robot force/pressure bio-fidelic impact testing for human contact" },
@@ -1729,7 +1729,7 @@ export const roboticsFlowData = {
       title: "8. Environmental & Ingress Testing (IEC 60529 IP Rating)",
       shortName: "Environmental & IP",
       badge: "IEC 60529 IP65/IP67",
-      img: "/hotfire-stand.png",
+      img: "/engine-operability-fod-icing-test.png",
       items: [
         { name: "IEC 60529 IP Rating Testing", desc: "IP65/IP67 dust-tight & high-pressure water jet ingress testing" },
         { name: "Climatic Thermal Chamber Cycling", desc: "Extreme operational temperature validation (-40°C cold start to +85°C heat)" },
@@ -1742,7 +1742,7 @@ export const roboticsFlowData = {
       title: "9. Mobility & Navigation Testing (AMRs & AGVs)",
       shortName: "AMR Mobility & Nav",
       badge: "AMR Nav / Incline / Stability",
-      img: "/stage-realtime-ingest.png",
+      img: "/xpectra-drone-runway-taxi-telemetry.png",
       items: [
         { name: "Navigation Accuracy & Path Planning", desc: "Sub-centimeter AMR stopping accuracy & dynamic path generation" },
         { name: "Slope & Incline Traversal", desc: "Full-payload ramp climbing, slope holding brake, & downhill descent control" },
@@ -1755,7 +1755,7 @@ export const roboticsFlowData = {
       title: "10. Manipulation & Gripper Testing (Robot Arms & Humanoids)",
       shortName: "Manipulation & Gripper",
       badge: "Grasp Success / End-Effector",
-      img: "/stage-hardware-binding.png",
+      img: "/hero-sensor2.png",
       items: [
         { name: "Grasping Success Rate", desc: "High-speed pick-and-place success rate across varied object shapes/materials" },
         { name: "Force / Torque Impedance Control", desc: "Compliance control for delicate assembly & peg-in-hole insertion" },
@@ -1768,7 +1768,7 @@ export const roboticsFlowData = {
       title: "11. Reliability, HALT / HASS & Endurance Testing",
       shortName: "Reliability & HALT/HASS",
       badge: "MTBF / HALT / 24/7 Soak",
-      img: "/transient-capture.png",
+      img: "/xpectra-automotive-4post-shaker-rig.png",
       items: [
         { name: "MTBF & MTTR Validation", desc: "Demonstrated Mean Time Between Failures & Mean Time To Repair audit" },
         { name: "HALT & HASS Stress Testing", desc: "Highly Accelerated Life Testing beyond limits to uncover design flaws" },
@@ -1781,7 +1781,7 @@ export const roboticsFlowData = {
       title: "12. Field Testing, PoC & Pilot Deployment",
       shortName: "Field Trials & PoC",
       badge: "PoC / Pilot / UAT / A-B",
-      img: "/stage-hotfire-analytics.png",
+      img: "/xpectra-drone-envelope-expansion-telemetry.png",
       items: [
         { name: "Proof of Concept (PoC) Validation", desc: "Customer facility PoC demonstration under simulated operational flow" },
         { name: "Pilot Facility Deployment", desc: "Limited-scale warehouse or factory floor pilot deployment trials" },
@@ -1794,7 +1794,7 @@ export const roboticsFlowData = {
       title: "13. Fleet Management System (FMS) & Fleet-Level Orchestration",
       shortName: "Fleet Orchestration & FMS",
       badge: "1000+ Robot Fleet FMS",
-      img: "/satellite-emc-chamber.png",
+      img: "/xpectra-energy-scada-control-room-audit.png",
       subsections: [
         {
           category: "Multi-Robot Orchestration",
@@ -1819,7 +1819,7 @@ export const roboticsFlowData = {
       title: "14. Cybersecurity & Data Encryption Testing",
       shortName: "Cybersecurity & Encrypt",
       badge: "Pen-Test / TLS / TPM 2.0",
-      img: "/airgapped-nvme.png",
+      img: "/defence-tactical-airgapped-hardware.png",
       items: [
         { name: "Penetration Testing & Port Audit", desc: "Network penetration testing on ROS 2 DDS nodes & robot control web APIs" },
         { name: "Encrypted Telemetry & TPM 2.0", desc: "Hardware TPM-backed boot verification & AES-256 encrypted storage" },
@@ -1831,7 +1831,7 @@ export const roboticsFlowData = {
       title: "15. Standards & Regulatory Certification Bodies (ISO 10218, CE, UL & RIA)",
       shortName: "ISO 10218 & CE / UL",
       badge: "ISO 10218 / CE / UL / RIA",
-      img: "/compliance-archival.png",
+      img: "/defence-gsqr-documentation-audit.png",
       items: [
         { name: "ISO 10218 Industrial Robot Safety", desc: "Safety requirements for industrial robot arm manipulators (Part 1 & 2)" },
         { name: "ISO 13482 Personal Care Safety", desc: "Safety standards for mobile servicing & personal care robots" },
@@ -1844,7 +1844,7 @@ export const roboticsFlowData = {
       title: "16. Human-Robot Interaction (HRI) & Teach Pendant Testing",
       shortName: "HRI & Teach Pendant",
       badge: "HRI / Ergonomics / HMI",
-      img: "/stage-hardware-binding.png",
+      img: "/xpectra-drone-flight-telemetry-gcs.png",
       items: [
         { name: "Teach Pendant & HMI Usability", desc: "Handheld teach pendant UI responsiveness, jog control, & safety key switch" },
         { name: "Voice & Gesture Command Recognition", desc: "Voice recognition NLP & 3D gesture control accuracy in noisy factories" },

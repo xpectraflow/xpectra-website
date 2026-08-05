@@ -492,10 +492,17 @@ function HeroOrbitDeck({ children, headerRightWidget, problemStatement }: { chil
             <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-3">
               {/* Primary — Request Pilot */}
               <a
-                href="#contact"
+                href="#pilot"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                  const el = document.getElementById('pilot') || document.getElementById('contact');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                      const emailInput = (document.getElementById("pilot-email") || el.querySelector('input[type="email"]')) as HTMLInputElement | null;
+                      if (emailInput) emailInput.focus();
+                    }, 400);
+                  }
                 }}
                 className={`group inline-flex w-full sm:w-auto whitespace-nowrap justify-center items-center gap-3 rounded-full border px-6 py-3.5 text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(255,255,255,0.12)] ${theme === "dark"
                   ? "bg-white text-black border-transparent"

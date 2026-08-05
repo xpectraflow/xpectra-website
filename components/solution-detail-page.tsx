@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Header } from '@/components/header';
@@ -32,11 +32,46 @@ import {
 } from 'lucide-react';
 import { solutionsData, satelliteAITData, propulsionFlowData, dronesFlowData, defenceFlowData, energyFlowData, automotiveFlowData, roboticsFlowData, testingFlowData } from '@/lib/solutions-data';
 import { DroneFlightHUDMockup } from '@/components/drone-hud-mockup';
+import { Input } from '@/components/ui/input';
+import { requestPilotAction } from '@/app/actions/request-pilot';
 
 export default function SolutionDetailPage({ slug }: { slug: string }) {
   const data = solutionsData[slug] || solutionsData.satellite || solutionsData.aerospace;
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
   const [activeAITPhase, setActiveAITPhase] = useState(0);
+  const [isPhasePaused, setIsPhasePaused] = useState(false);
+  const [pilotFormData, setPilotFormData] = useState({ email: '' });
+  const [isPilotSubmitting, setIsPilotSubmitting] = useState(false);
+  const [pilotFormStatus, setPilotFormStatus] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handlePilotSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsPilotSubmitting(true);
+    setPilotFormStatus(null);
+
+    const formDataObj = new FormData();
+    formDataObj.append("email", pilotFormData.email);
+
+    const response = await requestPilotAction(formDataObj);
+
+    setPilotFormStatus({
+      success: response.success,
+      message: response.success ? response.message : response.error
+    });
+
+    if (response.success) {
+      setPilotFormData({ email: '' });
+    }
+    setIsPilotSubmitting(false);
+  };
+
+  const scrollToPilotSection = () => {
+    const el = document.getElementById('pilot') || document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const isSatellitePage = slug === "satellite";
   const isTestingPage = slug === "testing";
   const isPropulsionPage = slug === "propulsion";
@@ -156,17 +191,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "3. Transformer Tan Delta & DGA Chromatographic Monitoring",
       desc: "Substation transformer testing: Megger insulation resistance, Tan Delta dissipation factor, oil dielectric BDV voltage withstand, and continuous Dissolved Gas Analysis (DGA) for predictive fault detection.",
-      img: "/satellite-emc-chamber.png"
+      img: "/xpectra-energy-substation-transformer-telemetry.png"
     },
     {
       title: "7. Performance Guarantee (PG) Tests (ASME PTC / IEC 60953)",
       desc: "Plant PG test execution validating contracted turbine heat rate, generator MWe output, boiler efficiency, and CPCB/MoEF stack emissions (SOx, NOx, PM) at rated full load.",
-      img: "/fadec-hil-ehms-simulation.png"
+      img: "/xpectra-energy-scada-control-room-audit.png"
     },
     {
       title: "8. Turbine Rolling, Grid Sync & CEA 72-Hour Trial Operation",
       desc: "Turbine rolling from barring gear to 3000 RPM, main stop valve stroke, overspeed trip, first-time generator grid synchronization, and CEA mandated 72-hour continuous trial run before COD.",
-      img: "/gas-turbine-engine-testbed.png"
+      img: "/xpectra-energy-power-plant-telemetry.png"
     }
   ];
 
@@ -174,17 +209,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "2. BS6 / Euro 6 RDE PEMS & Dyno Emissions Telemetry",
       desc: "Engine and chassis dynamometer mapping correlated with Real Driving Emissions (RDE) PEMS telemetry. Monitor BSFC fuel consumption, NOx, PM, and in-cylinder combustion pressure during 500-hour endurance runs.",
-      img: "/hotfire-stand.png"
+      img: "/xpectra-automotive-engine-dyno-bs6.png"
     },
     {
       title: "5. NATRAX Proving Ground & 4-Post Shaker Road Load Rig",
       desc: "High-speed track trials at NATRAX Indore & 4-post road load shaker simulation. Ingest CAN bus metrics and strain gauge data simulating 160,000 km durability lifecycle stress in real time.",
-      img: "/stage-realtime-ingest.png"
+      img: "/xpectra-automotive-4post-shaker-rig.png"
     },
     {
       title: "6 & 10. Bharat NCAP Crash Testing & EV Battery Thermal Runaway",
       desc: "AIS-096 frontal, side, and Bharat NCAP crash test telemetry alongside EV battery thermal runaway propagation, nail penetration, BMS cell balancing, and CCS DC fast charge validation.",
-      img: "/stage-hardware-binding.png"
+      img: "/xpectra-automotive-battery-thermal-runaway.png"
     }
   ];
 
@@ -192,17 +227,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     {
       title: "6. NVIDIA Isaac Sim / Gazebo Digital Twin & ROS 2 HIL Sync",
       desc: "Synchronize physics-based digital twin simulations (NVIDIA Isaac Sim, Gazebo, Webots) with real-time ROS 2 DDS telemetry streams to validate MPC control loops and joint trajectory tracking.",
-      img: "/aerospace-ui.png"
+      img: "/xpectra-drone-iron-bird-hil-rig.png"
     },
     {
       title: "7. Functional & Cobot Safety (ISO 13849 & ISO/TS 15066)",
       desc: "Validate PL d/e safety circuits, Power and Force Limiting (PFL) bio-fidelic human contact limits, E-stop response, and safety scanner light curtains across collaborative robot arms and humanoids.",
-      img: "/stage-hardware-binding.png"
+      img: "/robots.jpg"
     },
     {
       title: "13. Fleet Management (FMS) Orchestration & OTA Updates",
       desc: "Orchestrate 1000+ AMR and humanoid fleets with FMS task allocation, corridor deadlock avoidance, zero-downtime rolling OTA updates, and encrypted black-box incident telemetry.",
-      img: "/stage-hotfire-analytics.png"
+      img: "/xpectra-energy-scada-control-room-audit.png"
     }
   ];
 
@@ -241,6 +276,24 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
     : isRoboticsPage
     ? roboticsCarousel
     : defaultCarousel;
+
+  useEffect(() => {
+    if (!carouselItems || carouselItems.length <= 1 || isCarouselPaused) return;
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev < carouselItems.length - 1 ? prev + 1 : 0));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [carouselItems, isCarouselPaused]);
+
+  useEffect(() => {
+    if (!currentFlowData?.sections || currentFlowData.sections.length <= 1 || isPhasePaused) return;
+    const interval = setInterval(() => {
+      setActiveAITPhase((prev) => (prev < currentFlowData.sections.length - 1 ? prev + 1 : 0));
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentFlowData, isPhasePaused]);
 
   return (
     <div className="relative min-h-screen w-full bg-[#050608] text-white overflow-x-hidden">
@@ -317,12 +370,12 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="flex flex-wrap items-center justify-center gap-4"
             >
-              <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-bold px-8 h-13 rounded-xl text-base shadow-xl shadow-white/10">
+              <Link href="/#pilot">
+                <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-bold px-8 h-13 rounded-xl text-base shadow-xl shadow-white/10 cursor-pointer">
                   Request a Demo
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-              </a>
+              </Link>
               <a href="#explore-platform">
                 <Button size="lg" variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10 px-8 h-13 rounded-xl text-base gap-2 backdrop-blur-md">
                   <Play className="w-4 h-4 fill-white/80" />
@@ -522,12 +575,25 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                 </div>
               )}
 
-              <div className="pt-2">
-                <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-bold px-7 h-12 rounded-xl text-sm">
-                    Request a Demo
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+              <div className="pt-3 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/#pilot"
+                  className="group inline-flex items-center gap-2.5 rounded-xl bg-white text-black hover:bg-gray-100 font-bold px-7 h-12 text-sm shadow-lg hover:shadow-white/20 transition-all cursor-pointer"
+                >
+                  <span>Request a Demo</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+
+                <a
+                  href="#framework"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById('framework')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 text-white px-7 h-12 text-sm font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/40 cursor-pointer"
+                >
+                  <Play className="w-4 h-4 text-white fill-white shrink-0" />
+                  <span>Explore {data.title} Framework</span>
                 </a>
               </div>
             </div>
@@ -548,7 +614,11 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                       : isDefencePage
                       ? "/xpectra-defence-tactical-telemetry-daq.png"
                       : isEnergyPage
-                      ? "/gas-turbine-engine-testbed.png"
+                      ? "/xpectra-energy-power-plant-telemetry.png"
+                      : isAutomotivePage
+                      ? "/xpectra-automotive-ev-powertrain-telemetry.png"
+                      : isRoboticsPage
+                      ? "/robots.jpg"
                       : "/aerospace-ui.png"
                   }
                   alt={
@@ -564,6 +634,10 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                       ? "Xpectra Defence Telemetry Dashboard & Tactical Armored Vehicle DAQ Stand"
                       : isEnergyPage
                       ? "NTPC / BHEL Heavy Power Plant Gas Turbine Test Cell Telemetry"
+                      : isAutomotivePage
+                      ? "ARAI / ICAT EV Chassis Dyno & Battery Thermal Mapping Telemetry"
+                      : isRoboticsPage
+                      ? "Industrial Robotics 6-Axis Manipulator & ROS 2 Telemetry"
                       : "Xpectra Telemetry Dashboard"
                   }
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -619,31 +693,19 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
         {/* 3. CAPABILITIES SLIDER CAROUSEL (Sift Interactive Slider Style) */}
         <section className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 lg:p-12 shadow-2xl relative overflow-hidden">
-            {/* Header + Nav Arrows */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-10">
-              <div>
-                <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 font-bold block mb-1">
-                  PLATFORM CAPABILITIES
-                </span>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">
-                  {isSatellitePage ? "RF, EMC & Software Validation Workflows" : "Designed for Mission-Critical Fidelity"}
-                </h2>
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : carouselItems.length - 1))}
-                  className="p-3 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => setActiveSlide((prev) => (prev < carouselItems.length - 1 ? prev + 1 : 0))}
-                  className="p-3 rounded-full border border-white/15 bg-white/5 hover:bg-white/15 text-white transition-colors"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
+          <div
+            onMouseEnter={() => setIsCarouselPaused(true)}
+            onMouseLeave={() => setIsCarouselPaused(false)}
+            className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 lg:p-12 shadow-2xl relative overflow-hidden"
+          >
+            {/* Header */}
+            <div className="mb-10">
+              <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/60 font-bold block mb-1">
+                PLATFORM CAPABILITIES
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                {isSatellitePage ? "RF, EMC & Software Validation Workflows" : "Designed for Mission-Critical Fidelity"}
+              </h2>
             </div>
 
             {/* Slider Card Content */}
@@ -686,7 +748,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
         </section>
 
         {/* 4. SIFT PROGRAM TIMELINE (01 DEVELOP -> 02 VALIDATE -> 03 OPERATE) */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section id="framework" className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white max-w-4xl mx-auto leading-tight">
               {isSatellitePage
@@ -1042,7 +1104,11 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
         {/* 7. VISUAL CAMPAIGN FLOW NAVIGATOR WITH IMAGES & CARDS (FOR SATELLITE & PROPULSION) */}
         {isFlowPage && (
           <section className="max-w-7xl mx-auto px-6 lg:px-8" id="ait-validation-flow">
-            <div className="rounded-3xl border border-white/15 bg-[#0c0d10] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+            <div
+              onMouseEnter={() => setIsPhasePaused(true)}
+              onMouseLeave={() => setIsPhasePaused(false)}
+              className="rounded-3xl border border-white/15 bg-[#0c0d10] p-8 md:p-12 shadow-2xl relative overflow-hidden"
+            >
               
               {/* Header */}
               <div className="text-center mb-12">
@@ -1084,76 +1150,78 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               {(() => {
                 const currentSec = currentFlowData.sections[activeAITPhase] || currentFlowData.sections[0];
                 return (
-                  <div className="rounded-2xl border border-white/20 bg-zinc-950/90 p-6 md:p-10 mb-16 shadow-2xl">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div className="rounded-2xl border border-white/20 bg-zinc-950/90 p-5 md:p-6 mb-12 shadow-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
                       
                       {/* Left Details Column */}
-                      <div className="lg:col-span-6 space-y-6">
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-bold">
-                            PHASE {currentSec.id < 10 ? `0${currentSec.id}` : currentSec.id} / {currentFlowData.sections.length < 10 ? `0${currentFlowData.sections.length}` : currentFlowData.sections.length}
-                          </span>
-                          <span className="text-xs font-mono text-white/60">
-                            {currentSec.badge}
-                          </span>
+                      <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-bold">
+                              PHASE {currentSec.id < 10 ? `0${currentSec.id}` : currentSec.id} / {currentFlowData.sections.length < 10 ? `0${currentFlowData.sections.length}` : currentFlowData.sections.length}
+                            </span>
+                            <span className="text-xs font-mono text-white/60">
+                              {currentSec.badge}
+                            </span>
+                          </div>
+
+                          <h3 className="text-xl md:text-2xl font-bold text-white leading-snug">
+                            {currentSec.title}
+                          </h3>
+
+                          {'subsections' in currentSec && currentSec.subsections ? (
+                            <div className={`grid grid-cols-1 ${(currentSec as any).subsections.length <= 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3'} gap-3 pt-1`}>
+                              {(currentSec as any).subsections.map((sub: any, sIdx: number) => (
+                                <div key={sIdx} className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.07] transition-all flex flex-col justify-between">
+                                  <div>
+                                    <div className="flex items-center justify-between text-[11px] font-mono font-bold text-white/90 uppercase tracking-wider mb-2 pb-1 border-b border-white/10">
+                                      <span>{sub.category}</span>
+                                      <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                                    </div>
+                                    <div className="space-y-2.5">
+                                      {sub.items.map((item: any, iIdx: number) => (
+                                        <div key={iIdx} className="space-y-0.5">
+                                          <div className="font-semibold text-white flex items-start gap-1.5 leading-snug text-xs">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                                            <span>{item.name}</span>
+                                          </div>
+                                          <p className="text-[11px] text-white/60 pl-5 font-light leading-relaxed">
+                                            {item.desc}
+                                          </p>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          ) : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                              {currentSec.items?.map((item, iIdx) => (
+                                <div key={iIdx} className="p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.07] transition-all flex flex-col justify-between">
+                                  <div>
+                                    <div className="text-xs font-bold text-white mb-1 flex items-start gap-1.5 leading-snug">
+                                      <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
+                                      <span>{item.name}</span>
+                                    </div>
+                                    <p className="text-[11px] text-white/60 font-light leading-relaxed pl-5">
+                                      {item.desc}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
 
-                        <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-                          {currentSec.title}
-                        </h3>
-
-                        {'subsections' in currentSec && currentSec.subsections ? (
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
-                            {(currentSec as any).subsections.map((sub: any, sIdx: number) => (
-                              <div key={sIdx} className="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.07] transition-all flex flex-col justify-between min-h-[180px]">
-                                <div>
-                                  <div className="flex items-center justify-between text-[10px] font-mono font-bold text-white/90 uppercase tracking-wider mb-2.5 pb-1.5 border-b border-white/10">
-                                    <span>{sub.category}</span>
-                                    <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                                  </div>
-                                  <div className="space-y-2.5">
-                                    {sub.items.map((item: any, iIdx: number) => (
-                                      <div key={iIdx} className="text-xs space-y-0.5">
-                                        <div className="font-semibold text-white flex items-start gap-1.5">
-                                          <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
-                                          <span>{item.name}</span>
-                                        </div>
-                                        <p className="text-[11px] text-white/60 pl-5 font-light leading-relaxed">
-                                          {item.desc}
-                                        </p>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                            {currentSec.items?.map((item, iIdx) => (
-                              <div key={iIdx} className="p-4 rounded-xl bg-white/[0.04] border border-white/10 hover:border-white/25 hover:bg-white/[0.07] transition-all flex flex-col justify-between min-h-[90px]">
-                                <div>
-                                  <div className="text-xs font-bold text-white mb-1 flex items-start gap-2">
-                                    <CheckCircle2 className="w-3.5 h-3.5 text-white shrink-0 mt-0.5" />
-                                    <span>{item.name}</span>
-                                  </div>
-                                  <p className="text-[11px] text-white/60 font-light leading-relaxed pl-5">
-                                    {item.desc}
-                                  </p>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-
                         {/* Phase Navigation Controls */}
-                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <div className="flex items-center justify-between pt-3 border-t border-white/10 mt-auto">
                           <button
                             disabled={activeAITPhase === 0}
                             onClick={() => setActiveAITPhase((prev) => Math.max(0, prev - 1))}
-                            className="text-xs font-mono px-4 py-2 rounded-lg border border-white/15 bg-white/5 hover:bg-white/15 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+                            className="text-xs font-mono px-3.5 py-1.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/15 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 cursor-pointer"
                           >
-                            <ChevronLeft className="w-4 h-4" />
+                            <ChevronLeft className="w-3.5 h-3.5" />
                             <span>Previous Phase</span>
                           </button>
 
@@ -1164,18 +1232,18 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                           <button
                             disabled={activeAITPhase === currentFlowData.sections.length - 1}
                             onClick={() => setActiveAITPhase((prev) => Math.min(currentFlowData.sections.length - 1, prev + 1))}
-                            className="text-xs font-mono px-4 py-2 rounded-lg border border-white/15 bg-white/5 hover:bg-white/15 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center gap-1.5"
+                            className="text-xs font-mono px-3.5 py-1.5 rounded-lg border border-white/15 bg-white/5 hover:bg-white/15 text-white disabled:opacity-30 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 cursor-pointer"
                           >
                             <span>Next Phase</span>
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="w-3.5 h-3.5" />
                           </button>
                         </div>
 
                       </div>
 
                       {/* Right Visual Image Card */}
-                      <div className="lg:col-span-6">
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl group">
+                      <div className="lg:col-span-6 flex flex-col items-center justify-center">
+                        <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] max-h-[350px] sm:max-h-[370px] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl group flex flex-col justify-end">
                           <img
                             src={currentSec.img}
                             alt={currentSec.title}
@@ -1184,12 +1252,12 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                           
                           {/* Live Telemetry Overlay */}
-                          <div className="absolute bottom-4 left-4 right-4 bg-black/85 backdrop-blur-md p-3.5 rounded-xl border border-white/15 flex items-center justify-between text-xs font-mono">
+                          <div className="relative z-10 m-3 bg-black/85 backdrop-blur-md p-2.5 px-3.5 rounded-xl border border-white/15 flex items-center justify-between text-xs font-mono">
                             <div className="flex items-center gap-2">
-                              <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse" />
-                              <span className="text-white font-bold uppercase">{currentSec.badge}</span>
+                              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                              <span className="text-white font-bold uppercase text-[11px]">{currentSec.badge}</span>
                             </div>
-                            <span className="text-white/70">{isPropulsionPage ? "IPRC / MCGREGOR READY" : "ISRO / SPACEX READY"}</span>
+                            <span className="text-white/70 text-[11px]">{isPropulsionPage ? "IPRC / MCGREGOR READY" : "ISRO / SPACEX READY"}</span>
                           </div>
                         </div>
                       </div>
@@ -1198,61 +1266,6 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                   </div>
                 );
               })()}
-
-              {/* VISUAL GRID AT A GLANCE (Showing ALL Phases with Images) */}
-              <div className="border-t border-white/10 pt-12">
-                <div className="text-center mb-8">
-                  <h3 className="text-xl md:text-2xl font-bold text-white">
-                    {isPropulsionPage ? "Full Rocket Propulsion Campaign Visual Overview" : "Full Qualification Campaign Visual Overview"}
-                  </h3>
-                  <p className="text-xs md:text-sm text-white/60 mt-1">
-                    Click any phase card to jump into detailed telemetry view
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {currentFlowData.sections.map((sec, sIdx) => (
-                    <div
-                      key={sec.id}
-                      onClick={() => setActiveAITPhase(sIdx)}
-                      className={`rounded-2xl border p-5 transition-all cursor-pointer flex flex-col justify-between group ${
-                        activeAITPhase === sIdx
-                          ? 'border-white bg-white/10 shadow-2xl scale-[1.02]'
-                          : 'border-white/10 bg-zinc-950/80 hover:border-white/30 hover:bg-white/5'
-                      }`}
-                    >
-                      <div>
-                        {/* Thumbnail Image */}
-                        <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-white/10 mb-4 bg-black">
-                          <img
-                            src={sec.img}
-                            alt={sec.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono font-bold text-white border border-white/20">
-                            PHASE {sec.id < 10 ? `0${sec.id}` : sec.id}
-                          </div>
-                        </div>
-
-                        <h4 className="text-sm font-bold text-white mb-2 leading-snug">
-                          {sec.title}
-                        </h4>
-
-                        <p className="text-[11px] text-white/60 line-clamp-3 leading-relaxed font-light">
-                          {'subsections' in sec && (sec as any).subsections
-                            ? (sec as any).subsections.map((s: any) => s.category).join(', ')
-                            : sec.items?.map((i: any) => i.name).join(' · ')}
-                        </p>
-                      </div>
-
-                      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-white/70">
-                        <span>{sec.badge}</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
 
             </div>
           </section>
@@ -1327,29 +1340,10 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
           </section>
         )}
 
-        {/* 10. CUSTOMER TESTIMONIAL BANNER */}
-        {data.quote && (
-          <section className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="rounded-3xl border border-white/15 bg-gradient-to-r from-white/[0.08] via-white/[0.04] to-white/[0.08] p-8 lg:p-12 relative overflow-hidden shadow-2xl">
-              <Quote className="w-12 h-12 text-white/20 mb-6" />
-              <p className="text-lg md:text-2xl text-white font-light italic leading-relaxed mb-8 max-w-4xl">
-                "{data.quote.text}"
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-bold text-white text-sm font-mono shrink-0">
-                  {data.quote.author.split(' ').map(n => n[0]).join('')}
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-white">{data.quote.author}</div>
-                  <div className="text-xs text-white/60">{data.quote.role} · <span className="text-white/80 font-medium">{data.quote.company}</span></div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
+
 
         {/* 11. TAILORED BOTTOM CTA SECTION */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <section className="max-w-7xl mx-auto px-6 lg:px-8 text-center pt-6">
           <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/10 to-white/5 p-12 lg:p-16 relative overflow-hidden shadow-2xl">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
               {isSatellitePage
@@ -1374,18 +1368,26 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               Connect your test stand, vehicle fleet, or edge sensors in under 15 minutes with our native edge binaries.
             </p>
             
-            <div className="flex flex-wrap justify-center gap-4">
-              <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-bold px-8 h-13 rounded-xl text-base shadow-lg shadow-white/10">
-                  Request a Demo
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </a>
-              <a href="mailto:sales@xpectraflow.com">
-                <Button size="lg" variant="outline" className="border-white/20 bg-white/5 text-white hover:bg-white/10 px-8 h-13 rounded-xl text-base gap-2">
-                  <MessageSquare className="w-4 h-4 text-white" />
-                  <span>Contact Sales</span>
-                </Button>
+            <div className="flex flex-wrap justify-center gap-4 pt-2">
+              <Link
+                href="/#pilot"
+                className="group inline-flex items-center gap-2.5 rounded-xl bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-sm shadow-lg hover:shadow-white/20 transition-all cursor-pointer"
+              >
+                <span>Request a Demo</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+
+              <a
+                href="https://github.com/xpectraflow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 text-white px-8 py-4 text-sm font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/40"
+              >
+                <svg className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                </svg>
+                <span>VIEW ON GITHUB</span>
+                <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>

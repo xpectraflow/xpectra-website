@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail } from 'lucide-react';
@@ -14,6 +14,32 @@ const XpectraWebsite = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<{ success: boolean; message: string } | null>(null);
+
+  useEffect(() => {
+    const handlePilotFocus = () => {
+      if (typeof window !== "undefined") {
+        const hash = window.location.hash;
+        if (hash === "#pilot" || hash === "#contact") {
+          setTimeout(() => {
+            const el = document.getElementById("pilot") || document.getElementById("contact");
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth" });
+              setTimeout(() => {
+                const emailInput = (document.getElementById("pilot-email") || el.querySelector('input[type="email"]')) as HTMLInputElement | null;
+                if (emailInput) {
+                  emailInput.focus();
+                }
+              }, 400);
+            }
+          }, 100);
+        }
+      }
+    };
+
+    handlePilotFocus();
+    window.addEventListener("hashchange", handlePilotFocus);
+    return () => window.removeEventListener("hashchange", handlePilotFocus);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -236,12 +262,13 @@ const XpectraWebsite = () => {
             <div className="flex flex-col justify-center gap-4 lg:w-[340px] shrink-0">
               <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <Input
+                  id="pilot-email"
                   type="email"
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="bg-white/5 border-white/10 text-white placeholder:text-white/25 h-12 rounded-xl px-4"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/25 h-12 rounded-xl px-4 focus:ring-2 focus:ring-white/30 transition-all"
                 />
                 <Button
                   type="submit"

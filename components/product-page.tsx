@@ -645,7 +645,7 @@ const ProductPage = () => {
 
                         {/* Button + Stats Strip (Exact match to xpectraflow.com screenshot) */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-                            <Link href="/#contact">
+                            <Link href="/#pilot">
                                 <button className="rounded-full bg-white text-black hover:bg-slate-200 font-semibold px-7 py-4 text-xs tracking-[0.15em] uppercase flex items-center gap-2.5 shadow-2xl transition-transform hover:scale-105 cursor-pointer">
                                     <span className="w-1.5 h-1.5 rounded-full bg-black inline-block" />
                                     REQUEST PILOT →
@@ -956,7 +956,7 @@ const ProductPage = () => {
                             Deploy Xpectra in your environment with a 30-day enterprise evaluation.
                         </p>
                         <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-                            <Link href="/#contact">
+                            <Link href="/#pilot">
                                 <button className="rounded-full bg-white text-black hover:bg-slate-200 font-semibold px-8 py-4 text-xs tracking-[0.15em] uppercase flex items-center gap-2 shadow-2xl transition-transform hover:scale-105 cursor-pointer">
                                     <span className="w-1.5 h-1.5 rounded-full bg-black inline-block" />
                                     REQUEST PILOT →
