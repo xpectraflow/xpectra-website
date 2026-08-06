@@ -35,7 +35,7 @@ export const BlogPost = ({ post }: { post: any }) => {
 
         <p className="text-lg text-white/60 mb-6">
           <strong>NI SystemLink: The Enterprise Fleet Manager</strong><br />
-          SystemLink is built on a heavy, service-oriented architecture designed primarily for asset and IT management. At its core, SystemLink Enterprise relies on Kubernetes-hosted microservices. For its backend data storage, it utilizes MongoDB for configuration data and PostgreSQL—a traditional relational database—for its broader data storage needs. It also requires a complex supporting infrastructure consisting of RabbitMQ for messaging, Redis for caching, and Dremio for data queries. Additionally, SystemLink utilizes a tool called Salt Master to securely connect to targets, manage configurations, and execute software installation workflows.
+          SystemLink is built on a heavy, service-oriented architecture designed primarily for asset and IT management. At its core, SystemLink Enterprise relies on Kubernetes-hosted microservices. For its backend data storage, it utilizes MongoDB for configuration data and PostgreSQL, a traditional relational database,for its broader data storage needs. It also requires a complex supporting infrastructure consisting of RabbitMQ for messaging, Redis for caching, and Dremio for data queries. Additionally, SystemLink utilizes a tool called Salt Master to securely connect to targets, manage configurations, and execute software installation workflows.
         </p>
 
         <p className="text-lg text-white/60 mb-6">
@@ -589,7 +589,7 @@ dataset    = experiment.datasets.get(
 )
 
 # Decode binary CCSDS telemetry captured from the HIL rig
-# and stream it directly into Xpectra — no intermediate files
+# and stream it directly into Xpectra - no intermediate files
 decoder = CcsdsDecoder("fcs_xtce_schema.xml")
 with open("actuator_step_response.ccsds", "rb") as f:
     raw = f.read()

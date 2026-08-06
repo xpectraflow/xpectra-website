@@ -122,10 +122,10 @@ client  = Client(api_key="sk_xp_...")
 dataset = client.experiments.get("<experiment-uuid>") \
                .datasets.get("My Dataset")
 
-# Batch — ingest a CSV or any DataFrame
+# Batch - ingest a CSV or any DataFrame
 dataset.ingest(pd.read_csv("sensor_data.csv"))
 
-# Live — stream from any generator, zero buffering
+# Live - stream from any generator, zero buffering
 from datetime import datetime, timezone
 dataset.ingest_live(
     (datetime.now(timezone.utc), "voltage_01", v)

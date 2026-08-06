@@ -374,19 +374,19 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
               {isSatellitePage
                 ? "Standard Assembly, Integration & Testing (AIT/ATLO) with nanosecond telemetry precision from cleanroom TVAC chambers to on-orbit commissioning."
                 : isTestingPage
-                ? "Dedicated telemetry and high-frequency DAQ framework for GTRE DRDO Kaveri, Kaveri Dry, and GTX-35VS engines — from compressor/combustor component rigs to GTRE ATF altitude simulation, FADEC HIL, and IL-76 Flying Test Bed trials."
+                ? "Dedicated telemetry and high-frequency DAQ framework for GTRE DRDO Kaveri, Kaveri Dry, and GTX-35VS engines - from compressor/combustor component rigs to GTRE ATF altitude simulation, FADEC HIL, and IL-76 Flying Test Bed trials."
                 : isPropulsionPage
                 ? "High-frequency transient DAQ, turbopump hot-fire telemetry, and acoustic vibration analysis for ISRO (LPSC/IPRC Mahendragiri) and SpaceX (McGregor Test Stand, Texas)."
                 : isDronesPage
                 ? "Complete ground qualification, Iron Bird HIL simulation, engine ground runs (EGR), GVT flutter clearance, MIL-STD-810 EQT, and CEMILAC airworthiness release for DRDO (ADE Rustom-II/TAPAS, Nishant, Netra, Abhyas, Ghatak) & military UAV systems."
                 : isDefencePage
-                ? "Institutional T&E framework across Land, Sea, and Air domains — from GSQR/ASR/NSQR documentation to DGQA/DGAQA qualification, PXE Chandipur live firing, CVRDE mobility, NPOL/NSTL naval HAT/SAT, CEMILAC certification, and Bulk Production Clearance (BPC)."
+                ? "Institutional T&E framework across Land, Sea, and Air domains - from GSQR/ASR/NSQR documentation to DGQA/DGAQA qualification, PXE Chandipur live firing, CVRDE mobility, NPOL/NSTL naval HAT/SAT, CEMILAC certification, and Bulk Production Clearance (BPC)."
                 : isEnergyPage
-                ? "Institutional testing framework for thermal, hydro, renewable & substation power systems — from OEM FAT (BHEL/GE/Siemens) to boiler hydro, turbine rolling, POWERGRID DGA/Tan Delta, ASME PTC PG tests, CEA 72-hr trial, and CPRI certification."
+                ? "Institutional testing framework for thermal, hydro, renewable & substation power systems - from OEM FAT (BHEL/GE/Siemens) to boiler hydro, turbine rolling, POWERGRID DGA/Tan Delta, ASME PTC PG tests, CEA 72-hr trial, and CPRI certification."
                 : isAutomotivePage
-                ? "End-to-end testing and certification framework for OEMs (Maruti Suzuki, Tata Motors, Mahindra) & Tier-1s — from DVP&R and BS6 RDE engine dyno to NATRAX proving grounds, Bharat NCAP crash safety, EV battery thermal runaway, and ARAI/ICAT homologation."
+                ? "End-to-end testing and certification framework for OEMs (Maruti Suzuki, Tata Motors, Mahindra) & Tier-1s - from DVP&R and BS6 RDE engine dyno to NATRAX proving grounds, Bharat NCAP crash safety, EV battery thermal runaway, and ARAI/ICAT homologation."
                 : isRoboticsPage
-                ? "End-to-end testing and qualification framework for industrial manipulators, AMRs, humanoids, and robot fleets — from DVT joint dynos and ROS 2 HIL/Isaac Sim to ISO 13849 safety, ISO/TS 15066 cobot PFL, and FMS fleet orchestration."
+                ? "End-to-end testing and qualification framework for industrial manipulators, AMRs, humanoids, and robot fleets - from DVT joint dynos and ROS 2 HIL/Isaac Sim to ISO 13849 safety, ISO/TS 15066 cobot PFL, and FMS fleet orchestration."
                 : data.tagline}
             </motion.p>
 
