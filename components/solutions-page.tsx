@@ -6,101 +6,31 @@ import Link from 'next/link';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Button } from '@/components/ui/button';
-import {
-  Rocket,
-  Shield,
-  Bot,
-  Car,
-  Zap,
-  ArrowRight,
-  CheckCircle2,
-  Activity,
-  Cpu,
-  Layers,
-  Sparkles
-} from 'lucide-react';
+import { ArrowRight, CheckCircle2, Activity, Sparkles } from 'lucide-react';
+import { solutionsListSummary, solutionsData } from '@/lib/solutions-data';
 
-const solutionsList = [
-  {
-    id: "aerospace",
-    icon: Rocket,
-    title: "Aerospace & Rocketry",
-    tagline: "Nanosecond-precise telemetry for propulsion & flight systems",
-    description: "Validate propulsion test stands, rocket engine hot-fires, and satellite telemetry streams with zero data drop and real-time visualization.",
-    features: [
-      "Microsecond transient glitch detection",
-      "High-frequency DAQ channel synchronization (250+ channels)",
-      "Automated incident & anomaly flagging during hot-fire tests",
-      "LabVIEW & MATLAB native plugin streaming"
+const solutionsList = solutionsListSummary.map((item) => {
+  const detail = solutionsData[item.id] || {};
+  return {
+    id: item.id,
+    icon: item.icon,
+    title: item.title,
+    tagline: item.desc,
+    description: detail.description || item.desc,
+    features: detail.keyFeatures?.slice(0, 4).map((f: any) => f.title) || [
+      "High-frequency sensor channel ingestion",
+      "Microsecond timestamp alignment & PTP IEEE 1588",
+      "Automated anomaly detection rules & alerts",
+      "Open columnar export (Parquet & HDF5)"
     ],
-    image: "/propulsion.jpg",
-    badge: "Flight-Grade"
-  },
-  {
-    id: "defense",
-    icon: Shield,
-    title: "Defense & Tactical Systems",
-    tagline: "Resilient edge sensor fusion in contested environments",
-    description: "Deploy offline-first telemetry ingestion engines directly onto vehicle-mounted hardware, tactical UAVs, and remote edge nodes.",
-    features: [
-      "Air-gapped, zero-cloud dependency options",
-      "End-to-end telemetry encryption & zero-trust auth",
-      "Bandwidth-adaptive streaming over tactical radio links",
-      "MIL-STD payload format converters"
-    ],
-    image: "/drone.jpg",
-    badge: "Mission-Critical"
-  },
-  {
-    id: "robotics",
-    icon: Bot,
-    title: "Robotics & Autonomous Systems",
-    tagline: "HIL simulation & multi-sensor playback loop",
-    description: "Stream high-throughput LIDAR, IMU, and actuator telemetry straight into hardware-in-the-loop (HIL) testing pipelines.",
-    features: [
-      "ROS 2 / ROS 1 native stream ingestion",
-      "Sub-millisecond latency state estimation feeds",
-      "Frame-by-frame synchronized sensor replay",
-      "Python SDK for automated CI regression testing"
-    ],
-    image: "/robots.jpg",
-    badge: "Autonomy Ready"
-  },
-  {
-    id: "automotive",
-    icon: Car,
-    title: "Automotive & EV Engineering",
-    tagline: "Powertrain stress testing & battery thermal analytics",
-    description: "Monitor CAN-bus metrics, inverter thermals, and crash test telemetry with unified schema validation.",
-    features: [
-      "CAN / CAN-FD & Ethernet telemetry parsing",
-      "Real-time battery thermal run-away alert triggers",
-      "Fleet-wide test track data ingestion",
-      "Cloud & edge hybrid telemetry archive"
-    ],
-    image: "/automobile.jpg",
-    badge: "Automotive"
-  },
-  {
-    id: "energy",
-    icon: Zap,
-    title: "Energy & Heavy Infrastructure",
-    tagline: "Vibration & acoustic monitoring for critical turbines",
-    description: "Continuous telemetry monitoring for wind turbines, grid sub-stations, and heavy industrial machinery.",
-    features: [
-      "24/7 continuous sensor health scoring",
-      "FFT spectral vibration analysis on the edge",
-      "Predictive maintenance trigger pipelines",
-      "Multi-region telemetry aggregation"
-    ],
-    image: "/network-telemetry.jpg",
-    badge: "Industrial IoT"
-  }
-];
+    image: detail.heroImage || "/propulsion.jpg",
+    badge: item.badge
+  };
+});
 
 export default function SolutionsPage() {
   return (
-    <div className="relative min-h-screen w-full bg-[#050608] text-white overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-[#050505] bg-[radial-gradient(#ffffff12_1px,transparent_1px)] [background-size:24px_24px] text-white overflow-x-hidden">
       <Header />
 
       <main className="pt-28 pb-20">
@@ -112,7 +42,7 @@ export default function SolutionsPage() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-white/80 mb-6"
           >
-            <Sparkles className="w-3.5 h-3.5 text-brand-emerald" />
+            <Sparkles className="w-3.5 h-3.5 text-white/80" />
             <span>Tailored Engineering Solutions</span>
           </motion.div>
 
@@ -122,7 +52,7 @@ export default function SolutionsPage() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl font-bold tracking-tight text-white max-w-4xl mx-auto leading-[1.15]"
           >
-            Telemetry Solutions Built for <span className="bg-gradient-to-r from-blue-400 via-emerald-400 to-purple-400 bg-clip-text text-transparent">Extreme Engineering</span>
+            Telemetry Solutions Built for <span className="bg-gradient-to-r from-white via-white/80 to-zinc-400 bg-clip-text text-transparent">Extreme Engineering</span>
           </motion.h1>
 
           <motion.p
@@ -173,7 +103,7 @@ export default function SolutionsPage() {
                   <div className={`lg:col-span-7 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                     <div className="flex items-center gap-3 mb-4">
                       <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white">
-                        <IconComponent className="w-6 h-6 text-brand-emerald" />
+                        <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <span className="text-xs font-mono uppercase tracking-widest text-white/50 bg-white/5 px-3 py-1 rounded-full border border-white/10">
                         {sol.badge}
@@ -181,22 +111,22 @@ export default function SolutionsPage() {
                     </div>
 
                     <Link href={`/solutions/${sol.id}`} className="group/title block">
-                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover/title:text-emerald-400 transition-colors cursor-pointer">{sol.title}</h2>
+                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover/title:text-white/80 transition-colors cursor-pointer">{sol.title}</h2>
                     </Link>
-                    <p className="text-sm font-mono text-brand-emerald/90 mb-4">{sol.tagline}</p>
+                    <p className="text-sm font-mono text-white/70 mb-4">{sol.tagline}</p>
                     <p className="text-white/60 text-base leading-relaxed mb-6 font-light">{sol.description}</p>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
                       {sol.features.map((feat, fIdx) => (
                         <div key={fIdx} className="flex items-start gap-2.5 text-xs text-white/80">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-white/90 shrink-0 mt-0.5" />
                           <span>{feat}</span>
                         </div>
                       ))}
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4">
-                      <Link href={`/solutions/${sol.id}`} className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+                      <Link href={`/solutions/${sol.id}`} className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-white/80 transition-colors">
                         Explore {sol.title} Page <ArrowRight className="w-4 h-4" />
                       </Link>
                       <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs font-mono text-white/50 hover:text-white transition-colors">
@@ -217,7 +147,7 @@ export default function SolutionsPage() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                         <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/70 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
                           <span className="flex items-center gap-1.5">
-                            <Activity className="w-3.5 h-3.5 text-emerald-400" />
+                            <Activity className="w-3.5 h-3.5 text-white" />
                             LIVE STREAM READY
                           </span>
                           <span>VIEW DETAILS →</span>

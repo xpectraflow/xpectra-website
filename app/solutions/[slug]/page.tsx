@@ -3,8 +3,13 @@ import { solutionsData } from '@/lib/solutions-data';
 
 export function generateStaticParams() {
   return [
-    { slug: 'aerospace' },
+    { slug: 'satellite' },
+    { slug: 'testing' },
+    { slug: 'propulsion' },
+    { slug: 'drones' },
+    { slug: 'defence' },
     { slug: 'defense' },
+    { slug: 'aerospace' },
     { slug: 'robotics' },
     { slug: 'automotive' },
     { slug: 'energy' },
