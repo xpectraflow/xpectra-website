@@ -143,17 +143,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const satelliteCarousel = [
     {
-      title: "2. EMI/EMC Anechoic Chamber Non-Interference",
+      title: "1. EMI/EMC Anechoic Chamber Non-Interference",
       desc: "Electromagnetic Interference / Electromagnetic Compatibility testing in an anechoic chamber. Conducted & radiated emissions checks ensure transponders, power buses, batteries, and thrusters don't cross-interfere.",
       img: "/satellite-emc-chamber.png"
     },
     {
-      title: "3. CATR RF Pattern & Gravity-Offload Array Deployment",
+      title: "2. CATR RF Pattern & Gravity-Offload Array Deployment",
       desc: "Compact Antenna Test Range (CATR) pattern testing & link budget verification. Solar array and antenna deployment testing using gravity-offload rigs (simulating 0g deployment).",
       img: "/stage-hardware-binding.png"
     },
     {
-      title: "5. HIL Simulation & Software Validation Test Bed (ISRO AOCS)",
+      title: "3. HIL Simulation & Software Validation Test Bed (ISRO AOCS)",
       desc: "Hardware-in-the-Loop simulation & ISRO Software Validation Test Bed for AOCS (Attitude & Orbit Control System) validation. Mission sequence rehearsal & Day-in-the-Life (DITL) testing.",
       img: "/stage-realtime-ingest.png"
     }
@@ -161,17 +161,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const propulsionCarousel = [
     {
-      title: "ISRO LPSC / IPRC Mahendragiri HAT & Cryogenic Test Stand",
+      title: "1. ISRO LPSC / IPRC Mahendragiri HAT & Cryogenic Test Stand",
       desc: "High Altitude Test (HAT) facility vacuum ignition simulation for CE-7.5 and CE-20 cryogenic upper stage engines. Monitor LOX/LH2 chill-down, turbopump cold flow, and CUS integrated stage static firing in real time.",
       img: "/isro-lpsc-cryo-hat-stand.png"
     },
     {
-      title: "SpaceX McGregor Stand & Raptor Acceptance Hot-Fire",
+      title: "2. SpaceX McGregor Stand & Raptor Acceptance Hot-Fire",
       desc: "Stream 100,000 Hz DAQ data during Merlin and Raptor acceptance firings at McGregor, Texas. Capture full duration static fire burns, Wet Dress Rehearsals (WDR), and Starship LN2 cryo proof structural pressure tests.",
       img: "/spacex-mcgregor-rocket-test-stand.png"
     },
     {
-      title: "Microsecond Combustion Transient & Gimbal TVC Sync",
+      title: "3. Microsecond Combustion Transient & Gimbal TVC Sync",
       desc: "Hardware PTP (IEEE 1588) microsecond time alignment correlates combustion chamber pressure oscillations with hydraulic/electric TVC gimbal actuator feedback during engine hot-fire.",
       img: "/rocket-tvc-gimbal-combustion-transient.png"
     }
@@ -179,17 +179,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const dronesCarousel = [
     {
-      title: "2. Avionics Integration Rig (Iron Bird) & HIL Testing",
+      title: "1. Avionics Integration Rig (Iron Bird) & HIL Testing",
       desc: "Full avionics suite tested on a ground Iron Bird rig replicating Rustom-II / TAPAS BH-201 wiring and systems. HIL (Hardware-in-Loop) simulation validates Flight Control Computer (FCC) control laws.",
       img: "/xpectra-drone-iron-bird-hil-rig.png"
     },
     {
-      title: "4. Flight Control Laws & Ground Control Station (GCS)",
+      title: "2. Flight Control Laws & Ground Control Station (GCS)",
       desc: "Software-in-Loop (SIL) and Man-in-Loop (MILS) pilot simulations. Validates mission planning software, dual/triple redundant FCC failover, and failsafe behavior in link loss or GPS-denied environments.",
       img: "/xpectra-drone-flight-telemetry-gcs.png"
     },
     {
-      title: "6 & 10. EO/IR SAR Payloads, Stealth RCS & Autonomous Swarm Mesh",
+      title: "3. EO/IR SAR Payloads, Stealth RCS & Autonomous Swarm Mesh",
       desc: "Ground-based RCS measurement for stealth UAVs (Ghatak / SWiFT). Multi-UAV swarm coordination algorithm validation, dynamic collision avoidance, and ad-hoc mesh RF network telemetry.",
       img: "/xpectra-drone-stealth-rcs-anechoic.png"
     }
@@ -197,17 +197,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const defenceCarousel = [
     {
-      title: "3. Climatic & Extreme Terrain EQT (JSS 55555 & MIL-STD-810)",
+      title: "1. Climatic & Extreme Terrain EQT (JSS 55555 & MIL-STD-810)",
       desc: "Ruggedness qualification across extreme operating environments: Pokhran desert heat, Siachen sub-zero cold start, high-altitude Leh trials, and Chilka marine salt fog corrosion testing.",
       img: "/defence-military-system-eqt-test.png"
     },
     {
-      title: "7. Live Firing Range & Ballistics Telemetry (ITR / PXE Chandipur)",
+      title: "2. Live Firing Range & Ballistics Telemetry (ITR / PXE Chandipur)",
       desc: "Static and dynamic live firing trials at PXE Chandipur & ITR Chandipur. Capture circular error probable (CEP), fuze functioning, and terminal ballistics penetration in real time.",
       img: "/defence-missile-radar-firing-range-telemetry.png"
     },
     {
-      title: "8 & 9. Armoured Vehicle (CVRDE) & Naval Systems (NPOL / NSTL)",
+      title: "3. Armoured Vehicle (CVRDE) & Naval Systems (NPOL / NSTL)",
       desc: "CVRDE mobility, gradient & NBC protection trials alongside NPOL/NSTL Harbor Acceptance Trials (HAT), Sea Acceptance Trials (SAT), sonar performance, and underwater acoustic signature testing.",
       img: "/defence-tactical-airgapped-hardware.png"
     }
@@ -215,17 +215,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const energyCarousel = [
     {
-      title: "3. Transformer Tan Delta & DGA Chromatographic Monitoring",
+      title: "1. Transformer Tan Delta & DGA Chromatographic Monitoring",
       desc: "Substation transformer testing: Megger insulation resistance, Tan Delta dissipation factor, oil dielectric BDV voltage withstand, and continuous Dissolved Gas Analysis (DGA) for predictive fault detection.",
       img: "/xpectra-energy-substation-transformer-telemetry.png"
     },
     {
-      title: "7. Performance Guarantee (PG) Tests (ASME PTC / IEC 60953)",
+      title: "2. Performance Guarantee (PG) Tests (ASME PTC / IEC 60953)",
       desc: "Plant PG test execution validating contracted turbine heat rate, generator MWe output, boiler efficiency, and CPCB/MoEF stack emissions (SOx, NOx, PM) at rated full load.",
       img: "/xpectra-energy-scada-control-room-audit.png"
     },
     {
-      title: "8. Turbine Rolling, Grid Sync & CEA 72-Hour Trial Operation",
+      title: "3. Turbine Rolling, Grid Sync & CEA 72-Hour Trial Operation",
       desc: "Turbine rolling from barring gear to 3000 RPM, main stop valve stroke, overspeed trip, first-time generator grid synchronization, and CEA mandated 72-hour continuous trial run before COD.",
       img: "/xpectra-energy-power-plant-telemetry.png"
     }
@@ -233,17 +233,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const automotiveCarousel = [
     {
-      title: "2. BS6 / Euro 6 RDE PEMS & Dyno Emissions Telemetry",
+      title: "1. BS6 / Euro 6 RDE PEMS & Dyno Emissions Telemetry",
       desc: "Engine and chassis dynamometer mapping correlated with Real Driving Emissions (RDE) PEMS telemetry. Monitor BSFC fuel consumption, NOx, PM, and in-cylinder combustion pressure during 500-hour endurance runs.",
       img: "/xpectra-automotive-engine-dyno-bs6.png"
     },
     {
-      title: "5. NATRAX Proving Ground & 4-Post Shaker Road Load Rig",
+      title: "2. NATRAX Proving Ground & 4-Post Shaker Road Load Rig",
       desc: "High-speed track trials at NATRAX Indore & 4-post road load shaker simulation. Ingest CAN bus metrics and strain gauge data simulating 160,000 km durability lifecycle stress in real time.",
       img: "/xpectra-automotive-4post-shaker-rig.png"
     },
     {
-      title: "6 & 10. Bharat NCAP Crash Testing & EV Battery Thermal Runaway",
+      title: "3. Bharat NCAP Crash Testing & EV Battery Thermal Runaway",
       desc: "AIS-096 frontal, side, and Bharat NCAP crash test telemetry alongside EV battery thermal runaway propagation, nail penetration, BMS cell balancing, and CCS DC fast charge validation.",
       img: "/xpectra-automotive-battery-thermal-runaway.png"
     }
@@ -251,17 +251,17 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
   const roboticsCarousel = [
     {
-      title: "6. NVIDIA Isaac Sim / Gazebo Digital Twin & ROS 2 HIL Sync",
+      title: "1. NVIDIA Isaac Sim / Gazebo Digital Twin & ROS 2 HIL Sync",
       desc: "Synchronize physics-based digital twin simulations (NVIDIA Isaac Sim, Gazebo, Webots) with real-time ROS 2 DDS telemetry streams to validate MPC control loops and joint trajectory tracking.",
       img: "/xpectra-drone-iron-bird-hil-rig.png"
     },
     {
-      title: "7. Functional & Cobot Safety (ISO 13849 & ISO/TS 15066)",
+      title: "2. Functional & Cobot Safety (ISO 13849 & ISO/TS 15066)",
       desc: "Validate PL d/e safety circuits, Power and Force Limiting (PFL) bio-fidelic human contact limits, E-stop response, and safety scanner light curtains across collaborative robot arms and humanoids.",
       img: "/robots.jpg"
     },
     {
-      title: "13. Fleet Management (FMS) Orchestration & OTA Updates",
+      title: "3. Fleet Management (FMS) Orchestration & OTA Updates",
       desc: "Orchestrate 1000+ AMR and humanoid fleets with FMS task allocation, corridor deadlock avoidance, zero-downtime rolling OTA updates, and encrypted black-box incident telemetry.",
       img: "/xpectra-energy-scada-control-room-audit.png"
     }
