@@ -34,9 +34,9 @@ export const Header = () => {
             <Link href="/integrations" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Integrations
             </Link>
-            <Link href="/quickstart" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
+            <a href="https://docs.xpectraflow.com/quickstart" target="_blank" rel="noopener noreferrer" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Quickstart
-            </Link>
+            </a>
             <Link href="/blog" className="text-[17px] font-medium text-white/65 hover:text-white transition-colors">
               Blog
             </Link>
@@ -87,7 +87,7 @@ export const Header = () => {
           >
             <Link href="/product" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Product</Link>
             <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Integrations</Link>
-            <Link href="/quickstart" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Quickstart</Link>
+            <a href="https://docs.xpectraflow.com/quickstart" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Quickstart</a>
             <Link href="/blog" onClick={() => setMobileMenuOpen(false)} className="text-xl font-medium py-4 block border-b border-white/5">Blog</Link>
             <a 
               href="https://github.com/xpectraflow" 
