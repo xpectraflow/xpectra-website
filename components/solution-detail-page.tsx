@@ -1443,7 +1443,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
             {/* Supporting Text Centered Below Both Columns */}
             <div className="border-t border-white/[0.08] pt-6 text-center relative z-10">
-              <p className="text-white/50 text-xs md:text-sm font-light max-w-xl mx-auto">
+              <p className="text-white/50 text-sm md:text-base font-light max-w-xl mx-auto">
                 Connect your test stand, vehicle fleet, or edge sensors in under 15 minutes with our native edge binaries.
               </p>
             </div>
