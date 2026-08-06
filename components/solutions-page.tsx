@@ -30,7 +30,7 @@ const solutionsList = solutionsListSummary.map((item) => {
 
 export default function SolutionsPage() {
   return (
-    <div className="relative min-h-screen w-full bg-[#050608] text-white overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-[#050505] bg-[radial-gradient(#ffffff12_1px,transparent_1px)] [background-size:24px_24px] text-white overflow-x-hidden">
       <Header />
 
       <main className="pt-28 pb-20">

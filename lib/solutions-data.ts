@@ -794,7 +794,7 @@ export const satelliteAITData = {
       title: "9. Post-Launch / On-Orbit Validation",
       shortName: "On-Orbit / LEOP",
       badge: "LEOP & IOT Ops",
-      img: "/compliance-archival.png",
+      img: "/satellite-on-orbit-telemetry.png",
       items: [
         { name: "LEOP (Launch and Early Orbit Phase)", desc: "LEOP (Launch and Early Orbit Phase) operations" },
         { name: "In-Orbit Testing (IOT)", desc: "Checks all subsystems function correctly after reaching orbit" },

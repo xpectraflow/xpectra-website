@@ -96,7 +96,7 @@ const XpectraWebsite = () => {
               </div>
 
               <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-white leading-snug">
-                Your test insights are trapped in broken pipelines<br />for weeks
+                Your test insights are trapped in<br />broken pipelines for weeks
               </h2>
             </div>
 

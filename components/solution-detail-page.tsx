@@ -45,6 +45,32 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
   const [isPilotSubmitting, setIsPilotSubmitting] = useState(false);
   const [pilotFormStatus, setPilotFormStatus] = useState<{ success: boolean; message: string } | null>(null);
 
+  const [ctaEmail, setCtaEmail] = useState('');
+  const [isCtaSubmitting, setIsCtaSubmitting] = useState(false);
+  const [ctaStatus, setCtaStatus] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleCtaSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!ctaEmail) return;
+    setIsCtaSubmitting(true);
+    setCtaStatus(null);
+
+    const formDataObj = new FormData();
+    formDataObj.append("email", ctaEmail);
+
+    const response = await requestPilotAction(formDataObj);
+
+    setCtaStatus({
+      success: response.success,
+      message: response.success ? response.message : response.error
+    });
+
+    if (response.success) {
+      setCtaEmail('');
+    }
+    setIsCtaSubmitting(false);
+  };
+
   const handlePilotSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsPilotSubmitting(true);
@@ -296,7 +322,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
   }, [currentFlowData, isPhasePaused]);
 
   return (
-    <div className="relative min-h-screen w-full bg-[#050608] text-white overflow-x-hidden">
+    <div className="relative min-h-screen w-full bg-[#050505] bg-[radial-gradient(#ffffff12_1px,transparent_1px)] [background-size:24px_24px] text-white overflow-x-hidden">
       <Header />
 
       <main className="pt-24 pb-24 space-y-24">
@@ -413,21 +439,21 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                 <Radio className="w-4 h-4 text-white" />
                 <span>
                   {isSatellitePage
-                    ? "01 / QUALIFICATION & ACCEPTANCE"
+                    ? "QUALIFICATION & ACCEPTANCE"
                     : isTestingPage
-                    ? "01 / GTRE GAS TURBINE ENGINE QUALIFICATION"
+                    ? "GTRE GAS TURBINE ENGINE QUALIFICATION"
                     : isPropulsionPage
-                    ? "01 / HIGH-FREQUENCY HOT-FIRE DAQ"
+                    ? "HIGH-FREQUENCY HOT-FIRE DAQ"
                     : isDronesPage
-                    ? "01 / STRUCTURAL & ENVIRONMENTAL EQT"
+                    ? "STRUCTURAL & ENVIRONMENTAL EQT"
                     : isDefencePage
-                    ? "01 / DEFENCE SYSTEM QUALIFICATION"
+                    ? "DEFENCE SYSTEM QUALIFICATION"
                     : isEnergyPage
-                    ? "01 / POWER SYSTEM COMMISSIONING"
+                    ? "POWER SYSTEM COMMISSIONING"
                     : isAutomotivePage
-                    ? "01 / AUTOMOTIVE VALIDATION & HOMOLOGATION"
+                    ? "AUTOMOTIVE VALIDATION & HOMOLOGATION"
                     : isRoboticsPage
-                    ? "01 / ROBOTICS & AUTONOMY QUALIFICATION"
+                    ? "ROBOTICS & AUTONOMY QUALIFICATION"
                     : "XPECTRA FOR AEROSPACE"}
                 </span>
               </div>
@@ -711,9 +737,6 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             {/* Slider Card Content */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-4">
-                <div className="inline-block text-xs font-mono px-3 py-1 rounded-full bg-white/10 text-white/90 border border-white/10">
-                  FEATURE 0{activeSlide + 1} / 0{carouselItems.length}
-                </div>
                 <h3 className="text-2xl font-bold text-white leading-snug">
                   {carouselItems[activeSlide].title}
                 </h3>
@@ -776,26 +799,23 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 flex flex-col justify-between hover:border-white/30 transition-all">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 font-bold">
-                    01
-                  </span>
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
                     {isSatellitePage
-                      ? "4. FUNCTIONAL & AIT/ATLO"
+                      ? "FUNCTIONAL & AIT/ATLO"
                       : isTestingPage
-                      ? "01. COMPONENT & CORE ENGINE"
+                      ? "COMPONENT & CORE ENGINE"
                       : isPropulsionPage
                       ? "ISRO LPSC & MAHENDARAGIRI"
                       : isDronesPage
                       ? "ADE IRON BIRD & HIL RIG"
                       : isDefencePage
-                      ? "01. GSQR & DGQA DESIGN QUAL"
+                      ? "GSQR & DGQA DESIGN QUAL"
                       : isEnergyPage
-                      ? "01. OEM FAT & BOILER TEST"
+                      ? "OEM FAT & BOILER TEST"
                       : isAutomotivePage
-                      ? "01. DVP&R & POWERTRAIN DYNO"
+                      ? "DVP&R & POWERTRAIN DYNO"
                       : isRoboticsPage
-                      ? "01. DVT & ACTUATOR DYNO"
+                      ? "DVT & ACTUATOR DYNO"
                       : "DEVELOP"}
                   </h3>
                 </div>
@@ -874,26 +894,23 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 flex flex-col justify-between hover:border-white/30 transition-all">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 font-bold">
-                    02
-                  </span>
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
                     {isSatellitePage
-                      ? "7 & 8. LAUNCH SITE & SPACEX"
+                      ? "LAUNCH SITE & SPACEX"
                       : isTestingPage
-                      ? "02. GTRE ATF & OPERABILITY"
+                      ? "GTRE ATF & OPERABILITY"
                       : isPropulsionPage
                       ? "SPACEX MCGREGOR & STARBASE"
                       : isDronesPage
                       ? "GCS, LAUNCH & PAYLOADS"
                       : isDefencePage
-                      ? "02. FIELD TRIALS & BALLISTICS"
+                      ? "FIELD TRIALS & BALLISTICS"
                       : isEnergyPage
-                      ? "02. TURBINE & SUBSTATION"
+                      ? "TURBINE & SUBSTATION"
                       : isAutomotivePage
-                      ? "02. PROVING GROUND & CRASH"
+                      ? "PROVING GROUND & CRASH"
                       : isRoboticsPage
-                      ? "02. HIL & COBOT SAFETY"
+                      ? "HIL & COBOT SAFETY"
                       : "VALIDATE"}
                   </h3>
                 </div>
@@ -972,26 +989,23 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
             <div className="rounded-3xl border border-white/10 bg-[#0c0d10] p-8 flex flex-col justify-between hover:border-white/30 transition-all">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 font-bold">
-                    03
-                  </span>
                   <h3 className="text-xl font-bold text-white tracking-wider uppercase">
                     {isSatellitePage
-                      ? "9. ON-ORBIT & LEOP"
+                      ? "ON-ORBIT & LEOP"
                       : isTestingPage
-                      ? "03. FADEC HIL & IL-76 FTB"
+                      ? "FADEC HIL & IL-76 FTB"
                       : isPropulsionPage
                       ? "PAD STATIC FIRE & HOPS"
                       : isDronesPage
                       ? "CEMILAC & FLIGHT TRIALS"
                       : isDefencePage
-                      ? "03. LAND/NAVAL & MOD BPC"
+                      ? "LAND/NAVAL & MOD BPC"
                       : isEnergyPage
-                      ? "03. PG TEST & CEA COD"
+                      ? "PG TEST & CEA COD"
                       : isAutomotivePage
-                      ? "03. EV BATTERY & HOMOLOGATION"
+                      ? "EV BATTERY & HOMOLOGATION"
                       : isRoboticsPage
-                      ? "03. FMS & FLEET DEPLOYMENT"
+                      ? "FMS & FLEET DEPLOYMENT"
                       : "OPERATE"}
                   </h3>
                 </div>
@@ -1156,10 +1170,7 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                       {/* Left Details Column */}
                       <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between">
-                            <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-bold">
-                              PHASE {currentSec.id < 10 ? `0${currentSec.id}` : currentSec.id} / {currentFlowData.sections.length < 10 ? `0${currentFlowData.sections.length}` : currentFlowData.sections.length}
-                            </span>
+                          <div className="flex items-center justify-end">
                             <span className="text-xs font-mono text-white/60">
                               {currentSec.badge}
                             </span>
@@ -1245,8 +1256,11 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
                       <div className="lg:col-span-6 flex flex-col items-center justify-center">
                         <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] max-h-[350px] sm:max-h-[370px] rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl group flex flex-col justify-end">
                           <img
-                            src={currentSec.img}
+                            src={currentSec.img || "/satellite-on-orbit-telemetry.png"}
                             alt={currentSec.title}
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = "/satellite-on-orbit-telemetry.png";
+                            }}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
@@ -1342,53 +1356,96 @@ export default function SolutionDetailPage({ slug }: { slug: string }) {
 
 
 
-        {/* 11. TAILORED BOTTOM CTA SECTION */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-8 text-center pt-6">
-          <div className="rounded-3xl border border-white/15 bg-gradient-to-b from-white/10 to-white/5 p-12 lg:p-16 relative overflow-hidden shadow-2xl">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-              {isSatellitePage
-                ? "Ready to transform your satellite constellation telemetry?"
-                : isTestingPage
-                ? "Ready to transform your gas turbine engine test stand?"
-                : isPropulsionPage
-                ? "Ready to transform your rocket engine hot-fire test stand?"
-                : isDronesPage
-                ? "Ready to transform your DRDO UAV ground checkout rig?"
-                : isDefencePage
-                ? "Ready to transform your defence testing & evaluation framework?"
-                : isEnergyPage
-                ? "Ready to transform your power plant & substation testing?"
-                : isAutomotivePage
-                ? "Ready to transform your vehicle powertrain & homologation testing?"
-                : isRoboticsPage
-                ? "Ready to transform your robotics qualification & fleet operations?"
-                : "Ready to transform your mission-critical telemetry?"}
-            </h2>
-            <p className="text-white/70 max-w-2xl mx-auto text-base md:text-lg mb-8 font-light">
-              Connect your test stand, vehicle fleet, or edge sensors in under 15 minutes with our native edge binaries.
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-4 pt-2">
-              <Link
-                href="/#pilot"
-                className="group inline-flex items-center gap-2.5 rounded-xl bg-white text-black hover:bg-gray-100 font-bold px-8 py-4 text-sm shadow-lg hover:shadow-white/20 transition-all cursor-pointer"
-              >
-                <span>Request a Demo</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+        {/* 11. TAILORED BOTTOM CTA SECTION (Exact Pilot Program 1st Image Size & Blue Theme Glow) */}
+        <section className="max-w-5xl mx-auto px-6 lg:px-8 pt-6">
+          <div className="relative rounded-3xl border border-white/[0.08] bg-gradient-to-br from-[#0a101f]/90 via-[#07090e]/95 to-[#080c18]/90 px-8 py-10 md:px-12 md:py-12 flex flex-col gap-8 overflow-hidden shadow-2xl">
+            {/* Top accent line */}
+            <div className="absolute top-0 left-16 right-16 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            {/* Inner blue glow */}
+            <div className="pointer-events-none absolute -top-20 left-1/4 w-96 h-48 rounded-full bg-blue-500/[0.15] blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-20 right-1/4 w-80 h-40 rounded-full bg-indigo-500/[0.10] blur-3xl" />
 
-              <a
-                href="https://github.com/xpectraflow"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2.5 rounded-xl border border-white/20 bg-white/5 text-white px-8 py-4 text-sm font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/40"
-              >
-                <svg className="w-4 h-4 text-white shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-                </svg>
-                <span>VIEW ON GITHUB</span>
-                <ArrowRight className="h-4 w-4" />
-              </a>
+            {/* Main Content Grid / Flex */}
+            <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 relative z-10">
+              
+              {/* Main Heading & Content on Left */}
+              <div className="flex flex-col gap-4 flex-1 min-w-0 text-left">
+                <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-white/30">
+                  PILOT PROGRAM
+                </p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-[1.15]">
+                  {isSatellitePage
+                    ? "Ready to transform your satellite constellation telemetry?"
+                    : isTestingPage
+                    ? "Ready to transform your gas turbine engine test stand?"
+                    : isPropulsionPage
+                    ? "Ready to transform your rocket engine hot-fire test stand?"
+                    : isDronesPage
+                    ? "Ready to transform your DRDO UAV ground checkout rig?"
+                    : isDefencePage
+                    ? "Ready to transform your defence testing & evaluation framework?"
+                    : isEnergyPage
+                    ? "Ready to transform your power plant & substation testing?"
+                    : isAutomotivePage
+                    ? "Ready to transform your vehicle powertrain & homologation testing?"
+                    : isRoboticsPage
+                    ? "Ready to transform your robotics qualification & fleet operations?"
+                    : "Ready to transform your mission-critical telemetry?"}
+                </h2>
+
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {["YOUR HARDWARE & DATA", "SETUP IN DAYS", "NO LOCK IN"].map((chip) => (
+                    <span key={chip} className="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-[0.1em] border border-white/10 bg-white/[0.04] text-white/40 whitespace-nowrap">
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Vertical Divider */}
+              <div className="hidden lg:block shrink-0 w-px self-stretch bg-white/[0.08]" />
+
+              {/* Contact Form on Right */}
+              <div className="flex flex-col justify-center gap-3 lg:w-[340px] shrink-0 w-full">
+                <form onSubmit={handleCtaSubmit} className="flex flex-col gap-3">
+                  <input
+                    type="email"
+                    required
+                    placeholder="your@email.com"
+                    value={ctaEmail}
+                    onChange={(e) => setCtaEmail(e.target.value)}
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/25 h-12 rounded-xl px-4 focus:ring-2 focus:ring-white/30 transition-all text-sm w-full focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isCtaSubmitting}
+                    className="h-12 px-6 bg-white text-black hover:bg-gray-100 font-semibold transition-all duration-200 rounded-xl text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 w-full shadow-lg"
+                  >
+                    <span>{isCtaSubmitting ? "Sending..." : "Request a Demo →"}</span>
+                  </button>
+
+                  <a
+                    href="mailto:arush@xpectraflow.com"
+                    className="text-white/30 hover:text-white/60 transition-colors text-xs font-mono text-center block pt-1"
+                  >
+                    arush@xpectraflow.com
+                  </a>
+
+                  {ctaStatus && (
+                    <p className={`text-xs text-center ${ctaStatus.success ? "text-emerald-400" : "text-rose-400"}`}>
+                      {ctaStatus.message}
+                    </p>
+                  )}
+                </form>
+              </div>
+
+            </div>
+
+            {/* Supporting Text Centered Below Both Columns */}
+            <div className="border-t border-white/[0.08] pt-6 text-center relative z-10">
+              <p className="text-white/50 text-xs md:text-sm font-light max-w-xl mx-auto">
+                Connect your test stand, vehicle fleet, or edge sensors in under 15 minutes with our native edge binaries.
+              </p>
             </div>
           </div>
         </section>
