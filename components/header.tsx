@@ -118,30 +118,14 @@ export const Header = () => {
             >
               <Github className="h-5 w-5" />
             </a>
-            <Link
-              href="/#pilot"
-              aria-label="Try Xpectra"
-              onClick={(e) => {
-                if (typeof window !== "undefined" && window.location.pathname === "/") {
-                  e.preventDefault();
-                  const el = document.getElementById("pilot") || document.getElementById("contact");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                    setTimeout(() => {
-                      const emailInput = (document.getElementById("pilot-email") || el.querySelector('input[type="email"]')) as HTMLInputElement | null;
-                      if (emailInput) emailInput.focus();
-                    }, 400);
-                  }
-                }
-              }}
-            >
+            <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer" aria-label="Try Xpectra">
               <Button
                 className="h-9 px-4 bg-white text-black hover:bg-gray-100 font-semibold text-[13px] cursor-pointer"
               >
                 Try Xpectra
                 <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -210,31 +194,11 @@ export const Header = () => {
               <Github className="h-5 w-5" />
               GitHub
             </a>
-            <Link
-              href="/#pilot"
-              onClick={(e) => {
-                setMobileMenuOpen(false);
-                if (typeof window !== "undefined" && window.location.pathname === "/") {
-                  e.preventDefault();
-                  const el = document.getElementById("pilot") || document.getElementById("contact");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                    setTimeout(() => {
-                      const emailInput = (document.getElementById("pilot-email") || el.querySelector('input[type="email"]')) as HTMLInputElement | null;
-                      if (emailInput) emailInput.focus();
-                    }, 400);
-                  }
-                }
-              }}
-              aria-label="Try Xpectra"
-              className="w-full pt-4 block"
-            >
-              <Button
-                className="w-full bg-white text-black font-bold py-6 rounded-2xl text-lg cursor-pointer"
-              >
+            <a href="https://app.xpectraflow.com" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} aria-label="Try Xpectra" className="w-full pt-4 block">
+              <Button className="w-full bg-white text-black font-bold py-6 rounded-2xl text-lg cursor-pointer">
                 Try Xpectra
               </Button>
-            </Link>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
