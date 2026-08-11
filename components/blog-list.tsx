@@ -18,46 +18,6 @@ const BLOG_POSTS = [
     slug: "xpectra-vs-ni-systemlink",
     category: "Engineering",
     tags: ["SystemLink", "NI", "Telemetry", "Infrastructure", "Comparison"]
-  },
-  {
-    title: "From Petabytes to Prototypes: How SpaceX Uses Data Infrastructure to Shrink Time-to-Insight",
-    description: "Reverse-engineering how modern aerospace leaders handle mission-critical sensor data to shrink time-to-insight using Agile Aerospace and HIL testing.",
-    date: "May 5, 2026",
-    author: "Arush Kumar Singh",
-    readTime: "6 min read",
-    slug: "spacex-data-infrastructure-lessons",
-    category: "Case Study",
-    tags: ["SpaceX", "Telemetry", "Infrastructure", "Engineering"]
-  },
-  {
-    title: "The Cost of \"Unknown-Unknowns\" in Aerospace Engineering",
-    description: "Reverse-engineering why standard tools fail at hardware anomaly detection and how unifying metric spikes with logs can reduce MTTR from weeks to minutes.",
-    date: "May 6, 2026",
-    author: "Arush Kumar Singh",
-    readTime: "7 min read",
-    slug: "cost-of-unknown-unknowns",
-    category: "Engineering",
-    tags: ["Aerospace", "Telemetry", "Anomaly Detection", "Observability"]
-  },
-  {
-    title: "The Sim-to-Real Gap: Why Hardware Iteration Requires More Than Just Simulation",
-    description: "Exploring why simulations fall short and how high-velocity physical testing - powered by world-class telemetry data infrastructure - is the only way to uncover ground truth.",
-    date: "May 8, 2026",
-    author: "Arush Kumar Singh",
-    readTime: "8 min read",
-    slug: "bridging-the-sim-to-real-gap",
-    category: "Engineering",
-    tags: ["Simulation", "HIL", "Robotics", "Aerospace", "Telemetry"]
-  },
-  {
-    title: "DO-178C and Beyond: Automating Compliance with Data Infrastructure",
-    description: "In the aerospace and defense industries, building a functional piece of hardware is only half the battle. The other half is proving to regulatory bodies that your system is safe to fly.",
-    date: "May 19, 2026",
-    author: "Arush Kumar Singh",
-    readTime: "5 min read",
-    slug: "build-for-certification-xpectra",
-    category: "Compliance",
-    tags: ["Certification", "DO-178C", "Compliance", "Telemetry", "DO-254"]
   }
 ];
 
@@ -66,8 +26,8 @@ export const BlogList = () => {
     <SiteShell>
       <div className="relative pt-20 pb-20 px-6 overflow-hidden">
         {/* Background Accents */}
-        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[500px] h-[500px] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-white/[0.02] blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[500px] h-[500px] bg-white/[0.01] blur-[100px] rounded-full pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
