@@ -78,7 +78,7 @@ export const Footer = () => {
 
         {/* Mobile Copyright */}
         <div className="block lg:hidden text-center text-[10px] sm:text-[12px] font-mono uppercase tracking-[0.2em] text-white/40 mb-8 px-4">
-          <p>© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
+          <p>© {currentYear} SPANDRA LABS PRIVATE LIMITED. All rights reserved.</p>
         </div>
       </div>
 
@@ -89,7 +89,7 @@ export const Footer = () => {
 
         {/* Desktop Copyright */}
         <div className="hidden lg:flex flex-row justify-center items-center gap-6 text-[14px] font-mono uppercase tracking-[0.2em] text-white/20 z-20 pointer-events-none absolute top-12 left-0 right-0">
-          <p className="pointer-events-auto">© {currentYear} Xpectraflow Pvt Ltd. All rights reserved.</p>
+          <p className="pointer-events-auto">© {currentYear} SPANDRA LABS PRIVATE LIMITED. All rights reserved.</p>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 flex justify-center items-end select-none z-0 pointer-events-none overflow-hidden">
